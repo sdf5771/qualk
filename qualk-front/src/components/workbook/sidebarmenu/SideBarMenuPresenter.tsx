@@ -5,20 +5,12 @@ import MenuElementContainer from "./MenuElementContainer";
 const menuData = [
     {
         menuId: 1,
-        menuName: 'Developer'
+        menuName: 'Data Analysis'
     },
     {
         menuId: 2,
-        menuName: 'GAIQ'
-    },
-    {
-        menuId: 3,
-        menuName: 'SQID'
-    },
-    {
-        menuId: 4,
-        menuName: 'SQLD'
-    },
+        menuName: 'Developer'
+    }
 ]
 
 type menuDataType = {menuId: number, menuName: string}

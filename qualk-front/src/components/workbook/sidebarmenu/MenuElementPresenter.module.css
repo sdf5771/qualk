@@ -4,30 +4,30 @@
     width: 200px;
     height: 44px;
     border-radius: 10px;
-    transition: background-color 0.4s ease;
+    transition: background-color 0.2s ease;
     cursor: pointer;
 }
 .menu_element_root > span{
     /*font-family: Como;*/
     margin-left: 20px;
-    font-size: 0.875rem;
+    font-size: 1.125rem;
     font-weight: bold;
     letter-spacing: -0.72px;
     color: #bababa;
     transition: color 0.3s ease;
-    transition: font-size 0.2s ease;
 }
-
 .menu_element_root:hover{
-    background-color: #fff6e0;
+    color: #ff9300;
 }
 .menu_element_root:hover > span{
     color: #ff9300;
     font-size: 1.125rem!important;
 }
+.menu_element_root.active{
+    background-color: #fff6e0;
+}
 .menu_element_root.active > span{
     /*font-family: Como;*/
-    font-size: 0.875rem;
     font-weight: bold;
     letter-spacing: -0.72px;
     color: #ff9300;

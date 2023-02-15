@@ -1,6 +1,5 @@
 .workbook_listview_root{
-    margin-left: 40px;
-    width: calc(100% - 40px);
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -14,6 +13,7 @@
     margin-top: 39px;
     display: flex;
     align-items: center;
+    gap: 20px;
 }
 .favorite_header > div{
     width: 50px;
@@ -79,8 +79,10 @@
     color: #5b5b5b;
 }
 .listview_body{
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 .listview_filter_container{

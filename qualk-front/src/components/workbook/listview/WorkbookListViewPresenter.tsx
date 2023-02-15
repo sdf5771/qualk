@@ -1,12 +1,26 @@
 import React from 'react';
 import styles from './WorkbookListViewPresenter.module.css'
+import {ReactComponent as GaiqLogo} from 'assets/images/workbook/listview/gaiq_logo.svg';
+import {ReactComponent as ListViewLogo} from 'assets/images/workbook/listview/listview_logo.svg';
+import {ReactComponent as EyeImage} from 'assets/images/workbook/listview/eye_image.svg';
+import WorkbookElement from "./WorkbookElement";
+import workbookContainer from "../../../routes/workbook/WorkbookContainer";
 
 type workbookListViewPropsType = {
     categoryData: {
         activeMenu: string,
         activeMenuId: number,
     },
-    workbookData: Object[],
+    workbookData: WorkbookDataType[],
+}
+
+type WorkbookDataType = {
+    question_number: number,
+    qualification: string,
+    question: string,
+    views: number,
+    created: Date,
+    keywords: string[],
 }
 
 function WorkbookListViewPresenter({categoryData, workbookData}: workbookListViewPropsType){
@@ -15,11 +29,11 @@ function WorkbookListViewPresenter({categoryData, workbookData}: workbookListVie
         <div className={styles.workbook_listview_root}>
             <div className={styles.favorite_container}>
                 <div className={styles.favorite_header}>
-                    <div></div>
+                    <GaiqLogo width="50px" height="50px"/>
                     <span>{categoryData ? categoryData['activeMenu'] : 'Loading'}</span>
                 </div>
                 <div className={styles.favorite_help_container}>
-                    <div></div>
+                    <EyeImage width="36px" height="36px" />
                     <span>사람들이 가장 많이 찾아본 문제에요!</span>
                 </div>
                 <div className={styles.favorite_content_container}>
@@ -29,7 +43,7 @@ function WorkbookListViewPresenter({categoryData, workbookData}: workbookListVie
             <div className={styles.listview_root}>
                 <div className={styles.listview_header}>
                     <div className={styles.listview_title_container}>
-                        <div></div>
+                        <ListViewLogo width="36px" height="36px"/>
                         <span>전체</span>
                     </div>
                     <div className={styles.listview_filter_container}>
@@ -39,7 +53,19 @@ function WorkbookListViewPresenter({categoryData, workbookData}: workbookListVie
                     </div>
                 </div>
                 <div className={styles.listview_body}>
-
+                    { workbookData ? workbookData.map((data: WorkbookDataType) => {
+                        if(data){
+                            return <WorkbookElement
+                                key={data['question_number']}
+                                question_number={data['question_number']}
+                                qualification={data['qualification']}
+                                question={data['question']}
+                                views={data['views']}
+                                created={data['created']}
+                                keywords={data['keywords']}
+                            />
+                        }
+                    }) : null}
                 </div>
             </div>
         </div>
