@@ -1,20 +1,16 @@
 import React from 'react';
 import styles from './WorkbookListViewPresenter.module.css'
 
-const themeData = [
-    {},
-    {},
-    {},
-]
-
 type workbookListViewPropsType = {
     categoryData: {
         activeMenu: string,
         activeMenuId: number,
     },
+    workbookData: Object[],
 }
 
-function WorkbookListViewPresenter({categoryData}: workbookListViewPropsType){
+function WorkbookListViewPresenter({categoryData, workbookData}: workbookListViewPropsType){
+    console.log('workbookData ', workbookData);
     return (
         <div className={styles.workbook_listview_root}>
             <div className={styles.favorite_container}>
