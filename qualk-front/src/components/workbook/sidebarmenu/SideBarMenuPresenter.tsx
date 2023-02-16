@@ -5,15 +5,17 @@ import MenuElementContainer from "./MenuElementContainer";
 const menuData = [
     {
         menuId: 1,
-        menuName: 'Data Analysis'
+        menuName: 'Data Analysis',
+        childMenu: ['GAIQ', 'SQID', 'SQLD'],
     },
     {
         menuId: 2,
-        menuName: 'Developer'
+        menuName: 'Developer',
+        childMenu: ['Code Test', 'Test Category', 'Test Develop'],
     }
 ]
 
-type menuDataType = {menuId: number, menuName: string}
+type menuDataType = {menuId: number, menuName: string, childMenu: string[]}
 
 function SideBarPresenter(){
     return(
@@ -21,7 +23,12 @@ function SideBarPresenter(){
             <div className={styles.menu_container}>
                 { Array.isArray(menuData) ? menuData.map( (menu: menuDataType) => {
                     if(menu){
-                        return <MenuElementContainer key={menu.menuId} menuId={menu.menuId} menuName={menu.menuName} />
+                        return <MenuElementContainer
+                            key={menu.menuId}
+                            menuId={menu.menuId}
+                            menuName={menu.menuName}
+                            childMenu={menu.childMenu}
+                        />
                     }
                 } ) : null}
             </div>

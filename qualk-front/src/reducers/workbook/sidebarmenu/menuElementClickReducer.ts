@@ -1,17 +1,17 @@
-const initialState = {activeMenu: 'Developer', activeMenuId: 1};
+type initialState = {isActive: boolean, menuId: number | null};
 
-type actionType = {type: string, menuId: number, menuName: string};
+type actionType = {type: string, isActive: boolean, menuId: number};
 
-function menuElementClickReducer<T, U>(currentState: typeof initialState, action: actionType){
+function menuElementClickReducer<T, U>(currentState: initialState, action: actionType){
     if(currentState === undefined){
-        return {activeMenu: 'Developer', activeMenuId: 1};
+        return {isActive: true, menuId: 1};
     }
     const newState = {...currentState};
 
     switch (action.type){
         case 'click':
-            newState.activeMenu = action.menuName;
-            newState.activeMenuId = action.menuId;
+            newState.isActive = action.isActive;
+            newState.menuId = action.menuId;
             break
     }
 

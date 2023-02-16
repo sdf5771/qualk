@@ -3,10 +3,10 @@ import MenuElementPresenter from "./MenuElementPresenter";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "reducers/reducers";
 
-
 type MenuElementType = {
     menuId: number;
     menuName: string,
+    childMenu: string[],
 }
 
 function MenuElementContainer(props: MenuElementType){
@@ -16,23 +16,20 @@ function MenuElementContainer(props: MenuElementType){
 
     //menu onClick handle function
     const onClickHandler = (event: React.MouseEvent) => {
-        console.log(event.target);
-        menuElementClickDispatch({type: 'click', menuId: props.menuId, menuName: props.menuName})
+        menuElementClickDispatch({type: 'click', isActive: !isActive, menuId: props.menuId})
     }
 
     // toggle active menu
     useEffect(() => {
         if(menuElementActivateSelector){
-            if(menuElementActivateSelector['activeMenuId'] === props.menuId){
-                setIsActive(true);
-            } else {
-                setIsActive(false);
+            if(menuElementActivateSelector['menuId'] === props.menuId){
+                setIsActive(menuElementActivateSelector['isActive']);
             }
         }
-    },[menuElementActivateSelector['activeMenuId']])
+    },[menuElementActivateSelector['isActive'], menuElementActivateSelector['menuId']])
 
     return(
-        <MenuElementPresenter menuName={props.menuName} onClickHandler={onClickHandler} isActive={isActive}/>
+        <MenuElementPresenter menuName={props.menuName} onClickHandler={onClickHandler} isActive={isActive} childMenu={props.childMenu}/>
     );
 }
 

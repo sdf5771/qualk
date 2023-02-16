@@ -1,0 +1,15 @@
+<svg data-name="구성 요소 1 – 2" xmlns="http://www.w3.org/2000/svg" width="current" height="current" viewBox="0 0 24 24">
+    <defs>
+        <clipPath id="mz2axftvba">
+            <path data-name="사각형 610" style="fill:none;stroke:#bababa" d="M0 0h24v24H0z"/>
+        </clipPath>
+    </defs>
+    <g data-name="그룹 749" style="clip-path:url(#mz2axftvba)">
+        <g data-name="그룹 748">
+            <g data-name="그룹 747" style="clip-path:url(#mz2axftvba)">
+                <circle data-name="타원 6" cx="5.7" cy="5.7" r="5.7" transform="translate(5.4 5.4)" style="stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;fill:none;stroke:#bababa"/>
+                <path data-name="선 17" transform="translate(15.3 15.3)" style="stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;fill:none;stroke:#bababa" d="m0 0 3.3 3.3"/>
+            </g>
+        </g>
+    </g>
+</svg>

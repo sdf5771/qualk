@@ -4,7 +4,6 @@ import {ReactComponent as GaiqLogo} from 'assets/images/workbook/listview/gaiq_l
 import {ReactComponent as ListViewLogo} from 'assets/images/workbook/listview/listview_logo.svg';
 import {ReactComponent as EyeImage} from 'assets/images/workbook/listview/eye_image.svg';
 import WorkbookElement from "./WorkbookElement";
-import workbookContainer from "../../../routes/workbook/WorkbookContainer";
 
 type workbookListViewPropsType = {
     categoryData: {
@@ -15,16 +14,22 @@ type workbookListViewPropsType = {
 }
 
 type WorkbookDataType = {
-    question_number: number,
-    qualification: string,
-    question: string,
-    views: number,
-    created: Date,
-    keywords: string[],
+    question_id: number,
+    question_type: string,
+    question_name: string,
+    question_content: string[],
+    question_description: string,
+    question_correct: number,
+    question_reference: { title: string; author: string; link: string; }[],
+    question_view: number,
+    question_create: Date,
+    question_edited: Date,
+    question_tag: string[],
 }
 
 function WorkbookListViewPresenter({categoryData, workbookData}: workbookListViewPropsType){
     console.log('workbookData ', workbookData);
+    console.log('categoryData ', categoryData);
     return (
         <div className={styles.workbook_listview_root}>
             <div className={styles.favorite_container}>
@@ -56,13 +61,13 @@ function WorkbookListViewPresenter({categoryData, workbookData}: workbookListVie
                     { workbookData ? workbookData.map((data: WorkbookDataType) => {
                         if(data){
                             return <WorkbookElement
-                                key={data['question_number']}
-                                question_number={data['question_number']}
-                                qualification={data['qualification']}
-                                question={data['question']}
-                                views={data['views']}
-                                created={data['created']}
-                                keywords={data['keywords']}
+                                key={data['question_id']}
+                                question_id={data['question_id']}
+                                question_type={data['question_type']}
+                                question_name={data['question_name']}
+                                question_view={data['question_view']}
+                                question_create={data['question_create']}
+                                question_tag={data['question_tag']}
                             />
                         }
                     }) : null}

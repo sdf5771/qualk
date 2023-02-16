@@ -1,3 +1,7 @@
+.menu_element_container{
+    display: flex;
+    flex-direction: column;
+}
 .menu_element_root{
     display: flex;
     align-items: center;
@@ -31,4 +35,19 @@
     font-weight: bold;
     letter-spacing: -0.72px;
     color: #ff9300;
+}
+.child_menu_container{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    animation: menu_down 0.2s ease;
+}
+.child_menu_container.active{
+
+}
+@keyframes menu_up{
+
+}
+@keyframes menu_down{
+
 }

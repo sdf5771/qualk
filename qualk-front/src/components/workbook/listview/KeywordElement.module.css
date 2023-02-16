@@ -3,9 +3,10 @@
     justify-content:center;
     align-items:center;
     padding: 0 10px;
-    height: 24px;
+    height: 22px;
     border-radius: 12px;
-    background-color: #f1f1f1;
+    background-color: #fff;
+    border: solid 1px #e4e4e4;
 }
 .keyword_ele_main > span{
     /*font-family: Como;*/
