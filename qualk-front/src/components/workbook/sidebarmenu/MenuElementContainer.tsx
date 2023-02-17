@@ -16,7 +16,7 @@ function MenuElementContainer(props: MenuElementType){
 
     //menu onClick handle function
     const onClickHandler = (event: React.MouseEvent) => {
-        menuElementClickDispatch({type: 'click', isActive: !isActive, menuId: props.menuId})
+        menuElementClickDispatch({type: 'menuElementClick', isActive: !isActive, menuId: props.menuId})
     }
 
     // toggle active menu

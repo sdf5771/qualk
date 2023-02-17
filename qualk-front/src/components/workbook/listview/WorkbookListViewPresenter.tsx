@@ -59,7 +59,7 @@ function WorkbookListViewPresenter({categoryData, workbookData}: workbookListVie
                 </div>
                 <div className={styles.listview_body}>
                     { workbookData ? workbookData.map((data: WorkbookDataType) => {
-                        if(data){
+                        if(data && categoryData['activeMenu'] === data['question_type']){
                             return <WorkbookElement
                                 key={data['question_id']}
                                 question_id={data['question_id']}

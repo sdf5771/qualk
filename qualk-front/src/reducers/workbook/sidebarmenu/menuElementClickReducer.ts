@@ -9,7 +9,7 @@ function menuElementClickReducer<T, U>(currentState: initialState, action: actio
     const newState = {...currentState};
 
     switch (action.type){
-        case 'click':
+        case 'menuElementClick':
             newState.isActive = action.isActive;
             newState.menuId = action.menuId;
             break

@@ -9,7 +9,7 @@ function childMenuClickReducer<T, U>(currentState: initialState, action: actionT
     const newState = {...currentState};
 
     switch (action.type){
-        case 'click':
+        case 'childMenuClick':
             newState.activeMenu = action.menuName;
             newState.activeMenuId = action.menuId;
             break

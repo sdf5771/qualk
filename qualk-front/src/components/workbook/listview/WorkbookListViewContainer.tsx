@@ -59,6 +59,7 @@ function WorkbookListViewContainer(){
     const menuElementActivateSelector = useSelector((state:RootState) => state.childMenuClickReducer);
     const [category, setCategory] = useState(menuElementActivateSelector);
     useEffect(() => {
+        console.log('menuElementActivateSelector ', menuElementActivateSelector);
         setCategory(menuElementActivateSelector);
     }, [menuElementActivateSelector['activeMenu']])
 
