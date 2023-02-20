@@ -1,0 +1,21 @@
+.keyword_ele_main{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    padding: 0 10px;
+    height: 22px;
+    border-radius: 12px;
+    background-color: #fff;
+    border: solid 1px #e4e4e4;
+}
+.keyword_ele_main > span{
+    /*font-family: Como;*/
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.67;
+    letter-spacing: -0.48px;
+    text-align: left;
+    color: #bababa;
+}

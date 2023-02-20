@@ -1,0 +1,48 @@
+.top_view_workbook_root{
+    display: flex;
+    flex-direction: column;
+    width: calc(358px - 40px);
+    height: calc(214px - 40px);
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 1px #fdba01;
+    background-color: #fdfaf2;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+.top_view_workbook_root:hover {
+    background-color: #fef0c6;
+}
+.top_view_workbook_header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 5px;
+}
+.top_view_workbook_header > span{
+    /*font-family: Como;*/
+    font-size: 0.875rem;
+    font-weight: bold;
+    letter-spacing: -0.56px;
+    color: #ffb100;
+}
+.top_view_workbook_content{
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+}
+.top_view_workbook_content > span{
+    /*font-family: Pretendard;*/
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: -0.8px;
+    color: #5b5b5b;
+}
+.top_view_workbook_tag_container{
+    margin-top: 35px;
+    display: flex;
+    width: 100%;
+    gap: 4px;
+    flex-wrap: wrap;
+}

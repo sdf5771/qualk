@@ -1,0 +1,21 @@
+.child_menu_root{
+    display: flex;
+    width: 100%;
+    height: 37px;
+    align-items: center;
+    cursor: pointer;
+}
+.child_menu_root > span{
+    /*font-family: Como;*/
+    margin-left: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.56px;
+    color: #bababa;
+}
+.child_menu_root:hover > span{
+    color: #ff9300;
+}
+.child_menu_root.active > span{
+    color: #ff9300;
+}

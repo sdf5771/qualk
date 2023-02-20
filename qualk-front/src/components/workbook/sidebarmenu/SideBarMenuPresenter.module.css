@@ -1,0 +1,26 @@
+/*side bar*/
+.side_bar_main{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+.menu_container{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/*banner*/
+.banner_container{
+    margin-top: 30px;
+    display: flex;
+    width: 200px;
+    height: 106px;
+    border-radius: 20px;
+    background-color: #fffaed;
+}
+.qualk_banner{
+    width: 200px;
+    height: 106px;
+}
