@@ -1,0 +1,17 @@
+<svg data-name="그룹 797" xmlns="http://www.w3.org/2000/svg" width="current" height="current" viewBox="0 0 22 22">
+    <defs>
+        <clipPath id="peeidlxnoa">
+            <path data-name="사각형 605" style="fill:none;stroke:#bababa" d="M0 0h22v22H0z"/>
+        </clipPath>
+    </defs>
+    <g data-name="그룹 740" style="clip-path:url(#peeidlxnoa)">
+        <g data-name="그룹 739">
+            <g data-name="그룹 738" style="clip-path:url(#peeidlxnoa)">
+                <g data-name="그룹 799" transform="translate(0 .35)">
+                    <ellipse data-name="타원 4" cx="7.15" cy="3.85" rx="7.15" ry="3.85" transform="translate(3.85 6.801)" style="stroke-linecap:round;stroke-linejoin:round;fill:none;stroke:#bababa"/>
+                    <circle data-name="타원 5" cx="2.2" cy="2.2" r="2.2" transform="translate(8.8 8.449)" style="stroke-linecap:round;stroke-linejoin:round;fill:none;stroke:#bababa"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

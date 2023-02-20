@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './WorkbookElement.module.css';
 import KeywordElement from "./KeywordElement";
+import {ReactComponent as ViewEyeIcon} from 'assets/images/workbook/listview/view_eye_icon.svg';
 
 type WorkbookElementPropsType = {
     question_id: number,
@@ -22,7 +23,7 @@ function WorkbookElement({ question_id, question_type, question_name, question_v
                 </div>
                 <div className={styles.workbook_element_right_side_container}>
                     <div>
-                        <div className={styles.eye_icon}></div>
+                        <ViewEyeIcon width="22px" height="22px"/>
                         <span>{question_view}</span>
                     </div>
                     <div></div>
@@ -37,7 +38,7 @@ function WorkbookElement({ question_id, question_type, question_name, question_v
             <div className={styles.workbook_keyword_container}>
                 {question_tag ? question_tag.map((data:string, index:number) => {
                     if(data){
-                        return <KeywordElement key={index} keywordTitle={data}/>
+                        return <KeywordElement key={index} keywordTitle={data} theme="gray"/>
                     }
                 }) : null}
             </div>

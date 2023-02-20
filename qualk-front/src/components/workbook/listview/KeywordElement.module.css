@@ -6,7 +6,18 @@
     height: 22px;
     border-radius: 12px;
     background-color: #fff;
+}
+.gray{
     border: solid 1px #e4e4e4;
+}
+.gray > span{
+    color: #bababa;
+}
+.yellow{
+    border: solid 1px #fedd81;
+}
+.yellow > span{
+    color: #ffba00;
 }
 .keyword_ele_main > span{
     /*font-family: Como;*/
@@ -17,5 +28,4 @@
     line-height: 1.67;
     letter-spacing: -0.48px;
     text-align: left;
-    color: #bababa;
 }
