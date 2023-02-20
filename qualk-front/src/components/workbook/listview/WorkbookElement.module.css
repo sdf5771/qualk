@@ -1,20 +1,30 @@
 .workbook_element_root{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 155px;
-    min-height: 155px;
-    max-height: 155px;
+    /*width: 100%;*/
+    /*height: 155px;*/
+    /*min-height: 155px;*/
+    /*max-height: 155px;*/
     border-radius: 10px;
     border: solid 1px #e4e4e4;
     /*background-color: #fff;*/
+    padding: 20px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+.workbook_element_root:hover {
+    padding: 19px;
+    /*height: 155px;*/
+    /*min-height: 155px;*/
+    /*max-height: 155px;*/
+    background-color: #fffaed;
+    border: solid 2px #fdba01;
 }
 .workbook_element_header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 20px 20px 0 20px;
-    width: calc(100% - 40px);
+    width: 100%;
 }
 .workbook_title{
     display: flex;
@@ -68,8 +78,8 @@
 }
 
 .workbook_element_title_container{
-    margin: 15px 20px 0 20px;
-    width: calc(100% - 40px);
+    margin-top: 15px;
+    width: 100%;
 }
 .workbook_element_title_container > span{
     /*font-family: Pretendard;*/
@@ -79,9 +89,9 @@
     color: #797979;
 }
 .workbook_keyword_container{
-    margin: 40px 17px 0 17px;
+    margin-top: 40px;
     display:flex;
     flex-direction: row;
-    width: calc(100% - 34px);
+    width: 100%;
     gap: 4px
 }

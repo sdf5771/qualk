@@ -48,7 +48,9 @@
     color: #5b5b5b;
 }
 .favorite_content_container{
-
+    margin-top: 28px;
+    display: flex;
+    gap: 40px;
 }
 .listview_root{
     margin-top: 50px;
@@ -90,13 +92,21 @@
     flex-direction: row;
     gap: 40px;
 }
+
+/*filter*/
 .filter_element{
     cursor: pointer;
-    transition: color 0.3s ease;
 }
 .filter_element > span{
     /*font-family: Pretendard;*/
     font-size: 0.875rem;
     letter-spacing: -0.56px;
     color: #d6d6d6;
+    transition: color 0.2s ease;
+}
+.filter_element:hover > span{
+    color: #797979;
+}
+.filter_element.active > span{
+    color: #797979;
 }
