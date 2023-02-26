@@ -2,8 +2,11 @@ import React, {useState, useEffect} from 'react';
 import WorkbookListViewPresenter from "./WorkbookListViewPresenter";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "reducers/reducers";
+import {useQuery, useQueries} from "@tanstack/react-query";
+import getQuestionTopView from "../../../queries/workbook/listview/getQuestionTopView";
 import menuElementClickReducer from "../../../reducers/workbook/sidebarmenu/menuElementClickReducer";
 import childMenuClickReducer from "../../../reducers/workbook/sidebarmenu/childMenuClickReducer";
+
 
 const dummyData = [
     {
@@ -158,6 +161,8 @@ const favoritesData = [
 ]
 
 function WorkbookListViewContainer(){
+    const { isLoading, isError, data, error } = useQuery( {queryKey: ['topviews'], queryFn: getQuestionTopView});
+    console.log('useQueriesResult ', data);
     const menuElementActivateSelector = useSelector((state:RootState) => state.childMenuClickReducer);
     const filterElementActivateSelector = useSelector((state:RootState) => state.filterClickReducer);
     const [filterActive, setFilterActive] = useState('sortViewed');
@@ -170,7 +175,6 @@ function WorkbookListViewContainer(){
     }
 
     useEffect(() => {
-        console.log('menuElementActivateSelector ', menuElementActivateSelector);
         setCategory(menuElementActivateSelector);
     }, [menuElementActivateSelector['activeMenu']])
 
