@@ -23,4 +23,9 @@
 .qualk_banner{
     width: 200px;
     height: 106px;
+    background-image: url(assets/images/workbook/listview/sidebarmenu/test_banner.png);
+    background-repeat: no-repeat;
+    background-size:200px;
+    background-position: center;
+    cursor: pointer;
 }

@@ -1,8 +1,8 @@
 import React, {ReactEventHandler} from 'react';
 import styles from './WorkbookListViewPresenter.module.css'
 import {ReactComponent as GaiqLogo} from 'assets/images/workbook/listview/gaiq_logo.svg';
-import {ReactComponent as ListViewLogo} from 'assets/images/workbook/listview/listview_logo.svg';
-import {ReactComponent as EyeImage} from 'assets/images/workbook/listview/eye_image.svg';
+import {ReactComponent as ListViewLogo} from 'assets/images/workbook/listview/listview_logo_yellow.svg';
+import {ReactComponent as EyeImage} from 'assets/images/workbook/listview/eye_image_yellow.svg';
 import WorkbookElement from "./WorkbookElement";
 import TopViewWorkbookElement from "./TopViewWorkbookElement";
 

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="current" height="current" viewBox="0 0 36 36">
+    <defs>
+        <clipPath id="l3gm6sgg6a">
+            <path data-name="사각형 643" style="stroke:#fc9300;fill:transparent" d="M0 0h36v36H0z"/>
+        </clipPath>
+    </defs>
+    <g data-name="그룹 784">
+        <g data-name="그룹 783">
+            <g data-name="그룹 782">
+                <g data-name="그룹 781" style="clip-path:url(#l3gm6sgg6a)">
+                    <g data-name="그룹 780">
+                        <g data-name="그룹 779" style="clip-path:url(#l3gm6sgg6a)">
+                            <circle data-name="타원 7" cx="5.4" cy="5.4" r="5.4" transform="translate(18 14.35)" style="stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;fill:#fff;stroke:#fc9300"/>
+                            <circle data-name="타원 8" cx="5.4" cy="5.4" r="5.4" transform="translate(7.2 14.35)" style="stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;fill:#fff;stroke:#fc9300"/>
+                            <path data-name="패스 456" d="M9 12.85h0a8.05 8.05 0 0 1 7.2 0" transform="translate(-.9 -1.2)" style="stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;stroke:#fc9300;fill:transparent"/>
+                            <path data-name="패스 457" d="M23 12.85h0a8.05 8.05 0 0 1 7.2 0" transform="translate(-2.3 -1.2)" style="stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;stroke:#fc9300;fill:transparent"/>
+                            <circle data-name="타원 9" cx="1.8" cy="1.8" r="1.8" transform="translate(21.6 18)" style="fill:#fc9300"/>
+                            <circle data-name="타원 10" cx="1.8" cy="1.8" r="1.8" transform="translate(10.8 18)" style="fill:#fc9300"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

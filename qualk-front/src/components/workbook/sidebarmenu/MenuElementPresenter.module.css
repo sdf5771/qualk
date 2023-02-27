@@ -13,7 +13,8 @@
 }
 .menu_element_root > span{
     /*font-family: Como;*/
-    margin-left: 20px;
+    margin-top: 3px;
+    margin-left: 13px;
     font-size: 1.125rem;
     font-weight: bold;
     letter-spacing: -0.72px;
@@ -44,6 +45,9 @@
 }
 .child_menu_container.active{
 
+}
+.logo{
+    margin-left: 7px;
 }
 @keyframes menu_up{
 

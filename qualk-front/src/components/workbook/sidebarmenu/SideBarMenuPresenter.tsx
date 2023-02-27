@@ -12,6 +12,11 @@ const menuData = [
         menuId: 2,
         menuName: 'Developer',
         childMenu: ['Code Test', 'Test Category', 'Test Develop'],
+    },
+    {
+        menuId: 3,
+        menuName: 'Designer',
+        childMenu: ['Design01', 'Design02', 'Design03'],
     }
 ]
 

@@ -5,7 +5,8 @@ import SideBarContainer from "../../components/workbook/sidebarmenu/SideBarMenuC
 import SearchBarContainer from "../../components/public/searchbar/SearchBarContainer";
 import WorkbookListViewContainer from "../../components/workbook/listview/WorkbookListViewContainer";
 import {useNavigate} from "react-router-dom";
-import {ReactComponent as QaulkHeaderLogo} from 'assets/images/workbook/listview/qualk_logo.svg';
+import {ReactComponent as QaulkHeaderLogo} from 'assets/images/workbook/listview/qualk_logo_122_40.svg';
+
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -25,7 +26,7 @@ function WorkbookPresenter({headerLogoOnClickHandler}: WorkbookPresenterPropsTyp
             <div className={styles.workbook_header_container}>
                 <div className={styles.workbook_header}>
                     <div onClick={headerLogoOnClickHandler} className={styles.logo_container}>
-                        <QaulkHeaderLogo width="158px" height="50px"/>
+                        <QaulkHeaderLogo width="122px" height="40px"/>
                     </div>
                     <SearchBarContainer />
                 </div>
