@@ -1,0 +1,13 @@
+<svg data-name="구성 요소 30 – 3" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+    <defs>
+        <clipPath id="nughq5hl7a">
+            <path data-name="사각형 894" style="stroke:#d6d6d6;stroke-linecap:round;stroke-width:2px;fill:#fff" d="M0 0h18v18H0z"/>
+        </clipPath>
+    </defs>
+    <g data-name="마스크 그룹 47" style="clip-path:url(#nughq5hl7a)">
+        <g data-name="그룹 1238">
+            <path data-name="패스 869" d="m3852.741-13189.457 10.286 10.285" transform="translate(-3848.884 13193.314)" style="fill:none;stroke:#d6d6d6;stroke-linecap:round;stroke-width:2px"/>
+            <path data-name="패스 870" d="m3863.027-13189.457-10.286 10.285" transform="translate(-3848.884 13193.314)" style="fill:none;stroke:#d6d6d6;stroke-linecap:round;stroke-width:2px"/>
+        </g>
+    </g>
+</svg>

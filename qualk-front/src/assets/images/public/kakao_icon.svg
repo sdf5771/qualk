@@ -1,0 +1,14 @@
+<svg data-name="구성 요소 27 – 2" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+    <defs>
+        <clipPath id="m4tscomksa">
+            <path data-name="사각형 923" style="fill:none;stroke:#d6d6d6" d="M0 0h44v44H0z"/>
+        </clipPath>
+    </defs>
+    <g data-name="그룹 1278" style="clip-path:url(#m4tscomksa)">
+        <g data-name="그룹 1277">
+            <g data-name="그룹 1276" transform="translate(0 -1)" style="clip-path:url(#m4tscomksa)">
+                <path data-name="패스 875" d="m13.555 26.777-1.222 4.888 8.556-2.465c.4.028.81.021 1.222.021 6.746 0 12.222-3.826 12.222-8.556s-5.476-8.555-12.222-8.555-12.222 3.826-12.222 8.556a7.565 7.565 0 0 0 3.666 6.111z" transform="translate(.989 1.211)" style="stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;fill:none;stroke:#d6d6d6"/>
+            </g>
+        </g>
+    </g>
+</svg>

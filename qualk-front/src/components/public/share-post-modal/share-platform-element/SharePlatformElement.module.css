@@ -1,0 +1,39 @@
+.platform_root{
+    display: flex;
+    flex-direction: column;
+    width: 44px;
+    height: 61px;
+    cursor: pointer;
+}
+.icon_container{
+    display: flex;
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    min-height: 42px;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    transition: border 0.2s ease;
+}
+.title_container{
+    margin-top: 5px;
+    display: flex;
+    width: 100%;
+}
+.title_container > span{
+    width: 100%;
+    font-family: Pretendard;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: #bababa;
+    transition: color 0.2s ease;
+}
+
+.platform_root:hover > .icon_container{
+    border: 1px solid #ffa700;
+}
+.platform_root:hover > .title_container > span{
+    color: #ffa700!important;
+}

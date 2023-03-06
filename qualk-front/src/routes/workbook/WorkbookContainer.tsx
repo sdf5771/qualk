@@ -1,9 +1,13 @@
 import React from 'react';
 import WorkbookPresenter from "./WorkbookPresenter";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 
 function WorkbookContainer(){
     const navigate = useNavigate();
+    const location = useLocation();
+
+    console.log('location ', location);
+
     const headerLogoOnClickHandler = (event:React.MouseEvent) => {
         navigate('/workbook');
     }
