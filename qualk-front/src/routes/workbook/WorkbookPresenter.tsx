@@ -44,7 +44,7 @@ function WorkbookPresenter({headerLogoOnClickHandler}: WorkbookPresenterPropsTyp
 
                 </div>
             </div>
-            {workbookModalState ? workbookModalState['1'] : null}
+            {/*{workbookModalState ? workbookModalState['1'] : workbookModalState['0']}*/}
         </div>
     );
 }

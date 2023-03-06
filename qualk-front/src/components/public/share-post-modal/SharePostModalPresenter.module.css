@@ -60,6 +60,8 @@
     border-radius: 10px;
     border: solid 1px #fdba01;
     background-color: #fdfaf2;
+    transition: border 0.2s ease;
+    transition: background 0.2s ease;
 }
 .url_txt{
     font-family: Pretendard;
@@ -75,6 +77,12 @@
     letter-spacing: -0.48px;
     color: #fca701;
 }
+
+.url_container:hover{
+    border: solid 1px #fdba01;
+    background-color: #fef0c6;
+}
+
 .new_line{
     margin: 14.5px 0;
     width: 100%;

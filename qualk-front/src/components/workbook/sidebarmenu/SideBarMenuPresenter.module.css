@@ -1,6 +1,7 @@
 /*side bar*/
 .side_bar_main{
     display: flex;
+    position: fixed;
     flex-direction: column;
     width: 200px;
 }
