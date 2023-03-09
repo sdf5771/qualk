@@ -6,6 +6,9 @@ import SearchBarContainer from "../../components/public/searchbar/SearchBarConta
 import WorkbookListViewContainer from "../../components/workbook/listview/WorkbookListViewContainer";
 import {ReactComponent as QualkHeaderLogo} from 'assets/images/workbook/listview/qualk_logo_122_40.svg';
 import SharePostModalContainer from 'components/public/share-post-modal/SharePostModalContainer';
+import {Route, Routes} from "react-router-dom";
+import WorkbookContainer from "./WorkbookContainer";
+import WorkbookDetailContainer from "components/workbook/workbook-detail/WorkbookDetailContainer";
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -16,6 +19,7 @@ const LogoTitle = styled.span`
 `;
 
 type WorkbookPresenterPropsType = {
+    location: object,
     headerLogoOnClickHandler: ReactEventHandler,
 }
 
@@ -24,7 +28,7 @@ const workbookModalState = {
     1: <SharePostModalContainer />,
 }
 
-function WorkbookPresenter({headerLogoOnClickHandler}: WorkbookPresenterPropsType){
+function WorkbookPresenter({location, headerLogoOnClickHandler}: WorkbookPresenterPropsType){
     return(
         <div className={styles.workbook_main}>
             <div className={styles.workbook_header_container}>
@@ -40,8 +44,10 @@ function WorkbookPresenter({headerLogoOnClickHandler}: WorkbookPresenterPropsTyp
                     <SideBarContainer />
                 </div>
                 <div className={styles.right_side_container}>
-                    <WorkbookListViewContainer />
-
+                    <Routes>
+                        <Route path='/' element={<WorkbookListViewContainer />} />
+                        <Route path='/:id' element={<WorkbookDetailContainer />} />
+                    </Routes>
                 </div>
             </div>
             {/*{workbookModalState ? workbookModalState['1'] : workbookModalState['0']}*/}

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './WorkbookElement.module.css';
 import KeywordElement from "./KeywordElement";
 import {ReactComponent as ViewEyeIcon} from 'assets/images/workbook/listview/view_eye_icon.svg';
+import {useNavigate, useLocation} from 'react-router-dom';
 
 type WorkbookElementPropsType = {
     question_id: number,
@@ -13,9 +14,14 @@ type WorkbookElementPropsType = {
 }
 
 function WorkbookElement({ question_id, question_type, question_name, question_view, question_create, question_tag}: WorkbookElementPropsType){
-    console.log('question_tags ', question_tag)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const workbookElementOnClickHandler = (event: React.MouseEvent) => {
+        navigate(`/workbook/${question_type}&${question_id}`, {state: {beforeLocation: location.pathname}})
+    }
+
     return(
-        <div className={styles.workbook_element_root}>
+        <div onClick={workbookElementOnClickHandler} className={styles.workbook_element_root}>
             <div className={styles.workbook_element_header}>
                 <div className={styles.workbook_title}>
                     <span>{question_type}</span>

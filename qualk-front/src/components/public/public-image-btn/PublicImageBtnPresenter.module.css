@@ -1,20 +1,34 @@
 .public_btn_root{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    transition: all 0.2s ease;
+    gap: 6px;
+    cursor: pointer;
+}
+.public_btn_root.border{
     width: 118px;
     height: 38px;
     border-radius: 10px;
     border: solid 1px #e4e4e4;
     background-color: #fff;
-    transition: all 0.2s ease;
+}
+.public_btn_root.no_border{
+    width: 120px;
+    height: 40px;
+    border: 0!important;
+    background-color: #fff;
 }
 .public_btn_root > span{
     /*font-family: Pretendard;*/
+    margin-top: 2px;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.56px;
     color: #bababa;
 }
 
-.public_btn_root:hover{
+.public_btn_root.border:hover{
     border: solid 1px #fdba01;
     background-color: #fffaed;
 }
@@ -24,4 +38,9 @@
     font-weight: 600;
     letter-spacing: -0.56px;
     color: #ffa700;
+}
+.icon_container{
+    display: flex;
+    justify-content:center;
+    align-items: center;
 }

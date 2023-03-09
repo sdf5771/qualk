@@ -1,28 +1,28 @@
-import React, {ReactEventHandler} from 'react';
+import React, {ReactEventHandler, useState} from 'react';
 import PublicImageBtnPresenter from "./PublicImageBtnPresenter";
+import {PublicImageBtnContainerPropsType} from './type/PublicImageBtnType';
 
-type LogoIconSvgType = {
-    default: React.SVGProps<SVGElement>,
-    hover: React.SVGProps<SVGElement>,
-    active: React.SVGProps<SVGElement>,
-}
-
-type OptionsType = {
-    border?: boolean,
-}
-
-type PublicImageBtnContainerPropsType = {
-    btnText: string,
-    logoIcon: LogoIconSvgType,
-    btnClickEventHandler: ReactEventHandler,
-    options?: OptionsType,
-}
 
 function PublicImageBtnContainer({btnText, logoIcon, btnClickEventHandler, options}: PublicImageBtnContainerPropsType) {
-    console.log('logoIcon ', logoIcon)
+    const [isHover, setIsHover] = useState(false);
+    const onMouseOverHandler = (event: React.MouseEvent) => {
+        setIsHover(true)
+    }
+
+    const onMouseOutHandler = (event: React.MouseEvent) => {
+        setIsHover(false)
+    }
 
     return(
-        <PublicImageBtnPresenter />
+        <PublicImageBtnPresenter
+            btnText={btnText}
+            logoIcon={logoIcon}
+            btnClickEventHandler={btnClickEventHandler}
+            btnMouseOverEventHandler={onMouseOverHandler}
+            btnMouseOutEventHandler={onMouseOutHandler}
+            isHover={isHover}
+            options={options}
+        />
     )
 }
 
