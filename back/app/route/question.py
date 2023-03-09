@@ -33,66 +33,79 @@ router = APIRouter()
 @router.get("/question/top_3")
 async def find_top():
     query = """
-        SELECT info.question_name AS question_name,
-               info.tag AS question_tag,
-               info.view AS question_view
+        SELECT content.content_id AS question_id,
+               content.type AS question_type,
+               info.question_name AS question_name,
+               info.view AS question_view,
+               info.create_date AS question_create,
+               info.tag AS question_tag
         FROM question_content as content
         inner join question_info as info
-        on content.info_id = info.info_id
+        on content.content_id = info.info_id
         order by info.view
         limit 3
     """
     result = select(sql=query)
     for i in result:
-        print(i)
-    # print(result)
+        i['question_tag'] = i['question_tag'].split(',')
     return jsonable_encoder(result)
 
 #Select question all
 @router.get("/question/find_view")
 async def find_view():
     query = """
-        SELECT info.question_name AS question_name,
-               info.tag AS question_tag,
-               info.view AS question_view
+        SELECT content.content_id AS question_id,
+               content.type AS question_type,
+               info.question_name AS question_name,
+               info.view AS question_view,
+               info.create_date AS question_create,
+               info.tag AS question_tag
         FROM question_content as content
         inner join question_info as info
-        on content.info_id = info.info_id
+        on content.content_id = info.info_id
         order by info.view
-        limit 3
     """
     result = select(sql=query)
-    print(result)
+    for i in result:
+        i['question_tag'] = i['question_tag'].split(',')
     return jsonable_encoder(result)
 
 #Select question orderby create_date desc
 @router.get("/question/find_new") 
 async def find_new():
     query = """
-        SELECT info.question_name AS question_name,
-               info.tag AS question_tag,
-               info.view AS question_view
+        SELECT content.content_id AS question_id,
+               content.type AS question_type,
+               info.question_name AS question_name,
+               info.view AS question_view,
+               info.create_date AS question_create,
+               info.tag AS question_tag
         FROM question_content as content
         inner join question_info as info
-        on content.info_id = info.info_id
+        on content.content_id = info.info_id
         order by info.create_date desc
     """
     result = select(sql=query)
-    print(result)
+    for i in result:
+        i['question_tag'] = i['question_tag'].split(',')
     return jsonable_encoder(result)
     
 #Select question orderby create_date asc
 @router.get("/question/find_old")
 async def find_old():
     query = """
-        SELECT info.question_name AS question_name,
-               info.tag AS question_tag,
-               info.view AS question_view
+        SELECT content.content_id AS question_id,
+               content.type AS question_type,
+               info.question_name AS question_name,
+               info.view AS question_view,
+               info.create_date AS question_create,
+               info.tag AS question_tag
         FROM question_content as content
         inner join question_info as info
-        on content.info_id = info.info_id
+        on content.content_id = info.info_id
         order by info.create_date asc
     """
     result = select(sql=query)
-    print(result)
+    for i in result:
+        i['question_tag'] = i['question_tag'].split(',')
     return jsonable_encoder(result)
