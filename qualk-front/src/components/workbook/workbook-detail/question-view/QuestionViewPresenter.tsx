@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './QuestionViewPresenter.module.css';
 import QuestionElement from "./QuestionElement";
+import AnswerAndExplainContainer from "components/workbook/workbook-detail/answer-and-explanation/AnswerAndExplainContainer";
 
 function QuestionViewPresenter(){
     return(
@@ -15,22 +16,7 @@ function QuestionViewPresenter(){
                 <QuestionElement />
                 <QuestionElement />
             </div>
-            <div>
-                <div>
-                    <span></span>
-                </div>
-                <div>
-                    <div>
-                        <span></span>
-                    </div>
-                    <div>
-                        <span></span>
-                    </div>
-                    <div>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
+            <AnswerAndExplainContainer />
             <div>
 
             </div>
