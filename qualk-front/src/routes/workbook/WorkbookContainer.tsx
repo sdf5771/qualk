@@ -12,7 +12,7 @@ function WorkbookContainer(){
         navigate('/workbook');
     }
     return(
-        <WorkbookPresenter headerLogoOnClickHandler={headerLogoOnClickHandler} />
+        <WorkbookPresenter location={location} headerLogoOnClickHandler={headerLogoOnClickHandler} />
     );
 }
 

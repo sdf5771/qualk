@@ -17,6 +17,7 @@ function App() {
             <ThemeProvider theme={theme}>
                 <Routes>
                     <Route path='/workbook' element={<WorkbookContainer />} />
+                    <Route path='/workbook/*' element={<WorkbookContainer />} />
                 </Routes>
             </ThemeProvider>
         </QueryClientProvider>
