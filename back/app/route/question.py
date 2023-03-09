@@ -33,9 +33,9 @@ router = APIRouter()
 @router.get("/question/top_3")
 async def find_top():
     query = """
-        SELECT info.question_name,
-               info.tag,
-               info.view
+        SELECT info.question_name AS question_name,
+               info.tag AS question_tag,
+               info.view AS question_view
         FROM question_content as content
         inner join question_info as info
         on content.info_id = info.info_id
@@ -45,8 +45,6 @@ async def find_top():
     result = select(sql=query)
     for i in result:
         print(i)
-    print("why 출력이 안됩니까?")
-    print(type(result))
     # print(result)
     return jsonable_encoder(result)
 
@@ -54,9 +52,9 @@ async def find_top():
 @router.get("/question/find_view")
 async def find_view():
     query = """
-        SELECT info.question_name,
-               info.tag,
-               info.view
+        SELECT info.question_name AS question_name,
+               info.tag AS question_tag,
+               info.view AS question_view
         FROM question_content as content
         inner join question_info as info
         on content.info_id = info.info_id
@@ -71,9 +69,9 @@ async def find_view():
 @router.get("/question/find_new") 
 async def find_new():
     query = """
-        SELECT info.question_name,
-               info.tag,
-               info.view
+        SELECT info.question_name AS question_name,
+               info.tag AS question_tag,
+               info.view AS question_view
         FROM question_content as content
         inner join question_info as info
         on content.info_id = info.info_id
@@ -87,9 +85,9 @@ async def find_new():
 @router.get("/question/find_old")
 async def find_old():
     query = """
-        SELECT info.question_name,
-               info.tag,
-               info.view
+        SELECT info.question_name AS question_name,
+               info.tag AS question_tag,
+               info.view AS question_view
         FROM question_content as content
         inner join question_info as info
         on content.info_id = info.info_id
