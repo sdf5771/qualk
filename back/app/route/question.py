@@ -5,11 +5,6 @@ from fastapi.encoders import jsonable_encoder
 
 router = APIRouter()
 
-# fast_api reference 
-# @router.get("/")
-# async def read_items():
-#     return fake_items_db
-
 # @router.get("/{item_id}")
 # async def read_item(item_id: str):
 #     if item_id not in fake_items_db:
@@ -27,7 +22,6 @@ router = APIRouter()
 #             status_code=403, detail="You can only update the item: plumbus"
 #         )
 #     return {"item_id": item_id, "name": "The great Plumbus"}
-
 
 #Top 3 question
 @router.get("/question/top_3")
@@ -108,4 +102,25 @@ async def find_old():
     result = select(sql=query)
     for i in result:
         i['question_tag'] = i['question_tag'].split(',')
+    return jsonable_encoder(result)
+
+@router.get("/question/problem/{question_id}/{question_type}")
+async def find_old(question_id: int, question_type: str):
+    query = f"""
+        SELECT content.content_id AS question_id,
+               info.question_name AS question_name,
+               content.type AS question_type,
+			   content.content_list AS question_contents,
+               content.correct AS question_correct,
+               content.description AS question_description,
+               info.reference_url AS question_reference
+        FROM question_content as content
+        inner join question_info as info
+        on content.content_id = info.info_id
+        where content.content_id = {question_id}
+        and content.type = '{question_type}';
+    """
+    result = select(sql=query)
+    for i in result:
+        i['question_contents'] = i['question_contents'].split(',')
     return jsonable_encoder(result)
