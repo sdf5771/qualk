@@ -3,7 +3,8 @@ import WorkbookListViewPresenter from "./WorkbookListViewPresenter";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "reducers/reducers";
 import {useQuery, useQueries} from "@tanstack/react-query";
-import getQuestionTopView from "../../../queries/workbook/listview/getQuestionTopView";
+import getQuestionTopView from "queries/workbook/listview/getQuestionTopView";
+import useWorkbookData from 'hook/useWorkbookData';
 import menuElementClickReducer from "../../../reducers/workbook/sidebarmenu/menuElementClickReducer";
 import childMenuClickReducer from "../../../reducers/workbook/sidebarmenu/childMenuClickReducer";
 
@@ -26,8 +27,8 @@ const dummyData = [
             }
         ],
         "question_tag": ["GAIQ", "Google Analytics", "필터링", "필터"],
-        "question_create": new Date(),
-        "question_edited": new Date(),
+        "question_create": '2023-01-01',
+        "question_edited": '2023-01-01',
         "question_view": 213,
     },
     {
@@ -52,8 +53,8 @@ const dummyData = [
             }
         ],
         "question_tag": ["GAIQ", "Google Analytics", "소셜 미디어", "Google Ads 캠페인", "검색 엔진 트래픽"],
-        "question_create": new Date(),
-        "question_edited": new Date(),
+        "question_create": '2023-01-01',
+        "question_edited": '2023-01-01',
         "question_view": 213,
     },
     {
@@ -78,8 +79,8 @@ const dummyData = [
             }
         ],
         "question_tag": ["GAIQ", "Google Analytics", "Google", "Google Ads", "google marketing platform", "google tagmanager"],
-        "question_create": new Date(),
-        "question_edited": new Date(),
+        "question_create": '2023-01-01',
+        "question_edited": '2023-01-01',
         "question_view": 213,
     },
 ]
@@ -102,8 +103,8 @@ const favoritesData = [
             }
         ],
         "question_tag": ["GAIQ", "Google Analytics", "필터링", "필터"],
-        "question_create": new Date(),
-        "question_edited": new Date(),
+        "question_create": '2023-01-01',
+        "question_edited": '2023-01-01',
         "question_view": 213,
     },
     {
@@ -128,8 +129,8 @@ const favoritesData = [
             }
         ],
         "question_tag": ["GAIQ", "Google Analytics", "소셜 미디어", "Google Ads 캠페인", "검색 엔진 트래픽"],
-        "question_create": new Date(),
-        "question_edited": new Date(),
+        "question_create": '2023-01-01',
+        "question_edited": '2023-01-01',
         "question_view": 213,
     },
     {
@@ -154,24 +155,27 @@ const favoritesData = [
             }
         ],
         "question_tag": ["GAIQ", "Google Analytics", "Google", "Google Ads", "google marketing platform", "google tagmanager"],
-        "question_create": new Date(),
-        "question_edited": new Date(),
+        "question_create": '2023-01-01',
+        "question_edited": '2023-01-01',
         "question_view": 213,
     },
 ]
 
 function WorkbookListViewContainer(){
-    const { isLoading, isError, data, error } = useQuery( {queryKey: ['topviews'], queryFn: getQuestionTopView});
-    console.log('useQueriesResult ', data);
+    const [filterActive, setFilterActive] = useState('sortViewed');
+    const { isLoading: favIsLoading, isError: favIsError, data: favData, error: favError } = useQuery( {queryKey: ['topviews'], queryFn: getQuestionTopView});
+    const { isLoading: workBookIsLoading, isError: workBookIsError, data: workBookData, error: workBookError } = useWorkbookData(filterActive);
     const menuElementActivateSelector = useSelector((state:RootState) => state.childMenuClickReducer);
     const filterElementActivateSelector = useSelector((state:RootState) => state.filterClickReducer);
-    const [filterActive, setFilterActive] = useState('sortViewed');
+
     const filterElementClickDispatch = useDispatch();
     const [category, setCategory] = useState(menuElementActivateSelector);
+
 
     const filterOnClickHandler = (event: React.MouseEvent) => {
         filterElementClickDispatch({type: 'filterClick', activeFilter: event.currentTarget.id})
         setFilterActive(event.currentTarget.id);
+        console.log(event.currentTarget.id)
     }
 
     useEffect(() => {
@@ -179,7 +183,8 @@ function WorkbookListViewContainer(){
     }, [menuElementActivateSelector['activeMenu']])
 
     return (
-        <WorkbookListViewPresenter categoryData={category} workbookData={dummyData} favoriteWorkbookData={favoritesData} filterActive={filterActive} filterOnClickHandler={filterOnClickHandler}/>
+        <WorkbookListViewPresenter categoryData={category} workbookData={workBookData} favoriteWorkbookData={favData} filterActive={filterActive} filterOnClickHandler={filterOnClickHandler}/>
+        // <WorkbookListViewPresenter categoryData={category} workbookData={dummyData} favoriteWorkbookData={favoritesData} filterActive={filterActive} filterOnClickHandler={filterOnClickHandler}/>
     );
 }
 

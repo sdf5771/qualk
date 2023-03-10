@@ -14,14 +14,13 @@
     background-color: #fff;
 }
 .public_btn_root.no_border{
-    width: 120px;
     height: 40px;
     border: 0!important;
     background-color: #fff;
 }
 .public_btn_root > span{
     /*font-family: Pretendard;*/
-    margin-top: 2px;
+    margin-top: 3px;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.56px;

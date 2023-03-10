@@ -15,7 +15,7 @@ _DB_PORT = os.getenv('DB_PORT')
 def conn(sql):
     connection = pymysql.connect(
     user='root',
-    password='root',
+    password='520496',
     host='localhost',
     port=int('3306'),
     db='qualk',

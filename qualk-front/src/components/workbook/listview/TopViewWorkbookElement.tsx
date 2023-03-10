@@ -7,7 +7,7 @@ type TopViewWorkbookElementPropsType = {
     question_type: string,
     question_name: string,
     question_view: number,
-    question_create: Date,
+    question_create: string,
     question_tag: string[],
 }
 

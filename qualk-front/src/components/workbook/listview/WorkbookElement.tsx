@@ -9,7 +9,7 @@ type WorkbookElementPropsType = {
     question_type: string,
     question_name: string,
     question_view: number,
-    question_create: Date,
+    question_create: string,
     question_tag: string[],
 }
 
@@ -34,7 +34,7 @@ function WorkbookElement({ question_id, question_type, question_name, question_v
                     </div>
                     <div></div>
                     <div>
-                        <span>2022-00-00</span>
+                        <span>{question_create}</span>
                     </div>
                 </div>
             </div>

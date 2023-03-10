@@ -5,30 +5,17 @@ import {ReactComponent as ListViewLogo} from 'assets/images/workbook/listview/li
 import {ReactComponent as EyeImage} from 'assets/images/workbook/listview/eye_image_yellow.svg';
 import WorkbookElement from "./WorkbookElement";
 import TopViewWorkbookElement from "./TopViewWorkbookElement";
+import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
 
 type workbookListViewPropsType = {
     categoryData: {
         activeMenu: string,
         activeMenuId: number,
     },
-    workbookData: WorkbookDataType[],
+    workbookData: WorkbookDataType[] | null,
     favoriteWorkbookData: WorkbookDataType[],
     filterActive: string,
     filterOnClickHandler: ReactEventHandler,
-}
-
-type WorkbookDataType = {
-    question_id: number,
-    question_type: string,
-    question_name: string,
-    question_content: string[],
-    question_description: string,
-    question_correct: number,
-    question_reference: { title: string; author: string; link: string; }[],
-    question_view: number,
-    question_create: Date,
-    question_edited: Date,
-    question_tag: string[],
 }
 
 function WorkbookListViewPresenter({categoryData, workbookData, favoriteWorkbookData, filterActive, filterOnClickHandler}: workbookListViewPropsType){
