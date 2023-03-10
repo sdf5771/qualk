@@ -5,8 +5,6 @@ import {RootState} from "reducers/reducers";
 import {useQuery, useQueries} from "@tanstack/react-query";
 import getQuestionTopView from "queries/workbook/listview/getQuestionTopView";
 import useWorkbookData from 'hook/useWorkbookData';
-import menuElementClickReducer from "../../../reducers/workbook/sidebarmenu/menuElementClickReducer";
-import childMenuClickReducer from "../../../reducers/workbook/sidebarmenu/childMenuClickReducer";
 
 
 const dummyData = [
