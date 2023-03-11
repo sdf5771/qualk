@@ -1,9 +1,16 @@
 import React from 'react';
 import QuestionViewPresenter from "./QuestionViewPresenter";
+import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
+import {useNavigate} from 'react-router-dom';
 
-function QuestionViewContainer(){
+type QuestionViewContainerPropsType = {
+    workbookData: WorkbookDataType
+}
+
+function QuestionViewContainer({workbookData}: QuestionViewContainerPropsType){
+    const navigate = useNavigate();
     return(
-        <QuestionViewPresenter />
+        <QuestionViewPresenter navigate={navigate} workbookData={workbookData} />
     )
 }
 

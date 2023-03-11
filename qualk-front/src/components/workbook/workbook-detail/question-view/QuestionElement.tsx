@@ -1,10 +1,15 @@
 import React from 'react';
 import styles from './QuestionElement.module.css';
 
-function QuestionElement(){
+type QuestionElementPropsType = {
+    questionTitle: string,
+    isCorrect: boolean,
+}
+
+function QuestionElement({questionTitle, isCorrect}: QuestionElementPropsType){
     return(
-        <div className={styles.question_element_root}>
-            <span>데이터는 5일 이내에 복구될 수 있음</span>
+        <div className={`${styles.question_element_root} ${isCorrect ? styles.correct : ''}`}>
+            <span>{questionTitle}</span>
         </div>
     )
 }

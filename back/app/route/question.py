@@ -65,7 +65,7 @@ async def find_view():
     return jsonable_encoder(result)
 
 #Select question orderby create_date desc
-@router.get("/question/find_new") 
+@router.get("/question/find_new")
 async def find_new():
     query = """
         SELECT content.content_id AS question_id,
@@ -83,7 +83,7 @@ async def find_new():
     for i in result:
         i['question_tag'] = i['question_tag'].split(',')
     return jsonable_encoder(result)
-    
+
 #Select question orderby create_date asc
 @router.get("/question/find_old")
 async def find_old():
@@ -105,7 +105,7 @@ async def find_old():
     return jsonable_encoder(result)
 
 @router.get("/question/problem/{question_id}/{question_type}")
-async def find_old(question_id: int, question_type: str):
+async def find_problem(question_id: int, question_type: str):
     query = f"""
         SELECT content.content_id AS question_id,
                info.question_name AS question_name,

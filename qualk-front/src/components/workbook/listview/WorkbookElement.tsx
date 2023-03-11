@@ -3,6 +3,7 @@ import styles from './WorkbookElement.module.css';
 import KeywordElement from "./KeywordElement";
 import {ReactComponent as ViewEyeIcon} from 'assets/images/workbook/listview/view_eye_icon.svg';
 import {useNavigate, useLocation} from 'react-router-dom';
+import {useDispatch} from "react-redux";
 
 type WorkbookElementPropsType = {
     question_id: number,
@@ -16,7 +17,9 @@ type WorkbookElementPropsType = {
 function WorkbookElement({ question_id, question_type, question_name, question_view, question_create, question_tag}: WorkbookElementPropsType){
     const navigate = useNavigate();
     const location = useLocation();
+    const workbookElementClickDispatch = useDispatch();
     const workbookElementOnClickHandler = (event: React.MouseEvent) => {
+        workbookElementClickDispatch({type: 'workbookElementClick', questionType: question_type, questionId: question_id})
         navigate(`/workbook/${question_type}&${question_id}`, {state: {beforeLocation: location.pathname}})
     }
 

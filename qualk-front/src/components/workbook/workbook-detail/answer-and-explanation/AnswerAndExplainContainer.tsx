@@ -1,9 +1,14 @@
 import React from 'react';
 import AnswerAndExplainPresenter from "./AnswerAndExplainPresenter";
+import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
 
-function AnswerAndExplainContainer(){
+type AnswerAndExplainContainerPropsType = {
+    workbookData: WorkbookDataType
+}
+
+function AnswerAndExplainContainer({workbookData}: AnswerAndExplainContainerPropsType){
     return(
-        <AnswerAndExplainPresenter />
+        <AnswerAndExplainPresenter workbookData={workbookData} />
     )
 }
 

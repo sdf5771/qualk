@@ -4,6 +4,8 @@
     max-width: 1160px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y:auto;
 }
 .header{
     margin-top: 39px;

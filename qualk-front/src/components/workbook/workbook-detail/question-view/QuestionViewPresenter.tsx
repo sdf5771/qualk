@@ -2,23 +2,60 @@ import React from 'react';
 import styles from './QuestionViewPresenter.module.css';
 import QuestionElement from "./QuestionElement";
 import AnswerAndExplainContainer from "components/workbook/workbook-detail/answer-and-explanation/AnswerAndExplainContainer";
+import {WorkbookDataType} from "../../type/WorkbookDataType";
+import {ReactComponent as ShareIconDefault} from 'assets/images/public/share_icon_default.svg';
+import {ReactComponent as ShareIconHover} from 'assets/images/public/share_icon_hover.svg';
+import {ReactComponent as ListviewIconDefault} from 'assets/images/public/listview_icon_default.svg';
+import {ReactComponent as ListviewIconHover} from 'assets/images/public/listview_icon_hover.svg';
+import PublicImageBtnContainer from "components/public/public-image-btn/PublicImageBtnContainer";
+import {NavigateFunction} from "react-router-dom";
 
-function QuestionViewPresenter(){
+type QuestionViewPresenterPropsType = {
+    navigate: NavigateFunction
+    workbookData: WorkbookDataType
+}
+
+function QuestionViewPresenter({navigate, workbookData}:QuestionViewPresenterPropsType){
+    console.log(workbookData);
     return(
         <div className={styles.question_view_root}>
             <div className={styles.question_view_title_container}>
-                <span>GAIQ (Google Analytics) #23</span>
-                <span>Q. 필터가 적용된 후 필터링된 데이터를 복구할 수 있는 옵션은?</span>
+                <span>{workbookData ? workbookData.question_type : ''} (Google Analytics) #{workbookData ? workbookData.question_id : ''}</span>
+                <span>Q. {workbookData ? workbookData.question_name : ''}</span>
             </div>
             <div className={styles.question_container}>
-                <QuestionElement />
-                <QuestionElement />
-                <QuestionElement />
-                <QuestionElement />
-            </div>
-            <AnswerAndExplainContainer />
-            <div>
+                {workbookData && workbookData.question_contents ? workbookData.question_contents.map((question,index) => {
+                    if(question){
+                        return <QuestionElement questionTitle={question} isCorrect={workbookData.question_correct == index ? true : false}/>
+                    }
+                }) : null}
 
+            </div>
+            <AnswerAndExplainContainer workbookData={workbookData} />
+            <div className={styles.question_btn_container}>
+                <PublicImageBtnContainer
+                    btnText="목록으로"
+                    options={{border: true}}
+                    logoIcon={{
+                        default: <ListviewIconDefault />,
+                        hover: <ListviewIconHover />,
+                    }}
+                    btnClickEventHandler={(event: React.MouseEvent)=>{
+                        navigate('/workbook')
+                    }}
+                />
+
+                <PublicImageBtnContainer
+                    btnText="공유하기"
+                    options={{border: true}}
+                    logoIcon={{
+                        default: <ShareIconDefault />,
+                        hover: <ShareIconHover />,
+                    }}
+                    btnClickEventHandler={(event: React.MouseEvent)=>{
+
+                    }}
+                />
             </div>
         </div>
     )

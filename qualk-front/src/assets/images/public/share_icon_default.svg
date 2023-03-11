@@ -1,0 +1,18 @@
+<svg data-name="그룹 1216" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+    <defs>
+        <clipPath id="z0drek6pva">
+            <path data-name="사각형 879" style="fill:none;stroke:#bababa" d="M0 0h30v30H0z"/>
+        </clipPath>
+    </defs>
+    <g data-name="그룹 1215" style="clip-path:url(#z0drek6pva)">
+        <g data-name="그룹 1214">
+            <g data-name="그룹 1213" style="clip-path:url(#z0drek6pva)">
+                <circle data-name="타원 14" cx="2.25" cy="2.25" r="2.25" transform="translate(7 12.75)" style="stroke-miterlimit:10;fill:none;stroke:#bababa"/>
+                <circle data-name="타원 15" cx="2.25" cy="2.25" r="2.25" transform="translate(18.5 7.5)" style="stroke-miterlimit:10;fill:none;stroke:#bababa"/>
+                <circle data-name="타원 16" cx="2.25" cy="2.25" r="2.25" transform="translate(18.5 18)" style="stroke-miterlimit:10;fill:none;stroke:#bababa"/>
+                <path data-name="선 67" transform="translate(11.25 15.75)" style="stroke-miterlimit:10;fill:none;stroke:#bababa" d="m0 0 7.5 3.75"/>
+                <path data-name="선 68" transform="translate(11.25 10.5)" style="stroke-miterlimit:10;fill:none;stroke:#bababa" d="M7.5 0 0 3.75"/>
+            </g>
+        </g>
+    </g>
+</svg>

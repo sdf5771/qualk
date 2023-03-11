@@ -30,3 +30,10 @@
     flex-direction: column;
     gap: 20px;
 }
+.question_btn_container{
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
