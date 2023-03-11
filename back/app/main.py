@@ -3,7 +3,6 @@ from route import question
 import pandas as pd
 
 app = FastAPI()
-
 app.include_router(question.router)
 
 @app.get("/")

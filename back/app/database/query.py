@@ -14,11 +14,11 @@ _DB_PORT = os.getenv('DB_PORT')
 #connection decorator
 def conn(sql):
     connection = pymysql.connect(
-    user='root',
-    password='520496',
-    host='localhost',
-    port=int('3306'),
-    db='qualk',
+    user=_DB_ID,
+    password=_DB_PASS,
+    host=_DB_IP,
+    port=int(_DB_PORT),
+    db=_DB_SCHEMA,
     charset='utf8'
     )
 
