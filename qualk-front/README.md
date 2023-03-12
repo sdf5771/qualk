@@ -1,9 +1,9 @@
 
 # Qualk - 🐤
 
-[workbook-main](./readme/workbook-main.png).
-[workbook-detail](./readme/workbook-detail.png).
-[workbook-shared](./readme/workbook-shared.png).
+![workbook-main](./readme/workbook-main.png).
+![workbook-detail](./readme/workbook-detail.png).
+![workbook-shared](./readme/workbook-shared.png).
 
 ## Front-end Source
 
