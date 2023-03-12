@@ -12,7 +12,7 @@
     cursor: pointer;
 }
 .menu_element_root > span{
-    /*font-family: Como;*/
+    font-family: como, sans-serif;
     margin-top: 3px;
     margin-left: 13px;
     font-size: 1.125rem;
@@ -32,7 +32,7 @@
     background-color: #fff6e0;
 }
 .menu_element_root.active > span{
-    /*font-family: Como;*/
+    font-family: como, sans-serif;
     font-weight: bold;
     letter-spacing: -0.72px;
     color: #ff9300;

@@ -19,7 +19,7 @@
     background-color: #fff;
 }
 .public_btn_root > span{
-    /*font-family: Pretendard;*/
+    font-family: "pretendard", sans-serif;
     margin-top: 3px;
     font-size: 14px;
     font-weight: 600;
@@ -32,7 +32,7 @@
     background-color: #fffaed;
 }
 .public_btn_root:hover > span{
-    font-family: Pretendard;
+    font-family: "pretendard", sans-serif;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.56px;

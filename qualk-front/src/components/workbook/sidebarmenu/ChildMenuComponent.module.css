@@ -6,7 +6,7 @@
     cursor: pointer;
 }
 .child_menu_root > span{
-    /*font-family: Como;*/
+    font-family: como, sans-serif;
     margin-left: 20px;
     font-size: 0.875rem;
     font-weight: 500;

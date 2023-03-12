@@ -9,7 +9,7 @@
     width: 100%;
 }
 .title_container > span{
-    font-family: Pretendard;
+    font-family: "pretendard", sans-serif;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.72px;
@@ -29,7 +29,7 @@
     width: 100%;
 }
 .answer_container > span{
-    font-family: Pretendard;
+    font-family: "pretendard", sans-serif;
     font-size: 16px;
     font-weight: bold;
     letter-spacing: -0.64px;
@@ -40,7 +40,7 @@
     margin-top: 20px;
 }
 .explain_container > span{
-    font-family: Pretendard;
+    font-family: "pretendard", sans-serif;
     font-size: 14px;
     line-height: 1.86;
     letter-spacing: -0.56px;
@@ -52,7 +52,7 @@
     width: 100%;
 }
 .reference_container > span{
-    font-family: Pretendard;
+    font-family: "pretendard", sans-serif;
     font-size: 14px;
     line-height: 1.86;
     letter-spacing: -0.56px;

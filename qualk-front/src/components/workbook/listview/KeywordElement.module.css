@@ -20,7 +20,7 @@
     color: #ffba00;
 }
 .keyword_ele_main > span{
-    /*font-family: Como;*/
+    font-family: como, sans-serif;
     font-size: 0.75rem;
     font-weight: 500;
     font-stretch: normal;

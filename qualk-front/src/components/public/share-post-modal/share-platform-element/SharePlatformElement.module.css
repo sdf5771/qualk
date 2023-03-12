@@ -22,7 +22,7 @@
 }
 .title_container > span{
     width: 100%;
-    font-family: Pretendard;
+    font-family: "pretendard", sans-serif;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: -0.4px;

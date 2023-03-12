@@ -31,7 +31,7 @@
     gap: 5px;
 }
 .workbook_title > span{
-    /*font-family: Como;*/
+    font-family: como, sans-serif;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.56px;
@@ -51,7 +51,7 @@
     align-items: center;
 }
 .workbook_element_right_side_container > div:first-child > span{
-    /*font-family: Pretendard;*/
+    font-family: "pretendard", sans-serif;
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: -0.56px;
@@ -70,7 +70,7 @@
 
 }
 .workbook_element_right_side_container > div:last-child > span{
-    /*font-family: Pretendard;*/
+    font-family: "pretendard", sans-serif;
     font-size: 0.875rem;
     font-weight: 300;
     letter-spacing: -0.56px;
@@ -82,7 +82,7 @@
     width: 100%;
 }
 .workbook_element_title_container > span{
-    /*font-family: Pretendard;*/
+    font-family: "pretendard", sans-serif;
     font-size: 18px;
     font-weight: 500;
     letter-spacing: -0.72px;

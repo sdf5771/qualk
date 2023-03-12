@@ -18,6 +18,8 @@
     align-items: center;
 }
 .search_input{
+    font-family: "pretendard", sans-serif;
+    font-weight: 500;
     margin-top: 3px;
     width: 100%;
     background-color: transparent;
