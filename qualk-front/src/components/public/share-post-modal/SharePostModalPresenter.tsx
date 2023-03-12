@@ -1,5 +1,6 @@
 import React, {ReactEventHandler} from 'react';
 import styles from './SharePostModalPresenter.module.css';
+import publicAnimations from 'stylesheets/public/animation.module.css';
 import {ReactComponent as ModalCloseDefault} from 'assets/images/public/modal_close_default.svg';
 import {ReactComponent as ModalCLoseActive} from 'assets/images/public/modal_close_hover.svg';
 import SharePlatformElement from "./share-platform-element/SharePlatformElement";
@@ -10,9 +11,9 @@ type SharePostModalPresenterPropsType = {
     urlPath:string,
 }
 
-function SharePostModalPresenter({modalCloseOnClickHandler, copyOnClickHandler, urlPath}: SharePostModalPresenterPropsType){
+function SharePostModalPresenter({ modalCloseOnClickHandler, copyOnClickHandler, urlPath}: SharePostModalPresenterPropsType){
     return(
-        <div className={styles.modal_root}>
+        <div className={`${styles.modal_root} ${publicAnimations.fade_in}`}>
             <div className={styles.modal_background}></div>
             <div className={styles.share_post_modal}>
                 <div className={styles.modal_header}>

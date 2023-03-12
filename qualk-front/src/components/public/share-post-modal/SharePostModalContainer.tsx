@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import SharePostModalPresenter from "./SharePostModalPresenter";
 import {useDispatch} from "react-redux";
 import {useLocation} from "react-router-dom";
