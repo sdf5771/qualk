@@ -1,17 +1,20 @@
-type initialState = {isActive: boolean, menuId: number | null};
+type initialState = { modalStateId: number };
 
-type actionType = {type: string, isActive: boolean, menuId: number};
+export type actionType = {type: string, modalStateId: number};
 
 function shareWorkbookClickReducer<T, U>(currentState: initialState, action: actionType){
     if(currentState === undefined){
-        return {isActive: true, menuId: 1};
+        return { modalStateId: 0 };
     }
     const newState = {...currentState};
 
     switch (action.type){
-        case 'menuElementClick':
-            newState.isActive = action.isActive;
-            newState.menuId = action.menuId;
+        case 'shareWorkbookModalClose':
+            newState.modalStateId = action.modalStateId;
+            break
+
+        case 'shareWorkbookClick':
+            newState.modalStateId = action.modalStateId;
             break
     }
 

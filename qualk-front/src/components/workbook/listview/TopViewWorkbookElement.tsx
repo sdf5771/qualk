@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './TopViewWorkbookElement.module.css'
 import KeywordElement from "./KeywordElement";
+import {useLocation, useNavigate} from "react-router-dom";
 
 type TopViewWorkbookElementPropsType = {
     question_id: number,
@@ -12,8 +13,13 @@ type TopViewWorkbookElementPropsType = {
 }
 
 function TopViewWorkbookElement({ question_id, question_type, question_name, question_view, question_create, question_tag}: TopViewWorkbookElementPropsType){
+    const navigate = useNavigate();
+    const location = useLocation();
+    const topViewWorkbookElementOnClickHandler = (event: React.MouseEvent) => {
+        navigate(`/workbook/${question_type}&${question_id}`, {state: {beforeLocation: location.pathname}})
+    }
     return(
-        <div className={styles.top_view_workbook_root}>
+        <div onClick={topViewWorkbookElementOnClickHandler} className={styles.top_view_workbook_root}>
             <div className={styles.top_view_workbook_header}>
                 <span>{question_type}</span>
                 <span>#{question_id}</span>

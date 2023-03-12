@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import styles from './QuestionViewPresenter.module.css';
 import QuestionElement from "./QuestionElement";
 import AnswerAndExplainContainer from "components/workbook/workbook-detail/answer-and-explanation/AnswerAndExplainContainer";
@@ -9,13 +9,15 @@ import {ReactComponent as ListviewIconDefault} from 'assets/images/public/listvi
 import {ReactComponent as ListviewIconHover} from 'assets/images/public/listview_icon_hover.svg';
 import PublicImageBtnContainer from "components/public/public-image-btn/PublicImageBtnContainer";
 import {NavigateFunction} from "react-router-dom";
+import { actionType } from 'reducers/workbook/workbook-detail/shareWorkbookClickReducer';
 
 type QuestionViewPresenterPropsType = {
     navigate: NavigateFunction
     workbookData: WorkbookDataType
+    dispatch: Dispatch<actionType>,
 }
 
-function QuestionViewPresenter({navigate, workbookData}:QuestionViewPresenterPropsType){
+function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPresenterPropsType){
     console.log(workbookData);
     return(
         <div className={styles.question_view_root}>
@@ -26,7 +28,7 @@ function QuestionViewPresenter({navigate, workbookData}:QuestionViewPresenterPro
             <div className={styles.question_container}>
                 {workbookData && workbookData.question_contents ? workbookData.question_contents.map((question,index) => {
                     if(question){
-                        return <QuestionElement questionTitle={question} isCorrect={workbookData.question_correct == index ? true : false}/>
+                        return <QuestionElement key={index} questionTitle={question} isCorrect={workbookData.question_correct == index ? true : false}/>
                     }
                 }) : null}
 
@@ -53,7 +55,9 @@ function QuestionViewPresenter({navigate, workbookData}:QuestionViewPresenterPro
                         hover: <ShareIconHover />,
                     }}
                     btnClickEventHandler={(event: React.MouseEvent)=>{
-
+                        if(dispatch){
+                            dispatch({type: 'shareWorkbookClick', modalStateId: 1});
+                        }
                     }}
                 />
             </div>

@@ -1,8 +1,11 @@
 .workbook_listview_root{
     width: 100%;
     height: 100%;
+    max-width: 1160px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .favorite_container{
     display: flex;

@@ -7,15 +7,17 @@ import {RootState} from "reducers/reducers";
 function WorkbookContainer(){
     const navigate = useNavigate();
     const location = useLocation();
-    const shareWorkbookClickSelector = useSelector((state: RootState) => state.childMenuClickReducer)
-
-    console.log('location ', location);
+    const shareWorkbookClickSelector = useSelector((state: RootState) => state.shareWorkbookClickReducer)
 
     const headerLogoOnClickHandler = (event:React.MouseEvent) => {
         navigate('/workbook');
     }
     return(
-        <WorkbookPresenter location={location} headerLogoOnClickHandler={headerLogoOnClickHandler} />
+        <WorkbookPresenter
+            location={location}
+            headerLogoOnClickHandler={headerLogoOnClickHandler}
+            modalState={shareWorkbookClickSelector ? shareWorkbookClickSelector['modalStateId'] : 0}
+        />
     );
 }
 

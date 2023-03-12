@@ -21,6 +21,7 @@ const LogoTitle = styled.span`
 type WorkbookPresenterPropsType = {
     location: object,
     headerLogoOnClickHandler: ReactEventHandler,
+    modalState: number,
 }
 
 const workbookModalState = {
@@ -28,7 +29,7 @@ const workbookModalState = {
     1: <SharePostModalContainer />,
 }
 
-function WorkbookPresenter({location, headerLogoOnClickHandler}: WorkbookPresenterPropsType){
+function WorkbookPresenter({location, headerLogoOnClickHandler, modalState}: WorkbookPresenterPropsType){
     return(
         <div className={styles.workbook_main}>
             <div className={styles.workbook_header_container}>
@@ -50,7 +51,7 @@ function WorkbookPresenter({location, headerLogoOnClickHandler}: WorkbookPresent
                     </Routes>
                 </div>
             </div>
-            {/*{workbookModalState ? workbookModalState['1'] : workbookModalState['0']}*/}
+            {modalState == 1 ? workbookModalState[modalState] : workbookModalState['0']}
         </div>
     );
 }
