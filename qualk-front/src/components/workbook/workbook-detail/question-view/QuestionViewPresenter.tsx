@@ -28,7 +28,7 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
             <div className={styles.question_container}>
                 {workbookData && workbookData.question_contents ? workbookData.question_contents.map((question,index) => {
                     if(question){
-                        return <QuestionElement key={index} questionTitle={question} isCorrect={workbookData.question_correct == index ? true : false}/>
+                        return <QuestionElement key={index} questionTitle={question} isCorrect={parseInt(workbookData.question_correct) == index ? true : false}/>
                     }
                 }) : null}
 

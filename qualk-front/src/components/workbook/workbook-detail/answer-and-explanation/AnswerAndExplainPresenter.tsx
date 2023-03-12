@@ -4,9 +4,10 @@ import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
 
 type AnswerAndExplainPresenterPropsType = {
     workbookData: WorkbookDataType
+    answer: string
 }
 
-function AnswerAndExplainPresenter({workbookData}:AnswerAndExplainPresenterPropsType){
+function AnswerAndExplainPresenter({workbookData, answer}:AnswerAndExplainPresenterPropsType){
     return(
         <div className={styles.answer_explain_root}>
             <div className={styles.title_container}>
@@ -14,7 +15,7 @@ function AnswerAndExplainPresenter({workbookData}:AnswerAndExplainPresenterProps
             </div>
             <div className={styles.content_container}>
                 <div className={styles.answer_container}>
-                    <span>{workbookData ? workbookData.question_name : ''}</span>
+                    <span>{answer}</span>
                 </div>
                 <div className={styles.explain_container}>
                     <span>{workbookData ? workbookData.question_description : ''}</span>
