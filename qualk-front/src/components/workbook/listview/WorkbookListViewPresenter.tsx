@@ -1,5 +1,6 @@
 import React, {ReactEventHandler} from 'react';
 import styles from './WorkbookListViewPresenter.module.css'
+import publicAnimations from 'stylesheets/public/animation.module.css';
 import {ReactComponent as GaiqLogo} from 'assets/images/workbook/listview/gaiq_logo.svg';
 import {ReactComponent as ListViewLogo} from 'assets/images/workbook/listview/listview_logo_yellow.svg';
 import {ReactComponent as EyeImage} from 'assets/images/workbook/listview/eye_image_yellow.svg';
@@ -20,7 +21,7 @@ type workbookListViewPropsType = {
 
 function WorkbookListViewPresenter({categoryData, workbookData, favoriteWorkbookData, filterActive, filterOnClickHandler}: workbookListViewPropsType){
     return (
-        <div className={styles.workbook_listview_root}>
+        <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in}`}>
             <div className={styles.favorite_container}>
                 <div className={styles.favorite_header}>
                     <GaiqLogo width="50px" height="50px"/>
@@ -46,7 +47,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, favoriteWorkbook
                     }) : null}
                 </div>
             </div>
-            <div className={styles.listview_root}>
+            <div className={`${styles.listview_root} ${publicAnimations.fade_in}`}>
                 <div className={styles.listview_header}>
                     <div className={styles.listview_title_container}>
                         <ListViewLogo width="36px" height="36px"/>
