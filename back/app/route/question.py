@@ -24,8 +24,8 @@ router = APIRouter()
 #     return {"item_id": item_id, "name": "The great Plumbus"}
 
 #Top 3 question
-@router.get("/question/top_3")
-async def find_top():
+@router.get("/question/top_3/{type}")
+async def find_top(type: str):
     query = """
         SELECT content.content_id AS question_id,
                content.type AS question_type,
@@ -36,6 +36,7 @@ async def find_top():
         FROM question_content as content
         inner join question_info as info
         on content.content_id = info.info_id
+        where content.type = '{type}'
         order by info.view
         limit 3
     """
@@ -46,8 +47,8 @@ async def find_top():
     return jsonable_encoder(result)
 
 #Select question all
-@router.get("/question/find_view/{last_index}")
-async def find_view(last_index: int):
+@router.get("/question/find_view/{type}/{last_index}")
+async def find_view(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
@@ -58,6 +59,7 @@ async def find_view(last_index: int):
         FROM question_content as content
         inner join question_info as info
         on content.content_id = info.info_id
+        where content.type = '{type}'
         order by info.view desc
         limit 6 offset {last_index};
     """
@@ -76,8 +78,8 @@ async def find_view(last_index: int):
     return jsonable_encoder(result)
 
 #Select question orderby create_date desc
-@router.get("/question/find_new/{last_index}")
-async def find_new(last_index: int):
+@router.get("/question/find_new/{type}/{last_index}")
+async def find_new(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
@@ -88,6 +90,7 @@ async def find_new(last_index: int):
         FROM question_content as content
         inner join question_info as info
         on content.content_id = info.info_id
+        where content.type = '{type}'
         order by info.create_date desc
         limit 6 offset {last_index};
     """
@@ -106,8 +109,8 @@ async def find_new(last_index: int):
     return jsonable_encoder(result)
 
 #Select question orderby create_date asc
-@router.get("/question/find_old/{last_index}")
-async def find_old(last_index: int):
+@router.get("/question/find_old/{type}/{last_index}")
+async def find_old(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
@@ -118,6 +121,7 @@ async def find_old(last_index: int):
         FROM question_content as content
         inner join question_info as info
         on content.content_id = info.info_id
+        where content.type = '{type}'
         order by info.create_date asc
         limit 6 offset {last_index};
     """
