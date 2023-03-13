@@ -8,6 +8,8 @@ type AnswerAndExplainPresenterPropsType = {
 }
 
 function AnswerAndExplainPresenter({workbookData, answer}:AnswerAndExplainPresenterPropsType){
+    const referenceURL = workbookData && workbookData.question_reference ? workbookData.question_reference : '';
+
     return(
         <div className={styles.answer_explain_root}>
             <div className={styles.title_container}>
@@ -21,8 +23,14 @@ function AnswerAndExplainPresenter({workbookData, answer}:AnswerAndExplainPresen
                     <span>{workbookData ? workbookData.question_description : ''}</span>
                 </div>
                 <div className={styles.reference_container}>
-                    <span>참고 : </span>
-                    <span>https://support.google.com/analytics/answer/6086075</span>
+                    {
+                        workbookData && workbookData.question_reference ?
+                        <>
+                            <span>참고 : </span>
+                            <span>{`${referenceURL}`}</span>
+                        </>
+                        : null
+                    }
                 </div>
             </div>
         </div>
