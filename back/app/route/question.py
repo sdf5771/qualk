@@ -41,7 +41,8 @@ async def find_top():
     """
     result = select(sql=query)
     for i in result:
-        i['question_tag'] = i['question_tag'].split(',')
+        if i['question_tag'] is not None:
+            i['question_tag'] = i['question_tag'].split(',')
     return jsonable_encoder(result)
 
 #Select question all
@@ -61,7 +62,8 @@ async def find_view():
     """
     result = select(sql=query)
     for i in result:
-        i['question_tag'] = i['question_tag'].split(',')
+        if i['question_tag'] is not None:
+            i['question_tag'] = i['question_tag'].split(',')
     return jsonable_encoder(result)
 
 #Select question orderby create_date desc
@@ -81,7 +83,8 @@ async def find_new():
     """
     result = select(sql=query)
     for i in result:
-        i['question_tag'] = i['question_tag'].split(',')
+        if i['question_tag'] is not None:
+            i['question_tag'] = i['question_tag'].split(',')
     return jsonable_encoder(result)
 
 #Select question orderby create_date asc
@@ -101,7 +104,8 @@ async def find_old():
     """
     result = select(sql=query)
     for i in result:
-        i['question_tag'] = i['question_tag'].split(',')
+        if i['question_tag'] is not None:
+            i['question_tag'] = i['question_tag'].split(',')
     return jsonable_encoder(result)
 
 @router.get("/question/problem/{question_id}/{question_type}")
@@ -122,5 +126,6 @@ async def find_problem(question_id: int, question_type: str):
     """
     result = select(sql=query)
     for i in result:
-        i['question_contents'] = i['question_contents'].split(',')
+        if i['question_contents'] is not None:
+            i['question_contents'] = i['question_contents'].split(',')
     return jsonable_encoder(result)

@@ -1,0 +1,337 @@
+﻿자격증 종류,문제 번호,언어,문제,항목,정답여부,풀이,참고자료 내용,키워드
+GAIQ,1,EN,Which of the following tools could you use in order to collect and send data from a mobile app to a Google Analytics 4 property?, Firebase SDK,O,"To collect and send data from a mobile app to a Google Analytics 4 property, you could use the Google Analytics SDK for Android or iOS. The SDK provides various APIs and methods that you can use to send data to Google Analytics.
+
+Here are the steps to get started:
+
+Set up a Google Analytics 4 property in your Google Analytics account and obtain the measurement ID.
+
+Download and integrate the Google Analytics SDK for Android or iOS into your mobile app.
+
+Use the SDK APIs and methods to track user interactions, events, and other data in your app.
+
+Set the measurement ID in the SDK configuration to ensure that the data is sent to the correct property.
+
+Test your implementation and verify that the data is being collected and sent to Google Analytics.
+
+Note that you may also need to configure additional settings, such as user properties and custom dimensions, to capture the data that is relevant to your app and business goals.",,SDK
+GAIQ,1,EN,Which of the following tools could you use in order to collect and send data from a mobile app to a Google Analytics 4 property?,Google Marketing Platform,X,,,
+GAIQ,1,EN,Which of the following tools could you use in order to collect and send data from a mobile app to a Google Analytics 4 property?,Google Ads,X,,,
+GAIQ,1,EN,Which of the following tools could you use in order to collect and send data from a mobile app to a Google Analytics 4 property?,Website tag,X,,,
+GAIQ,2,EN,You would like to export your Google Analytics data to BigQuery to run queries and ombine some of your offline data with Analytics data. What type of Analytics property can export data to BigQuery?,Only Analytics 360 properties in GA4 or Universal Analytics,X,,,
+GAIQ,2,EN,You would like to export your Google Analytics data to BigQuery to run queries and ombine some of your offline data with Analytics data. What type of Analytics property can export data to BigQuery?,Standard or Analytics 360 properties using GA4,O,"In the previous UA version, Analytics 360 properties were required to export GA data to BigQuery. However, in GA4 version, both Standard and Analytics 360 properties can be exported to BigQuery.",,"BigQuery,Analytics 360 properties,Standard properties"
+GAIQ,2,EN,You would like to export your Google Analytics data to BigQuery to run queries and ombine some of your offline data with Analytics data. What type of Analytics property can export data to BigQuery?,Standard or Analytics 360 properties using Universal Analytics,X,,,
+GAIQ,2,EN,You would like to export your Google Analytics data to BigQuery to run queries and ombine some of your offline data with Analytics data. What type of Analytics property can export data to BigQuery?,Only Standard properties in GA4 or Universal Analytics,X,,,
+GAIQ,3,EN,"You collect data or your point-of-sale system that could complement the data you are sending to Google Analytics from your website and app.
+Which of these features allows you to collect and send events directly to Google Analytics servers?",Modify event,X,,,
+GAIQ,3,EN,"You collect data or your point-of-sale system that could complement the data you are sending to Google Analytics from your website and app.
+Which of these features allows you to collect and send events directly to Google Analytics servers?",Measurement Protocol,O,"The feature that allows you to collect and send events directly to Google Analytics servers is called the Measurement Protocol. This protocol enables you to send raw user interaction data, such as clicks or transactions, directly to Google Analytics from any internet-connected device or system, including point-of-sale systems. By using the Measurement Protocol, you can augment the data you collect from your website and app with additional data from other sources, helping you gain deeper insights into user behavior and improve your business decisions.",,Measurement Protocol
+GAIQ,3,EN,"You collect data or your point-of-sale system that could complement the data you are sending to Google Analytics from your website and app.
+Which of these features allows you to collect and send events directly to Google Analytics servers?",HTTP request,X,,,
+GAIQ,3,EN,"You collect data or your point-of-sale system that could complement the data you are sending to Google Analytics from your website and app.
+Which of these features allows you to collect and send events directly to Google Analytics servers?",Data import,X,,,
+GAIQ,4,EN,"You have many events on your website that are very valuable, like when users purchase items or sign up for your newsletter. You would like to mark these events as important and assign a value to these events when they happen.
+
+What should you mark these events as in your Google Analytics 4 property?",Conversion events,O,"In your Google Analytics 4 property, you should mark these valuable events as ""Conversions"". Conversions are actions that you want users to take on your website or app, such as making a purchase, filling out a form, or signing up for a newsletter. By marking these events as Conversions, you can easily track them in Google Analytics and see how many users are completing them. Additionally, you can assign a value to each Conversion event to track how much revenue or other important metric is generated by each event. This can help you measure the effectiveness of your marketing efforts and make data-driven decisions to improve your website or app.",,Conversion
+GAIQ,4,EN,"You have many events on your website that are very valuable, like when users purchase items or sign up for your newsletter. You would like to mark these events as important and assign a value to these events when they happen.
+
+What should you mark these events as in your Google Analytics 4 property?",Custom events,X,,,
+GAIQ,4,EN,"You have many events on your website that are very valuable, like when users purchase items or sign up for your newsletter. You would like to mark these events as important and assign a value to these events when they happen.
+
+What should you mark these events as in your Google Analytics 4 property?",Goals,X,,,
+GAIQ,4,EN,"You have many events on your website that are very valuable, like when users purchase items or sign up for your newsletter. You would like to mark these events as important and assign a value to these events when they happen.
+
+What should you mark these events as in your Google Analytics 4 property?",Recommended events,X,,,
+GAIQ,5,EN,"You've just set up an option on your website for your users to sign up for a newsletter. You want to count those new sign-up events as conversions and create an audience for users who signed up.
+Which part of your Google Analytics 4 property lets you manage events, conversions, and audiences?",Advertising,X,,,
+GAIQ,5,EN,"You've just set up an option on your website for your users to sign up for a newsletter. You want to count those new sign-up events as conversions and create an audience for users who signed up.
+
+Which part of your Google Analytics 4 property lets you manage events, conversions, and audiences?",Explore,X,,,
+GAIQ,5,EN,"You've just set up an option on your website for your users to sign up for a newsletter. You want to count those new sign-up events as conversions and create an audience for users who signed up.
+
+Which part of your Google Analytics 4 property lets you manage events, conversions, and audiences?",Configure,O,"In GA4, ""configure"" typically refers to the process of setting up or customizing various settings and options within the Google Analytics 4 property to meet your specific tracking and reporting needs. For example, you can configure data streams to specify which data to collect from your website or mobile app, configure events and parameters to track specific user interactions, and configure conversion events and goals to measure the success of your marketing campaigns. Configuration also involves setting up filters, segments, and audiences to help you analyze and report on your data more effectively. Overall, configuring GA4 allows you to tailor the platform to your business requirements and objectives, and optimize your data tracking and analysis.",,Configure
+GAIQ,5,EN,"You've just set up an option on your website for your users to sign up for a newsletter. You want to count those new sign-up events as conversions and create an audience for users who signed up.
+
+Which part of your Google Analytics 4 property lets you manage events, conversions, and audiences?",Admin,X,,,
+GAIQ,6,EN,How many days does it take for a property to be permanently deleted once you have deleted it from your Google Analytics account?,60,X,,,
+GAIQ,6,EN,How many days does it take for a property to be permanently deleted once you have deleted it from your Google Analytics account?,14,X,,,
+GAIQ,6,EN,How many days does it take for a property to be permanently deleted once you have deleted it from your Google Analytics account?,7,X,,,
+GAIQ,6,EN,How many days does it take for a property to be permanently deleted once you have deleted it from your Google Analytics account?,35,O,"Once you delete a property from your Google Analytics account, it will take a minimum of 35 days to be permanently deleted. During this 35-day period, the property can still be restored if necessary. After the 35-day period has elapsed, the property and all its data will be permanently deleted and cannot be recovered.",,
+GAIQ,7,EN,"You decide to advertise online in a few different places to drive traffic to your website. You're in your Google Analytics 4 property and are interested in how these various ads work together on the path to conversions. In this case, where can you find the “Conversion paths"" report in your Google Analytics 4 property?",Configure,X,,,
+GAIQ,7,EN,"You decide to advertise online in a few different places to drive traffic to your website. You're in your Google Analytics 4 property and are interested in how these various ads work together on the path to conversions. In this case, where can you find the “Conversion paths"" report in your Google Analytics 4 property?",Reports,X,,,
+GAIQ,7,EN,"You decide to advertise online in a few different places to drive traffic to your website. You're in your Google Analytics 4 property and are interested in how these various ads work together on the path to conversions. In this case, where can you find the “Conversion paths"" report in your Google Analytics 4 property?",Advertising,X,,,
+GAIQ,7,EN,"You decide to advertise online in a few different places to drive traffic to your website. You're in your Google Analytics 4 property and are interested in how these various ads work together on the path to conversions. In this case, where can you find the “Conversion paths"" report in your Google Analytics 4 property?",Explore,O,"Google Analytics 4 property doesn't have a dedicated ""Conversion paths"" report like the previous version of Google Analytics. However, you can find similar information in the ""Exploration"" report under the ""Analysis"" section.
+
+To access the ""Exploration"" report, follow these steps:
+
+Go to your Google Analytics 4 property.
+Click on the ""Analysis"" tab in the left-hand navigation menu.
+Select ""Exploration"" from the drop-down menu.
+From there, you can create a custom exploration to see how different channels and campaigns work together on the path to conversion.
+Note that the ""Exploration"" report is a more advanced tool than the traditional ""Conversion paths"" report and requires some knowledge of data analysis and visualization.",,Exploration
+GAIQ,8,EN,Which of these structures represents a Google Analytics account's hierarchy?,Property > Account > Data stream,X,,,
+GAIQ,8,EN,Which of these structures represents a Google Analytics account's hierarchy?,Property > Data stream > Account,X,,,
+GAIQ,8,EN,Which of these structures represents a Google Analytics account's hierarchy?,Data stream > Account > Property,X,,,
+GAIQ,8,EN,Which of these structures represents a Google Analytics account's hierarchy?,Account > Property > Data stream,O,"The Google Analytics account hierarchy consists of three levels:
+
+Account Level: The highest level in the hierarchy is the account level. This is where you can manage multiple properties and users. You can have multiple accounts, each containing one or more properties.
+
+Property Level: The property level is where you can track data for a specific website, mobile application, or other digital asset. Each property has its own unique tracking ID that is used to collect data.
+
+View Level: The view level is where you can access and analyze the data collected by your property. You can apply filters, goals, and other settings to customize the data view. You can have multiple views for each property.
+
+Overall, the account hierarchy allows you to manage multiple websites, applications, or other digital assets within a single Google Analytics account. This makes it easier to track and analyze data across all of your digital properties in one place.",,"Account, Property,Data stream"
+GAIQ,9,EN,Which section would you open in your Google Analytics property in order to find advanced techniques that can help you uncover deeper insights about your customers’ engagement?,Reports,X,,,
+GAIQ,9,EN,Which section would you open in your Google Analytics property in order to find advanced techniques that can help you uncover deeper insights about your customers’ engagement?,Explore,O,,,
+GAIQ,9,EN,Which section would you open in your Google Analytics property in order to find advanced techniques that can help you uncover deeper insights about your customers’ engagement?,,X,,,
+GAIQ,9,EN,Which section would you open in your Google Analytics property in order to find advanced techniques that can help you uncover deeper insights about your customers’ engagement?,Configure,X,,,
+GAIQ,10,EN,What's a key difference between Google Analytics 4 properties and Universal Analytics properties?,"Google Analytics 4 properties use ""sessions"" as the foundation for data collection and reporting, while Universal Analytics uses ""dimensions"" as the foundation for data collection and reporting.",X,,,
+GAIQ,10,EN,What's a key difference between Google Analytics 4 properties and Universal Analytics properties?,"Google Analytics 4 properties use ""dimensions"" as the foundation for data collection and reporting, while Universal Analytics uses ""events"" as the foundation for data collection and reporting.",X,,,
+GAIQ,10,EN,What's a key difference between Google Analytics 4 properties and Universal Analytics properties?,"Google Analytics 4 properties use ""events"" as the foundation for data collection and reporting, while Universal Analytics uses ""sessions"" as the foundation for data collection and reporting.",O,,,
+GAIQ,10,EN,What's a key difference between Google Analytics 4 properties and Universal Analytics properties?,"Google Analytics 4 properties use ""sessions"" as the foundation for data collection and reporting, while Universal Analytics uses ""events"" as the foundation for data collection and reporting.",X,,,
+GAIQ,11,EN,"You manage a gardening company and you post a new how-to video on your website for your customers. In Google Analytics you find lots of data about the user interactions with this video.
+While looking through your data, which of these is a “user property"" collected by Google Analytics?",Name of the video users can watch on your site,X,,,
+GAIQ,11,EN,"You manage a gardening company and you post a new how-to video on your website for your customers. In Google Analytics you find lots of data about the user interactions with this video.
+While looking through your data, which of these is a “user property"" collected by Google Analytics?",How many users opened the page containing the video on your site,X,,,
+GAIQ,11,EN,"You manage a gardening company and you post a new how-to video on your website for your customers. In Google Analytics you find lots of data about the user interactions with this video.
+While looking through your data, which of these is a “user property"" collected by Google Analytics?",The language preference of users watching the video on your site,O,,,
+GAIQ,11,EN,"You manage a gardening company and you post a new how-to video on your website for your customers. In Google Analytics you find lots of data about the user interactions with this video.
+While looking through your data, which of these is a “user property"" collected by Google Analytics?",How many users watched the video on your site,X,,,
+GAIQ,12,EN,What data does the Realtime report how?,Events that took place within the last 30 minutes,O,,,
+GAIQ,12,EN,What data does the Realtime report how?,Events that took place within the last 8 hours,X,,,
+GAIQ,12,EN,What data does the Realtime report how?,Events that took place within the last 12 hours,X,,,
+GAIQ,12,EN,What data does the Realtime report how?,Events that took place within the last 60 minutes,X,,,
+GAIQ,13,EN,"If you were using last-click attribution and wanted to see how channels and campaigns would be valued under first-click attribution, which report would you look at to find this insight?",Model comparison,O,,,
+GAIQ,13,EN,"If you were using last-click attribution and wanted to see how channels and campaigns would be valued under first-click attribution, which report would you look at to find this insight?",Conversion paths,X,,,
+GAIQ,13,EN,"If you were using last-click attribution and wanted to see how channels and campaigns would be valued under first-click attribution, which report would you look at to find this insight?",Funnel exploration,X,,,
+GAIQ,13,EN," If you were using last-click attribution and wanted to see how channels and campaigns would be valued under first-click attribution, which report would you look at to find this insight?",Segment overlap,X,,,
+GAIQ,14,EN,Which of these platforms can be connected to Analytics so that you can test variants of your web pages with specifically tailored audiences?,Search Console,X,,,
+GAIQ,14,EN,Which of these platforms can be connected to Analytics so that you can test variants of your web pages with specifically tailored audiences?,Google Optimize,O,,,
+GAIQ,14,EN,Which of these platforms can be connected to Analytics so that you can test variants of your web pages with specifically tailored audiences?,Firebase,X,,,
+GAIQ,14,EN,Which of these platforms can be connected to Analytics so that you can test variants of your web pages with specifically tailored audiences?,Modify event,X,,,
+GAIQ,15,EN,Which Analytics 360 feature allows you to filter data and create a new data set needed for a specific audience or use case?,Subproperties,O,,,
+GAIQ,15,EN,Which Analytics 360 feature allows you to filter data and create a new data set needed for a specific audience or use case?,Data streams,X,,,
+GAIQ,15,EN,Which Analytics 360 feature allows you to filter data and create a new data set needed for a specific audience or use case?,Roll-up properties,X,,,
+GAIQ,15,EN,Which Analytics 360 feature allows you to filter data and create a new data set needed for a specific audience or use case?,Organizations,X,,,
+GAIQ,16,EN,"You want to start collecting and reporting insights in Google Analytics for your website.
+What do you need to implement in order to start collecting and sending this data to Google Analytics?",Analytics SDK,X,,,
+GAIQ,16,EN,"You want to start collecting and reporting insights in Google Analytics for your website.
+What do you need to implement in order to start collecting and sending this data to Google Analytics?",Firebase SDK,X,,,
+GAIQ,16,EN,"You want to start collecting and reporting insights in Google Analytics for your website.
+What do you need to implement in order to start collecting and sending this data to Google Analytics?",Google Ads,X,,,
+GAIQ,16,EN,"You want to start collecting and reporting insights in Google Analytics for your website.
+What do you need to implement in order to start collecting and sending this data to Google Analytics?",Analytics tag,O,,,
+GAIQ,17,EN,"After exporting Google Analytics data to BigQuery, what new opportunity do you have to use your data?","You can access app-specific reports such as crash data, notification effectiveness, and deep-link performance",X,,,
+GAIQ,17,EN,"After exporting Google Analytics data to BigQuery, what new opportunity do you have to use your data?",You can use audiences to target website experiments and test variants of your web pages,X,,,
+GAIQ,17,EN,"After exporting Google Analytics data to BigQuery, what new opportunity do you have to use your data?","You can use SQL to query your data to answer questions and gain insights into your products, users,and channels",O,,,
+GAIQ,17,EN,"After exporting Google Analytics data to BigQuery, what new opportunity do you have to use your data?","You can use conversions for ad campaign bidding, and audiences to target ad campaigns",X,,,
+GAIQ,18,EN,"If you wanted to gain insight into the traffic to your retail website, which dimension would you look at to determine whether it was coming from “organic search,” ""referral,” or other places?",Google Ads campaign,X,,,
+GAIQ,18,EN,"If you wanted to gain insight into the traffic to your retail website, which dimension would you look at to determine whether it was coming from “organic search,” ""referral,” or other places?",Default channel grouping,O,,,
+GAIQ,18,EN,"If you wanted to gain insight into the traffic to your retail website, which dimension would you look at to determine whether it was coming from “organic search,” ""referral,” or other places?",Page title,X,,,
+GAIQ,18,EN,"If you wanted to gain insight into the traffic to your retail website, which dimension would you look at to determine whether it was coming from “organic search,” ""referral,” or other places?",Event name,X,,,
+GAIQ,19,EN,Which Google Analytics feature relies on machine learning for measuring conversions that can’t be spotted through direct observation?,Conversion modeling,O,,,
+GAIQ,19,EN,Which Google Analytics feature relies on machine learning for measuring conversions that can’t be spotted through direct observation?,Conversion paths,X,,,
+GAIQ,19,EN,Which Google Analytics feature relies on machine learning for measuring conversions that can’t be spotted through direct observation?,Conversion window,X,,,
+GAIQ,19,EN,Which Google Analytics feature relies on machine learning for measuring conversions that can’t be spotted through direct observation?,Conversion events,X,,,
+GAIQ,20,EN,"If you had an event on your website triggered by a user watching a video, which of these definitions could be considered an example event parameter.",How many users viewed a video on your site,X,,,
+GAIQ,20,EN,"If you had an event on your website triggered by a user watching a video, which of these definitions could be considered an example event parameter.",The devices users are on when watching a video on your site,X,,,
+GAIQ,20,EN,"If you had an event on your website triggered by a user watching a video, which of these definitions could be considered an example event parameter.",How many users opened the page containing a video on your site,X,,,
+GAIQ,20,EN,"If you had an event on your website triggered by a user watching a video, which of these definitions could be considered an example event parameter.",Name of a video watched on your site,O,,,
+GAIQ,21,EN,"You created a new option for your users to sign up for a newsletter on your website. You'd like to mark those new sign-up events as conversions, and create a new audience for those users who signed up. Where in your Google Analytics 4 property can you manage your events, conversions, and audiences?", Admin,X,,,
+GAIQ,21,EN,"You created a new option for your users to sign up for a newsletter on your website. You'd like to mark those new sign-up events as conversions, and create a new audience for those users who signed up. Where in your Google Analytics 4 property can you manage your events, conversions, and audiences?",Advertising,X,,,
+GAIQ,21,EN,"You created a new option for your users to sign up for a newsletter on your website. You'd like to mark those new sign-up events as conversions, and create a new audience for those users who signed up. Where in your Google Analytics 4 property can you manage your events, conversions, and audiences?",Explore,X,,,
+GAIQ,21,EN,"You created a new option for your users to sign up for a newsletter on your website. You'd like to mark those new sign-up events as conversions, and create a new audience for those users who signed up. Where in your Google Analytics 4 property can you manage your events, conversions, and audiences?",Configure,O,,,
+GAIQ,22,EN,"You've created a new path exploration in Explore to gain insight into the top pages that new users open after opening your home page. You're interested in sharing your findings with your colleague. By default, who can see the exploration you just created?",Anyone in your property can access it and make edits.,X,,,
+GAIQ,22,EN,"You've created a new path exploration in Explore to gain insight into the top pages that new users open after opening your home page. You're interested in sharing your findings with your colleague. By default, who can see the exploration you just created?",Anyone in your property can access it in read-only mode.,X,,,
+GAIQ,22,EN,"You've created a new path exploration in Explore to gain insight into the top pages that new users open after opening your home page. You're interested in sharing your findings with your colleague. By default, who can see the exploration you just created?","Only you can see it, but you can share it with the other users of the property in read-only mode.",O,,,
+GAIQ,22,EN,"You've created a new path exploration in Explore to gain insight into the top pages that new users open after opening your home page. You're interested in sharing your findings with your colleague. By default, who can see the exploration you just created?","Only you can see it, but you can share it with the other users of the property for them to make edits",X,,,
+GAIQ,23,EN,Which features lets you set the amount of time that event-level and user-level data is stored by Google Analytics?,Disable data collection,X,,,
+GAIQ,23,EN,Which features lets you set the amount of time that event-level and user-level data is stored by Google Analytics?,IP address settings,X,,,
+GAIQ,23,EN,Which features lets you set the amount of time that event-level and user-level data is stored by Google Analytics?,Data retention period,O,,,
+GAIQ,23,EN,Which features lets you set the amount of time that event-level and user-level data is stored by Google Analytics?,Consent Mode,X,,,
+GAIQ,24,EN,"Which Analytics 360 feature allows you to create a new data set with a broad view of your business across products, brands, or regions by combining data from multiple source properties?",Data streams,X,,,
+GAIQ,24,EN,"Which Analytics 360 feature allows you to create a new data set with a broad view of your business across products, brands, or regions by combining data from multiple source properties?",Organizations,X,,,
+GAIQ,24,EN,"Which Analytics 360 feature allows you to create a new data set with a broad view of your business across products, brands, or regions by combining data from multiple source properties?",Subproperties,X,,,
+GAIQ,24,EN,"Which Analytics 360 feature allows you to create a new data set with a broad view of your business across products, brands, or regions by combining data from multiple source properties?",Roll-up properties,O,,,
+GAIQ,25,EN, Which of these describes how conversion events from Google Analytics can be used in Google Ads when they are linked together?,Google Ads can use these conversions to optimize your bids for ad placements,O,,,
+GAIQ,25,EN, Which of these describes how conversion events from Google Analytics can be used in Google Ads when they are linked together?,Google Ads can use these conversions to see industry benchmarking data,X,,,
+GAIQ,25,EN, Which of these describes how conversion events from Google Analytics can be used in Google Ads when they are linked together?,Google Ads can use these conversions to adjust and optimize your ad copy,X,,,
+GAIQ,25,EN, Which of these describes how conversion events from Google Analytics can be used in Google Ads when they are linked together?,Google Ads can use these conversions to generate new keyword ideas,X,,,
+GAIQ,26,EN,"Which of these sections of Google Analytics Reports provides insights into where users are coming from (e.g., social media) before visiting your website?",Engagement,X,,,
+GAIQ,26,EN,"Which of these sections of Google Analytics Reports provides insights into where users are coming from (e.g., social media) before visiting your website?",Acquisition,O,,,
+GAIQ,26,EN,"Which of these sections of Google Analytics Reports provides insights into where users are coming from (e.g., social media) before visiting your website?",Monetization,X,,,
+GAIQ,26,EN,"Which of these sections of Google Analytics Reports provides insights into where users are coming from (e.g., social media) before visiting your website?",Demographics,X,,,
+GAIQ,27,EN,"You have already set up your web data stream and data is flowing into your Google Analytics property from your website.
+You notice that enhanced measurement is enabled for the web data stream. What happens when this setting is enabled?",Additional events are collected from your website without you needing to change your website's code,O,,,
+GAIQ,27,EN,"You have already set up your web data stream and data is flowing into your Google Analytics property from your website.
+You notice that enhanced measurement is enabled for the web data stream. What happens when this setting is enabled?",Events can be associated with signed-in users to enable cross-device reporting,X,,,
+GAIQ,27,EN,"You have already set up your web data stream and data is flowing into your Google Analytics property from your website.
+You notice that enhanced measurement is enabled for the web data stream. What happens when this setting is enabled?",Conversion reporting for the web data stream uses machine learning to distributes credit across channels,X,,,
+GAIQ,27,EN,"You have already set up your web data stream and data is flowing into your Google Analytics property from your website.
+You notice that enhanced measurement is enabled for the web data stream. What happens when this setting is enabled?",Events from your mobile app can be combined with your existing website data,X,,,
+GAIQ,28,EN,"You work for an online vintage clothing retailer and store data about each of your sales items offline.
+Which of these features allows you to upload a CSV file containing item data you want to join with Analytics data?",HTTP request,X,,,
+GAIQ,28,EN,"You work for an online vintage clothing retailer and store data about each of your sales items offline.
+Which of these features allows you to upload a CSV file containing item data you want to join with Analytics data?",Data import,O,,,
+GAIQ,28,EN,"You work for an online vintage clothing retailer and store data about each of your sales items offline.
+Which of these features allows you to upload a CSV file containing item data you want to join with Analytics data?",Measurement Protocol,X,,,
+GAIQ,28,EN,"You work for an online vintage clothing retailer and store data about each of your sales items offline.
+Which of these features allows you to upload a CSV file containing item data you want to join with Analytics data?",Modify event,X,,,
+GAIQ,29,EN,If you wanted to analyze user journeys across a website and an app and see how new users were arriving at both which of these techniques should you use for insights?,Google Optimize,X,,,
+GAIQ,29,EN,If you wanted to analyze user journeys across a website and an app and see how new users were arriving at both which of these techniques should you use for insights?,"Google Analytics 4 properties
+
+",O,,,
+GAIQ,29,EN,If you wanted to analyze user journeys across a website and an app and see how new users were arriving at both which of these techniques should you use for insights?,Universal Analytics properties,X,,,
+GAIQ,29,EN,If you wanted to analyze user journeys across a website and an app and see how new users were arriving at both which of these techniques should you use for insights?,Google Marketing Platform,X,,,
+GAIQ,30,EN,"You generate a report to show how many users are coming from various device types, like computers and mobile phones, over the past 30 days. In this report, which of these is a ‘metric’ in Google Analytics?",The date range setting for the last 30 days,X,,,
+GAIQ,30,EN,"You generate a report to show how many users are coming from various device types, like computers and mobile phones, over the past 30 days. In this report, which of these is a ‘metric’ in Google Analytics?","The device types, desktops and mobile phones",X,,,
+GAIQ,30,EN,"You generate a report to show how many users are coming from various device types, like computers and mobile phones, over the past 30 days. In this report, which of these is a ‘metric’ in Google Analytics?",How many users were on mobile phones,O,,,
+GAIQ,30,EN,"You generate a report to show how many users are coming from various device types, like computers and mobile phones, over the past 30 days. In this report, which of these is a ‘metric’ in Google Analytics?",Where users came from before reaching your site,X,,,
+GAIQ,31,EN,"To understand how many users are coming from various devices, like computers or mobile phones, you run a report that shows this data, per device, over the past 30 days.
+
+In this report, which of these is considered a ""metric"" in Google Analytics?","The device types, desktops and mobile phones",X,,,
+GAIQ,31,EN,"To understand how many users are coming from various devices, like computers or mobile phones, you run a report that shows this data, per device, over the past 30 days.
+
+In this report, which of these is considered a ""metric"" in Google Analytics?",Where users came from before reaching your site,X,,,
+GAIQ,31,EN,"To understand how many users are coming from various devices, like computers or mobile phones, you run a report that shows this data, per device, over the past 30 days.
+
+In this report, which of these is considered a ""metric"" in Google Analytics?",How many users were on mobile phones,O,,,
+GAIQ,31,EN,"To understand how many users are coming from various devices, like computers or mobile phones, you run a report that shows this data, per device, over the past 30 days.
+
+In this report, which of these is considered a ""metric"" in Google Analytics?",The date range setting for the last 30 days,X,,,
+GAIQ,32,EN," You generate a report to show how many users are coming from various device types, like desktops and mobile phones, over the past 30 days.
+In this report, what is device type?",A metric,X,,,
+GAIQ,32,EN," You generate a report to show how many users are coming from various device types, like desktops and mobile phones, over the past 30 days.
+In this report, what is device type?",An event,X,,,
+GAIQ,32,EN," You generate a report to show how many users are coming from various device types, like desktops and mobile phones, over the past 30 days.
+In this report, what is device type?",A dimension,O,,,
+GAIQ,32,EN," You generate a report to show how many users are coming from various device types, like desktops and mobile phones, over the past 30 days.
+In this report, what is device type?",A user,X,,,
+GAIQ,33,EN,What do audience triggers allow you to do?,Create new audiences based on predictive metrics,X,,,
+GAIQ,33,EN,What do audience triggers allow you to do?,Create new events based on existing event parameters,X,,,
+GAIQ,33,EN,What do audience triggers allow you to do?,Create new events based on an audience rule being satisfied,O,,,
+GAIQ,33,EN,What do audience triggers allow you to do?,Create new audiences based on specific events that are triggered,X,,,
+GAIQ,34,EN,How can Google Ads use audiences from Google Analytics when the two are linked?,Audiences in Google Ads can be used to see industry benchmarking data,X,,,
+GAIQ,34,EN,How can Google Ads use audiences from Google Analytics when the two are linked?,Audiences in Google Ads can be used to adjust geotargeting of ad campaigns,X,,,
+GAIQ,34,EN,How can Google Ads use audiences from Google Analytics when the two are linked?,Audiences in Google Ads can be used to target ad campaigns,O,,,
+GAIQ,34,EN,How can Google Ads use audiences from Google Analytics when the two are linked?,Audiences in Google Ads can be contacted for customer research,X,,,
+GAIQ,35,EN,"You want to create new audiences for your eCommerce site by segmenting users according to parameters that make sense for your business, like those who've made a purchase. 
+Which of these approaches would provide you with a predictive audience?",You create an audience of users who started checking out but didn't complete the purchase,X,,,
+GAIQ,35,EN,"You want to create new audiences for your eCommerce site by segmenting users according to parameters that make sense for your business, like those who've made a purchase. 
+Which of these approaches would provide you with a predictive audience?",You create an audience of users who are likely to purchase in the next seven days,O,,,
+GAIQ,35,EN,"You want to create new audiences for your eCommerce site by segmenting users according to parameters that make sense for your business, like those who've made a purchase. 
+Which of these approaches would provide you with a predictive audience?",You create an audience of users who added items to their purchase wishlist,X,,,
+GAIQ,35,EN,"You want to create new audiences for your eCommerce site by segmenting users according to parameters that make sense for your business, like those who've made a purchase. 
+Which of these approaches would provide you with a predictive audience?",You create an audience of users who made a purchase in the last 30 days,X,,,
+GAIQ,36,EN,"You've created a Google Analytics 4 property for your website and mobile app. As users engage with your website and app, how does Google Analytics measure and report distinct user interactions?",As hits,X,,,
+GAIQ,36,EN,"You've created a Google Analytics 4 property for your website and mobile app. As users engage with your website and app, how does Google Analytics measure and report distinct user interactions?",As sessions,X,,,
+GAIQ,36,EN,"You've created a Google Analytics 4 property for your website and mobile app. As users engage with your website and app, how does Google Analytics measure and report distinct user interactions?",As views,X,,,
+GAIQ,36,EN,"You've created a Google Analytics 4 property for your website and mobile app. As users engage with your website and app, how does Google Analytics measure and report distinct user interactions?",As events,O,,,
+GAIQ,37,EN,"Your website visitors already trigger the page_view event when they view any page on your site, but you want to define a new event to trigger when visitors land on a specific page, like the homepage. When you navigate to Events in the Google Analytics interface, which option can you choose to define this homepage view event?",Modify event,X,,,
+GAIQ,37,EN,"Your website visitors already trigger the page_view event when they view any page on your site, but you want to define a new event to trigger when visitors land on a specific page, like the homepage. When you navigate to Events in the Google Analytics interface, which option can you choose to define this homepage view event?",Create event,O,,,
+GAIQ,37,EN,"Your website visitors already trigger the page_view event when they view any page on your site, but you want to define a new event to trigger when visitors land on a specific page, like the homepage. When you navigate to Events in the Google Analytics interface, which option can you choose to define this homepage view event?",Import event,X,,,
+GAIQ,37,EN,"Your website visitors already trigger the page_view event when they view any page on your site, but you want to define a new event to trigger when visitors land on a specific page, like the homepage. When you navigate to Events in the Google Analytics interface, which option can you choose to define this homepage view event?",Mark event as conversion,X,,,
+GAIQ,38,EN,"If you want to analyze events and users across your business's website, as well as its separate apps for iOS and Android — how should you set up your account?",One property with a web data stream for your website and one property with an app data stream for your app,X,,,
+GAIQ,38,EN,"If you want to analyze events and users across your business's website, as well as its separate apps for iOS and Android — how should you set up your account?","One property with one web data stream for your website and two app data streams, one for iOS and the other for Android",O,,,
+GAIQ,38,EN,"If you want to analyze events and users across your business's website, as well as its separate apps for iOS and Android — how should you set up your account?","One property with a web data stream for your website and one property with two app data streams, one for iOS and the other for Android",X,,,
+GAIQ,38,EN,"If you want to analyze events and users across your business's website, as well as its separate apps for iOS and Android — how should you set up your account?", One property with one web data stream for your website and one app data stream for your app,X,,,
+GAIQ,39,EN,"If you managed a blog that featured multiple different writers, what could you use to report the relevant writer's name on each article page?
+",Custom metric,X,,,
+GAIQ,39,EN,"If you managed a blog that featured multiple different writers, what could you use to report the relevant writer's name on each article page?
+",Custom dimension,O,,,
+GAIQ,39,EN,"If you managed a blog that featured multiple different writers, what could you use to report the relevant writer's name on each article page?
+
+",Custom table,X,,,
+GAIQ,39,EN,"If you managed a blog that featured multiple different writers, what could you use to report the relevant writer's name on each article page?
+",Custom user parameter,X,,,
+GAIQ,40,EN,"If you wanted a custom dimension that report membership status for a customer rewards program, which of these scopes would be set?",Google Ads,X,,,
+GAIQ,40,EN,"If you wanted a custom dimension that report membership status for a customer rewards program, which of these scopes would be set?","Google signals
+",O,,,
+GAIQ,40,EN,"If you wanted a custom dimension that report membership status for a customer rewards program, which of these scopes would be set?",User-ID,X,,,
+GAIQ,40,EN,"If you wanted a custom dimension that report membership status for a customer rewards program, which of these scopes would be set?",Google Search Console,X,,,
+GAIQ,41,EN,"If you've enabled Ads Personalization for your property but want to exclude specific events, what happens to the data for those events?","That data will only be available in the Advertising section
+",X,,,
+GAIQ,41,EN,"If you've enabled Ads Personalization for your property but want to exclude specific events, what happens to the data for those events?",That data will only be available in the Reports and Explore sections,X,,,
+GAIQ,41,EN,"If you've enabled Ads Personalization for your property but want to exclude specific events, what happens to the data for those events?","That data will only be used for measurement purposes
+",O,,,
+GAIQ,41,EN,"If you've enabled Ads Personalization for your property but want to exclude specific events, what happens to the data for those events?",That data will only be used for audiences in Google Ads,X,,,
+GAIQ,42,EN,"You're asked to set up a data stream in accordance with setting up Google Analytics.
+What is a data stream?", A data stream lives within a property and is a source of data from your app or website,O,,,
+GAIQ,42,EN,"You're asked to set up a data stream in accordance with setting up Google Analytics.
+What is a data stream?",A data stream lives within Reports and lets you segment and compare your data,X,,,
+GAIQ,42,EN,"You're asked to set up a data stream in accordance with setting up Google Analytics.
+What is a data stream?","A data stream lives within Explore and, once defined, can be added to any exploration",X,,,
+GAIQ,42,EN,"You're asked to set up a data stream in accordance with setting up Google Analytics.
+What is a data stream?",A data stream lives within an account and is the container for the data you collect from your apps and sites,X,,,
+GAIQ,43,EN,You are in your Google Analytics property's Explore section. What exploration technique should you use in order to customize metrics and dimensions in table format?,Cohort explorations,X,,,
+GAIQ,43,EN,You are in your Google Analytics property's Explore section. What exploration technique should you use in order to customize metrics and dimensions in table format?, Funnel exploration,X,,,
+GAIQ,43,EN,You are in your Google Analytics property's Explore section. What exploration technique should you use in order to customize metrics and dimensions in table format?,Free form,O,,,
+GAIQ,43,EN,You are in your Google Analytics property's Explore section. What exploration technique should you use in order to customize metrics and dimensions in table format?,Segment overlap,X,,,
+GAIQ,44,EN,"You create a report to show the types of devices users have been coming from over the past 30 days — whether they were on desktops or mobile phones, for example.
+
+In this report, what is device type?",An event,X,,,
+GAIQ,44,EN,"You create a report to show the types of devices users have been coming from over the past 30 days — whether they were on desktops or mobile phones, for example.
+
+In this report, what is device type?",A user,X,,,
+GAIQ,44,EN,"You create a report to show the types of devices users have been coming from over the past 30 days — whether they were on desktops or mobile phones, for example.
+
+In this report, what is device type?",A dimension,O,,,
+GAIQ,44,EN,"You create a report to show the types of devices users have been coming from over the past 30 days — whether they were on desktops or mobile phones, for example.
+
+In this report, what is device type?",A metric ,X,,,
+GAIQ,45,EN,You want to seq the steps your users take toward key conversion. Which exploration technique lets you visualize the steps users take toward a key task or conversion and see how well they are succeeding or failing at each step?,Funnel exploration,O,,,
+GAIQ,45,EN,You want to seq the steps your users take toward key conversion. Which exploration technique lets you visualize the steps users take toward a key task or conversion and see how well they are succeeding or failing at each step?,Segment overlap,X,,,
+GAIQ,45,EN,You want to seq the steps your users take toward key conversion. Which exploration technique lets you visualize the steps users take toward a key task or conversion and see how well they are succeeding or failing at each step?,Free form,X,,,
+GAIQ,45,EN,You want to seq the steps your users take toward key conversion. Which exploration technique lets you visualize the steps users take toward a key task or conversion and see how well they are succeeding or failing at each step?,Cohort explorations,X,,,
+GAIQ,46,EN,This Analytics feature allows you to connect individual customers’ behavior across various interactions on different platforms and devices by letting you associate your own identifiers with your individual customers.,User-ID,O,,,
+GAIQ,46,EN,This Analytics feature allows you to connect individual customers’ behavior across various interactions on different platforms and devices by letting you associate your own identifiers with your individual customers.,Predictive audiences,X,,,
+GAIQ,46,EN,This Analytics feature allows you to connect individual customers’ behavior across various interactions on different platforms and devices by letting you associate your own identifiers with your individual customers.,Audience triggers,X,,,
+GAIQ,46,EN,This Analytics feature allows you to connect individual customers’ behavior across various interactions on different platforms and devices by letting you associate your own identifiers with your individual customers.,Device-ID,X,,,
+GAIQ,47,EN,You want to find readymade cards that address typical questions about how users are interacting with your app or website]Which section do you go to in order to find this?,Explore,O,,,
+GAIQ,47,EN,You want to find readymade cards that address typical questions about how users are interacting with your app or website]Which section do you go to in order to find this?,Configure,X,,,
+GAIQ,47,EN,You want to find readymade cards that address typical questions about how users are interacting with your app or website]Which section do you go to in order to find this?,Admin,X,,,
+GAIQ,47,EN,You want to find readymade cards that address typical questions about how users are interacting with your app or website]Which section do you go to in order to find this?,Reports,X,,,
+GAIQ,48,EN,"To get insights into the organic search queries that are leading users to your website, you can connect Analytics with which platform?",Google Ads,X,,,
+GAIQ,48,EN,"To get insights into the organic search queries that are leading users to your website, you can connect Analytics with which platform?",Google Optimize,X,,,
+GAIQ,48,EN,"To get insights into the organic search queries that are leading users to your website, you can connect Analytics with which platform?",Search Ads 360,X,,,
+GAIQ,48,EN,"To get insights into the organic search queries that are leading users to your website, you can connect Analytics with which platform?",Search Console,O,,,
+GAIQ,49,EN,"You want to see detailed marketing campaign data by linking a new Google Ads account to your Google Analytics property.
+Where in your Google Analytics 4 property can you manage product links such as this one with Google Ads?",Admin,O,,,
+GAIQ,49,EN,"You want to see detailed marketing campaign data by linking a new Google Ads account to your Google Analytics property.
+Where in your Google Analytics 4 property can you manage product links such as this one with Google Ads?",Advertising,X,,,
+GAIQ,49,EN,"You want to see detailed marketing campaign data by linking a new Google Ads account to your Google Analytics property.
+Where in your Google Analytics 4 property can you manage product links such as this one with Google Ads?",Explore,X,,,
+GAIQ,49,EN,"You want to see detailed marketing campaign data by linking a new Google Ads account to your Google Analytics property.
+Where in your Google Analytics 4 property can you manage product links such as this one with Google Ads?",Configure,X,,,
+GAIQ,50,EN,There's a section of Google Analytics that includes cards answering common questions about how users interact with your app or website. Which section is it?,"Admin
+",X,,,
+GAIQ,50,EN,There's a section of Google Analytics that includes cards answering common questions about how users interact with your app or website. Which section is it?,Configure,X,,,
+GAIQ,50,EN,There's a section of Google Analytics that includes cards answering common questions about how users interact with your app or website. Which section is it?,Reports,O,,,
+GAIQ,50,EN,There's a section of Google Analytics that includes cards answering common questions about how users interact with your app or website. Which section is it?,Explore,X,,,
+GAIQ,51,EN,"You want to know how various ads you've placed work together on the path to conversions.
+Where in your Google Analytics 4 property can you find the ""Conversion paths"" report?
+",Reports,X,,,
+GAIQ,51,EN,"You want to know how various ads you've placed work together on the path to conversions.
+Where in your Google Analytics 4 property can you find the ""Conversion paths"" report?
+",Configure,X,,,
+GAIQ,51,EN,"You want to know how various ads you've placed work together on the path to conversions.
+Where in your Google Analytics 4 property can you find the ""Conversion paths"" report?
+", Advertising,O,,,
+GAIQ,51,EN,"You want to know how various ads you've placed work together on the path to conversions.
+Where in your Google Analytics 4 property can you find the ""Conversion paths"" report?
+",Explore,X,,,
+GAIQ,52,EN,Which attribution model spreads credit for a conversion across different touchpoints through the use of machine learning algorithms?,Last click,X,,,
+GAIQ,52,EN,Which attribution model spreads credit for a conversion across different touchpoints through the use of machine learning algorithms?,First click,X,,,
+GAIQ,52,EN,Which attribution model spreads credit for a conversion across different touchpoints through the use of machine learning algorithms?,Time decay,X,,,
+GAIQ,52,EN,Which attribution model spreads credit for a conversion across different touchpoints through the use of machine learning algorithms?,Data-driven,O,,,
+GAIQ,53,EN,"If you wanted to link a new Google Ads account to your Google Analytics property in order to see detailed marketing campaign data, where in your Google Analytics 4 property would you go to manage this process?",Admin,O,,,
+GAIQ,53,EN,"If you wanted to link a new Google Ads account to your Google Analytics property in order to see detailed marketing campaign data, where in your Google Analytics 4 property would you go to manage this process?",Explore,X,,,
+GAIQ,53,EN,"If you wanted to link a new Google Ads account to your Google Analytics property in order to see detailed marketing campaign data, where in your Google Analytics 4 property would you go to manage this process?",Configure,X,,,
+GAIQ,53,EN,"If you wanted to link a new Google Ads account to your Google Analytics property in order to see detailed marketing campaign data, where in your Google Analytics 4 property would you go to manage this process?",Advertising,X,,,
+GAIQ,54,EN,Which attribution model distributes the credit for a conversion equally across the channels a customer clicked or engaged with before converting?,Linear,O,,,
+GAIQ,54,EN,Which attribution model distributes the credit for a conversion equally across the channels a customer clicked or engaged with before converting?,Data-driven,X,,,
+GAIQ,54,EN,Which attribution model distributes the credit for a conversion equally across the channels a customer clicked or engaged with before converting?,Time decay,X,,,
+GAIQ,54,EN,Which attribution model distributes the credit for a conversion equally across the channels a customer clicked or engaged with before converting?,Position-based,X,,,
+GAIQ,55,EN,In which of these situations could you use the Engagement overview report in Google Analytics?,You're interested in monitoring user activity as it is happening on your site.,X,,,
+GAIQ,55,EN,In which of these situations could you use the Engagement overview report in Google Analytics?,You'd like insight into your users' interests they've express through their online browsing and purchase activities.,O,,,
+GAIQ,55,EN,In which of these situations could you use the Engagement overview report in Google Analytics?,You're interested in seeing which pages on your site are getting the most traffic.,X,,,
+GAIQ,55,EN,In which of these situations could you use the Engagement overview report in Google Analytics?,You're interested in seeing where users are coming from before landing on your website.,X,,,

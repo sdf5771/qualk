@@ -1,11 +1,7 @@
-
+import pandas as pd
+import seaborn as sns
 
 if __name__=="__main__":
-    _dict = {
-        'question': '병익,해피,쉣'
-    }
-
-    print(_dict)
-
-    _dict['question'] = _dict['question'].split(',')
-    print(_dict)
+    df = sns.load_dataset('tips')
+    # df.groupby('day','time').agg({'day':'max', 'time':'max'})
+    print(df.info)
