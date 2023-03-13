@@ -26,7 +26,7 @@ router = APIRouter()
 #Top 3 question
 @router.get("/question/top_3/{type}")
 async def find_top(type: str):
-    query = """
+    query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
                info.question_name AS question_name,
