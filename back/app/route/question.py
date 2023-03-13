@@ -1,4 +1,4 @@
-from database.query import select
+from database.query import select, insert
 
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
@@ -151,7 +151,13 @@ async def find_problem(question_id: int, question_type: str):
         where content.content_id = {question_id}
         and content.type = '{question_type}';
     """
+    view = f"""
+            update question_info set view = view + 1 where info_id = {question_id};
+            """
+
+    insert(sql=view)
     result = select(sql=query)
+    
     for i in result:
         if i['question_contents'] is not None:
             i['question_contents'] = i['question_contents'].split(',')

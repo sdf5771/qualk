@@ -40,6 +40,12 @@ def select(conn, sql):
     cursor.execute(sql)
     return cursor.fetchall()
 
+@conn
+def insert(conn, sql):
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    return cursor.fetchall()
+
 
 
 
