@@ -6,19 +6,19 @@ import getQuestionFindNew from 'queries/workbook/listview/getQuestionFindNew';
 import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
 
 
-async function getDatas(sort: string, pageNumber: number){
+async function getDatas(type: string, sort: string, pageNumber: number){
     switch(sort){
         case 'sortViewed':
-            return getQuestionFindView(pageNumber);
+            return getQuestionFindView(type, pageNumber);
         case 'sortOldest':
-            return getQuestionFindOld(pageNumber);
+            return getQuestionFindOld(type, pageNumber);
         case 'sortLatest':
-            return getQuestionFindNew(pageNumber);
+            return getQuestionFindNew(type, pageNumber);
     }
 }
 
-async function getMoreDatas(sort: string, pageNumber: number, currentData: WorkbookDataType[], setCurrentWorkbookData?: React.Dispatch<React.SetStateAction<WorkbookDataType[]>>){
-    const newData = await getDatas(sort, pageNumber);
+async function getMoreDatas(type: string, sort: string, pageNumber: number, currentData: WorkbookDataType[], setCurrentWorkbookData?: React.Dispatch<React.SetStateAction<WorkbookDataType[]>>){
+    const newData = await getDatas(type, sort, pageNumber);
     if(setCurrentWorkbookData){
         setCurrentWorkbookData([...currentData, ...newData.workbookData]);
     }
@@ -30,6 +30,6 @@ async function getMoreDatas(sort: string, pageNumber: number, currentData: Workb
     }
 }
 
-export default function useWorkbookData(sort: string, pageNumber: number, currentData: WorkbookDataType[], setCurrentWorkbookData?: React.Dispatch<React.SetStateAction<WorkbookDataType[]>>){
-    return useQuery(['datas', sort, pageNumber], () => getMoreDatas(sort, pageNumber, currentData, setCurrentWorkbookData), { keepPreviousData: true })
+export default function useWorkbookData(type: string, sort: string, pageNumber: number, currentData: WorkbookDataType[], setCurrentWorkbookData?: React.Dispatch<React.SetStateAction<WorkbookDataType[]>>){
+    return useQuery(['datas', sort, pageNumber], () => getMoreDatas(type, sort, pageNumber, currentData, setCurrentWorkbookData), { keepPreviousData: true })
 }
