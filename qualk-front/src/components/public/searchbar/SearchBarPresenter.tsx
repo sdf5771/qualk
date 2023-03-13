@@ -12,11 +12,12 @@ type SearchBarPresenterPropsType = {
     inputOnBlurHandler: ReactEventHandler,
     onMouseOverHandler: ReactEventHandler,
     onMouseOutHandler: ReactEventHandler,
+    removeValueOnClickHandler: ReactEventHandler,
     inputVal: string,
     isVisibleClose: boolean,
 }
 
-function SearchBarPresenter({inputOnClickHandler, inputOnChangeHandler, inputOnBlurHandler, onMouseOverHandler, onMouseOutHandler, isActive, isHover, inputVal, isVisibleClose}:SearchBarPresenterPropsType){
+function SearchBarPresenter({inputOnClickHandler, inputOnChangeHandler, inputOnBlurHandler, onMouseOverHandler, onMouseOutHandler, removeValueOnClickHandler, isActive, isHover, inputVal, isVisibleClose}:SearchBarPresenterPropsType){
     let logo;
 
     if(isActive || isHover){
@@ -39,7 +40,7 @@ function SearchBarPresenter({inputOnClickHandler, inputOnChangeHandler, inputOnB
                        placeholder='오늘은 무엇을 찾아볼까요?'
                        value={inputVal}
                 />
-                {isVisibleClose ? <CloseIcon /> : null}
+                {isVisibleClose ? <div onClick={removeValueOnClickHandler}><CloseIcon /></div> : null}
             </div>
         </div>
     );

@@ -35,6 +35,11 @@ function SearchBarContainer(){
     const mainContainerOnMouseOutHandler = (event: React.MouseEvent) => {
         setIsHover(false)
     }
+    const removeValueOnClickHandler = (event: React.MouseEvent) => {
+        setInputVal('')
+
+        setVisibleCloseBtn(false);
+    }
 
     return(
         <SearchBarPresenter
@@ -47,6 +52,7 @@ function SearchBarContainer(){
             isActive={isActive}
             inputVal={inputVal}
             isVisibleClose={visibleCloseBtn}
+            removeValueOnClickHandler={removeValueOnClickHandler}
         />
     );
 }
