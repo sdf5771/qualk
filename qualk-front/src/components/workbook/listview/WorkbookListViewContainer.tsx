@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import WorkbookListViewPresenter from "./WorkbookListViewPresenter";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "reducers/reducers";
-import {useQuery, useQueries} from "@tanstack/react-query";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
 import getQuestionTopView from "queries/workbook/listview/getQuestionTopView";
 import useWorkbookData from 'hook/useWorkbookData';
-
+import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
 
 const dummyData = [
     {
@@ -160,20 +160,22 @@ const favoritesData = [
 ]
 
 function WorkbookListViewContainer(){
+    const queryClient = useQueryClient();
+    const [currentPageNumber, setCurrentPageNumber] = useState(0);
+    const [currentWorkbookData, setCurrentWorkbookData] = useState<WorkbookDataType[]>([]);
     const [filterActive, setFilterActive] = useState('sortViewed');
     const { isLoading: favIsLoading, isError: favIsError, data: favData, error: favError } = useQuery( {queryKey: ['topviews'], queryFn: getQuestionTopView});
-    const { isLoading: workBookIsLoading, isError: workBookIsError, data: workBookData, error: workBookError } = useWorkbookData(filterActive);
+    const { isLoading: workBookIsLoading, isError: workBookIsError, data: workbookData, error: workBookError } = useWorkbookData(filterActive, currentPageNumber, currentWorkbookData, setCurrentWorkbookData);
     const menuElementActivateSelector = useSelector((state:RootState) => state.childMenuClickReducer);
     const filterElementActivateSelector = useSelector((state:RootState) => state.filterClickReducer);
-
     const filterElementClickDispatch = useDispatch();
     const [category, setCategory] = useState(menuElementActivateSelector);
-
 
     const filterOnClickHandler = (event: React.MouseEvent) => {
         filterElementClickDispatch({type: 'filterClick', activeFilter: event.currentTarget.id})
         setFilterActive(event.currentTarget.id);
-        console.log(event.currentTarget.id)
+        setCurrentWorkbookData([]);
+        setCurrentPageNumber(0);
     }
 
     useEffect(() => {
@@ -181,7 +183,8 @@ function WorkbookListViewContainer(){
     }, [menuElementActivateSelector['activeMenu']])
 
     return (
-        <WorkbookListViewPresenter categoryData={category} workbookData={workBookData} favoriteWorkbookData={favData} filterActive={filterActive} filterOnClickHandler={filterOnClickHandler}/>
+        <WorkbookListViewPresenter categoryData={category} workbookData={currentWorkbookData} isLastData={workbookData ? workbookData['isLastData'] : false} lastIndex={workbookData ? workbookData['lastIndex'] : 0} favoriteWorkbookData={favData} filterActive={filterActive} filterOnClickHandler={filterOnClickHandler} setCurrentPageNumber={setCurrentPageNumber}/>
+        // <WorkbookListViewPresenter categoryData={category} workbookData={workbookData ? workbookData['workbookData'] : []} isLastData={workbookData ? workbookData['isLastData'] : false} lastIndex={workbookData ? workbookData['lastIndex'] : 0} favoriteWorkbookData={favData} filterActive={filterActive} filterOnClickHandler={filterOnClickHandler} setCurrentPageNumber={setCurrentPageNumber}/>
         // <WorkbookListViewPresenter categoryData={category} workbookData={dummyData} favoriteWorkbookData={favoritesData} filterActive={filterActive} filterOnClickHandler={filterOnClickHandler}/>
     );
 }

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {ReactEventHandler} from 'react';
 import styles from './MorebtnPresenter.module.css';
 
-function MoreBtnPresenter(){
+type MoreBtnPresenterPropsType = {
+    onClickHandler: ReactEventHandler,
+}
+
+function MoreBtnPresenter({onClickHandler}: MoreBtnPresenterPropsType){
     return(
-        <div className={styles.more_btn_root}>
+        <div onClick={onClickHandler} className={styles.more_btn_root}>
             <span>더보기</span>
         </div>
     )

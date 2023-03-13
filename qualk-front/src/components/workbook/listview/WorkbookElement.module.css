@@ -13,12 +13,12 @@
     cursor: pointer;
 }
 .workbook_element_root:hover {
-    padding: 19px;
+    padding: 20px;
     /*height: 155px;*/
     /*min-height: 155px;*/
     /*max-height: 155px;*/
     background-color: #fffaed;
-    border: solid 2px #fdba01;
+    border: solid 1px #fdba01;
 }
 .workbook_element_header{
     display: flex;

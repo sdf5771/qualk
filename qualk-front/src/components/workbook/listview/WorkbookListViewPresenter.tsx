@@ -18,9 +18,12 @@ type workbookListViewPropsType = {
     favoriteWorkbookData: WorkbookDataType[],
     filterActive: string,
     filterOnClickHandler: ReactEventHandler,
+    isLastData : boolean,
+    lastIndex: number,
+    setCurrentPageNumber: React.Dispatch<React.SetStateAction<number>>,
 }
 
-function WorkbookListViewPresenter({categoryData, workbookData, favoriteWorkbookData, filterActive, filterOnClickHandler}: workbookListViewPropsType){
+function WorkbookListViewPresenter({categoryData, workbookData, isLastData, lastIndex, favoriteWorkbookData, filterActive, filterOnClickHandler, setCurrentPageNumber}: workbookListViewPropsType){
     return (
         <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in}`}>
             <div className={styles.favorite_container}>
@@ -61,10 +64,10 @@ function WorkbookListViewPresenter({categoryData, workbookData, favoriteWorkbook
                     </div>
                 </div>
                 <div className={styles.listview_body}>
-                    { workbookData ? workbookData.map((data: WorkbookDataType) => {
+                    { workbookData ? workbookData.map((data: WorkbookDataType, index) => {
                         if(data && categoryData['activeMenu'] === data['question_type']){
                             return <WorkbookElement
-                                key={data['question_id']}
+                                key={filterActive + data['question_id']}
                                 question_id={data['question_id']}
                                 question_type={data['question_type']}
                                 question_name={data['question_name']}
@@ -76,7 +79,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, favoriteWorkbook
                     }) : null}
                 </div>
                 <div className={styles.listview_more_btn_container}>
-                    <MoreBtnContainer />
+                    {isLastData ? null : <MoreBtnContainer filterActive={filterActive} lastIndex={lastIndex} setCurrentPageNumber={setCurrentPageNumber}/>}
                 </div>
             </div>
         </div>
