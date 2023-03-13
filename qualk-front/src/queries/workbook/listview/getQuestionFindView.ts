@@ -1,7 +1,7 @@
 const BASE_URL = process.env.LocalServerURL;
 
 async function getQuestionFindView(type: string, pageNumber: number){
-    const response = await fetch(`question/find_view/${pageNumber}`,{
+    const response = await fetch(`question/find_view/${type}/${pageNumber}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

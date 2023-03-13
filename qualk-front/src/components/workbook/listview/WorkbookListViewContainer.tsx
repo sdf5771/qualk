@@ -168,16 +168,16 @@ function WorkbookListViewContainer(){
     const filterElementActivateSelector = useSelector((state:RootState) => state.filterClickReducer);
     const filterElementClickDispatch = useDispatch();
     const [category, setCategory] = useState(menuElementActivateSelector);
-    const { isLoading: favIsLoading, isError: favIsError, data: favData, error: favError } = useQuery( {queryKey: ['topviews'], queryFn: getQuestionTopView});
+    const { isLoading: favIsLoading, isError: favIsError, data: favData, error: favError } = useQuery( [category['activeMenu'], 'topviews'], () => getQuestionTopView(category['activeMenu']));
     const { isLoading: workBookIsLoading, isError: workBookIsError, data: workbookData, error: workBookError } = useWorkbookData(category['activeMenu'], filterActive, currentPageNumber, currentWorkbookData, setCurrentWorkbookData);
-    console.log('category ', category);
+
     const filterOnClickHandler = (event: React.MouseEvent) => {
         setCurrentWorkbookData([]);
         setCurrentPageNumber(0);
         filterElementClickDispatch({type: 'filterClick', activeFilter: event.currentTarget.id})
         setFilterActive(event.currentTarget.id);
     }
-
+    console.log('workbookData ', workbookData);
     useEffect(() => {
         setCategory(menuElementActivateSelector);
     }, [menuElementActivateSelector['activeMenu']])

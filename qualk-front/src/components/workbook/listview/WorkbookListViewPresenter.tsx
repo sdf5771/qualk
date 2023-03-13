@@ -39,7 +39,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
                     {favoriteWorkbookData ? favoriteWorkbookData.map((data: WorkbookDataType) => {
                         if(data && categoryData['activeMenu'] === data['question_type']){
                             return <TopViewWorkbookElement
-                                key={data['question_id']}
+                                key={data['question_type']+data['question_id']+'top_3'}
                                 question_id={data['question_id']}
                                 question_type={data['question_type']}
                                 question_name={data['question_name']}
@@ -67,7 +67,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
                     { workbookData ? workbookData.map((data: WorkbookDataType, index) => {
                         if(data && categoryData['activeMenu'] === data['question_type']){
                             return <WorkbookElement
-                                key={filterActive + data['question_id']}
+                                key={data['question_type'] + filterActive + data['question_id']}
                                 question_id={data['question_id']}
                                 question_type={data['question_type']}
                                 question_name={data['question_name']}

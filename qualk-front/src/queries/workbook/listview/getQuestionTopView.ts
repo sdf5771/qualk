@@ -1,7 +1,7 @@
 const BASE_URL = process.env.LocalServerURL;
 
-async function getQuestionTopView(){
-    const response = await fetch('question/top_3',{
+async function getQuestionTopView(type:string){
+    const response = await fetch(`question/top_3/${type}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
