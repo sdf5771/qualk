@@ -89,7 +89,12 @@
     flex-direction: column;
     gap: 20px;
 }
-
+.listview_more_btn_container{
+    margin-top: 17px;
+    margin-bottom: 126px;
+    display: flex;
+    width: 100%;
+}
 .listview_filter_container{
     display: flex;
     flex-direction: row;

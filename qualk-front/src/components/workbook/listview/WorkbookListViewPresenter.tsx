@@ -7,6 +7,7 @@ import {ReactComponent as EyeImage} from 'assets/images/workbook/listview/eye_im
 import WorkbookElement from "./WorkbookElement";
 import TopViewWorkbookElement from "./TopViewWorkbookElement";
 import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
+import MoreBtnContainer from "./more-btn/MoreBtnContainer";
 
 type workbookListViewPropsType = {
     categoryData: {
@@ -73,6 +74,9 @@ function WorkbookListViewPresenter({categoryData, workbookData, favoriteWorkbook
                             />
                         }
                     }) : null}
+                </div>
+                <div className={styles.listview_more_btn_container}>
+                    <MoreBtnContainer />
                 </div>
             </div>
         </div>
