@@ -58,7 +58,7 @@ async def find_view(last_index: int):
         FROM question_content as content
         inner join question_info as info
         on content.content_id = info.info_id
-        order by info.view
+        order by info.view desc
         limit 6 offset {last_index};
     """
     data = select(sql=query)
