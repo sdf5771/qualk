@@ -46,9 +46,9 @@ async def find_top():
     return jsonable_encoder(result)
 
 #Select question all
-@router.get("/question/find_view")
-async def find_view():
-    query = """
+@router.get("/question/find_view/{last_index}")
+async def find_view(last_index: int):
+    query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
                info.question_name AS question_name,
@@ -59,17 +59,26 @@ async def find_view():
         inner join question_info as info
         on content.content_id = info.info_id
         order by info.view
+        limit 6 offset {last_index};
     """
-    result = select(sql=query)
-    for i in result:
+    data = select(sql=query)
+    for i in data:
         if i['question_tag'] is not None:
             i['question_tag'] = i['question_tag'].split(',')
+    isLastData = False
+    if len(data) < 6:
+        isLastData = True
+    result = { 
+                'workbookData': data,
+                'lastIndex': last_index + 6,
+                'isLastData': isLastData,
+             }
     return jsonable_encoder(result)
 
 #Select question orderby create_date desc
-@router.get("/question/find_new")
-async def find_new():
-    query = """
+@router.get("/question/find_new/{last_index}")
+async def find_new(last_index: int):
+    query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
                info.question_name AS question_name,
@@ -80,17 +89,26 @@ async def find_new():
         inner join question_info as info
         on content.content_id = info.info_id
         order by info.create_date desc
+        limit 6 offset {last_index};
     """
-    result = select(sql=query)
-    for i in result:
+    data = select(sql=query)
+    for i in data:
         if i['question_tag'] is not None:
             i['question_tag'] = i['question_tag'].split(',')
+    isLastData = False
+    if len(data) < 6:
+        isLastData = True
+    result = { 
+                'workbookData': data,
+                'lastIndex': last_index + 6,
+                'isLastData': isLastData,
+             }
     return jsonable_encoder(result)
 
 #Select question orderby create_date asc
-@router.get("/question/find_old")
-async def find_old():
-    query = """
+@router.get("/question/find_old/{last_index}")
+async def find_old(last_index: int):
+    query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
                info.question_name AS question_name,
@@ -101,11 +119,20 @@ async def find_old():
         inner join question_info as info
         on content.content_id = info.info_id
         order by info.create_date asc
+        limit 6 offset {last_index};
     """
-    result = select(sql=query)
-    for i in result:
+    data = select(sql=query)
+    for i in data:
         if i['question_tag'] is not None:
             i['question_tag'] = i['question_tag'].split(',')
+    isLastData = False
+    if len(data) < 6:
+        isLastData = True
+    result = { 
+                'workbookData': data,
+                'lastIndex': last_index + 6,
+                'isLastData': isLastData,
+             }
     return jsonable_encoder(result)
 
 @router.get("/question/problem/{question_id}/{question_type}")
