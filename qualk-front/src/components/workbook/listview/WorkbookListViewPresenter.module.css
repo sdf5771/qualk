@@ -1,7 +1,8 @@
 .workbook_listview_root{
     width: 100%;
     height: 100%;
-    max-width: 1160px;
+    max-width: 1180px;
+    padding-right: 20px;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
@@ -11,6 +12,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 1160px;
+    min-width: 1160px;
 }
 .favorite_header{
     margin-top: 39px;
@@ -57,6 +60,8 @@
 }
 .listview_root{
     margin-top: 50px;
+    max-width: 1160px;
+    min-width: 1160px;
 }
 .listview_header{
     display: flex;
