@@ -37,7 +37,7 @@ async def find_top(type: str):
         inner join question_info as info
         on content.content_id = info.info_id
         where content.type = '{type}'
-        order by info.view
+        order by info.view desc
         limit 3
     """
     result = select(sql=query)
