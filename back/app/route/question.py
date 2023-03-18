@@ -63,7 +63,8 @@ async def find_view(last_index: int, type: str):
         inner join question_info as info
         on content.content_id = info.info_id
         where content.type = '{type}'
-        order by info.view desc
+        ORDER BY question_view DESC,
+				 question_id DESC
         limit 6 offset {last_index};
     """
     data = select(sql=query)
@@ -97,7 +98,8 @@ async def find_new(last_index: int, type: str):
         inner join question_info as info
         on content.content_id = info.info_id
         where content.type = '{type}'
-        order by info.create_date desc
+        order by info.create_date desc,
+                 question_id DESC
         limit 6 offset {last_index};
     """
     data = select(sql=query)
@@ -131,7 +133,8 @@ async def find_old(last_index: int, type: str):
         inner join question_info as info
         on content.content_id = info.info_id
         where content.type = '{type}'
-        order by info.create_date asc
+        order by info.create_date asc,
+                 question_id DESC
         limit 6 offset {last_index};
     """
     data = select(sql=query)
