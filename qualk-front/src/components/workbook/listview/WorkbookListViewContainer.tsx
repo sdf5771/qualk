@@ -172,8 +172,10 @@ function WorkbookListViewContainer(){
     const { isLoading: workBookIsLoading, isError: workBookIsError, data: workbookData, error: workBookError } = useWorkbookData(category['activeMenu'], filterActive, currentPageNumber, currentWorkbookData, setCurrentWorkbookData);
 
     const filterOnClickHandler = (event: React.MouseEvent) => {
-        setCurrentWorkbookData([]);
-        setCurrentPageNumber(0);
+        if(event.currentTarget.id != filterActive){
+            setCurrentWorkbookData([]);
+            setCurrentPageNumber(0);
+        }
         filterElementClickDispatch({type: 'filterClick', activeFilter: event.currentTarget.id})
         setFilterActive(event.currentTarget.id);
     }
