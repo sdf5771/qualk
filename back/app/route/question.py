@@ -43,7 +43,10 @@ async def find_top(type: str):
     result = select(sql=query)
     for i in result:
         if i['question_tag'] is not None:
-            i['question_tag'] = i['question_tag'].split(',')
+            try:
+                i['question_tag'] = i['question_tag'].split(',')
+            except Exception as e:
+                print(e)
     return jsonable_encoder(result)
 
 #Select question all
@@ -66,7 +69,10 @@ async def find_view(last_index: int, type: str):
     data = select(sql=query)
     for i in data:
         if i['question_tag'] is not None:
-            i['question_tag'] = i['question_tag'].split(',')
+            try:
+                i['question_tag'] = i['question_tag'].split(',')
+            except Exception as e:
+                print(e)
     isLastData = False
     if len(data) < 6:
         isLastData = True
@@ -97,7 +103,10 @@ async def find_new(last_index: int, type: str):
     data = select(sql=query)
     for i in data:
         if i['question_tag'] is not None:
-            i['question_tag'] = i['question_tag'].split(',')
+            try:
+                i['question_tag'] = i['question_tag'].split(',')
+            except Exception as e:
+                print(e)
     isLastData = False
     if len(data) < 6:
         isLastData = True
@@ -128,7 +137,10 @@ async def find_old(last_index: int, type: str):
     data = select(sql=query)
     for i in data:
         if i['question_tag'] is not None:
-            i['question_tag'] = i['question_tag'].split(',')
+            try:
+                i['question_tag'] = i['question_tag'].split(',')
+            except Exception as e:
+                print(e)
     isLastData = False
     if len(data) < 6:
         isLastData = True
@@ -164,5 +176,8 @@ async def find_problem(question_id: int, question_type: str):
     
     for i in result:
         if i['question_contents'] is not None:
-            i['question_contents'] = i['question_contents'].split(',')
+            try:
+                i['question_contents'] = i['question_contents'].split(',')
+            except Exception as e:
+                print(e)
     return jsonable_encoder(result)
