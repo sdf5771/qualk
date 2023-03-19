@@ -1,6 +1,7 @@
 import React, {ReactEventHandler} from 'react';
 import styles from './WorkbookListViewPresenter.module.css'
 import publicAnimations from 'stylesheets/public/animation.module.css';
+import publicScrollbar from 'stylesheets/public/scrollbar.module.css';
 import {ReactComponent as GaiqLogo} from 'assets/images/workbook/listview/gaiq_logo.svg';
 import {ReactComponent as ListViewLogo} from 'assets/images/workbook/listview/listview_logo_yellow.svg';
 import {ReactComponent as EyeImage} from 'assets/images/workbook/listview/eye_image_yellow.svg';
@@ -37,7 +38,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
     }, [workbookData])
 
     return (
-        <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in}`}>
+        <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in} ${publicScrollbar.public_scroll}`}>
             <div className={styles.favorite_container}>
                 <div className={styles.favorite_header}>
                     <GaiqLogo width="50px" height="50px"/>

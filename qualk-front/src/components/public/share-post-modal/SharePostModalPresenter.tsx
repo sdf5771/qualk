@@ -4,6 +4,7 @@ import publicAnimations from 'stylesheets/public/animation.module.css';
 import {ReactComponent as ModalCloseDefault} from 'assets/images/public/modal_close_default.svg';
 import {ReactComponent as ModalCLoseActive} from 'assets/images/public/modal_close_hover.svg';
 import SharePlatformElement from "./share-platform-element/SharePlatformElement";
+import socialShare from 'javascripts/socialShare';
 
 type SharePostModalPresenterPropsType = {
     modalCloseOnClickHandler: ReactEventHandler,
@@ -12,6 +13,8 @@ type SharePostModalPresenterPropsType = {
 }
 
 function SharePostModalPresenter({ modalCloseOnClickHandler, copyOnClickHandler, urlPath}: SharePostModalPresenterPropsType){
+
+
     return(
         <div className={`${styles.modal_root} ${publicAnimations.fade_in}`}>
             <div className={styles.modal_background}></div>
@@ -36,10 +39,16 @@ function SharePostModalPresenter({ modalCloseOnClickHandler, copyOnClickHandler,
                         <SharePlatformElement
                             icon="facebook"
                             platformName="Facebook"
+                            onClickEvent={() => {
+                                socialShare('facebook');
+                            }}
                         />
                         <SharePlatformElement
                             icon="twitter"
                             platformName="Twitter"
+                            onClickEvent={() => {
+                                socialShare('twitter');
+                            }}
                         />
                         <SharePlatformElement
                             icon="kakao"
