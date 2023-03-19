@@ -177,9 +177,9 @@ async def find_problem(question_id: int, question_type: str):
     insert(sql=view)
     result = select(sql=query)
 
-    if result is None:
+    if len(result) == 0:
         raise HTTPException(
-            status_code=403, detail="You can only update the item: plumbus"
+            status_code=403, detail="no data"
         )
     
     for i in result:
