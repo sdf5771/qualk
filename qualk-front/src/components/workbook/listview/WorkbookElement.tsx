@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styles from './WorkbookElement.module.css';
 import KeywordElement from "./KeywordElement";
 import {ReactComponent as ViewEyeIcon} from 'assets/images/workbook/listview/view_eye_icon.svg';
@@ -55,4 +55,4 @@ function WorkbookElement({ question_id, question_type, question_name, question_v
     )
 }
 
-export default WorkbookElement;
+export default memo(WorkbookElement);

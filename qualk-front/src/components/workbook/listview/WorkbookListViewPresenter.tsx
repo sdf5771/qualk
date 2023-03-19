@@ -24,6 +24,18 @@ type workbookListViewPropsType = {
 }
 
 function WorkbookListViewPresenter({categoryData, workbookData, isLastData, lastIndex, favoriteWorkbookData, filterActive, filterOnClickHandler, setCurrentPageNumber}: workbookListViewPropsType){
+    const uniqueWorkbookElement = React.useMemo(() => {
+        const map = new Map();
+        if(workbookData){
+            workbookData.forEach((data) => {
+                if(data){
+                    map.set(data['question_id'], data)
+                }
+            })
+            return Array.from(map.values());
+        }
+    }, [workbookData])
+
     return (
         <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in}`}>
             <div className={styles.favorite_container}>
@@ -39,7 +51,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
                     {favoriteWorkbookData ? favoriteWorkbookData.map((data: WorkbookDataType) => {
                         if(data && categoryData['activeMenu'] === data['question_type']){
                             return <TopViewWorkbookElement
-                                key={data['question_type']+data['question_id']+'top_3'}
+                                key={`${data['question_type']}-${data['question_id']}-top3`}
                                 question_id={data['question_id']}
                                 question_type={data['question_type']}
                                 question_name={data['question_name']}
@@ -64,10 +76,23 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
                     </div>
                 </div>
                 <div className={styles.listview_body}>
-                    { workbookData ? workbookData.map((data: WorkbookDataType, index) => {
+                    {/*{ workbookData ? workbookData.map((data: WorkbookDataType, index) => {*/}
+                    {/*    if(data && categoryData['activeMenu'] === data['question_type']){*/}
+                    {/*        return <WorkbookElement*/}
+                    {/*            key={`${data['question_type']}-${data['question_id']}`}*/}
+                    {/*            question_id={data['question_id']}*/}
+                    {/*            question_type={data['question_type']}*/}
+                    {/*            question_name={data['question_name']}*/}
+                    {/*            question_view={data['question_view']}*/}
+                    {/*            question_create={data['question_create']}*/}
+                    {/*            question_tag={data['question_tag']}*/}
+                    {/*        />*/}
+                    {/*    }*/}
+                    {/*}) : null}*/}
+                    { uniqueWorkbookElement ? uniqueWorkbookElement.map((data: WorkbookDataType, index) => {
                         if(data && categoryData['activeMenu'] === data['question_type']){
                             return <WorkbookElement
-                                key={data['question_type'] + filterActive + data['question_id']}
+                                key={`${data['question_type']}-${data['question_id']}`}
                                 question_id={data['question_id']}
                                 question_type={data['question_type']}
                                 question_name={data['question_name']}

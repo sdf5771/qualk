@@ -1,5 +1,5 @@
 import React from "react";
-import {useQuery, useInfiniteQuery} from "@tanstack/react-query";
+import {useQuery} from "@tanstack/react-query";
 import getQuestionFindView from 'queries/workbook/listview/getQuestionFindView';
 import getQuestionFindOld from 'queries/workbook/listview/getQuestionFindOld';
 import getQuestionFindNew from 'queries/workbook/listview/getQuestionFindNew';
@@ -19,6 +19,7 @@ async function getDatas(type: string, sort: string, pageNumber: number){
 
 async function getMoreDatas(type: string, sort: string, pageNumber: number, currentData: WorkbookDataType[], setCurrentWorkbookData?: React.Dispatch<React.SetStateAction<WorkbookDataType[]>>){
     const newData = await getDatas(type, sort, pageNumber);
+
     if(setCurrentWorkbookData){
         setCurrentWorkbookData([...currentData, ...newData.workbookData]);
     }
@@ -28,6 +29,7 @@ async function getMoreDatas(type: string, sort: string, pageNumber: number, curr
         lastIndex: newData.lastIndex,
         isLastData: newData.isLastData,
     }
+
 }
 
 export default function useWorkbookData(type: string, sort: string, pageNumber: number, currentData: WorkbookDataType[], setCurrentWorkbookData?: React.Dispatch<React.SetStateAction<WorkbookDataType[]>>){

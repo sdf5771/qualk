@@ -12,7 +12,6 @@ function MoreBtnContainer({filterActive, lastIndex, setCurrentPageNumber}: MoreB
         if(setCurrentPageNumber){
             setCurrentPageNumber(lastIndex)
         }
-
     }
 
     return(
