@@ -176,6 +176,11 @@ async def find_problem(question_id: int, question_type: str):
 
     insert(sql=view)
     result = select(sql=query)
+
+    if result is None:
+        raise HTTPException(
+            status_code=403, detail="You can only update the item: plumbus"
+        )
     
     for i in result:
         if i['question_contents'] is not None:
