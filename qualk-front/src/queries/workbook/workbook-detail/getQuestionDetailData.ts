@@ -1,9 +1,10 @@
 import {NavigateFunction} from "react-router-dom";
 
-const BASE_URL = process.env.LocalServerURL;
+const LocalServer_URL = process.env.LocalServerURL;
+const RealServer_URL = process.env.RealServerURL;
 
 async function getQuestionDetailData(question_id:number, question_type:string, navigate: NavigateFunction){
-    const response = await fetch(`http://localhost:8000/question/problem/${question_id}/${question_type}`,{
+    const response = await fetch(`/question/problem/${question_id}/${question_type}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
