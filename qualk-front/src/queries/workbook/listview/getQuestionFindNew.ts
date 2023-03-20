@@ -1,7 +1,7 @@
 const BASE_URL = process.env.LocalServerURL;
 
 async function getQuestionFindNew(type: string, pageNumber:number){
-    const response = await fetch(`question/find_new/${type}/${pageNumber}`,{
+    const response = await fetch(`http://localhost:8000/question/find_new/${type}/${pageNumber}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
