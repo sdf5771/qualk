@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import {Route, Routes} from 'react-router-dom';
 import { dark, light } from 'theme/theme';
 import { useTheme } from 'hook/useTheme';
+import Main from 'routes/main/Main';
 import WorkbookContainer from "routes/workbook/WorkbookContainer";
 
 const queryClient = new QueryClient();
@@ -16,6 +17,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={theme}>
                 <Routes>
+                    <Route path='/' element={<Main />} />
                     {/*<Route path='/workbook' element={<WorkbookContainer />} />*/}
                     <Route path='/workbook/*' element={<WorkbookContainer />} />
                 </Routes>
