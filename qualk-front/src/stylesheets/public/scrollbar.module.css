@@ -3,12 +3,7 @@ public_scroll::-webkit-scrollbar{
 }
 
 *::-webkit-scrollbar{
-    width: 10px;
-}
-
-*::-webkit-scrollbar{
-    width: 10px;
-    height: 10px;
+    width: 3px;
 }
 
 .public_scroll::-webkit-scrollbar-thumb{
@@ -21,10 +16,6 @@ public_scroll::-webkit-scrollbar{
     border-radius: 10px;
 }
 
-*::-webkit-scrollbar-thumb{
-    background: #BFBFBF;
-    border-radius: 10px;
-}
 
 .public_scroll::-webkit-scrollbar-track{
     background: transparent;
