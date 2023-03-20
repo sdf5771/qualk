@@ -9,6 +9,7 @@ import SharePostModalContainer from 'components/public/share-post-modal/SharePos
 import {Route, Routes} from "react-router-dom";
 import WorkbookContainer from "./WorkbookContainer";
 import WorkbookDetailContainer from "components/workbook/workbook-detail/WorkbookDetailContainer";
+import SEOMetaTag from "components/public/metaTag/SEOMetaTag";
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -31,28 +32,31 @@ const workbookModalState = {
 
 function WorkbookPresenter({location, headerLogoOnClickHandler, modalState}: WorkbookPresenterPropsType){
     return(
-        <div className={styles.workbook_main}>
-            <div className={styles.workbook_header_container}>
-                <div className={styles.workbook_header}>
-                    <div onClick={headerLogoOnClickHandler} className={styles.logo_container}>
-                        <QualkHeaderLogo width="122px" height="40px"/>
+        <>
+            <SEOMetaTag title="Qualk" keywords="GAIQ, SQLD, SQID, Data Analytics, Google Analytics, Google, 구글 애널리틱스, 구글, 문제집, 문제" description="Qualk Workbook" url={document.URL} imgSrc="%PUBLIC_URL%/logo512.png"/>
+            <div className={styles.workbook_main}>
+                <div className={styles.workbook_header_container}>
+                    <div className={styles.workbook_header}>
+                        <div onClick={headerLogoOnClickHandler} className={styles.logo_container}>
+                            <QualkHeaderLogo width="122px" height="40px"/>
+                        </div>
+                        <SearchBarContainer />
                     </div>
-                    <SearchBarContainer />
                 </div>
+                <div className={styles.workbook_body}>
+                    <div className={styles.left_side_container}>
+                        <SideBarContainer />
+                    </div>
+                    <div className={styles.right_side_container}>
+                        <Routes>
+                            <Route path='/' element={<WorkbookListViewContainer />} />
+                            <Route path='/:id' element={<WorkbookDetailContainer />} />
+                        </Routes>
+                    </div>
+                </div>
+                {modalState == 1 ? workbookModalState[modalState] : workbookModalState['0']}
             </div>
-            <div className={styles.workbook_body}>
-                <div className={styles.left_side_container}>
-                    <SideBarContainer />
-                </div>
-                <div className={styles.right_side_container}>
-                    <Routes>
-                        <Route path='/' element={<WorkbookListViewContainer />} />
-                        <Route path='/:id' element={<WorkbookDetailContainer />} />
-                    </Routes>
-                </div>
-            </div>
-            {modalState == 1 ? workbookModalState[modalState] : workbookModalState['0']}
-        </div>
+        </>
     );
 }
 
