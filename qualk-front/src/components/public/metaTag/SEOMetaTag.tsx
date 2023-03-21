@@ -30,6 +30,8 @@ const SEOMetaTag = ({title, description, imgSrc, url, keywords}: SEOMetaTagProps
             <meta property="twitter:description" content={description} />
             <meta property="twitter:image" content={imgSrc} />
             <meta property="twitter:url" content={url} />
+            <link rel="canonical" href={url} />
+            <link rel="alternate" hrefLang="ko" href={url} />
         </Helmet>
     );
 }
