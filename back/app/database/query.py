@@ -33,7 +33,7 @@ def conn(sql):
         return result
     return _QUERY
 
-def select(conn, sql):
+def select(sql):
     conn = pymysql.connect(
     user=_DB_ID,
     password=_DB_PASS,
@@ -49,7 +49,7 @@ def select(conn, sql):
     finally:
         conn.close()
 
-def insert(conn, sql):
+def insert(sql):
     conn = pymysql.connect(
     user=_DB_ID,
     password=_DB_PASS,
