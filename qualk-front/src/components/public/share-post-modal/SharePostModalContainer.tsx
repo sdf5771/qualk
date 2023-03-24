@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import SharePostModalPresenter from "./SharePostModalPresenter";
 import {useDispatch} from "react-redux";
 import {useLocation} from "react-router-dom";
+import ToastMsg from 'components/public/toast-msg/ToastMsg';
 
 function SharePostModalContainer(){
     const NOW_URL_PATH = window.location.href;
@@ -14,9 +15,11 @@ function SharePostModalContainer(){
     const handleCopyClipBoard = async (text: string) => {
         try {
             await navigator.clipboard.writeText(text);
-            alert('클립보드에 링크가 복사되었습니다.');
+            dispatch({type: 'toast open', toastMsg: '클립보드에 링크가 복사되었습니다.'})
+            // alert('클립보드에 링크가 복사되었습니다.');
         } catch (e) {
-            alert('복사에 실패하였습니다');
+            dispatch({type: 'toast open', toastMsg: '복사에 실패하였습니다.'})
+            // alert('복사에 실패하였습니다');
         }
     };
 

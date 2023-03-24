@@ -4,6 +4,7 @@ import menuElementClickReducer from './workbook/sidebarmenu/menuElementClickRedu
 import childMenuClickReducer from './workbook/sidebarmenu/childMenuClickReducer';
 import filterClickReducer from './workbook/listview/filterClickReducer';
 import shareWorkbookClickReducer from './workbook/workbook-detail/shareWorkbookClickReducer';
+import toastMsgReducer from './public/toastMsgReducer';
 
 const rootReducer = combineReducers({
     authReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     childMenuClickReducer,
     filterClickReducer,
     shareWorkbookClickReducer,
+    toastMsgReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

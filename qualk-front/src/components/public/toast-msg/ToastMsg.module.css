@@ -1,0 +1,29 @@
+.toast_msg_root{
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 222px;
+    height: 44px;
+    border-radius: 10px;
+    background-color: #ffba00;
+    gap: 10px;
+    z-index: 99;
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transform: translateX(-50%);
+}
+.toast_icon_container{
+    width: 24px;
+    height: 24px;
+}
+.toast_text_container{
+    display: flex;
+}
+.toast_text_container > span{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: -0.28px;
+    color: #fdfaf2;
+}

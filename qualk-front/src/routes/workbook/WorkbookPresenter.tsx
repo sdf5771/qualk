@@ -10,6 +10,7 @@ import {Route, Routes} from "react-router-dom";
 import WorkbookContainer from "./WorkbookContainer";
 import WorkbookDetailContainer from "components/workbook/workbook-detail/WorkbookDetailContainer";
 import SEOMetaTag from "components/public/metaTag/SEOMetaTag";
+import ToastMsg from "components/public/toast-msg/ToastMsg";
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -23,6 +24,8 @@ type WorkbookPresenterPropsType = {
     location: object,
     headerLogoOnClickHandler: ReactEventHandler,
     modalState: number,
+    isToast?: boolean,
+    toastMsg?: string,
 }
 
 const workbookModalState = {
@@ -30,7 +33,7 @@ const workbookModalState = {
     1: <SharePostModalContainer />,
 }
 
-function WorkbookPresenter({location, headerLogoOnClickHandler, modalState}: WorkbookPresenterPropsType){
+function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isToast, toastMsg}: WorkbookPresenterPropsType){
     return(
         <>
             <SEOMetaTag title="Qualk" keywords="GAIQ, SQLD, SQID, Data Analytics, Google Analytics, Google, 구글 애널리틱스, 구글, 문제집, 문제" description="Qualk Workbook" url={document.URL} imgSrc="%PUBLIC_URL%/logo512.png"/>
@@ -55,6 +58,7 @@ function WorkbookPresenter({location, headerLogoOnClickHandler, modalState}: Wor
                     </div>
                 </div>
                 {modalState == 1 ? workbookModalState[modalState] : workbookModalState['0']}
+                {isToast && toastMsg ? <ToastMsg msgText={toastMsg} /> : null}
             </div>
         </>
     );
