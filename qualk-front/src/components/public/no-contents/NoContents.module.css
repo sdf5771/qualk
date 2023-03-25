@@ -1,0 +1,43 @@
+.no_contents_root{
+    display: flex;
+    flex-direction: column;
+    width: 680px;
+    height: 346px;
+}
+.no_contents_logo_container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.no_contents_logo_container > div{
+    width: 240px;
+    height: 240px;
+}
+.title{
+    margin-top: 34px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.title > span{
+    font-family: Pretendard;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: -1.12px;
+    text-align: center;
+    color: #797979;
+}
+.description{
+    margin-top: 19px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.description > span{
+    font-family: Pretendard;
+    font-size: 16px;
+    line-height: 1.88;
+    letter-spacing: -0.64px;
+    text-align: center;
+    color: #9a9a9a;
+}

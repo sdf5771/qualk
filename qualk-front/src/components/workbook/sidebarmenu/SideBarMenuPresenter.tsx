@@ -7,18 +7,26 @@ const menuData = [
         menuId: 1,
         menuName: 'Data Analysis',
         childMenu: ['GAIQ', 'SQID', 'SQLD'],
-    },
-    {
-        menuId: 2,
-        menuName: 'Developer',
-        childMenu: ['Code Test', 'Test Category', 'Test Develop'],
-    },
-    {
-        menuId: 3,
-        menuName: 'Designer',
-        childMenu: ['Design01', 'Design02', 'Design03'],
     }
 ]
+
+// const menuData = [
+//     {
+//         menuId: 1,
+//         menuName: 'Data Analysis',
+//         childMenu: ['GAIQ', 'SQID', 'SQLD'],
+//     },
+//     {
+//         menuId: 2,
+//         menuName: 'Developer',
+//         childMenu: ['Code Test', 'Test Category', 'Test Develop'],
+//     },
+//     {
+//         menuId: 3,
+//         menuName: 'Designer',
+//         childMenu: ['Design01', 'Design02', 'Design03'],
+//     }
+// ]
 
 type menuDataType = {menuId: number, menuName: string, childMenu: string[]}
 

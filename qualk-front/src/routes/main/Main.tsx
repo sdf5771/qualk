@@ -8,16 +8,16 @@ function Main(){
     const navigate = useNavigate();
     const [viewBox, setViewBox] = useState('0 0 1920 1080');
 
-    useEffect(() => {
-        const handleResize = () => {
-            const {width, height} = window.screen;
-            setViewBox(`0 0 ${width} ${height}`);
-        }
-
-        window.addEventListener('resize', handleResize);
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, [])
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         const {width, height} = window.screen;
+    //         setViewBox(`0 0 ${width} ${height}`);
+    //     }
+    //
+    //     window.addEventListener('resize', handleResize);
+    //
+    //     return () => window.removeEventListener('resize', handleResize);
+    // }, [])
 
     const btnOnClickHandler = (event: React.MouseEvent) => {
         navigate('/workbook');
