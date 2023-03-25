@@ -1,0 +1,50 @@
+.main_root{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.background_container{
+    width: 100vw;
+    height: 100vh;
+    min-width: 1920px;
+    min-height: 1080px;
+    background-color: #FFF0C6;
+    /*overflow-y: auto;*/
+}
+.logo_container{
+    display: flex;
+    width: 100%;
+    justify-content:center;
+    left: 50%;
+    top: 279px;
+    transform: translateX(-50%);
+    position: absolute;
+}
+.btn_container{
+    display: flex;
+    justify-content:center;
+    left: 50%;
+    top: 830px;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 100%;
+}
+.content_btn{
+    width: 200px;
+    height: 50px;
+    border: 0;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -0.32px;
+    text-align: center;
+    color: #ffa700;
+    cursor: pointer;
+}
