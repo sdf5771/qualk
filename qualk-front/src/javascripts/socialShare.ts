@@ -28,6 +28,7 @@ export default function socialShare(social:string){
 
                     // @ts-ignore
                     kakao.Share.sendScrap({
+                        templateId: 91754,
                         requestUrl: baseUrl,
                     });
                 }
