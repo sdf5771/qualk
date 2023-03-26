@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function socialShare(social:string){
     const baseUrl = document.URL;
     const snsTitle = 'Qualk'
@@ -12,6 +14,25 @@ export default function socialShare(social:string){
         case 'instagram':
             break
         case 'kakao':
+            try {
+                const KAKAO_JS_API_KEY = process.env.REACT_APP_KAKAO_JS_API_KEY;
+                // @ts-ignore
+                if(window.Kakao){
+                    // @ts-ignore
+                    const kakao = window.Kakao;
+
+                    if(!kakao.isInitialized()){
+                        kakao.init(KAKAO_JS_API_KEY);
+                    }
+
+                    // @ts-ignore
+                    kakao.Share.sendScrap({
+                        requestUrl: baseUrl,
+                    });
+                }
+            }catch(e){
+                throw new Error("에러가 발생하였습니다.")
+            }
             break
         case 'email':
             break

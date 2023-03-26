@@ -22,6 +22,21 @@ function SharePlatformElement({platformName, icon, onClickEvent}: SharePlatformE
     let DefaultIcon = InstagramIcon;
     let ActiveIcon = InstagramIconActive;
 
+    useEffect(() => {
+        if(icon === 'kakao'){
+            const script = document.createElement('script');
+            script.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js";
+            script.integrity = "sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx";
+            script.crossOrigin = "anonymous"
+            script.async = true;
+            document.body.appendChild(script);
+
+            return () => {
+                document.body.removeChild(script);
+            }
+        }
+    }, [])
+
     switch(icon){
         case "instagram":
             DefaultIcon = InstagramIcon

@@ -28,7 +28,11 @@ function SharePostModalContainer(){
     }
 
     return(
-        <SharePostModalPresenter modalCloseOnClickHandler={modalCloseOnClickHandler} copyOnClickHandler={copyOnClickHandler} urlPath={NOW_URL_PATH}/>
+        <SharePostModalPresenter
+            modalCloseOnClickHandler={modalCloseOnClickHandler}
+            copyOnClickHandler={copyOnClickHandler}
+            urlPath={NOW_URL_PATH}
+        />
     );
 }
 

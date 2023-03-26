@@ -53,6 +53,9 @@ function SharePostModalPresenter({ modalCloseOnClickHandler, copyOnClickHandler,
                         <SharePlatformElement
                             icon="kakao"
                             platformName="카카오톡"
+                            onClickEvent={() => {
+                                socialShare('kakao');
+                            }}
                         />
                         <SharePlatformElement
                             icon="mail"
