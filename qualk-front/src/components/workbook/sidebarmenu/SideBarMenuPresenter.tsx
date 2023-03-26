@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactEventHandler} from 'react';
 import styles from './SideBarMenuPresenter.module.css'
 import MenuElementContainer from "./MenuElementContainer";
 
@@ -30,7 +30,11 @@ const menuData = [
 
 type menuDataType = {menuId: number, menuName: string, childMenu: string[]}
 
-function SideBarPresenter(){
+type SideBarPresenterPropsType = {
+    bannerOnClickHandler: ReactEventHandler,
+}
+
+function SideBarPresenter({bannerOnClickHandler} : SideBarPresenterPropsType){
     return(
         <div className={styles.side_bar_main}>
             <div className={styles.menu_container}>
@@ -46,7 +50,7 @@ function SideBarPresenter(){
                 } ) : null}
             </div>
             <div className={styles.banner_container}>
-                <div className={styles.qualk_banner}></div>
+                <div onClick={bannerOnClickHandler} className={styles.qualk_banner}></div>
             </div>
         </div>
     );

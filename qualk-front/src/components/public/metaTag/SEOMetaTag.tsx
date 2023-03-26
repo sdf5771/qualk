@@ -13,9 +13,13 @@ const SEOMetaTag = ({title, description, imgSrc, url, keywords}: SEOMetaTagProps
     console.log('keywords ', keywords);
     return(
         <Helmet>
+            <meta name="type" content="website" />
             <meta name="title" content={title} />
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
+            <meta name="site_name" content={title} />
+            <meta name="image" content={imgSrc} />
+            <meta name="url" content={url} />
 
             <meta property="og:type" content="website" />
             <meta property="og:title" content={title} />
