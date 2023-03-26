@@ -1,18 +1,20 @@
-import React, {ReactEventHandler} from 'react';
+import React, {ReactEventHandler, Dispatch} from 'react';
 import styles from './SharePostModalPresenter.module.css';
 import publicAnimations from 'stylesheets/public/animation.module.css';
 import {ReactComponent as ModalCloseDefault} from 'assets/images/public/modal_close_default.svg';
 import {ReactComponent as ModalCLoseActive} from 'assets/images/public/modal_close_hover.svg';
 import SharePlatformElement from "./share-platform-element/SharePlatformElement";
 import socialShare from 'javascripts/socialShare';
+import {actionType} from "reducers/public/toastMsgReducer";
 
 type SharePostModalPresenterPropsType = {
+    dispatch: Dispatch<actionType>,
     modalCloseOnClickHandler: ReactEventHandler,
     copyOnClickHandler: ReactEventHandler,
     urlPath:string,
 }
 
-function SharePostModalPresenter({ modalCloseOnClickHandler, copyOnClickHandler, urlPath}: SharePostModalPresenterPropsType){
+function SharePostModalPresenter({dispatch, modalCloseOnClickHandler, copyOnClickHandler, urlPath}: SharePostModalPresenterPropsType){
 
 
     return(
@@ -36,7 +38,8 @@ function SharePostModalPresenter({ modalCloseOnClickHandler, copyOnClickHandler,
                             icon="instagram"
                             platformName="Instagram"
                             onClickEvent={() => {
-                                socialShare('instagram');
+                                dispatch({type: 'toast open', toastMsg: '아직 준비중인 기능이에요.'})
+                                // socialShare('instagram');
                             }}
                         />
                         <SharePlatformElement
@@ -64,7 +67,8 @@ function SharePostModalPresenter({ modalCloseOnClickHandler, copyOnClickHandler,
                             icon="mail"
                             platformName="이메일"
                             onClickEvent={() => {
-                                socialShare('email');
+                                dispatch({type: 'toast open', toastMsg: '아직 준비중인 기능이에요.'})
+                                // socialShare('email');
                             }}
                         />
                     </div>

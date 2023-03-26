@@ -1,6 +1,6 @@
 type initialState = {isToast: boolean, toastMsg: string};
 
-type actionType = {type: string, toastMsg: string};
+export type actionType = {type: string, toastMsg: string};
 
 function toastMsgReducer(currentState: initialState, action: actionType){
     if(currentState === undefined){

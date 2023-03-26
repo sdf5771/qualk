@@ -29,6 +29,7 @@ function SharePostModalContainer(){
 
     return(
         <SharePostModalPresenter
+            dispatch={dispatch}
             modalCloseOnClickHandler={modalCloseOnClickHandler}
             copyOnClickHandler={copyOnClickHandler}
             urlPath={NOW_URL_PATH}
