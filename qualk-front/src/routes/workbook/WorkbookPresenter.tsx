@@ -36,7 +36,7 @@ const workbookModalState = {
 function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isToast, toastMsg}: WorkbookPresenterPropsType){
     return(
         <>
-            <SEOMetaTag title="Qualk" keywords="GAIQ, SQLD, SQID, Data Analytics, Google Analytics, Google, 구글 애널리틱스, 구글, 문제집, 문제" description="Qualk Workbook" url={document.URL} imgSrc="%PUBLIC_URL%/logo512.png"/>
+            <SEOMetaTag title="Qualk" keywords="GAIQ, SQLD, SQID, Data Analytics, Google Analytics, Google, 구글 애널리틱스, 구글, 문제집, 문제" description="Qualk Workbook" url={document.URL} imgSrc="https://qualk.co.kr/logo512.png"/>
             <div className={styles.workbook_main}>
                 <div className={styles.workbook_header_container}>
                     <div className={styles.workbook_header}>

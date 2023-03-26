@@ -35,6 +35,9 @@ function SharePostModalPresenter({ modalCloseOnClickHandler, copyOnClickHandler,
                         <SharePlatformElement
                             icon="instagram"
                             platformName="Instagram"
+                            onClickEvent={() => {
+                                socialShare('instagram');
+                            }}
                         />
                         <SharePlatformElement
                             icon="facebook"
@@ -60,6 +63,9 @@ function SharePostModalPresenter({ modalCloseOnClickHandler, copyOnClickHandler,
                         <SharePlatformElement
                             icon="mail"
                             platformName="이메일"
+                            onClickEvent={() => {
+                                socialShare('email');
+                            }}
                         />
                     </div>
                 </div>

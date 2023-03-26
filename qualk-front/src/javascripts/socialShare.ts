@@ -12,6 +12,7 @@ export default function socialShare(social:string){
             window.open("http://twitter.com/share?url=" + encodeURIComponent(baseUrl) + "&text" + encodeURIComponent(snsTitle), "", "width=486, height=286");
             break
         case 'instagram':
+            alert("현재 지원하지 않는 기능입니다.")
             break
         case 'kakao':
             try {
@@ -35,6 +36,7 @@ export default function socialShare(social:string){
             }
             break
         case 'email':
+            alert("현재 지원하지 않는 기능입니다.")
             break
     }
 }
