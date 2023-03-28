@@ -33,5 +33,5 @@ async function getMoreDatas(type: string, sort: string, pageNumber: number, curr
 }
 
 export default function useWorkbookData(type: string, sort: string, pageNumber: number, currentData: WorkbookDataType[], setCurrentWorkbookData?: React.Dispatch<React.SetStateAction<WorkbookDataType[]>>){
-    return useQuery(['datas', sort, pageNumber], () => getMoreDatas(type, sort, pageNumber, currentData, setCurrentWorkbookData), { keepPreviousData: true })
+    return useQuery(['datas', type, sort, pageNumber], () => getMoreDatas(type, sort, pageNumber, currentData, setCurrentWorkbookData), { keepPreviousData: true })
 }
