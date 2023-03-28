@@ -10,7 +10,6 @@
     justify-content:center;
     width: 100%;
     min-width: 1440px;
-
     border-bottom: 1px solid #e4e4e4;
 }
 .workbook_header{
@@ -36,9 +35,11 @@
     overflow-y: scroll;
 }
 .left_side_container{
-    display: flex;
-    width: 200px;
-    height: 100%;
+    /*display: flex;*/
+    /*width: 200px;*/
+    /*height: 100%;*/
+    position: sticky;
+    top: 0;
 }
 .right_side_container{
     display: flex;
