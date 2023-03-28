@@ -27,9 +27,11 @@
     display: flex;
     justify-content:center;
     left: 50%;
-    top: 830px;
+    /*top: 830px;*/
+    /*position: absolute;*/
     transform: translateX(-50%);
-    position: absolute;
+    bottom: 100px;
+    position: fixed;
     width: 100%;
 }
 .content_btn{

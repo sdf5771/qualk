@@ -38,11 +38,11 @@ function ToastMsg({msgText}: ToastMsgPropsType){
                 fill: "both"
             });
         }
-    }, 2000)
+    }, 4900)
 
     setTimeout(() => {
         dispatch({type: 'toast close', toastMsg: ''})
-    }, 2100)
+    }, 5000)
 
     return(
         <div ref={toastRef} className={`${styles.toast_msg_root} ${publicStyles.fade_in}`}>

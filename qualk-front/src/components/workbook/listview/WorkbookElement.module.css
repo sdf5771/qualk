@@ -80,6 +80,7 @@
 .workbook_element_title_container{
     margin-top: 15px;
     width: 100%;
+    min-height: 60.11px;
 }
 .workbook_element_title_container > span{
     font-family: "pretendard", sans-serif;
@@ -89,13 +90,19 @@
     color: #797979;
     line-height: 1.67;
     letter-spacing: -0.72px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
 }
 .workbook_keyword_container{
     margin-top: 40px;
     display:flex;
     flex-direction: row;
     width: 100%;
-    gap: 4px
+    gap: 4px;
+    min-height: 24px;
 }
 
 .workbook_element_root:hover > .workbook_keyword_container > div{border: solid 1px #fedd81!important;}
