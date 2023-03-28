@@ -8,7 +8,6 @@ async function getQuestionFindOld(type: string, pageNumber:number){
             'Content-Type': 'application/json',
         }
     })
-    console.log('res ', response);
 
     return response.json()
 }

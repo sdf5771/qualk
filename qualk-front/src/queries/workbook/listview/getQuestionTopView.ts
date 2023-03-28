@@ -8,7 +8,6 @@ async function getQuestionTopView(type:string){
             'Content-Type': 'application/json',
         }
     })
-    console.log('res ', response);
 
     return response.json()
 }

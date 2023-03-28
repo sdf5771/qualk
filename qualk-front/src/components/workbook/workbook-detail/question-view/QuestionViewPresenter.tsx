@@ -18,7 +18,6 @@ type QuestionViewPresenterPropsType = {
 }
 
 function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPresenterPropsType){
-    console.log(workbookData);
     return(
         <div className={styles.question_view_root}>
             <div className={styles.question_view_title_container}>

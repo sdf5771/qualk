@@ -37,7 +37,6 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
             return Array.from(map.values());
         }
     }, [workbookData])
-    console.log('categoryData ', categoryData)
 
     if(categoryData.activeMenu === "GAIQ"){
         return (

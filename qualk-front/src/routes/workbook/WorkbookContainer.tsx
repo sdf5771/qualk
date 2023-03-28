@@ -9,8 +9,7 @@ function WorkbookContainer(){
     const location = useLocation();
     const shareWorkbookClickSelector = useSelector((state: RootState) => state.shareWorkbookClickReducer)
     const {isToast, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
-    console.log('isToast ', isToast);
-    console.log('toastMsg ', toastMsg);
+
     const headerLogoOnClickHandler = (event:React.MouseEvent) => {
         navigate('/');
     }

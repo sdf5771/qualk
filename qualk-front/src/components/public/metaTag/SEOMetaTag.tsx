@@ -10,7 +10,6 @@ type SEOMetaTagPropsType = {
 }
 
 const SEOMetaTag = ({title, description, imgSrc, url, keywords}: SEOMetaTagPropsType) => {
-    console.log('keywords ', keywords);
     return(
         <Helmet>
             <meta name="type" content="website" />
