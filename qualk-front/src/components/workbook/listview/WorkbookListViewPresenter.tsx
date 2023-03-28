@@ -41,7 +41,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
 
     if(categoryData.activeMenu === "GAIQ"){
         return (
-            <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in} ${publicScrollbar.public_scroll}`}>
+            <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in}`}>
                 <div className={styles.favorite_container}>
                     <div className={styles.favorite_header}>
                         <GaiqLogo width="50px" height="50px"/>
@@ -102,7 +102,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
         );
     } else {
         return (
-            <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in} ${publicScrollbar.public_scroll}`}>
+            <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in}`}>
                 <div className={styles.favorite_container}>
                     <div className={styles.favorite_header}>
                         <GaiqLogo width="50px" height="50px"/>

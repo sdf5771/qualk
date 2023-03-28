@@ -32,7 +32,8 @@
     height: calc(100% - 80px);
     min-width: 1400px;
     gap: 40px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .left_side_container{
     display: flex;

@@ -17,7 +17,7 @@ interface WorkbookDetailPresenterProps {
 
 function WorkbookDetailPresenter({location, navigate, workbookData}: WorkbookDetailPresenterProps){
     return(
-        <div className={`${styles.workbook_detail_root} ${publicAnimations.fade_in} ${publicScrollbar.public_scroll}`}>
+        <div className={`${styles.workbook_detail_root} ${publicAnimations.fade_in}`}>
             <div className={styles.header}>
                 <PublicImageBtnContainer
                     btnText="뒤로가기"

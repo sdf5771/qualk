@@ -1,5 +1,6 @@
 import React, {EventHandler, ReactEventHandler} from 'react';
 import styles from 'stylesheets/workbook/WorkbookPresenter.module.css';
+import publicScrollbar from 'stylesheets/public/scrollbar.module.css';
 import styled from 'styled-components';
 import SideBarContainer from "../../components/workbook/sidebarmenu/SideBarMenuContainer";
 import SearchBarContainer from "../../components/public/searchbar/SearchBarContainer";
@@ -46,7 +47,7 @@ function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isTo
                         <SearchBarContainer />
                     </div>
                 </div>
-                <div className={styles.workbook_body}>
+                <div className={`${styles.workbook_body} ${publicScrollbar.public_scroll}`}>
                     <div className={styles.left_side_container}>
                         <SideBarContainer />
                     </div>
