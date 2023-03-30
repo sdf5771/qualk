@@ -7,10 +7,13 @@
     overflow-y: auto;
 }
 .background_container{
+    /*transform: translateY(-50%);*/
     width: 100vw;
     height: 100vh;
     min-width: 1920px;
     min-height: 1080px;
+    /*max-width: 1920px;*/
+    /*max-height: 1080px;*/
     background-color: #FFF0C6;
     /*overflow-y: auto;*/
 }

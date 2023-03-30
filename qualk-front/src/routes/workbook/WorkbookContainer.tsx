@@ -8,7 +8,7 @@ function WorkbookContainer(){
     const navigate = useNavigate();
     const location = useLocation();
     const shareWorkbookClickSelector = useSelector((state: RootState) => state.shareWorkbookClickReducer)
-    const {isToast, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
+    const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
 
     const headerLogoOnClickHandler = (event:React.MouseEvent) => {
         navigate('/');
@@ -18,6 +18,7 @@ function WorkbookContainer(){
             location={location}
             headerLogoOnClickHandler={headerLogoOnClickHandler}
             modalState={shareWorkbookClickSelector ? shareWorkbookClickSelector['modalStateId'] : 0}
+            toastType={toastType}
             isToast={isToast}
             toastMsg={toastMsg}
         />

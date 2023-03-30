@@ -9,10 +9,6 @@
     justify-content: center;
     width: 100%;
 }
-.no_contents_logo_container > div{
-    width: 240px;
-    height: 240px;
-}
 .title{
     margin-top: 34px;
     display: flex;

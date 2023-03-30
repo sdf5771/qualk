@@ -38,7 +38,7 @@ function SharePostModalPresenter({dispatch, modalCloseOnClickHandler, copyOnClic
                             icon="instagram"
                             platformName="Instagram"
                             onClickEvent={() => {
-                                dispatch({type: 'toast open', toastMsg: '아직 준비중인 기능이에요.'})
+                                dispatch({type: 'toast open', toastType: 'alert', toastMsg: '아직 준비중인 기능이에요.'})
                                 // socialShare('instagram');
                             }}
                         />
@@ -67,7 +67,7 @@ function SharePostModalPresenter({dispatch, modalCloseOnClickHandler, copyOnClic
                             icon="mail"
                             platformName="이메일"
                             onClickEvent={() => {
-                                dispatch({type: 'toast open', toastMsg: '아직 준비중인 기능이에요.'})
+                                dispatch({type: 'toast open', toastType: 'alert', toastMsg: '아직 준비중인 기능이에요.'})
                                 // socialShare('email');
                             }}
                         />

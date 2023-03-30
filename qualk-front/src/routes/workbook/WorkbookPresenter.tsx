@@ -26,6 +26,7 @@ type WorkbookPresenterPropsType = {
     headerLogoOnClickHandler: ReactEventHandler,
     modalState: number,
     isToast?: boolean,
+    toastType: 'check' | 'alert' | 'warning',
     toastMsg?: string,
 }
 
@@ -34,7 +35,7 @@ const workbookModalState = {
     1: <SharePostModalContainer />,
 }
 
-function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isToast, toastMsg}: WorkbookPresenterPropsType){
+function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isToast, toastType, toastMsg}: WorkbookPresenterPropsType){
     return(
         <>
             <SEOMetaTag title="Qualk" keywords="GAIQ, SQLD, SQID, Data Analytics, Google Analytics, Google, 구글 애널리틱스, 구글, 문제집, 문제" description="Qualk Workbook" url={document.URL} imgSrc="https://qualk.co.kr/logo512.png"/>
@@ -59,7 +60,7 @@ function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isTo
                     </div>
                 </div>
                 {modalState == 1 ? workbookModalState[modalState] : workbookModalState['0']}
-                {isToast && toastMsg ? <ToastMsg msgText={toastMsg} /> : null}
+                {isToast && toastMsg && toastType ? <ToastMsg type={toastType} msgText={toastMsg} /> : null}
             </div>
         </>
     );

@@ -6,7 +6,7 @@ import {ReactComponent as MainLogo} from 'assets/images/main/main_logo.svg';
 
 function Main(){
     const navigate = useNavigate();
-    const [viewBox, setViewBox] = useState('0 0 1920 1080');
+    const [viewBox, setViewBox] = useState('0 0 1920 970');
 
     // useEffect(() => {
     //     const handleResize = () => {

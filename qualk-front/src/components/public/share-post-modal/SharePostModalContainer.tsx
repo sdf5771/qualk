@@ -15,10 +15,10 @@ function SharePostModalContainer(){
     const handleCopyClipBoard = async (text: string) => {
         try {
             await navigator.clipboard.writeText(text);
-            dispatch({type: 'toast open', toastMsg: '클립보드에 링크가 복사되었습니다.'})
+            dispatch({type: 'toast open', toastType: 'check', toastMsg: '클립보드에 링크가 복사되었습니다.'})
             // alert('클립보드에 링크가 복사되었습니다.');
         } catch (e) {
-            dispatch({type: 'toast open', toastMsg: '복사에 실패하였습니다.'})
+            dispatch({type: 'toast open', toastType: 'warning', toastMsg: '복사에 실패하였습니다.'})
             // alert('복사에 실패하였습니다');
         }
     };

@@ -1,5 +1,6 @@
 import React, {memo} from 'react';
 import styles from './WorkbookElement.module.css';
+import publicAnimation from 'stylesheets/public/animation.module.css';
 import KeywordElement from "./KeywordElement";
 import {ReactComponent as ViewEyeIcon} from 'assets/images/workbook/listview/view_eye_icon.svg';
 import {useNavigate, useLocation} from 'react-router-dom';
@@ -24,7 +25,7 @@ function WorkbookElement({ question_id, question_type, question_name, question_v
     }
 
     return(
-        <div onClick={workbookElementOnClickHandler} className={styles.workbook_element_root}>
+        <div onClick={workbookElementOnClickHandler} className={`${styles.workbook_element_root} ${publicAnimation.fade_and_slide}`}>
             <div className={styles.workbook_element_header}>
                 <div className={styles.workbook_title}>
                     <span>{question_type}</span>
