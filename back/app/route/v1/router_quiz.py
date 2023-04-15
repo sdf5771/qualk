@@ -3,28 +3,12 @@ from database.query import select, insert
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
 
-router = APIRouter()
-
-# @router.get("/{item_id}")
-# async def read_item(item_id: str):
-#     if item_id not in fake_items_db:
-#         raise HTTPException(status_code=404, detail="Item not found")
-#     return {"name": fake_items_db[item_id]["name"], "item_id": item_id}
-
-# @router.put(
-#     "/{item_id}",
-#     tags=["custom"],
-#     responses={403: {"description": "Operation forbidden"}},
-# )
-# async def update_item(item_id: str):
-#     if item_id != "plumbus":
-#         raise HTTPException(
-#             status_code=403, detail="You can only update the item: plumbus"
-#         )
-#     return {"item_id": item_id, "name": "The great Plumbus"}
+router = APIRouter(
+    prefix="/api/v1/quiz"
+)
 
 #Top 3 question
-@router.get("/question/top_3/{type}")
+@router.get("/{type}/top_3")
 async def find_top(type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -45,12 +29,12 @@ async def find_top(type: str):
         if i['question_tag'] is not None:
             try:
                 i['question_tag'] = i['question_tag'].split(',')
-            except Exception as e:
-                print(e)
+            except Exception as error:
+                raise HTTPException(status_code=500, detail=str(error))
     return jsonable_encoder(result)
 
 #Select question all
-@router.get("/question/find_view/{type}/{last_index}")
+@router.get("/{type}/view/{last_index}")
 async def find_view(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -72,8 +56,8 @@ async def find_view(last_index: int, type: str):
         if i['question_tag'] is not None:
             try:
                 i['question_tag'] = i['question_tag'].split(',')
-            except Exception as e:
-                print(e)
+            except Exception as error:
+                raise HTTPException(status_code=500, detail=str(error))
     isLastData = False
     if len(data) < 6:
         isLastData = True
@@ -85,7 +69,7 @@ async def find_view(last_index: int, type: str):
     return jsonable_encoder(result)
 
 #Select question orderby create_date desc
-@router.get("/question/find_new/{type}/{last_index}")
+@router.get("/{type}/new/{last_index}")
 async def find_new(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -107,8 +91,8 @@ async def find_new(last_index: int, type: str):
         if i['question_tag'] is not None:
             try:
                 i['question_tag'] = i['question_tag'].split(',')
-            except Exception as e:
-                print(e)
+            except Exception as error:
+                raise HTTPException(status_code=500, detail=str(error))
     isLastData = False
     if len(data) < 6:
         isLastData = True
@@ -120,7 +104,7 @@ async def find_new(last_index: int, type: str):
     return jsonable_encoder(result)
 
 #Select question orderby create_date asc
-@router.get("/question/find_old/{type}/{last_index}")
+@router.get("/{type}/old/{last_index}")
 async def find_old(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -142,8 +126,8 @@ async def find_old(last_index: int, type: str):
         if i['question_tag'] is not None:
             try:
                 i['question_tag'] = i['question_tag'].split(',')
-            except Exception as e:
-                print(e)
+            except Exception as error:
+                raise HTTPException(status_code=500, detail=str(error))
     isLastData = False
     if len(data) < 6:
         isLastData = True
@@ -154,8 +138,8 @@ async def find_old(last_index: int, type: str):
              }
     return jsonable_encoder(result)
 
-@router.get("/question/problem/{question_id}/{question_type}")
-async def find_problem(question_id: int, question_type: str):
+@router.get("/{quiz_type}/{quiz_id}")
+async def find_problem(quiz_type: str, quiz_id: int):
     query = f"""
         SELECT content.content_id AS question_id,
                info.question_name AS question_name,
@@ -167,11 +151,11 @@ async def find_problem(question_id: int, question_type: str):
         FROM question_content as content
         inner join question_info as info
         on content.content_id = info.info_id
-        where content.content_id = {question_id}
-        and content.type = '{question_type}';
+        where content.content_id = {quiz_id}
+        and content.type = '{quiz_type}';
     """
     view = f"""
-            update question_info set view = view + 1 where info_id = {question_id};
+            update question_info set view = view + 1 where info_id = {quiz_id};
             """
 
     insert(sql=view)
@@ -186,6 +170,8 @@ async def find_problem(question_id: int, question_type: str):
         if i['question_contents'] is not None:
             try:
                 i['question_contents'] = i['question_contents'].split(',')
-            except Exception as e:
-                print(e)
+            except Exception as error:
+                raise HTTPException(status_code=500, detail=str(error))
+        else:
+            raise HTTPException(status_code=404, detail=f"{quiz_id} is Not found")
     return jsonable_encoder(result)
