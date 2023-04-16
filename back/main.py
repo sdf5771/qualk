@@ -1,11 +1,11 @@
 from fastapi import FastAPI
-from back.app.route.v1 import quiz
+from app.route.v1 import router_quiz
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import uvicorn
 
 app = FastAPI()
-app.include_router(quiz.router)
+app.include_router(router_quiz.router)
 
 origins = [
     "http://localhost",
