@@ -16,7 +16,7 @@ function TopViewWorkbookElement({ question_id, question_type, question_name, que
     const navigate = useNavigate();
     const location = useLocation();
     const topViewWorkbookElementOnClickHandler = (event: React.MouseEvent) => {
-        navigate(`/quiz/${question_type}&${question_id}`, {state: {beforeLocation: location.pathname}})
+        navigate(`/quiz/${question_type.toLowerCase()}/${question_id}`, {state: {beforeLocation: location.pathname}})
     }
     return(
         <div onClick={topViewWorkbookElementOnClickHandler} className={styles.top_view_workbook_root}>

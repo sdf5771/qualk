@@ -21,7 +21,7 @@ function WorkbookElement({ question_id, question_type, question_name, question_v
     const workbookElementClickDispatch = useDispatch();
     const workbookElementOnClickHandler = (event: React.MouseEvent) => {
         workbookElementClickDispatch({type: 'workbookElementClick', questionType: question_type, questionId: question_id})
-        navigate(`/workbook/${question_type}&${question_id}`, {state: {beforeLocation: location.pathname}})
+        navigate(`/quiz/${question_type.toLowerCase()}/${question_id}`, {state: {beforeLocation: location.pathname}})
     }
 
     return(

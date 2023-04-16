@@ -4,8 +4,7 @@ const LocalServer_URL = process.env.LocalServerURL;
 const RealServer_URL = process.env.RealServerURL;
 
 async function getQuestionDetailData(question_id:number, question_type:string, navigate: NavigateFunction){
-    // `/question/problem/${question_id}/${question_type}`
-    const response = await fetch(`api/v1/quiz/${question_type}/${question_id}`,{
+    const response = await fetch(`http://localhost:8000/api/v1/quiz/${question_type}/${question_id}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

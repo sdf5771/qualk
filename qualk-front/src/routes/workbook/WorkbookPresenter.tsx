@@ -61,7 +61,7 @@ function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isTo
                     <div className={styles.right_side_container}>
                         <Routes>
                             <Route path='/' element={<WorkbookListViewContainer />} />
-                            <Route path='/:id' element={<WorkbookDetailContainer />} />
+                            <Route path='/:id/*' element={<WorkbookDetailContainer />} />
                         </Routes>
                     </div>
                 </div>

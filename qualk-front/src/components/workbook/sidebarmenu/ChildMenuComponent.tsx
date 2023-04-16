@@ -21,7 +21,7 @@ function ChildMenuComponent({childMenuName, childMenuIndex}: ChildMenuComponentP
         // if(location.pathname !== "/workbook"){
         //     navigate('/workbook')
         // }
-        navigate(`/quiz/${childMenuName}`);
+        navigate(`/quiz/${childMenuName.toLowerCase()}`);
 
         childMenuClickDispatch({type: 'childMenuClick', menuName: childMenuName, menuId: childMenuIndex})
     }

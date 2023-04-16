@@ -20,7 +20,7 @@ function Main(){
     // }, [])
 
     const btnOnClickHandler = (event: React.MouseEvent) => {
-        navigate('/quiz');
+        navigate('/quiz/gaiq');
     }
     return(
         <div className={styles.main_root}>
