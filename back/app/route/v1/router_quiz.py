@@ -4,11 +4,11 @@ from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
 
 router = APIRouter(
-    prefix="/api/v1/quiz"
+    # prefix="/api/v1/quiz"
 )
 
 #Top 3 question
-@router.get("/{type}/top_3")
+@router.get("/api/v1/quiz/{type}/top_3")
 async def find_top(type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -34,7 +34,7 @@ async def find_top(type: str):
     return jsonable_encoder(result)
 
 #Select question all
-@router.get("/{type}/view/{last_index}")
+@router.get("/api/v1/quiz/{type}/view/{last_index}")
 async def find_view(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -69,7 +69,7 @@ async def find_view(last_index: int, type: str):
     return jsonable_encoder(result)
 
 #Select question orderby create_date desc
-@router.get("/{type}/new/{last_index}")
+@router.get("/api/v1/quiz/{type}/new/{last_index}")
 async def find_new(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -104,7 +104,7 @@ async def find_new(last_index: int, type: str):
     return jsonable_encoder(result)
 
 #Select question orderby create_date asc
-@router.get("/{type}/old/{last_index}")
+@router.get("/api/v1/quiz/{type}/old/{last_index}")
 async def find_old(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -138,7 +138,7 @@ async def find_old(last_index: int, type: str):
              }
     return jsonable_encoder(result)
 
-@router.get("/{type}/{quiz_id}")
+@router.get("/api/v1/quiz/{type}/{quiz_id}")
 async def find_problem(type: str, quiz_id: int):
     query = f"""
         SELECT content.content_id AS question_id,
