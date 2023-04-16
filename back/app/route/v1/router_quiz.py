@@ -13,7 +13,7 @@ async def find_top(type: str):
     query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
-               info.question_name AS question_name,
+               info.title AS question_name,
                info.view AS question_view,
                info.create_date AS question_create,
                info.tag AS question_tag
@@ -39,7 +39,7 @@ async def find_view(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
-               info.question_name AS question_name,
+               info.title AS question_name,
                info.view AS question_view,
                info.create_date AS question_create,
                info.tag AS question_tag
@@ -74,7 +74,7 @@ async def find_new(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
-               info.question_name AS question_name,
+               info.title AS question_name,
                info.view AS question_view,
                info.create_date AS question_create,
                info.tag AS question_tag
@@ -109,7 +109,7 @@ async def find_old(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
                content.type AS question_type,
-               info.question_name AS question_name,
+               info.title AS question_name,
                info.view AS question_view,
                info.create_date AS question_create,
                info.tag AS question_tag
@@ -138,11 +138,11 @@ async def find_old(last_index: int, type: str):
              }
     return jsonable_encoder(result)
 
-@router.get("/{quiz_type}/{quiz_id}")
-async def find_problem(quiz_type: str, quiz_id: int):
+@router.get("/{type}/{quiz_id}")
+async def find_problem(type: str, quiz_id: int):
     query = f"""
         SELECT content.content_id AS question_id,
-               info.question_name AS question_name,
+               info.title AS question_name,
                content.type AS question_type,
 			   content.content_list AS question_contents,
                content.correct AS question_correct,
@@ -152,19 +152,19 @@ async def find_problem(quiz_type: str, quiz_id: int):
         inner join question_info as info
         on content.content_id = info.info_id
         where content.content_id = {quiz_id}
-        and content.type = '{quiz_type}';
+        and content.type = '{type}';
     """
+
+    result = select(sql=query)
+
     view = f"""
             update question_info set view = view + 1 where info_id = {quiz_id};
             """
 
     insert(sql=view)
-    result = select(sql=query)
 
-    if len(result) == 0:
-        raise HTTPException(
-            status_code=403, detail="no data"
-        )
+    if not result:
+        raise HTTPException(status_code=404, detail="no data")
     
     for i in result:
         if i['question_contents'] is not None:
