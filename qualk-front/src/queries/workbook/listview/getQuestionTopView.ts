@@ -1,5 +1,5 @@
 async function getQuestionTopView(type:string){
-    const response = await fetch(`https://qualk.co.kr/api/v1/quiz/${type}/top_3`,{
+    const response = await fetch(`http://localhost:8000/api/v1/quiz/${type}/top_3`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
