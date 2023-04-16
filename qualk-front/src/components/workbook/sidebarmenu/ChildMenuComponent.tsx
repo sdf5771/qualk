@@ -3,7 +3,6 @@ import styles from './ChildMenuComponent.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "reducers/reducers";
 import {useLocation, useNavigate} from "react-router-dom";
-import {useQueryClient} from "@tanstack/react-query";
 
 type ChildMenuComponentPropsType = {
     childMenuName: string,
@@ -13,16 +12,16 @@ type ChildMenuComponentPropsType = {
 function ChildMenuComponent({childMenuName, childMenuIndex}: ChildMenuComponentPropsType){
     const location = useLocation();
     const navigate = useNavigate();
-    const queryClient = useQueryClient();
     const childMenuClickSelector = useSelector((state: RootState) => state.childMenuClickReducer)
     const childMenuClickDispatch = useDispatch();
     const [isActive, setIsActive] = useState(false);
 
     const onClickHandler = (event:React.MouseEvent) => {
         // URL 작업 전 임시 조치
-        if(location.pathname !== "/workbook"){
-            navigate('/workbook')
-        }
+        // if(location.pathname !== "/workbook"){
+        //     navigate('/workbook')
+        // }
+        navigate(`/quiz/${childMenuName}`);
 
         childMenuClickDispatch({type: 'childMenuClick', menuName: childMenuName, menuId: childMenuIndex})
     }

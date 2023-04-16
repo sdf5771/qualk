@@ -19,7 +19,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Main />} />
                     {/*<Route path='/workbook' element={<WorkbookContainer />} />*/}
-                    <Route path='/workbook/*' element={<WorkbookContainer />} />
+                    <Route path='/quiz/*' element={<WorkbookContainer />} />
                 </Routes>
             </ThemeProvider>
         </QueryClientProvider>

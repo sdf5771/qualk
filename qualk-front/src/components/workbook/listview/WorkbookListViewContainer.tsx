@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import WorkbookListViewPresenter from "./WorkbookListViewPresenter";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "reducers/reducers";
@@ -8,6 +9,7 @@ import useWorkbookData from 'hook/useWorkbookData';
 import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
 
 function WorkbookListViewContainer(){
+    const navigate = useNavigate();
     const [currentPageNumber, setCurrentPageNumber] = useState(0);
     const [currentWorkbookData, setCurrentWorkbookData] = useState<WorkbookDataType[]>([]);
     const [filterActive, setFilterActive] = useState('sortViewed');

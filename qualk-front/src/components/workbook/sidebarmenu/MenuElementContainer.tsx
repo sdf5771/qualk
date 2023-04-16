@@ -1,4 +1,5 @@
 import React, {ReactElement, useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import MenuElementPresenter from "./MenuElementPresenter";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "reducers/reducers";
@@ -10,6 +11,7 @@ type MenuElementType = {
 }
 
 function MenuElementContainer(props: MenuElementType){
+    const navigate = useNavigate();
     const menuElementActivateSelector = useSelector((state:RootState) => state.menuElementClickReducer);
     const [menuIsActive, setMenuIsActive] = useState(false);
     const menuElementClickDispatch = useDispatch();
