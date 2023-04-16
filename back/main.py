@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from route.v1 import router_quiz
+from app.route.v1 import router_quiz
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import uvicorn

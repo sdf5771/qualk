@@ -1,4 +1,4 @@
-from database.query import select, insert
+from app.database.query import select, insert
 
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
