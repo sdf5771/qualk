@@ -4,7 +4,8 @@ const LocalServer_URL = process.env.LocalServerURL;
 const RealServer_URL = process.env.RealServerURL;
 
 async function getQuestionDetailData(question_id:number, question_type:string, navigate: NavigateFunction){
-    const response = await fetch(`/question/problem/${question_id}/${question_type}`,{
+    // `/question/problem/${question_id}/${question_type}`
+    const response = await fetch(`api/v1/quiz/${question_type}/${question_id}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -12,7 +13,7 @@ async function getQuestionDetailData(question_id:number, question_type:string, n
     }).catch((err) => err)
 
     if(!response.ok){
-        navigate('/workbook');
+        navigate('/quiz');
     }
 
     return response.json()

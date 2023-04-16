@@ -1,5 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Allowed: /
 Disallow:
-Sitemap: https://www.qualk.co.kr/sitemap.xml
+Sitemap: https://qualk.co.kr/sitemap.xml

@@ -30,7 +30,6 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
                         return <QuestionElement key={index} questionTitle={question} isCorrect={parseInt(workbookData.question_correct) == index ? true : false}/>
                     }
                 }) : null}
-
             </div>
             <AnswerAndExplainContainer workbookData={workbookData} />
             <div className={styles.question_btn_container}>
@@ -42,7 +41,7 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
                         hover: <ListviewIconHover />,
                     }}
                     btnClickEventHandler={(event: React.MouseEvent)=>{
-                        navigate('/workbook')
+                        navigate('/quiz')
                     }}
                 />
 

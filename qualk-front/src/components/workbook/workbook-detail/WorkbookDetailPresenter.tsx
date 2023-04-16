@@ -30,7 +30,7 @@ function WorkbookDetailPresenter({location, navigate, workbookData}: WorkbookDet
                         if(location.state && location.state.beforeLocation){
                             navigate(location.state.beforeLocation)
                         } else {
-                            navigate('/workbook')
+                            navigate('/quiz')
                         }
                     }}
                 />
