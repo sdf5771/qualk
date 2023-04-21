@@ -21,7 +21,8 @@ function WorkbookContainer(){
             && location.pathname.split('/')[2] != 'sqld'
             && location.pathname.split('/')[2] != 'SQLD'
             && location.pathname.split('/')[2] != 'sqid'
-            && location.pathname.split('/')[2] != 'SQID'){
+            && location.pathname.split('/')[2] != 'SQID'
+            && location.pathname.split('/')[2] != 'search'){
             navigate('/quiz/gaiq')
         }
     }, [])

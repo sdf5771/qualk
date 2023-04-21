@@ -1,4 +1,4 @@
-import React, {EventHandler, ReactEventHandler} from 'react';
+import React, {ReactEventHandler} from 'react';
 import styles from 'stylesheets/workbook/WorkbookPresenter.module.css';
 import publicScrollbar from 'stylesheets/public/scrollbar.module.css';
 import styled from 'styled-components';
@@ -8,10 +8,10 @@ import WorkbookListViewContainer from "../../components/workbook/listview/Workbo
 import {ReactComponent as QualkHeaderLogo} from 'assets/images/workbook/listview/qualk_logo_122_40.svg';
 import SharePostModalContainer from 'components/public/share-post-modal/SharePostModalContainer';
 import {Route, Routes} from "react-router-dom";
-import WorkbookContainer from "./WorkbookContainer";
 import WorkbookDetailContainer from "components/workbook/workbook-detail/WorkbookDetailContainer";
 import SEOMetaTag from "components/public/metaTag/SEOMetaTag";
 import ToastMsg from "components/public/toast-msg/ToastMsg";
+import QuizSearch from "./search/QuizSearch";
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -60,8 +60,9 @@ function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isTo
                     </div>
                     <div className={styles.right_side_container}>
                         <Routes>
-                            <Route path='/' element={<WorkbookListViewContainer />} />
+                            <Route path='/search' element={<QuizSearch />} />
                             <Route path='/:id/*' element={<WorkbookDetailContainer />} />
+                            <Route path='/:id' element={<WorkbookListViewContainer />} />
                         </Routes>
                     </div>
                 </div>
