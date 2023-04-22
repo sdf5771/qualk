@@ -160,9 +160,7 @@ async def find_problem(type: str, quiz_id: int):
     view = f"""
             update question_info set view = view + 1 where info_id = {quiz_id};
             """
-
     insert(sql=view)
-
     if not result:
         raise HTTPException(status_code=404, detail="no data")
     
@@ -174,4 +172,51 @@ async def find_problem(type: str, quiz_id: int):
                 raise HTTPException(status_code=500, detail=str(error))
         else:
             raise HTTPException(status_code=404, detail=f"{quiz_id} is Not found")
+    return jsonable_encoder(result)
+
+@router.get("/api/v1/quiz/search")
+async def search_keyword(keyword: str, type: str):
+    if type == 'keyword':
+        query = f"""
+        SELECT content.content_id AS question_id,
+               info.title AS question_name,
+               content.type AS question_type,
+			   content.content_list AS question_contents,
+               content.correct AS question_correct,
+               content.description AS question_description,
+               info.reference_url AS question_reference
+        FROM question_content as content
+        inner join question_info as info
+        on content.content_id = info.info_id
+        where info.title like '%{keyword}%'
+        or content.content_list like '%{keyword}%';
+    """
+    elif type == 'tag':
+        query = f"""
+        SELECT content.content_id AS question_id,
+               info.title AS question_name,
+               content.type AS question_type,
+			   content.content_list AS question_contents,
+               content.correct AS question_correct,
+               content.description AS question_description,
+               info.reference_url AS question_reference
+        FROM question_content as content
+        inner join question_info as info
+        on content.content_id = info.info_id
+        where info.tag like '%{keyword}%';
+    """
+
+    result = select(sql=query)
+
+    if not result:
+        raise HTTPException(status_code=404, detail="no data")
+    
+    for i in result:
+        if i['question_contents'] is not None:
+            try:
+                i['question_contents'] = i['question_contents'].split(',')
+            except Exception as error:
+                raise HTTPException(status_code=500, detail=str(error))
+        else:
+            raise HTTPException(status_code=404, detail=f"{keyword} is Not found")
     return jsonable_encoder(result)
