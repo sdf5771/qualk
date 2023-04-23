@@ -147,7 +147,10 @@ async def find_problem(type: str, quiz_id: int):
 			   content.content_list AS question_contents,
                content.correct AS question_correct,
                content.description AS question_description,
-               info.reference_url AS question_reference
+               info.reference_url AS question_reference,
+               info.view AS question_view,
+               info.create_date AS question_create,
+               info.tag AS question_tag
         FROM question_content as content
         inner join question_info as info
         on content.content_id = info.info_id
@@ -179,12 +182,11 @@ async def search_keyword(keyword: str, type: str):
     if type == 'keyword':
         query = f"""
         SELECT content.content_id AS question_id,
-               info.title AS question_name,
                content.type AS question_type,
-			   content.content_list AS question_contents,
-               content.correct AS question_correct,
-               content.description AS question_description,
-               info.reference_url AS question_reference
+               info.title AS question_name,
+               info.view AS question_view,
+               info.create_date AS question_create,
+               info.tag AS question_tag
         FROM question_content as content
         inner join question_info as info
         on content.content_id = info.info_id
@@ -194,29 +196,21 @@ async def search_keyword(keyword: str, type: str):
     elif type == 'tag':
         query = f"""
         SELECT content.content_id AS question_id,
-               info.title AS question_name,
                content.type AS question_type,
-			   content.content_list AS question_contents,
-               content.correct AS question_correct,
-               content.description AS question_description,
-               info.reference_url AS question_reference
+               info.title AS question_name,
+               info.view AS question_view,
+               info.create_date AS question_create,
+               info.tag AS question_tag
         FROM question_content as content
         inner join question_info as info
         on content.content_id = info.info_id
         where info.tag like '%{keyword}%';
     """
-
     result = select(sql=query)
-
-    if not result:
-        raise HTTPException(status_code=404, detail="no data")
-    
     for i in result:
-        if i['question_contents'] is not None:
+        if i['question_tag'] is not None:
             try:
-                i['question_contents'] = i['question_contents'].split(',')
+                i['question_tag'] = i['question_tag'].split(',')
             except Exception as error:
                 raise HTTPException(status_code=500, detail=str(error))
-        else:
-            raise HTTPException(status_code=404, detail=f"{keyword} is Not found")
     return jsonable_encoder(result)
