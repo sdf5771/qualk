@@ -3,7 +3,7 @@
 
 ## Front-end Source
 
-`@lastest-update readme post: 2023-03-12`
+`@lastest-update readme post: 2023-04-23`
 
 ---
 
@@ -14,7 +14,7 @@ This project is an application created using Create React App.
 ![workbook-main](./readme/workbook-main.png)
 ![workbook-detail](./readme/workbook-detail.png)
 ![workbook-shared](./readme/workbook-shared.png)
-
+![workbook-search](./readme/workbook-search.png)
 ---
 
 ### 1. How to use
@@ -37,61 +37,62 @@ npm start
 
 ```tsx
 {
-  "name": "qualk-front",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@tanstack/react-query": "^4.23.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.11",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "dotenv": "^16.0.3",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-cookie": "^4.1.1",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5",
-    "react-router-dom": "^6.7.0",
-    "react-scripts": "5.0.1",
-    "redux": "^4.2.0",
-    "styled-components": "^5.3.6",
-    "styled-reset": "^4.4.5",
-    "typescript": "^4.9.4",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/styled-components": "^5.1.26",
-    "typescript-plugin-css-modules": "^4.1.1"
-  },
-  "proxy": "http://localhost:8000"
+    "name": "qualk-front",
+        "version": "0.1.0",
+        "private": true,
+        "dependencies": {
+        "@tanstack/react-query": "^4.23.0",
+            "@testing-library/jest-dom": "^5.16.5",
+            "@testing-library/react": "^13.4.0",
+            "@testing-library/user-event": "^13.5.0",
+            "@types/jest": "^27.5.2",
+            "@types/node": "^16.18.11",
+            "@types/react": "^18.0.27",
+            "@types/react-dom": "^18.0.10",
+            "dotenv": "^16.0.3",
+            "prop-types": "^15.8.1",
+            "react": "^18.2.0",
+            "react-cookie": "^4.1.1",
+            "react-dom": "^18.2.0",
+            "react-helmet-async": "^1.3.0",
+            "react-redux": "^8.0.5",
+            "react-router-dom": "^6.7.0",
+            "react-scripts": "5.0.1",
+            "redux": "^4.2.0",
+            "styled-components": "^5.3.6",
+            "styled-reset": "^4.4.5",
+            "typescript": "^4.9.4",
+            "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+            "build": "react-scripts build",
+            "test": "react-scripts test",
+            "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+            "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@types/styled-components": "^5.1.26",
+            "typescript-plugin-css-modules": "^4.1.1"
+    },
+    "proxy": "http://localhost:8000"
 }
 ```
 
@@ -103,9 +104,14 @@ npm start
 ├── App.tsx
 ├──📁 assets
 │   └──📁 images
+│       ├──📁 main
+│       │   ├── main_background-image.svg
+│       │   └── main_logo.svg
 │       ├──📁 public
+│       │   ├── alert_icon.svg
 │       │   ├── arrow_left_icon.svg
 │       │   ├── arrow_left_icon_hover.svg
+│       │   ├── check_icon.svg
 │       │   ├── facebook_icon.svg
 │       │   ├── facebook_icon_active.svg
 │       │   ├── instagram_icon.svg
@@ -118,10 +124,13 @@ npm start
 │       │   ├── mail_icon_active.svg
 │       │   ├── modal_close_default.svg
 │       │   ├── modal_close_hover.svg
+│       │   ├── no_contents_logo.svg
+│       │   ├── no_contents_logo_old.svg
 │       │   ├── share_icon_default.svg
 │       │   ├── share_icon_hover.svg
 │       │   ├── twitter_icon.svg
-│       │   └── twitter_icon_active.svg
+│       │   ├── twitter_icon_active.svg
+│       │   └── warning_icon.svg
 │       └──📁 workbook
 │           ├──📁 listview
 │           │   ├── eye_image.svg
@@ -143,24 +152,32 @@ npm start
 │               └── search_icon_active.svg
 ├──📁 components
 │   ├──📁 public
+│   │   ├──📁 metaTag
+│   │   │   └── SEOMetaTag.tsx
+│   │   ├──📁 no-contents
+│   │   │   ├── NoContents.module.css
+│   │   │   └── NoContents.tsx
 │   │   ├──📁 public-image-btn
 │   │   │   ├── PublicImageBtnContainer.tsx
 │   │   │   ├── PublicImageBtnPresenter.module.css
 │   │   │   ├── PublicImageBtnPresenter.tsx
-│   │   │   └──📁 type
+│   │   │   └── type
 │   │   │       └── PublicImageBtnType.ts
 │   │   ├──📁 searchbar
 │   │   │   ├── SearchBarContainer.tsx
 │   │   │   ├── SearchBarPresenter.module.css
 │   │   │   └── SearchBarPresenter.tsx
-│   │   └──📁 share-post-modal
-│   │       ├── SharePostModalContainer.tsx
-│   │       ├── SharePostModalPresenter.module.css
-│   │       ├── SharePostModalPresenter.tsx
-│   │       ├──📁 share-platform-element
-│   │       │   ├── SharePlatformElement.module.css
-│   │       │   └── SharePlatformElement.tsx
-│   │       └── type
+│   │   ├──📁 share-post-modal
+│   │   │   ├── SharePostModalContainer.tsx
+│   │   │   ├── SharePostModalPresenter.module.css
+│   │   │   ├── SharePostModalPresenter.tsx
+│   │   │   ├──📁 share-platform-element
+│   │   │   │   ├── SharePlatformElement.module.css
+│   │   │   │   └── SharePlatformElement.tsx
+│   │   │   └── type
+│   │   └──📁 toast-msg
+│   │       ├── ToastMsg.module.css
+│   │       └── ToastMsg.tsx
 │   └──📁 workbook
 │       ├──📁 listview
 │       │   ├── KeywordElement.module.css
@@ -171,7 +188,11 @@ npm start
 │       │   ├── WorkbookElement.tsx
 │       │   ├── WorkbookListViewContainer.tsx
 │       │   ├── WorkbookListViewPresenter.module.css
-│       │   └── WorkbookListViewPresenter.tsx
+│       │   ├── WorkbookListViewPresenter.tsx
+│       │   └── more-btn
+│       │       ├── MoreBtnContainer.tsx
+│       │       ├── MoreBtnPresenter.tsx
+│       │       └── MorebtnPresenter.module.css
 │       ├──📁 sidebarmenu
 │       │   ├── ChildMenuComponent.module.css
 │       │   ├── ChildMenuComponent.tsx
@@ -202,7 +223,10 @@ npm start
 │   ├── useTheme.ts
 │   └── useWorkbookData.ts
 ├── index.tsx
+├──📁 javascripts
+│   └── socialShare.ts
 ├── logo.svg
+├── logo_re.svg
 ├──📁 queries
 │   ├──📁 public
 │   │   └── searchbar
@@ -212,11 +236,15 @@ npm start
 │       │   ├── getQuestionFindOld.ts
 │       │   ├── getQuestionFindView.ts
 │       │   └── getQuestionTopView.ts
+│       ├──📁 search
+│       │   └── getSearchResult.ts
 │       └──📁 workbook-detail
 │           └── getQuestionDetailData.ts
 ├──📁 reducers
 │   ├──📁 auth
 │   │   └── authReducer.ts
+│   ├──📁 public
+│   │   └── toastMsgReducer.ts
 │   ├── reducers.ts
 │   └──📁 workbook
 │       ├──📁 listview
@@ -228,20 +256,34 @@ npm start
 │       └──📁 workbook-detail
 │           └── shareWorkbookClickReducer.ts
 ├──📁 routes
+│   ├──📁 main
+│   │   └── Main.tsx
+│   ├──📁 notfound
+│   │   └── NotFound.tsx
 │   └──📁 workbook
 │       ├── WorkbookContainer.tsx
-│       └── WorkbookPresenter.tsx
+│       ├── WorkbookPresenter.tsx
+│       └──📁 search
+│           ├── QuizResultContainer.tsx
+│           ├── QuizSearch.tsx
+│           └──📁 type
+│               └── QuizResultContainerPropsType.ts
 ├──📁 store
 │   └── store.ts
 ├──📁 stylesheets
+│   ├──📁 main
+│   │   └── Main.module.css
 │   ├──📁 public
-│   │   └── animation.module.css
+│   │   ├── animation.module.css
+│   │   └── scrollbar.module.css
 │   └──📁 workbook
-│       └── WorkbookPresenter.module.css
+│       ├── WorkbookPresenter.module.css
+│       └── search
+│           └── QuizSearch.module.css
 └──📁 theme
-    └──📁 theme.ts
+    └── theme.ts
 
-44 directories, 97 files
+58 directories, 124 files
 ```
 
 ---
