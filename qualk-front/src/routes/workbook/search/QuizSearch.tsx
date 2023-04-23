@@ -13,13 +13,13 @@ import getSearchResult from "../../../queries/workbook/search/getSearchResult";
 function QuizSearch(){
     const location = useLocation()
     const navigate = useNavigate()
-    const [searchKeyword, setSearchKeyword] = useState<string>(location.search.split('&')[0].split('=')[1]);
+    const [searchKeyword, setSearchKeyword] = useState<string>(decodeURI(location.search.split('&')[0].split('=')[1]));
     const [searchType, setSearchType] = useState<string>(location.search.split('&')[1].split('=')[1]);
     const {isLoading: keywordIsLoading, isError: keywordIsError, data: keywordData, error: keywordError, refetch: keywordRefetch} = useQuery(['search', 'keyword', searchKeyword], () => getSearchResult(searchKeyword,'keyword'), {staleTime: 100000});
     const {isLoading: tagIsLoading, isError: tagIsError, data: tagData, error: tagError, refetch: tagRefetch} = useQuery(['search', 'tag', searchKeyword], () => getSearchResult(searchKeyword,'tag'), {staleTime: 100000});
 
     useEffect(() => {
-        setSearchKeyword(location.search.split('&')[0].split('=')[1])
+        setSearchKeyword(decodeURI(location.search.split('&')[0].split('=')[1]))
         setSearchType(location.search.split('&')[1].split('=')[1])
     },[location, searchKeyword])
 
