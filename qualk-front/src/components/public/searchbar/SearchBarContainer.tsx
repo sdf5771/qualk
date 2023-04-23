@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
+import {useNavigate, useLocation} from "react-router-dom";
 import SearchBarPresenter from "./SearchBarPresenter";
 
 function SearchBarContainer(){
+    const navigate = useNavigate();
+    const location = useLocation();
     const [isActive, setIsActive] = useState(false);
     const [isHover, setIsHover] = useState(false);
     const [inputVal, setInputVal] = useState('');
@@ -25,6 +28,17 @@ function SearchBarContainer(){
         setInputVal(newValue);
         visibleCloseHandler(newValue);
     }
+
+    const inputOnKeyUpHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        if(event.key === 'Enter'){
+            navigate(`/quiz/search?keyword=${inputVal}&type=all`, {state: {beforeLocation: location.pathname + location.search}})
+            setInputVal('');
+            setVisibleCloseBtn(false);
+            event.currentTarget.blur()
+        }
+    }
+
     const inputOnBlurHandler = (event: React.MouseEvent) => {
         event.preventDefault()
         setIsActive(false)
@@ -45,6 +59,7 @@ function SearchBarContainer(){
         <SearchBarPresenter
             inputOnClickHandler={inputOnClickHandler}
             inputOnChangeHandler={inputOnChangeHandler}
+            inputOnKeyUpHandler={inputOnKeyUpHandler}
             inputOnBlurHandler={inputOnBlurHandler}
             onMouseOverHandler={mainContainerOnMouseOverHandler}
             onMouseOutHandler={mainContainerOnMouseOutHandler}

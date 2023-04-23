@@ -9,7 +9,7 @@ type TopViewWorkbookElementPropsType = {
     question_name: string,
     question_view: number,
     question_create: string,
-    question_tag: string[],
+    question_tag: string[] | null,
 }
 
 function TopViewWorkbookElement({ question_id, question_type, question_name, question_view, question_create, question_tag}: TopViewWorkbookElementPropsType){

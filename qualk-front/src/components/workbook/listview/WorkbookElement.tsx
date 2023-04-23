@@ -12,7 +12,7 @@ type WorkbookElementPropsType = {
     question_name: string,
     question_view: number,
     question_create: string,
-    question_tag: string[],
+    question_tag: string[] | null,
 }
 
 function WorkbookElement({ question_id, question_type, question_name, question_view, question_create, question_tag}: WorkbookElementPropsType){
@@ -21,7 +21,7 @@ function WorkbookElement({ question_id, question_type, question_name, question_v
     const workbookElementClickDispatch = useDispatch();
     const workbookElementOnClickHandler = (event: React.MouseEvent) => {
         workbookElementClickDispatch({type: 'workbookElementClick', questionType: question_type, questionId: question_id})
-        navigate(`/quiz/${question_type.toLowerCase()}/${question_id}`, {state: {beforeLocation: location.pathname}})
+        navigate(`/quiz/${question_type.toLowerCase()}/${question_id}`, {state: {beforeLocation: location.pathname + location.search}})
     }
 
     return(

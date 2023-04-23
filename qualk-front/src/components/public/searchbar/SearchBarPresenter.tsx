@@ -9,6 +9,7 @@ type SearchBarPresenterPropsType = {
     isHover: boolean,
     inputOnClickHandler: ReactEventHandler,
     inputOnChangeHandler: ReactEventHandler,
+    inputOnKeyUpHandler: ReactEventHandler,
     inputOnBlurHandler: ReactEventHandler,
     onMouseOverHandler: ReactEventHandler,
     onMouseOutHandler: ReactEventHandler,
@@ -17,7 +18,7 @@ type SearchBarPresenterPropsType = {
     isVisibleClose: boolean,
 }
 
-function SearchBarPresenter({inputOnClickHandler, inputOnChangeHandler, inputOnBlurHandler, onMouseOverHandler, onMouseOutHandler, removeValueOnClickHandler, isActive, isHover, inputVal, isVisibleClose}:SearchBarPresenterPropsType){
+function SearchBarPresenter({inputOnClickHandler, inputOnChangeHandler, inputOnKeyUpHandler, inputOnBlurHandler, onMouseOverHandler, onMouseOutHandler, removeValueOnClickHandler, isActive, isHover, inputVal, isVisibleClose}:SearchBarPresenterPropsType){
     let logo;
 
     if(isActive || isHover){
@@ -35,6 +36,7 @@ function SearchBarPresenter({inputOnClickHandler, inputOnChangeHandler, inputOnB
             <div className={styles.input_container}>
                 <input onClick={inputOnClickHandler}
                        onChange={inputOnChangeHandler}
+                       onKeyUp={inputOnKeyUpHandler}
                        onBlur={inputOnBlurHandler}
                        className={styles.search_input}
                        placeholder='오늘은 무엇을 찾아볼까요?'

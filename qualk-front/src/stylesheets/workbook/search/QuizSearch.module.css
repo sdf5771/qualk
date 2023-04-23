@@ -83,7 +83,10 @@
     width: 80px;
     border-bottom: 1px solid black;
 }
-
+.search_result_container{}
+.search_result_container > .result_container:last-child{
+    margin-bottom: 80px;
+}
 .result_container{
     margin-top: 40px;
     display: flex;
@@ -124,4 +127,5 @@
     margin-top: 30px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }

@@ -8,6 +8,6 @@ export type WorkbookDataType = {
     question_reference: { title: string; author: string; link: string; }[],
     question_view: number,
     question_create: string,
-    question_edited: string,
-    question_tag: string[],
+    question_edited?: string,
+    question_tag: string[] | null,
 }
