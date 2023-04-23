@@ -49,15 +49,15 @@ function QuizSearch(){
                 <ul className={styles.list_container}>
                     <li onClick={() => navigate(`/quiz/search?keyword=${searchKeyword}&type=all`, {state: {beforeLocation: location.pathname + location.search}})}
                         className={searchType == 'all' ? styles.selected : ''}>
-                        <p>전체</p> <p>{keywordData && tagData ? keywordData.length + tagData.length : 0}</p>
+                        <p>전체</p> <p className={searchType == 'all' ? styles.active : ''}>{keywordData && tagData ? keywordData.length + tagData.length : 0}</p>
                     </li>
                     <li onClick={() => navigate(`/quiz/search?keyword=${searchKeyword}&type=keyword`, {state: {beforeLocation: location.pathname + location.search}})}
                         className={searchType == 'keyword' ? styles.selected : ''}>
-                        <p>문제</p> <p>{keywordData ? keywordData.length : 0}</p>
+                        <p>문제</p> <p className={searchType == 'keyword' ? styles.active : ''}>{keywordData ? keywordData.length : 0}</p>
                     </li>
                     <li onClick={() => navigate(`/quiz/search?keyword=${searchKeyword}&type=tag`, {state: {beforeLocation: location.pathname + location.search}})}
                         className={searchType == 'tag' ? styles.selected : ''}>
-                        <p>태그</p> <p>{tagData ? tagData.length : 0}</p>
+                        <p>태그</p> <p className={searchType == 'tag' ? styles.active : ''}>{tagData ? tagData.length : 0}</p>
                     </li>
                 </ul>
             </div>

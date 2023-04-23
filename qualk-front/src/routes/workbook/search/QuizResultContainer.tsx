@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import styles from "stylesheets/workbook/search/QuizSearch.module.css";
 import publicScrollbar from 'stylesheets/public/scrollbar.module.css'
 import {QuizResultContainerPropsType} from './type/QuizResultContainerPropsType'
@@ -10,6 +10,10 @@ import getSearchResult from "queries/workbook/search/getSearchResult";
 
 function QuizResultContainer({containerType, containerTitle, searchData, searchType, searchKeyword}: QuizResultContainerPropsType){
     const navigate = useNavigate();
+    const location = useLocation();
+    let renderCount = 0
+    const maximumRenderCount = 3
+
     return(
         <div className={styles.result_container}>
             <div className={styles.result_header}>
@@ -19,7 +23,7 @@ function QuizResultContainer({containerType, containerTitle, searchData, searchT
                 </div>
                 {searchType == "all" ?
                     <div className={styles.btn_container}
-                         onClick={() => navigate(`/quiz/search?keyword=${searchKeyword}&type=${containerType}`)}>
+                         onClick={() => navigate(`/quiz/search?keyword=${searchKeyword}&type=${containerType}`, {state: {beforeLocation: location.pathname + location.search}})}>
                         <span>전체보기</span>
                     </div> : null
                 }
@@ -27,6 +31,13 @@ function QuizResultContainer({containerType, containerTitle, searchData, searchT
             </div>
             <div className={styles.quiz_container}>
                 {searchData ? searchData.map((data: WorkbookDataType, index: number) => {
+
+                    renderCount++;
+
+                    if(searchType == 'all' && renderCount > maximumRenderCount){
+                        return null
+                    }
+
                     return <WorkbookElement
                         key={`${data['question_type']}-${data['question_id']}`}
                         question_id={data['question_id']}
