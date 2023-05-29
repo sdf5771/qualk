@@ -1,4 +1,7 @@
-from app.database.query import select, insert
+import random
+import uuid
+
+from app.database.query import select, insert, update
 
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
@@ -214,3 +217,78 @@ async def search_keyword(keyword: str, type: str):
             except Exception as error:
                 raise HTTPException(status_code=500, detail=str(error))
     return jsonable_encoder(result)
+#모의고사 생성
+@router.post("/api/v1/quiz/test/")
+async def search_keyword(type: str, testName: str, user_id):
+    find_question = f"""
+        SELECT content_id
+        FROM question_content
+        where type = '{type}';
+    """
+    questionid_list = select(sql=find_question)
+    random_questionid_list = random.sample(questionid_list, 50)
+    test_id = uuid.uuid4()
+    count = 1
+    for questionid in random_questionid_list:
+        inser_sql = f"""
+            INSERT INTO test_content(testId,testName,contentId,testIndex,userId)VALUES('{test_id}','{testName}','{questionid['content_id']}',{count},'{user_id}')
+        """
+        insert(sql=inser_sql)
+        count += 1
+    return jsonable_encoder({'testId':test_id})
+@router.get("/api/v1/quiz/test/")
+async def search_keyword(testid: str, testindex: int):
+    find_question = f"""
+        SELECT t1.testId, t2.title, t2.content_list
+        FROM test_content as t1
+        inner join (SELECT * FROM question_content as a inner join question_info as b on a.content_id = b.info_id) as t2
+        on t1.contentId = t2.content_id
+        where testId = '{testid}'
+          and t1.testIndex = {testindex};
+    """
+    questionid_list = select(sql=find_question)
+    return jsonable_encoder({'testId': testid,
+                             'title': questionid_list[0]['title'],
+                             'content_list': questionid_list[0]['content_list'].split(',')}
+                             )
+
+@router.put("/api/v1/quiz/test/")
+async def search_keyword(testid: str, testindex: int, usercorrect: int, interval: int):
+    find_question = f"""
+        update test_content
+        set usercorrect = {usercorrect},
+            `interval` = {interval}
+        where testId = '{testid}'
+          and testIndex = {testindex};
+    """
+    question_content = update(sql=find_question)
+    return jsonable_encoder({'testId':testid})
+
+@router.get("/api/v1/quiz/test/result")
+async def search_keyword(testid: str):
+    find_question = f"""
+        SELECT t1.testId, t2.title, t2.content_list, t1.usercorrect, t1.`interval`, t2.correct
+        FROM (SELECT d.testName,
+                     d.testId, 
+                     d.usercorrect, 
+                     d.`interval`, 
+                     d.contentId,
+                     d.testindex
+              FROM test_content as d 
+              inner join test_type as f 
+              on d.testName = f.testName) as t1
+        inner join (SELECT * FROM question_content as a inner join question_info as b on a.content_id = b.info_id) as t2
+        on t1.contentId = t2.content_id
+        where testId = '{testid}'
+          and t1.usercorrect != t2.correct
+        order by t1.testindex;
+    """
+    wrong_question = select(sql=find_question)
+    question_number = wrong_question[0]['count']
+    correct = question_number - len(wrong_question)
+    return jsonable_encoder({
+                             'testId':testid, 
+                             'correct':correct, 
+                             'question_number':question_number, 
+                             'wrong_question':wrong_question
+                            })
