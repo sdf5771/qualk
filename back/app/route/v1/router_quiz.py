@@ -321,13 +321,12 @@ async def result_test(testId: str):
         on t1.contentId = t2.content_id
         where testId = '{testId}'
           and t1.usercorrect != t2.correct
+          and t1.usercorrect is not null
         order by t1.testindex;
     """
     wrong_question = select(sql=find_question)
-    print(wrong_question)
     question_number = wrong_question[0]['count']
     correct = question_number - len(wrong_question)
-    print(wrong_question)
     update_info = f"""
         update test_info set correctNum = '{correct}', totalQuestion = '{question_number}',  status = 'END'where testId = '{testId}'
     """
