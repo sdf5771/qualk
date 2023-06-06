@@ -10,7 +10,6 @@ app.include_router(router_quiz.router)
 origins = [
     "http://localhost",
     "https://localhost",
-    "http://localhost",
     "http://localhost:3000",
     "https://qualk.co.kr"
 ]
@@ -26,7 +25,6 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return {"message": "Hello Bigger Applications!"}
-
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
