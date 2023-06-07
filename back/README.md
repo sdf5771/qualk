@@ -6,6 +6,12 @@
 poetry export -f requirements.txt > requirements.txt
 ```
 
+## qulak 패키지 추가 하는 방법
+예시)
+```
+poetry add python-multipart
+```
+
 ## qualk 빌드 방법
 ```
 poetry run uvicorn main:app
@@ -83,3 +89,5 @@ GET : /api/v1/quiz/result
   ]
 }
 ```
+
+2023-06-07 github slack 연동
