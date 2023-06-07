@@ -89,3 +89,5 @@ GET : /api/v1/quiz/result
   ]
 }
 ```
+
+2023-06-07 github slack 연동
