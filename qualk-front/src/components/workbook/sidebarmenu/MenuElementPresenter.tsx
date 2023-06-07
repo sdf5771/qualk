@@ -30,7 +30,7 @@ function MenuElementPresenter({menuName, onClickHandler, isActive, childMenu}:Me
           </div>
           <div className={styles.child_menu_container}>
               {isActive ? childMenu.map((child:string, index: number) => {
-                  return <ChildMenuComponent key={index} childMenuIndex={index} childMenuName={child}/>
+                  return <ChildMenuComponent key={index} parentMenuName={menuName} childMenuIndex={index} childMenuName={child}/>
               }) : null}
           </div>
       </div>

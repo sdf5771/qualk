@@ -5,7 +5,7 @@ async function getQuestionTopView(type:string){
             'Content-Type': 'application/json',
         }
     })
-
+    
     return response.json()
 }
 

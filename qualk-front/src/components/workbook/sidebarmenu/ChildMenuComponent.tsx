@@ -5,11 +5,12 @@ import {RootState} from "reducers/reducers";
 import {useLocation, useNavigate} from "react-router-dom";
 
 type ChildMenuComponentPropsType = {
+    parentMenuName: string,
     childMenuName: string,
     childMenuIndex: number,
 }
 
-function ChildMenuComponent({childMenuName, childMenuIndex}: ChildMenuComponentPropsType){
+function ChildMenuComponent({parentMenuName, childMenuName, childMenuIndex}: ChildMenuComponentPropsType){
     const location = useLocation();
     const navigate = useNavigate();
     const childMenuClickSelector = useSelector((state: RootState) => state.childMenuClickReducer)
@@ -21,9 +22,14 @@ function ChildMenuComponent({childMenuName, childMenuIndex}: ChildMenuComponentP
         // if(location.pathname !== "/workbook"){
         //     navigate('/workbook')
         // }
-        navigate(`/quiz/${childMenuName.toLowerCase()}`);
+        
+        if(parentMenuName === 'Test'){
+            navigate(`/quiz/test/${childMenuName.toLowerCase()}`);
+        } else {
+            navigate(`/quiz/${childMenuName.toLowerCase()}`);
+        }
 
-        childMenuClickDispatch({type: 'childMenuClick', menuName: childMenuName, menuId: childMenuIndex})
+        childMenuClickDispatch({type: 'childMenuClick', parentMenuName: parentMenuName, menuName: childMenuName, menuId: childMenuIndex})
     }
 
     useEffect(() => {

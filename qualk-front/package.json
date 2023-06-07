@@ -54,5 +54,5 @@
     "@types/styled-components": "^5.1.26",
     "typescript-plugin-css-modules": "^4.1.1"
   },
-  "proxy": "http://localhost:8000"
+  "proxy": "http://127.0.0.1:8000"
 }

@@ -1,0 +1,80 @@
+.quiz_test_root{
+    width: 100%;
+    height: 100%;
+    max-width: 1160px;
+    min-width: 1160px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.quiz_test_header{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1160px;
+    min-width: 1160px;
+}
+.quiz_test_title_container{
+    margin-top: 39px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.quiz_test_title_container > span{
+    font-family: Como;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.19;
+    letter-spacing: -1.28px;
+    color: #5b5b5b;
+}
+
+.test_list_container{
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+}
+.test_list_header{
+    display: flex;
+    width: 100%;
+    gap: 6px;
+}
+.test_list_header > span{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    color: #5b5b5b;
+}
+.test_list_body{
+    display: flex;
+    width: 100%;
+    gap: 40px;
+}
+
+.mockexam_container{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.mockexam_header{
+    display: flex;
+    width: 100%;
+}
+.mockexam_header > span{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    color: #5b5b5b;
+}
+.mockexam_body{
+    display: flex;
+    width: 100%;
+}

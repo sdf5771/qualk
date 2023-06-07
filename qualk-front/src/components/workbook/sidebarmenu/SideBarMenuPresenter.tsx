@@ -7,6 +7,11 @@ const menuData = [
         menuId: 1,
         menuName: 'Data Analysis',
         childMenu: ['GAIQ', 'SQID', 'SQLD'],
+    },
+    {
+        menuId: 2,
+        menuName: 'Test',
+        childMenu: ['GAIQ', 'SQID', 'SQLD'],
     }
 ]
 
