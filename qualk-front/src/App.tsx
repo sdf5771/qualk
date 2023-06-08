@@ -18,8 +18,6 @@ function App() {
             <ThemeProvider theme={theme}>
                 <Routes>
                     <Route path='/' element={<Main />} />
-                    {/*<Route path='/workbook' element={<WorkbookContainer />} />*/}
-                    {/*<Route path='/quiz/:id/*' element={<WorkbookContainer />} />*/}
                     <Route path='/quiz/*' element={<WorkbookContainer />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>

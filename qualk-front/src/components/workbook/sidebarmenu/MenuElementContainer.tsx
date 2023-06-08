@@ -7,7 +7,10 @@ import {RootState} from "reducers/reducers";
 type MenuElementType = {
     menuId: number;
     menuName: string,
-    childMenu: string[],
+    childMenu: {
+        childMenuId: string,
+        childMenuName: string,
+    }[],
 }
 
 function MenuElementContainer(props: MenuElementType){

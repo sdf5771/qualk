@@ -9,7 +9,10 @@ type MenuElementType = {
     menuName: string,
     onClickHandler: ReactEventHandler,
     isActive: boolean,
-    childMenu: string[],
+    childMenu: {
+        childMenuId: string,
+        childMenuName: string,
+    }[],
 }
 
 function MenuElementPresenter({menuName, onClickHandler, isActive, childMenu}:MenuElementType){
@@ -17,11 +20,13 @@ function MenuElementPresenter({menuName, onClickHandler, isActive, childMenu}:Me
     if(menuName === 'Data Analysis'){
         logo = <DataAnalysisLogo className={styles.logo} />
     } else if(menuName === 'Developer'){
-        logo = <DeveloperLogo className={styles.logo} />
+        logo = <DeveloperLogo className={ styles.logo} />
     } else if(menuName === 'Designer'){
         logo = <DesignerLogo className={styles.logo} />
+    } else if(menuName === 'Test'){
+        logo = <DesignerLogo className={styles.logo} />
     }
-
+    
     return(
       <div className={styles.menu_element_container}>
           <div className={`${styles.menu_element_root} ${isActive ? styles.active : null}`} onClick={onClickHandler}>
@@ -29,8 +34,8 @@ function MenuElementPresenter({menuName, onClickHandler, isActive, childMenu}:Me
               <span>{menuName}</span>
           </div>
           <div className={styles.child_menu_container}>
-              {isActive ? childMenu.map((child:string, index: number) => {
-                  return <ChildMenuComponent key={index} parentMenuName={menuName} childMenuIndex={index} childMenuName={child}/>
+              {isActive ? childMenu.map((child:{childMenuId: string, childMenuName: string}, index: number) => {
+                  return <ChildMenuComponent key={index} parentMenuName={menuName} childMenuId={child.childMenuId} childMenuName={child.childMenuName}/>
               }) : null}
           </div>
       </div>

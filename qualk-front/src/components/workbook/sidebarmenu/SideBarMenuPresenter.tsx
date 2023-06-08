@@ -6,12 +6,20 @@ const menuData = [
     {
         menuId: 1,
         menuName: 'Data Analysis',
-        childMenu: ['GAIQ', 'SQID', 'SQLD'],
+        childMenu: [
+            {childMenuId: 'DA_GAIQ', childMenuName: 'GAIQ'}, 
+            {childMenuId: 'DA_SQID', childMenuName: 'SQID'}, 
+            {childMenuId: 'DA_SQLD', childMenuName: 'SQLD'}
+        ],
     },
     {
         menuId: 2,
         menuName: 'Test',
-        childMenu: ['GAIQ', 'SQID', 'SQLD'],
+        childMenu: [
+            {childMenuId: 'Test_GAIQ', childMenuName: 'GAIQ'}, 
+            {childMenuId: 'Test_SQID', childMenuName: 'SQID'}, 
+            {childMenuId: 'Test_SQLD', childMenuName: 'SQLD'}
+        ],
     }
 ]
 
@@ -23,17 +31,19 @@ const menuData = [
 //     },
 //     {
 //         menuId: 2,
-//         menuName: 'Developer',
-//         childMenu: ['Code Test', 'Test Category', 'Test Develop'],
-//     },
-//     {
-//         menuId: 3,
-//         menuName: 'Designer',
-//         childMenu: ['Design01', 'Design02', 'Design03'],
+//         menuName: 'Test',
+//         childMenu: ['GAIQ', 'SQID', 'SQLD'],
 //     }
 // ]
 
-type menuDataType = {menuId: number, menuName: string, childMenu: string[]}
+type menuDataType = {
+    menuId: number, 
+    menuName: string, 
+    childMenu: {
+        childMenuId: string,
+        childMenuName: string,
+    }[]
+}
 
 type SideBarPresenterPropsType = {
     bannerOnClickHandler: ReactEventHandler,

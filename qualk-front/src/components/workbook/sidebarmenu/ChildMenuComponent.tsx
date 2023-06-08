@@ -7,10 +7,10 @@ import {useLocation, useNavigate} from "react-router-dom";
 type ChildMenuComponentPropsType = {
     parentMenuName: string,
     childMenuName: string,
-    childMenuIndex: number,
+    childMenuId: string,
 }
 
-function ChildMenuComponent({parentMenuName, childMenuName, childMenuIndex}: ChildMenuComponentPropsType){
+function ChildMenuComponent({parentMenuName, childMenuName, childMenuId}: ChildMenuComponentPropsType){
     const location = useLocation();
     const navigate = useNavigate();
     const childMenuClickSelector = useSelector((state: RootState) => state.childMenuClickReducer)
@@ -29,16 +29,16 @@ function ChildMenuComponent({parentMenuName, childMenuName, childMenuIndex}: Chi
             navigate(`/quiz/${childMenuName.toLowerCase()}`);
         }
 
-        childMenuClickDispatch({type: 'childMenuClick', parentMenuName: parentMenuName, menuName: childMenuName, menuId: childMenuIndex})
+        childMenuClickDispatch({type: 'childMenuClick', parentMenuName: parentMenuName, menuName: childMenuName, menuId: childMenuId})
     }
 
     useEffect(() => {
-        if(childMenuClickSelector['activeMenu'] === childMenuName){
+        if(childMenuClickSelector['activeMenuId'] === childMenuId){
             setIsActive(true);
         } else {
             setIsActive(false);
         }
-    }, [childMenuClickSelector['activeMenu']])
+    }, [childMenuClickSelector['activeMenuId']])
 
     return(
         <div className={`${styles.child_menu_root} ${isActive ? styles.active : ''}`} onClick={onClickHandler}>

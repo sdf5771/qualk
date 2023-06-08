@@ -16,14 +16,15 @@ function WorkbookContainer(){
 
     // 잘못된 경로로 접속할 경우 임시 redirect
     useEffect(() => {
-        console.log(location.pathname.split('/'))
         if(location.pathname.split('/')[2] != 'gaiq'
             && location.pathname.split('/')[2] != 'GAIQ'
             && location.pathname.split('/')[2] != 'sqld'
             && location.pathname.split('/')[2] != 'SQLD'
             && location.pathname.split('/')[2] != 'sqid'
             && location.pathname.split('/')[2] != 'SQID'
-            && location.pathname.split('/')[2] != 'search'){
+            && location.pathname.split('/')[2] != 'search'
+            && location.pathname.split('/')[2] != 'test'
+            ){
             navigate('/quiz/gaiq')
         }
     }, [])
