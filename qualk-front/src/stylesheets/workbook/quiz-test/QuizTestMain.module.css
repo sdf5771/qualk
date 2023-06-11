@@ -38,6 +38,7 @@
 }
 .test_list_header{
     display: flex;
+    align-items: center;
     width: 100%;
     gap: 6px;
 }
@@ -64,6 +65,8 @@
 }
 .mockexam_header{
     display: flex;
+    align-items: center;
+    gap: 6px;
     width: 100%;
 }
 .mockexam_header > span{

@@ -61,6 +61,7 @@ function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isTo
                     </div>
                     <div className={styles.right_side_container}>
                         <Routes>
+                            <Route path='/test/mockquiz?quiz=:id' element={<QuizTestMain />} />
                             <Route path='/test/*' element={<QuizTestMain />} />
                             <Route path='/search' element={<QuizSearch />} />
                             <Route path='/:id/*' element={<WorkbookDetailContainer />} />

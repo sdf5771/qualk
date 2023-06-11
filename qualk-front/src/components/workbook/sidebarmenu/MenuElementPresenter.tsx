@@ -4,6 +4,7 @@ import ChildMenuComponent from "./ChildMenuComponent";
 import {ReactComponent as DataAnalysisLogo} from 'assets/images/workbook/listview/sidebarmenu/dataanalysis_logo.svg'
 import {ReactComponent as DeveloperLogo} from 'assets/images/workbook/listview/sidebarmenu/developer_logo.svg'
 import {ReactComponent as DesignerLogo} from 'assets/images/workbook/listview/sidebarmenu/designer_logo.svg'
+import {ReactComponent as QuizTestLogo} from 'assets/images/workbook/listview/sidebarmenu/quiz_test_logo.svg'
 
 type MenuElementType = {
     menuName: string,
@@ -24,7 +25,7 @@ function MenuElementPresenter({menuName, onClickHandler, isActive, childMenu}:Me
     } else if(menuName === 'Designer'){
         logo = <DesignerLogo className={styles.logo} />
     } else if(menuName === 'Test'){
-        logo = <DesignerLogo className={styles.logo} />
+        logo = <QuizTestLogo className={styles.logo} />
     }
     
     return(

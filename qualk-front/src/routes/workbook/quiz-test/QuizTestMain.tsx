@@ -7,10 +7,19 @@ import MockExamSelectElement from 'components/workbook/quiz-test/MockExamSelectE
 import {RootState} from "reducers/reducers";
 import {useSelector} from "react-redux";
 import NoContents from "components/public/no-contents/NoContents";
+import useQuizTest from 'hook/useQuizTest';
+import {ReactComponent as DocsLogo} from 'assets/images/workbook/quiz-test/docs_logo.svg';
+import {ReactComponent as MockTestLogo} from 'assets/images/workbook/quiz-test/mocktest_logo.svg';
+import {ReactComponent as QualkImageFirst} from 'assets/images/workbook/quiz-test/qualk_image_01.svg'
+import {ReactComponent as QualkImageSecond} from 'assets/images/workbook/quiz-test/qualk_image_02.svg'
+import {ReactComponent as QualkImageThird} from 'assets/images/workbook/quiz-test/qualk_image_03.svg'
+import {ReactComponent as QualkMockTestImage} from 'assets/images/workbook/quiz-test/qualk_mock_test.svg'
 
 function QuizTestMain(){
     const menuElementActivateSelector = useSelector((state:RootState) => state.childMenuClickReducer);
     const [category, setCategory] = useState(menuElementActivateSelector);
+    const test = useQuizTest({type: "gaiq", testName: "exam", userId: 'seobisback'});
+    console.log('test :',test)
 
     useEffect(() => {
         setCategory(menuElementActivateSelector);
@@ -27,6 +36,7 @@ function QuizTestMain(){
     
                     <div className={styles.test_list_container}>
                         <div className={styles.test_list_header}>
+                            <DocsLogo />
                             <span>테스트를 대비하세요!</span>
                         </div>
                         <div className={styles.test_list_body}>
@@ -37,6 +47,10 @@ function QuizTestMain(){
                                 description='GAIQ 테스트와 비슷한 환경에서
                                  테스트를 대비해보세요!'
                                 option={{backgroundColor: "#fffaed", fontColor: "#ffba00"}}
+                                SVGComponent={QualkImageFirst}
+                                onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
+                                    
+                                }}
                                 />
                             <QuizSelectElement 
                                 testLength={20} 
@@ -45,6 +59,7 @@ function QuizTestMain(){
                                 description='GAIQ 테스트와 비슷한 환경에서
                                  테스트를 대비해보세요!'
                                 option={{backgroundColor: "#fdfaf2", fontColor: "#ff9300"}}
+                                SVGComponent={QualkImageSecond}
                                 />
                             <QuizSelectElement 
                                 testLength={30} 
@@ -53,12 +68,14 @@ function QuizTestMain(){
                                 description='GAIQ 테스트와 비슷한 환경에서
                                  테스트를 대비해보세요!'
                                 option={{backgroundColor: "#fdfaf2", fontColor: "#ff6c00"}}
+                                SVGComponent={QualkImageThird}
                                 />
                         </div>
                     </div>
     
                     <div className={styles.mockexam_container}>
                         <div className={styles.mockexam_header}>
+                            <MockTestLogo />
                             <span>실전과 비슷한 환경의 모의고사에요.</span>
                         </div>
                         <div className={styles.mockexam_body}>
@@ -66,7 +83,8 @@ function QuizTestMain(){
                                 testLength={50} 
                                 time={75} 
                                 title="연습은 그만! 이제 실전으로" 
-                                description='GAIQ 테스트와 비슷한 환경에서 테스트를 대비해보세요!'/>
+                                description='GAIQ 테스트와 비슷한 환경에서 테스트를 대비해보세요!'
+                                SVGComponent={QualkMockTestImage}/>
                         </div>
                     </div>
     

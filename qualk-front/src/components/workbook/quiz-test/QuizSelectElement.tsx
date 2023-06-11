@@ -11,11 +11,12 @@ type TQuizSelectElementProps = {
         backgroundColor: string;
         fontColor: string;
     }
+    onClickHandler?: React.MouseEventHandler<HTMLDivElement>,
 }
 
-function QuizSelectElement({testLength, time, title, description, SVGComponent, option}:TQuizSelectElementProps){
+function QuizSelectElement({testLength, time, title, description, SVGComponent, option, onClickHandler}:TQuizSelectElementProps){
     return (
-        <div className={styles.quiz_select_element_root}>
+        <div className={styles.quiz_select_element_root} onClick={onClickHandler}>
             <div className={styles.quiz_select_element_header}>
                 <div style={{backgroundColor: `${option?.backgroundColor}`}} className={styles.quiz_decobox}>
                     <span style={{color: option?.fontColor}}>{testLength}문제</span>
