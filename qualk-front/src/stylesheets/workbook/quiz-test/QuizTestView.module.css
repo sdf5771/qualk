@@ -1,0 +1,115 @@
+.quiz_test_view_root{
+    width: 100%;
+    height: 100%;
+    max-width: 1160px;
+    min-width: 1160px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.quiz_test_view_header{
+    margin-top: 39px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quiz_index_container{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.quiz_index_container > span:first-child{
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.17;
+    letter-spacing: -0.72px;
+    color: #ffba00;
+}
+.quiz_index_container > span:last-child{
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.17;
+    letter-spacing: -0.72px;
+    color: #ffa700;
+}
+
+.quiz_exit{
+
+}
+.quiz_exit > span{
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.19;
+    letter-spacing: -0.64px;
+    color: #d6d6d6;
+    text-decoration: underline;
+}
+
+.test_container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.test_title{
+    margin-top: 40px;
+    width: 840px;
+}
+.test_title > span{
+    font-family: Pretendard;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.67;
+    letter-spacing: -0.96px;
+    color: #5b5b5b;
+}
+
+.test_list_container{
+    margin-top: 46px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.test_btn_container{
+    margin-top: 40px;
+    width: 100%;
+}
+
+.test_btn_container > button{
+    transition: all 0.4s ease;
+}
+
+.test_btn_container > button:disabled {
+    width: 160px;
+    height: 44px;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 2.63;
+    letter-spacing: -0.64px;
+    text-align: center;
+    border-radius: 10px;
+    color: #d6d6d6;
+    border: solid 1px #e4e4e4;
+    background-color: #f9f9f9;
+}
+.test_btn_container > button:enabled {
+    width: 160px;
+    height: 44px;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 2.63;
+    letter-spacing: -0.64px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fda124;
+    border: solid 1px #fda124;
+    background-color: #fdfaf2;
+}

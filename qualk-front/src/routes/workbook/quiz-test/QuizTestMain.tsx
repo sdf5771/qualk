@@ -1,25 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import styles from 'stylesheets/workbook/quiz-test/QuizTestMain.module.css';
 import publicAnimations from 'stylesheets/public/animation.module.css';
+import { useNavigate } from 'react-router-dom';
 import {ReactComponent as GaiqLogo} from 'assets/images/workbook/listview/gaiq_logo.svg';
 import QuizSelectElement from 'components/workbook/quiz-test/QuizSelectElement';
 import MockExamSelectElement from 'components/workbook/quiz-test/MockExamSelectElement';
 import {RootState} from "reducers/reducers";
 import {useSelector} from "react-redux";
 import NoContents from "components/public/no-contents/NoContents";
-import useQuizTest from 'hook/useQuizTest';
 import {ReactComponent as DocsLogo} from 'assets/images/workbook/quiz-test/docs_logo.svg';
 import {ReactComponent as MockTestLogo} from 'assets/images/workbook/quiz-test/mocktest_logo.svg';
 import {ReactComponent as QualkImageFirst} from 'assets/images/workbook/quiz-test/qualk_image_01.svg'
 import {ReactComponent as QualkImageSecond} from 'assets/images/workbook/quiz-test/qualk_image_02.svg'
 import {ReactComponent as QualkImageThird} from 'assets/images/workbook/quiz-test/qualk_image_03.svg'
 import {ReactComponent as QualkMockTestImage} from 'assets/images/workbook/quiz-test/qualk_mock_test.svg'
+import { useMutation } from '@tanstack/react-query';
+import createQuizTest from 'queries/workbook/quiz-test/createQuizTest';
 
 function QuizTestMain(){
     const menuElementActivateSelector = useSelector((state:RootState) => state.childMenuClickReducer);
     const [category, setCategory] = useState(menuElementActivateSelector);
-    const test = useQuizTest({type: "gaiq", testName: "exam", userId: 'seobisback'});
-    console.log('test :',test)
+    const { mutate, isLoading, isError, error, isSuccess } = useMutation(createQuizTest);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setCategory(menuElementActivateSelector);
@@ -49,7 +51,18 @@ function QuizTestMain(){
                                 option={{backgroundColor: "#fffaed", fontColor: "#ffba00"}}
                                 SVGComponent={QualkImageFirst}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
-                                    
+                                    mutate(
+                                        {type: 'gaiq', testName: 'exam', userId: 'seobisback'}, 
+                                        {onSuccess: (data: {testId: string, testindex: number}) => {
+                                            if(data){
+                                                navigate(`/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`, 
+                                                {
+                                                    state: 
+                                                    {testIndex: data['testindex'], testId: data['testId'], totalIndex: 10}
+                                                }
+                                                );
+                                            }
+                                        }})
                                 }}
                                 />
                             <QuizSelectElement 

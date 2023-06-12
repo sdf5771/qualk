@@ -13,6 +13,7 @@ import SEOMetaTag from "components/public/metaTag/SEOMetaTag";
 import ToastMsg from "components/public/toast-msg/ToastMsg";
 import QuizSearch from "./search/QuizSearch";
 import QuizTestMain from "./quiz-test/QuizTestMain";
+import QuizTestView from './quiz-test/QuizTestView';
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -61,8 +62,8 @@ function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isTo
                     </div>
                     <div className={styles.right_side_container}>
                         <Routes>
-                            <Route path='/test/mockquiz?quiz=:id' element={<QuizTestMain />} />
-                            <Route path='/test/*' element={<QuizTestMain />} />
+                            <Route path='/test/:id' element={<QuizTestMain />} />
+                            <Route path='/test/:id/*' element={<QuizTestView />} />
                             <Route path='/search' element={<QuizSearch />} />
                             <Route path='/:id/*' element={<WorkbookDetailContainer />} />
                             <Route path='/:id' element={<WorkbookListViewContainer />} />
