@@ -244,7 +244,7 @@ async def create_test(type: str, testName: str, user_id):
         """
         ex_test = select(sql=select_ex_test)
         return jsonable_encoder({'testId':test_id,
-                               'testindex':ex_test[0]['testIndex']})
+                                 'testindex':ex_test[0]['testIndex']})
     else:
         find_question = f"""
             SELECT content_id
@@ -298,7 +298,21 @@ async def isnert_correct_test(testid: str, testindex: int, usercorrect: int, int
           and testIndex = {testindex};
     """
     question_content = update(sql=find_question)
-    return jsonable_encoder({'testId':testid})
+    question_info = f"""
+        SELECT b.description, b.correct, c.reference_url
+        FROM test_content as a
+        inner join question_content as b
+        on a.contentId = b.content_id
+        inner join question_info as c
+        on a.contentId = c.info_id
+        where a.testId = '{testid}'
+          and a.testIndex = {testindex};
+    """
+    question_data = select(sql=question_info)
+    return jsonable_encoder({'testId':testid,
+                             'correct':question_data[0]['correct'],
+                             'description':question_data[0]['description'],
+                             'reference_url':question_data[0]['reference_url']})
 
 @router.get("/api/v1/quiz/result/")
 async def result_test(testId: str):
