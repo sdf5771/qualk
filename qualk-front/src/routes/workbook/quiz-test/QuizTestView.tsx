@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import styles from 'stylesheets/workbook/quiz-test/QuizTestView.module.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import getQuizTest from 'queries/workbook/quiz-test/getQuizTest';
 import QuizContentRadio from 'components/workbook/quiz-test/QuizContentRadio';
 
 function QuizTestView(){
     const location = useLocation();
+    const navigate = useNavigate();
     const [countInterval, setCountInterval] = useState(0);
     const { isLoading, isError, data, error } = useQuery(['getQuizTest'], () => getQuizTest({testId: location.state.testId, testIndex: location.state.testIndex}));
     const [disabledBtn, setDisabledBtn] = useState(true);
@@ -27,7 +28,7 @@ function QuizTestView(){
                     <span>{location.state.testIndex}/{location.state.totalIndex}</span>
                 </div>
 
-                <div className={styles.quiz_exit}>
+                <div onClick={() => {navigate(`${location.state.prevPathName}`)}} className={styles.quiz_exit}>
                     <span>종료하기</span>
                 </div>
             </div>

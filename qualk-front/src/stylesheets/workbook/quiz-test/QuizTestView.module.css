@@ -37,7 +37,7 @@
 }
 
 .quiz_exit{
-
+    cursor: pointer;
 }
 .quiz_exit > span{
     font-family: Pretendard;

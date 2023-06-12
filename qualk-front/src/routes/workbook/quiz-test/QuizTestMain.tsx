@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from 'stylesheets/workbook/quiz-test/QuizTestMain.module.css';
 import publicAnimations from 'stylesheets/public/animation.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {ReactComponent as GaiqLogo} from 'assets/images/workbook/listview/gaiq_logo.svg';
 import QuizSelectElement from 'components/workbook/quiz-test/QuizSelectElement';
 import MockExamSelectElement from 'components/workbook/quiz-test/MockExamSelectElement';
@@ -22,6 +22,7 @@ function QuizTestMain(){
     const [category, setCategory] = useState(menuElementActivateSelector);
     const { mutate, isLoading, isError, error, isSuccess } = useMutation(createQuizTest);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         setCategory(menuElementActivateSelector);
@@ -58,7 +59,7 @@ function QuizTestMain(){
                                                 navigate(`/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`, 
                                                 {
                                                     state: 
-                                                    {testIndex: data['testindex'], testId: data['testId'], totalIndex: 10}
+                                                    {testIndex: data['testindex'], testId: data['testId'], totalIndex: 10, prevPathName: location.pathname}
                                                 }
                                                 );
                                             }
