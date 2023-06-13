@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import AnswerAndExplainPresenter from "./AnswerAndExplainPresenter";
 
 type AnswerAndExplainContainerPropsType = {
-    quizList: string[],
-    correctIndex: number,
+    quizList: string[] | null,
+    correctIndex: number | null,
     description: string | null,
     referenceData: string | null,
 }

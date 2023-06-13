@@ -2,41 +2,64 @@ import React, {useState, useEffect} from 'react';
 import styles from 'stylesheets/workbook/quiz-test/QuizTestView.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
 import getQuizTest from 'queries/workbook/quiz-test/getQuizTest';
 import QuizContentRadio from 'components/workbook/quiz-test/QuizContentRadio';
 import putQuizTest from 'queries/workbook/quiz-test/putQuizTest';
+import AnswerAndExplainContainer from 'components/workbook/workbook-detail/answer-and-explanation/AnswerAndExplainContainer';
+
+type TgetQuizTestData = {
+    testId: string,
+    title: string,
+    contentList: string[]
+}
 
 function QuizTestView(){
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [countInterval, setCountInterval] = useState(0);
     const [userSelect, setUserSelect] = useState<null | number>(null);
     const [isUserMutate, setIsUserMutate] = useState(false);
-    const { isLoading: getQuizTestIsLoading, isError: getQuizTestIsError, data, error: getQuizTestError } = useQuery(['getQuizTest'], () => getQuizTest({testId: location.state.testId, testIndex: location.state.testIndex}));
+    const [correctIndex, setCorrectIndex] = useState<null | number>(null);
+    const [answerDescription, setAnswerDescription] = useState(null);
+    const [referenceUrl, setReferenceUrl] = useState(null);
+    const [data, setData] = useState<TgetQuizTestData | null>(null);
+    const { isLoading: getQuizTestIsLoading, isError: getQuizTestIsError, data: getQuizTestData, error: getQuizTestError } = useQuery([`getQuizTest-${location.state.testIndex}`], () => getQuizTest({testId: location.state.testId, testIndex: location.state.testIndex}));
     const { mutate, isLoading: putQuizTestIsLoading, isError: putQuizTestIsError, error: putQuizTestError, isSuccess: putQuizTestIsSucesss } = useMutation(putQuizTest);
     const [disabledBtn, setDisabledBtn] = useState(true);
     
     useEffect(() => {
         const timer = setInterval(() => {
-            setCountInterval(countInterval => countInterval + 1);
+            setCountInterval((prevCount) => prevCount + 1);
         },1000)
 
         return () => clearInterval(timer);
-    }, [])
+    }, [location])
+
+    useEffect(() => {
+        if(getQuizTestData){
+            setData(getQuizTestData)
+        }
+
+        return () => {
+            setData(null);
+            setIsUserMutate(false);
+        } 
+    },[getQuizTestData, getQuizTestIsLoading])
 
     const submitBtnClickHandler = (event: React.MouseEvent) => {
-        console.log('asdasdas', disabledBtn, isUserMutate)
         if(disabledBtn === false){
             if(isUserMutate){
                 //유저가 답을 제출한 경우 '다음 문제로 넘어가야 하는 경우'
-                navigate(`/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`, 
+                navigate(`/quiz/test/gaiq/mockquiz?quiz=${data && data['testId']}&test-index=${location.state.testIndex + 1}`, 
                 {
                     state: 
-                    {testIndex: data['testindex'] + 1, testId: data['testId'], totalIndex: location.state.tatalIndex, prevPathName: location.pathname}
+                    {testIndex: location.state.testIndex + 1, testId: data && data['testId'], totalIndex: location.state.totalIndex, prevPathName: location.pathname}
                 });
             } else {
                 //유저가 답을 아직 제출하지 않은 경우 '정답 및 해설을 표시해야 하는 경우'
-                if(userSelect){
+                if(userSelect !== null){
                     mutate(
                         {
                             testId: location.state.testId, 
@@ -47,7 +70,10 @@ function QuizTestView(){
                         {
                             onSuccess: (data) => {
                                 setIsUserMutate(true);
-                                console.log('data ', data);
+                                setCorrectIndex(data.correct)
+                                setAnswerDescription(data.description);
+                                setReferenceUrl(data.reference_url);
+                                dispatch({type:"mutateRadio", correctIndex: data.correct, isMutate: true, selectIndex: userSelect});
                             }
                         }
                     )
@@ -77,19 +103,30 @@ function QuizTestView(){
                     {data ? data.contentList.map((contentElement: string, index: number) => {
                         return <QuizContentRadio 
                                     key={index} 
-                                    value={contentElement} 
+                                    index={index}
+                                    value={contentElement}
+                                    isMutate={isUserMutate} 
+                                    selectIndex={userSelect}
+                                    correctIndex={correctIndex}
                                     onChangeHandler={(event: React.ChangeEvent) => {
                                         setDisabledBtn(false);
                                         setUserSelect(index);
                                     }}/>
                     }) : null}
                 </div>
+                {isUserMutate ? 
+                <div>
+                    <AnswerAndExplainContainer 
+                        quizList={data && data.contentList}
+                        correctIndex={correctIndex}
+                        description={answerDescription}
+                        referenceData={referenceUrl}
+                    />
+                </div>
+                : null}
                 <div className={styles.test_btn_container}>
                     <button onClick={submitBtnClickHandler} disabled={disabledBtn}>{userSelect !== null && !isUserMutate ? "제출하기" : "다음"}</button>
                 </div>
-            </div>
-            <div>
-                
             </div>
         </div>
     )
