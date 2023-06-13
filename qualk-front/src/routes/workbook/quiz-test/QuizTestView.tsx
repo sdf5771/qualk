@@ -45,6 +45,7 @@ function QuizTestView(){
         return () => {
             setData(null);
             setIsUserMutate(false);
+            setDisabledBtn(true);
         } 
     },[getQuizTestData, getQuizTestIsLoading])
 
