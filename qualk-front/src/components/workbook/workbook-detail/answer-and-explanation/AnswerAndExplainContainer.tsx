@@ -1,25 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import AnswerAndExplainPresenter from "./AnswerAndExplainPresenter";
-import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
 
 type AnswerAndExplainContainerPropsType = {
-    workbookData: WorkbookDataType
+    quizList: string[],
+    correctIndex: number,
+    description: string | null,
+    referenceData: string | null,
 }
 
-function AnswerAndExplainContainer({workbookData}: AnswerAndExplainContainerPropsType){
+//contentList, correctIndex, description, reference
+
+function AnswerAndExplainContainer({quizList, correctIndex, description, referenceData}: AnswerAndExplainContainerPropsType){
     const [answer, setAnswer] = useState('');
+
     useEffect(() => {
-        if(workbookData && workbookData.question_contents){
-            workbookData.question_contents.forEach((content, index) => {
-                if(parseInt(workbookData.question_correct) === index){
-                    setAnswer(content);
+        if(quizList !== null && correctIndex != null){
+            quizList.forEach((quizStr, index) => {
+                if(correctIndex === index){
+                    setAnswer(quizStr);
                 }
             });
         }
-    })
+    }, [quizList, correctIndex]);
 
     return(
-        <AnswerAndExplainPresenter workbookData={workbookData} answer={answer} />
+        <AnswerAndExplainPresenter description={description} referenceData={referenceData} answer={answer} />
     )
 }
 

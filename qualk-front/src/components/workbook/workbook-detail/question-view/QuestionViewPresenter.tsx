@@ -27,11 +27,16 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
             <div className={styles.question_container}>
                 {workbookData && workbookData.question_contents ? workbookData.question_contents.map((question,index) => {
                     if(question){
-                        return <QuestionElement key={index} questionTitle={question} isCorrect={parseInt(workbookData.question_correct) == index ? true : false}/>
+                        return <QuestionElement key={index} questionTitle={question} isCorrect={workbookData.question_correct === index ? true : false}/>
                     }
                 }) : null}
             </div>
-            <AnswerAndExplainContainer workbookData={workbookData} />
+            <AnswerAndExplainContainer 
+                    quizList={workbookData && workbookData.question_contents}
+                    correctIndex={workbookData && workbookData.question_correct}
+                    description={workbookData && workbookData.question_description ? workbookData.question_description : null}
+                    referenceData={workbookData && workbookData.question_reference && workbookData.question_reference[0].link ? workbookData.question_reference[0].link : null}
+                />
             <div className={styles.question_btn_container}>
                 <PublicImageBtnContainer
                     btnText="목록으로"

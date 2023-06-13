@@ -3,12 +3,13 @@ import styles from './AnswerAndExplainPresenter.module.css';
 import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
 
 type AnswerAndExplainPresenterPropsType = {
-    workbookData: WorkbookDataType
+    description: string | null,
+    referenceData: string | null,
     answer: string
 }
 
-function AnswerAndExplainPresenter({workbookData, answer}:AnswerAndExplainPresenterPropsType){
-    const referenceURL = workbookData && workbookData.question_reference ? workbookData.question_reference : '';
+function AnswerAndExplainPresenter({description, referenceData, answer}:AnswerAndExplainPresenterPropsType){
+    const referenceURL = referenceData ? referenceData : '';
 
     return(
         <div className={styles.answer_explain_root}>
@@ -16,22 +17,24 @@ function AnswerAndExplainPresenter({workbookData, answer}:AnswerAndExplainPresen
                 <span>정답 및 해설</span>
             </div>
             <div className={styles.content_container}>
-                <div className={styles.answer_container}>
-                    <span>{answer}</span>
-                </div>
-                <div className={styles.explain_container}>
-                    <span>{workbookData ? workbookData.question_description : ''}</span>
-                </div>
-                <div className={styles.reference_container}>
-                    {
-                        workbookData && workbookData.question_reference ?
-                        <>
-                            <span>참고 : </span>
-                            <span>{`${referenceURL}`}</span>
-                        </>
-                        : null
-                    }
-                </div>
+                {answer ? 
+                    <div className={styles.answer_container}>
+                        <span>{answer}</span>
+                    </div>
+                : null}
+                {description ? 
+                    <div className={styles.explain_container}>
+                        <span>{description ? description : ''}</span>
+                    </div>
+                : null}
+                {
+                    referenceURL !== '' && referenceURL ?
+                    <div className={styles.reference_container}>
+                        <span>참고 : </span>
+                        <span>{`${referenceURL}`}</span>
+                    </div>
+                    : null
+                }
             </div>
         </div>
     )
