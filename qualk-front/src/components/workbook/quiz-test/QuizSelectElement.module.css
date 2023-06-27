@@ -10,9 +10,7 @@
     cursor: pointer;
 }
 .quiz_select_element_root:hover{
-    border: solid 2px #ffba00;
-    width: calc(358px - 60px);
-    height: calc(408px - 80px);
+    border: solid 1px #ffba00;
 }
 .quiz_select_element_header{
     width: 100%;

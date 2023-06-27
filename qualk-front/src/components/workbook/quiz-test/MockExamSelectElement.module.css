@@ -10,9 +10,7 @@
     cursor: pointer;
 }
 .mock_exam_select_element_root:hover{
-    width: calc(1188px - 60px);
-    height: 266px;
-    border: solid 2px #ffba00;
+    border: solid 1px #ffba00;
 }
 .mock_exam_select_element_info_container{
     display: flex;

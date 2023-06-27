@@ -14,6 +14,7 @@ import ToastMsg from "components/public/toast-msg/ToastMsg";
 import QuizSearch from "./search/QuizSearch";
 import QuizTestMain from "./quiz-test/QuizTestMain";
 import QuizTestView from './quiz-test/QuizTestView';
+import MockTestResult from './quiz-test/MockTestResult';
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -62,6 +63,7 @@ function WorkbookPresenter({location, headerLogoOnClickHandler, modalState, isTo
                     </div>
                     <div className={styles.right_side_container}>
                         <Routes>
+                            <Route path='/test/mockexam/result/*' element={<MockTestResult />} />
                             <Route path='/test/:id' element={<QuizTestMain />} />
                             <Route path='/test/:id/*' element={<QuizTestView />} />
                             <Route path='/search' element={<QuizSearch />} />
