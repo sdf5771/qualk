@@ -125,7 +125,7 @@ async def result_test(test_id: str):
     return jsonable_encoder({
                              'testId':test_id, 
                              'correct':correct,
-                             'userTime':using_time / 60,
+                             'userTime':int(using_time / 60),
                              'totalTime':test_info['Time'],
                              'canonialName':test_info['CanonialName'],
                              'questionNum':test_info['QuestionNum'],
