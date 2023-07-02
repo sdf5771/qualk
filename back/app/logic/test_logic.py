@@ -99,7 +99,7 @@ def find_wrong_content(content_id):
     content_id_list = ','.join(map(str, content_id_list))
     sql = f"""
         SELECT *
-          FROM QuestionContent
+          FROM QuestionInfo
         WHERE ContentID IN ({content_id_list})     
     """
     return select(sql)
