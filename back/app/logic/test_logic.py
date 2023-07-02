@@ -6,7 +6,7 @@ def find_test(user_id, test_type, test_num):
         SELECT TestID
         FROM TestInfo
         where UserID = '{user_id}'
-          and TestType = '{test_type}'
+          and TestType = '{test_type + str(test_num)}'
           and status = 'RUNNING';"""
     return select(find_test)
 
@@ -95,7 +95,6 @@ def find_wrong_content(content_id):
     for _ in content_id:
         content_id_list.append(_['ContentID'])
     content_id_list = ','.join(map(str, content_id_list))
-    print(content_id_list)
     sql = f"""
         SELECT *
           FROM QuestionContent
