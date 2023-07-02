@@ -90,6 +90,7 @@ def find_test_info(test_id):
     return select(sql)[0]
 
 def find_wrong_content(content_id):
+    if content_id is None: return None
     content_id_list = []
     for _ in content_id:
         content_id_list.append(_['ContentID'])

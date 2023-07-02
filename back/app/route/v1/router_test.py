@@ -94,7 +94,11 @@ async def result_test(test_id: str):
     wrong_content_id = result_wrong_case_cotent_id(test_id)
     test_info = find_test_info(test_id)
     correct = test_info['QuestionNum'] - len(wrong_content_id)
-    wrong_content_list = find_wrong_content(wrong_content_id)
+    print(wrong_content_id , " :::: " , correct)    
+    if len(wrong_content_id) != 0:
+        wrong_content_list = find_wrong_content(wrong_content_id)
+    else:
+        wrong_content_list = None
     update_test_info(test_id)
     return jsonable_encoder({
                              'testId':test_id, 
