@@ -4,7 +4,7 @@ from app.database.mysql import select, insert, update
 from app.logic.test_logic import find_test, get_ex_test, make_questionlist, \
                                  get_content, put_content, result_wrong_case_cotent_id, \
                                  check_question, update_test_info, find_test_info, \
-                                 find_wrong_content, delete_test
+                                 find_wrong_content, delete_test, check_index
 
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
@@ -31,7 +31,7 @@ async def create_test(Input_test: Input_test):
     else:
         random_questionid_list = make_questionlist(Input_test.TestType, Input_test.QuestionNum)
         test_id = uuid.uuid4()
-        inser_sql =f"""INSERT INTO TestInfo(TestID,UserID,Status,TestType)VALUES('{test_id}','{Input_test.UserID}', 'RUNNING', '{Input_test.TestType}')"""
+        inser_sql =f"""INSERT INTO TestInfo(TestID,UserID,Status,TestType)VALUES('{test_id}','{Input_test.UserID}', 'RUNNING', '{Input_test.TestType + str(Input_test.QuestionNum)}')"""
         insert(sql=inser_sql)
         count = 1
         for questionid in random_questionid_list:
@@ -56,10 +56,20 @@ async def get_quiz(test_id: str, test_index: int):
         시험 문제 내용 출력
     """
     questionid_list = get_content(test_id, test_index)
+    if test_index % 10 == 0:
+        last_index = check_index(test_id)
+        if last_index == test_index:
+            last_index = True
+        else:
+            last_index = False
+    else:
+        last_index = False
+
     return jsonable_encoder({
                              'testId': test_id,
                              'title': questionid_list[0]['Title'],
-                             'contentList': questionid_list[0]['ContentList'].split(',')
+                             'contentList': questionid_list[0]['ContentList'].split(','),
+                             'lastIndex': last_index
                              })
 
 @router.put("/")
@@ -94,18 +104,25 @@ async def result_test(test_id: str):
     wrong_content_id = result_wrong_case_cotent_id(test_id)
     test_info = find_test_info(test_id)
     correct = test_info['QuestionNum'] - len(wrong_content_id)
-    print(wrong_content_id , " :::: " , correct)    
+
     if len(wrong_content_id) != 0:
         wrong_content_list = find_wrong_content(wrong_content_id)
     else:
         wrong_content_list = None
+    
+    if test_info['PassNum'] <= correct:
+        pass_check = True
+    else:
+        pass_check = False
     update_test_info(test_id)
     return jsonable_encoder({
                              'testId':test_id, 
                              'correct':correct,
                              'canonialName':test_info['CanonialName'],
                              'questionNum':test_info['QuestionNum'],
+                             'pass': pass_check,
                              'passNum': test_info['PassNum'],
-                             'passPercent': correct/test_info['QuestionNum'] * 100,
+                             'passPercent': test_info['PassNum'] / test_info['QuestionNum'] * 100,
+                             'correctPercent': correct/test_info['QuestionNum'] * 100,
                              'wrongQuestion':wrong_content_list
                             })

@@ -103,6 +103,16 @@ def find_wrong_content(content_id):
     """
     return select(sql)
 
+def check_index(test_id):
+    sql=f"""
+        SELECT T2.QuestionNum
+        FROM TestInfo AS T1
+        INNER JOIN TestType AS T2
+        ON T1.TestType = T2.Name
+        WHERE T1.TestID = '{test_id}';
+    """
+    return select(sql)[0]['QuestionNum']
+
 def delete_test(test_id):
     sql=f"""
         DELETE FROM TestInfo WHERE TestID = '{test_id}';
