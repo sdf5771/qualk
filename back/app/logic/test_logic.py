@@ -1,7 +1,7 @@
 import random
 from app.database.mysql import select, insert, update
 
-def find_test(user_id, test_type, test_num):
+def find_test(user_id, test_type):
     find_test = f"""
         SELECT TestID
         FROM TestInfo
