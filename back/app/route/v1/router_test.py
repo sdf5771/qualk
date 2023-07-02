@@ -4,7 +4,7 @@ from app.database.mysql import select, insert, update
 from app.logic.test_logic import find_test, get_ex_test, make_questionlist, \
                                  get_content, put_content, result_wrong_case_cotent_id, \
                                  check_question, update_test_info, find_test_info, \
-                                 find_wrong_content
+                                 find_wrong_content, delete_test
 
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
@@ -20,7 +20,7 @@ async def create_test(Input_test: Input_test):
     """
         실질적인 문제 들어가기를 눌렀을 경우이고 실질적인 문제를 새롭게 만들었을 경우
     """
-    check_running_test = find_test(Input_test.UserID, Input_test.TestType)
+    check_running_test = find_test(Input_test.UserID, Input_test.TestType, Input_test.QuestionNum)
     if check_running_test:
         test_id = check_running_test[0]['TestID']
         ex_test = get_ex_test(test_id)
@@ -74,6 +74,16 @@ async def user_input_test(test_id: str, test_index: int, user_input: int, interv
                              'correct':question_data[0]['Correct'],
                              'description':question_data[0]['Description'],
                              'referenceUrl':question_data[0]['ReferenceURL']
+                            })
+
+@router.delete("/", status_code=204)
+async def delete_test(test_id: str):
+    """
+        사용자가 시험 문제를 입력하고 맞았는지 틀렸느지 바로 정답 확인 하는 곳
+    """
+    delete_test(test_id)
+    return jsonable_encoder({
+                             'testId':test_id
                             })
 
 @router.get("/result/")

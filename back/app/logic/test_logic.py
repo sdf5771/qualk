@@ -1,7 +1,7 @@
 import random
-from app.database.mysql import select, insert, update
+from app.database.mysql import select, insert, update, delete
 
-def find_test(user_id, test_type):
+def find_test(user_id, test_type, test_num):
     find_test = f"""
         SELECT TestID
         FROM TestInfo
@@ -98,9 +98,15 @@ def find_wrong_content(content_id):
     sql = f"""
         SELECT *
           FROM QuestionContent
-        WHERE ContentID IN (1,2,3,4)     
+        WHERE ContentID IN ({content_id_list})     
     """
     return select(sql)
+
+def delete_test(test_id):
+    sql=f"""
+        DELETE FROM TestInfo WHERE TestID = '{test_id}';
+    """
+    delete(sql)
 # class로 변경 테스트. 모듈 화 하고 싶어서
 # class Test:
 #     def __init__(test_id,

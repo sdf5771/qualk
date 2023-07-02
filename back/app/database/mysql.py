@@ -81,6 +81,22 @@ def update(sql):
     finally:
         conn.close()
 
+def delete(sql):
+    conn = pymysql.connect(
+    user=_DB_ID,
+    password=_DB_PASS,
+    host=_DB_IP,
+    port=int(_DB_PORT),
+    db=_DB_SCHEMA,
+    charset='utf8'
+    )
+    try:
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        conn.commit()
+    finally:
+        conn.close()
+
 
 
 
