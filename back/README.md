@@ -26,14 +26,14 @@ GET | api/v1/quiz/{type}/view/{last_index} | 조회수 순으로 가져오기
 GET | api/v1/quiz/{type}/new/{last_index} | 최신순 으로 가져오기 
 GET | api/v1/quiz/{type}/old/{last_index} | 오래된 순으로 가져오기
 
-## 퀴즈 API
+## Test API
 HTTP Method | URI | description | 
 ---|---|---|
-POST | /api/v1/quiz/test | test 처음에 들어갈 때 만드는 것
-GET | /api/v1/quiz/test | testId 와 testIndex를 입력해서 문제 정보를 가져옴
-PUT | /api/v1/quiz/test | 사용자가 입력한 정답을 서버로 보내는 것
-POST | /api/v1/quiz/test | test 처음에 들어갈 때 만드는 것
-
+POST | /api/v1/test | test 처음에 들어갈 때 만드는 것
+GET | /api/v1/test | testId 와 testIndex를 입력해서 문제 정보를 가져옴
+PUT | /api/v1/test | 사용자가 입력한 정답을 서버로 보내는 것
+POST | /api/v1/test | test 처음에 들어갈 때 만드는 것
+DELETE | /api/v1/test | test 삭제
 
 ## API response
 POST : /api/v1/test
@@ -48,13 +48,14 @@ Input : Post
 Output 
 {
   "testId": "671044f8-be2c-49a1-9625-64e5f7aba09f"
+  "testIndex": 1
 }
 ```
 상황 2 userId 로 가진 test가 RUNNING 상태가 있을 경우
 ```
 {
   "testId": "118f3459-4235-4faa-9fc0-0a6e30ab3bf7",
-  "testindex": 2
+  "testIndex": 2
 }
 ```
 GET : /api/v1/test

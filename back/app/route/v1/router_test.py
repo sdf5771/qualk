@@ -45,7 +45,10 @@ async def create_test(Input_test: Input_test):
                                    {count})"""
             insert(sql=inser_sql)
             count += 1
-    return jsonable_encoder({'testId':test_id})
+    return jsonable_encoder({
+                             'testId':test_id,
+                             'testIndex': 1
+                             })
 
 @router.get("/", status_code=200)
 async def get_quiz(test_id: str, test_index: int):
