@@ -67,7 +67,7 @@ async def user_input_test(test_id: str, test_index: int, user_input: int, interv
     """
         사용자가 시험 문제를 입력하고 맞았는지 틀렸느지 바로 정답 확인 하는 곳
     """
-    put_content(test_id, test_index, user_input, interval)
+    put_content(user_input, interval, test_id, test_index)
     question_data = check_question(test_id, test_index)
     return jsonable_encoder({
                              'testId':test_id,

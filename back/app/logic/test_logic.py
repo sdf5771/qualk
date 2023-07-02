@@ -1,7 +1,7 @@
 import random
 from app.database.mysql import select, insert, update
 
-def find_test(user_id, test_type):
+def find_test(user_id, test_type, test_num):
     find_test = f"""
         SELECT TestID
         FROM TestInfo
@@ -42,7 +42,7 @@ def get_content(test_id, test_index):
 def put_content(user_input, interval, test_id ,test_index):
     find_question = f"""
         UPDATE TestContent
-           SET UserInput = '{user_input}',
+           SET UserInput = {user_input},
               `Interval` = {interval}
          WHERE TestID = '{test_id}'
            AND TestIndex = {test_index};"""
