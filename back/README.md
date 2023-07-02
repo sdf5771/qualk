@@ -94,7 +94,7 @@ Output
 }
 ```
 
-GET : /api/v1/result
+GET : /api/v1/test/result
 ```
 Input : Get
 {
