@@ -87,6 +87,7 @@ def find_test_info(test_id):
           FROM TestInfo as T1
          INNER JOIN TestType as T2
             ON T1.TestType = T2.Name
+           AND T1.QuestionNum = T2.QuestionNum
          WHERE T1.TestID = '{test_id}';"""
     return select(sql)[0]
 
@@ -116,6 +117,14 @@ def delete_test(test_id):
         DELETE FROM TestInfo WHERE TestID = '{test_id}';
     """
     delete(sql)
+
+def find_time(test_id):
+    sql = f"""
+        SELECT sum(`interval`) as Time
+        FROM TestContent
+        WHERE TestID = '{test_id}';
+    """
+    return select(sql)[0]['Time']
 # class로 변경 테스트. 모듈 화 하고 싶어서
 # class Test:
 #     def __init__(test_id,

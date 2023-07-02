@@ -4,7 +4,8 @@ from app.database.mysql import select, insert, update
 from app.logic.test_logic import find_test, get_ex_test, make_questionlist, \
                                  get_content, put_content, result_wrong_case_cotent_id, \
                                  check_question, update_test_info, find_test_info, \
-                                 find_wrong_content, delete_test, check_index
+                                 find_wrong_content, delete_test, check_index,\
+                                 find_time
 
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
@@ -112,7 +113,7 @@ async def result_test(test_id: str):
     wrong_content_id = result_wrong_case_cotent_id(test_id)
     test_info = find_test_info(test_id)
     correct = test_info['QuestionNum'] - len(wrong_content_id)
-
+    using_time = find_time(test_id)
     if len(wrong_content_id) != 0:
         wrong_content_list = find_wrong_content(wrong_content_id)
     else:
@@ -124,7 +125,8 @@ async def result_test(test_id: str):
     return jsonable_encoder({
                              'testId':test_id, 
                              'correct':correct,
-                             'Time':test_info['Time'],
+                             'userTime':using_time,
+                             'TIme':test_info['Time'],
                              'canonialName':test_info['CanonialName'],
                              'questionNum':test_info['QuestionNum'],
                              'pass': pass_check,
