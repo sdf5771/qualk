@@ -31,7 +31,7 @@ async def create_test(Input_test: Input_test):
     else:
         random_questionid_list = make_questionlist(Input_test.TestType, Input_test.QuestionNum)
         test_id = uuid.uuid4()
-        inser_sql =f"""INSERT INTO TestInfo(TestID,UserID,Status,TestType)VALUES('{test_id}','{Input_test.UserID}', 'RUNNING', '{Input_test.TestType + str(Input_test.QuestionNum)}')"""
+        inser_sql =f"""INSERT INTO TestInfo(TestID,UserID,Status,TestType, QuestionNum)VALUES('{test_id}','{Input_test.UserID}', 'RUNNING', '{Input_test.TestType}', {Input_test.QuestionNum})"""
         insert(sql=inser_sql)
         count = 1
         for questionid in random_questionid_list:
@@ -79,6 +79,14 @@ async def user_input_test(test_id: str, test_index: int, user_input: int, interv
     """
     put_content(user_input, interval, test_id, test_index)
     question_data = check_question(test_id, test_index)
+    if test_index % 10 == 0:
+        last_index = check_index(test_id)
+        if last_index == test_index:
+            update_test_info(test_id)
+        else:
+            pass
+    else:
+        pass
     return jsonable_encoder({
                              'testId':test_id,
                              'correct':question_data[0]['Correct'],
@@ -109,12 +117,10 @@ async def result_test(test_id: str):
         wrong_content_list = find_wrong_content(wrong_content_id)
     else:
         wrong_content_list = None
-    
     if test_info['PassNum'] <= correct:
         pass_check = True
     else:
         pass_check = False
-    update_test_info(test_id)
     return jsonable_encoder({
                              'testId':test_id, 
                              'correct':correct,
