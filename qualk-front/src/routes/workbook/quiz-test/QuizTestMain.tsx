@@ -6,7 +6,7 @@ import {ReactComponent as GaiqLogo} from 'assets/images/workbook/listview/gaiq_l
 import QuizSelectElement from 'components/workbook/quiz-test/QuizSelectElement';
 import MockExamSelectElement from 'components/workbook/quiz-test/MockExamSelectElement';
 import {RootState} from "reducers/reducers";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import NoContents from "components/public/no-contents/NoContents";
 import {ReactComponent as DocsLogo} from 'assets/images/workbook/quiz-test/docs_logo.svg';
 import {ReactComponent as MockTestLogo} from 'assets/images/workbook/quiz-test/mocktest_logo.svg';
@@ -23,6 +23,7 @@ function QuizTestMain(){
     const { mutate, isLoading, isError, error, isSuccess } = useMutation(createQuizTest);
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setCategory(menuElementActivateSelector);
@@ -53,15 +54,21 @@ function QuizTestMain(){
                                 SVGComponent={QualkImageFirst}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
                                     mutate(
-                                        {type: 'gaiq', testName: 'exam', userId: 'seobisback'}, 
-                                        {onSuccess: (data: {testId: string, testindex: number}) => {
+                                        {type: 'gaiq', userId: 'seobisback', testNum: 10}, 
+                                        {onSuccess: (data: {testId: string, testIndex: number}) => {
                                             if(data){
-                                                navigate(`/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`, 
-                                                {
-                                                    state: 
-                                                    {testIndex: data['testindex'], testId: data['testId'], totalIndex: 10, prevPathName: location.pathname}
+                                                console.log('data ', data);
+                                                let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 10, prevPathName: location.pathname}
+                                                let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                                if(data.testIndex !== 1){
+                                                    dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                                                } else {
+                                                    navigate(navLocation, 
+                                                    {
+                                                        state: navState
+                                                    }
+                                                    );
                                                 }
-                                                );
                                             }
                                         }})
                                 }}
@@ -74,6 +81,25 @@ function QuizTestMain(){
                                  테스트를 대비해보세요!'
                                 option={{backgroundColor: "#fdfaf2", fontColor: "#ff9300"}}
                                 SVGComponent={QualkImageSecond}
+                                onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
+                                    mutate(
+                                        {type: 'gaiq', userId: 'seobisback', testNum: 20}, 
+                                        {onSuccess: (data: {testId: string, testIndex: number}) => {
+                                            if(data){
+                                                let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 20, prevPathName: location.pathname}
+                                                let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                                if(data.testIndex !== 1){
+                                                    dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                                                } else {
+                                                    navigate(navLocation, 
+                                                    {
+                                                        state: navState
+                                                    }
+                                                    );
+                                                }
+                                            }
+                                        }})
+                                }}
                                 />
                             <QuizSelectElement 
                                 testLength={30} 
@@ -83,6 +109,25 @@ function QuizTestMain(){
                                  테스트를 대비해보세요!'
                                 option={{backgroundColor: "#fdfaf2", fontColor: "#ff6c00"}}
                                 SVGComponent={QualkImageThird}
+                                onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
+                                    mutate(
+                                        {type: 'gaiq', userId: 'seobisback', testNum: 30}, 
+                                        {onSuccess: (data: {testId: string, testIndex: number}) => {
+                                            if(data){
+                                                let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 30, prevPathName: location.pathname}
+                                                let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                                if(data.testIndex !== 1){
+                                                    dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                                                } else {
+                                                    navigate(navLocation, 
+                                                    {
+                                                        state: navState
+                                                    }
+                                                    );
+                                                }
+                                            }
+                                        }})
+                                }}
                                 />
                         </div>
                     </div>
@@ -98,7 +143,28 @@ function QuizTestMain(){
                                 time={75} 
                                 title="연습은 그만! 이제 실전으로" 
                                 description='GAIQ 테스트와 비슷한 환경에서 테스트를 대비해보세요!'
-                                SVGComponent={QualkMockTestImage}/>
+                                SVGComponent={QualkMockTestImage}
+                                clickEventHandler={(event: React.MouseEvent<HTMLDivElement>) => {
+                                    mutate(
+                                        {type: 'gaiq', userId: 'seobisback', testNum: 50}, 
+                                        {onSuccess: (data: {testId: string, testIndex: number}) => {
+                                            if(data){
+                                                let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname}
+                                                let navLocation = `/quiz/test/gaiq/mockexam?quiz=${data['testId']}`;
+                                                if(data.testIndex !== 1){
+                                                    dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                                                } else {
+                                                    navigate(`/quiz/test/mockexam/start/`, 
+                                                    {
+                                                        state: navState
+                                                    }
+                                                    );
+                                                }
+                                            }
+                                        }})
+                                }}
+                                />
+                                
                         </div>
                     </div>
     

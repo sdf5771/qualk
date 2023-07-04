@@ -7,11 +7,12 @@ type TMockExamSelectElementProps = {
     title: string;
     description: string;
     SVGComponent?: React.FunctionComponent;
+    clickEventHandler?: React.MouseEventHandler;
 }
 
-function MockExamSelectElement({testLength, time, title, description, SVGComponent}:TMockExamSelectElementProps){
+function MockExamSelectElement({testLength, time, title, description, SVGComponent, clickEventHandler}:TMockExamSelectElementProps){
     return (
-        <div className={styles.mock_exam_select_element_root}>
+        <div onClick={clickEventHandler} className={styles.mock_exam_select_element_root}>
             <div className={styles.mock_exam_select_element_info_container}>
                 <div className={styles.mock_exam_select_element_header}>
                     <div className={`${styles.mock_exam_decobox} ${styles.bg_color}`}>

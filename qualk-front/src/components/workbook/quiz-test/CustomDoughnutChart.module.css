@@ -1,0 +1,24 @@
+.chart_root{
+    position: relative;
+}
+.answer_container{
+    z-index: 2;
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.answer_container > span{
+    font-family: Pretendard;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.96px;
+    text-align: center;
+    
+}
+.answer_container > span.passed{
+    color: #ffa700;
+}
+.answer_container > span.failed{
+    color: #5b5b5b;
+}

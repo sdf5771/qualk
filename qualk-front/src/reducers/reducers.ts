@@ -3,7 +3,7 @@ import authReducer from './auth/authReducer';
 import menuElementClickReducer from './workbook/sidebarmenu/menuElementClickReducer';
 import childMenuClickReducer from './workbook/sidebarmenu/childMenuClickReducer';
 import filterClickReducer from './workbook/listview/filterClickReducer';
-import shareWorkbookClickReducer from './workbook/workbook-detail/shareWorkbookClickReducer';
+import workbookModalReducer from './workbook/workbook-detail/workbookModalReducer';
 import toastMsgReducer from './public/toastMsgReducer';
 
 const rootReducer = combineReducers({
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     menuElementClickReducer,
     childMenuClickReducer,
     filterClickReducer,
-    shareWorkbookClickReducer,
+    workbookModalReducer,
     toastMsgReducer,
 });
 

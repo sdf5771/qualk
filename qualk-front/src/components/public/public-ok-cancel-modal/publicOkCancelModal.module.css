@@ -1,0 +1,73 @@
+.public_ok_cancel_root{
+    z-index: 20;
+    position: absolute;
+}
+.background{
+    width: 100vw;
+    height: 100vh;
+    background-color: #B2B2B2;
+    opacity: 0.5;
+}
+
+.modal_root{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    width: calc(422px - 60px);
+    /* height: calc(215px - 60px); */
+    border-radius: 16px;
+    background-color: #ffffff;
+}
+.header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.description_conatiner{
+    margin-top: 20px;
+    width: 300px;
+}
+.description_conatiner > span{
+    white-space: pre-line;
+    font-family: Pretendard;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: -0.56px;
+    text-align: left;
+    color: #5b5b5b;
+}
+.btn_container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.modal_btn{
+    width: 176px;
+    height: 44px;
+    border-radius: 6px;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.19;
+    letter-spacing: -0.64px;
+    text-align: center;
+    cursor: pointer;
+}
+.modal_btn.default{
+    border: solid 1px #e4e4e4;
+    background-color: #fff;
+    color: #5b5b5b;
+}
+.modal_btn.yellow{
+    border: solid 1px #ffa700;
+    background-color: #fdfaf2;
+    color: #ffa700;
+}

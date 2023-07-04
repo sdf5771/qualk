@@ -1,18 +1,47 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import getQuizResult from 'queries/workbook/quiz-test/getQuizResult';
 import styles from 'stylesheets/workbook/quiz-test/MockTestResult.module.css'
 import {ReactComponent as ArrowLeftIconDefault} from "assets/images/public/arrow_left_icon.svg";
 import {ReactComponent as ArrowLeftIconHover} from "assets/images/public/arrow_left_icon_hover.svg";
 import PublicImageBtnContainer from 'components/public/public-image-btn/PublicImageBtnContainer';
 import ResultPreview from 'components/workbook/quiz-test/ResultPreview';
+import TestTimeViewer from 'components/workbook/quiz-test/TestTimeViewer';
+import WrongTestChart from 'components/workbook/quiz-test/WrongTestChart';
+import WorkbookElement from 'components/workbook/listview/WorkbookElement';
+import correctComment from 'javascripts/correctComment';
+import timeComment from 'javascripts/timeComment';
 
 function MockTestResult(){
     const navigate = useNavigate();
+    const location = useLocation();
+    const queryStr = location.search ? location.search.split('=')[1] : '';
+    const { isLoading, isError, data, error } = useQuery([`getQuizResult`], () => getQuizResult({testId: queryStr}));
+    const [correctCmtState, setCorrectCmtState] = useState('');
+    const [timeCmt, setTimeCmt] = useState('');
+
+    useEffect(() => {
+        if(data){
+            setCorrectCmtState(correctComment(data.correctPercent, data.passPercent, data.pass));
+            setTimeCmt(timeComment(data.userTime, data.totalTime, data.pass));
+        }
+    }, [data])
+
+    // 404 Error redirect 하는 부분 (디자인 수정 후)
+    // if(isError){
+    //     navigate('/');
+    // }
+
+    console.log('data ', data);
+    console.log('correctCmtState ', correctCmtState);
+    console.log('timeCmt ', timeCmt);
+
     return(
         <div className={styles.mock_test_result_root}>
             <div className={styles.mock_test_result_header}>
                 <div>
-                    <PublicImageBtnContainer
+                <PublicImageBtnContainer
                         btnText="목록으로"
                         options={{border: false}}
                         logoIcon={{
@@ -25,30 +54,47 @@ function MockTestResult(){
                     />
                 </div>
                 <div>
-                    <span className={styles.title}>GAIQ 인증평가 모의 테스트 결과</span>
+                    <span className={styles.title}>{data ? data.canonialName : ''} 결과</span>
                     <span className={styles.re_test}>다시 응시하기</span>
                 </div>
             </div>
 
             <div className={styles.result_preview}>
-                <ResultPreview />
+                <ResultPreview 
+                    totalIndex={data ? data.questionNum : 0} 
+                    userCorrected={data ? data.correct : 0}  
+                    passPercent={data ? data.passPercent: 0}  
+                    passNum={data ? data.passNum : 0}  
+                    totalTime={data ? data.totalTime : 0}  
+                    isPass={data ? data.pass : false}  
+                    />
             </div>
 
             <div className={styles.result_infobox}>
                 <div>
-                    <span className={styles.title}>모의 테스트 결과 분석</span>
+                    <span className={styles.title}>모의고사 결과 분석</span>
                 </div>
-                <div>
-
+                <div style={{marginTop: '29px', display: 'flex', gap: '40px', width: '100%'}}>
+                    <TestTimeViewer userTime={data ? data.userTime : 0} totalTime={data ? data.totalTime : 0} comment={timeCmt} isPass={data ? data.isPass : false} />
+                    <WrongTestChart userCorrected={data ? data.correct : 0} totalIndex={data ? data.questionNum : 0} correctPercent={data ? data.correctPercent : 0} command={correctCmtState} isPass={data ? data.isPass : false} />
                 </div>
             </div>
 
             <div className={styles.wrong_test_container}>
                 <div>
-                    <span className={styles.title}>틀린 문제</span>
+                    <span className={styles.title}>틀린문제</span>
                 </div>
-                <div>
-
+                <div style={{marginTop: '29px', display: 'flex', flexDirection: 'column'}}>
+                    {/* {data.wrongQuestion ? data.wrongQuestion.map((quizData: {ContentID: number, CreateDate: string, Tag: string[] | null, Title: string, View: number}) => {
+                        return <WorkbookElement 
+                                    question_id={quizData.ContentID}
+                                    question_type={}
+                                    question_name={quizData.Title}
+                                    question_view={quizData.View}
+                                    question_create={quizData.CreateDate}
+                                    question_tag={quizData.Tag}
+                                    />
+                    }) : null} */}
                 </div>
             </div>
         </div>

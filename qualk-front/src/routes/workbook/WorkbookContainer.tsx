@@ -1,13 +1,14 @@
 import React,{useEffect} from 'react';
 import WorkbookPresenter from "./WorkbookPresenter";
 import {useNavigate, useLocation} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {RootState} from "reducers/reducers";
 
 function WorkbookContainer(){
     const navigate = useNavigate();
     const location = useLocation();
-    const shareWorkbookClickSelector = useSelector((state: RootState) => state.shareWorkbookClickReducer)
+    const dispatch = useDispatch();
+    const workbookModalSelector = useSelector((state: RootState) => state.workbookModalReducer)
     const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
 
     const headerLogoOnClickHandler = (event:React.MouseEvent) => {
@@ -30,9 +31,11 @@ function WorkbookContainer(){
     }, [])
     return(
         <WorkbookPresenter
+            navigate={navigate}
+            dispatch={dispatch}
             location={location}
             headerLogoOnClickHandler={headerLogoOnClickHandler}
-            modalState={shareWorkbookClickSelector ? shareWorkbookClickSelector['modalStateId'] : 0}
+            modalState={workbookModalSelector ? workbookModalSelector : {modalStateId: 0}}
             toastType={toastType}
             isToast={isToast}
             toastMsg={toastMsg}

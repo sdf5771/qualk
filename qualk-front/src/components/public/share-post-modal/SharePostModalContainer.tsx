@@ -9,7 +9,7 @@ function SharePostModalContainer(){
     const dispatch = useDispatch();
 
     const modalCloseOnClickHandler = (event: React.MouseEvent) => {
-        dispatch({type: 'shareWorkbookModalClose', modalStateId: 0})
+        dispatch({type: 'WorkbookModalClose'})
     }
 
     const handleCopyClipBoard = async (text: string) => {

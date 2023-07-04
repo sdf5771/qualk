@@ -9,7 +9,7 @@ import {ReactComponent as ListviewIconDefault} from 'assets/images/public/listvi
 import {ReactComponent as ListviewIconHover} from 'assets/images/public/listview_icon_hover.svg';
 import PublicImageBtnContainer from "components/public/public-image-btn/PublicImageBtnContainer";
 import {NavigateFunction} from "react-router-dom";
-import { actionType } from 'reducers/workbook/workbook-detail/shareWorkbookClickReducer';
+import { actionType } from 'reducers/workbook/workbook-detail/workbookModalReducer';
 
 type QuestionViewPresenterPropsType = {
     navigate: NavigateFunction
@@ -59,7 +59,7 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
                     }}
                     btnClickEventHandler={(event: React.MouseEvent)=>{
                         if(dispatch){
-                            dispatch({type: 'shareWorkbookClick', modalStateId: 1});
+                            dispatch({type: 'shareWorkbookClick'});
                         }
                     }}
                 />

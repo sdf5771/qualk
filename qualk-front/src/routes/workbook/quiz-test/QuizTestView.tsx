@@ -18,17 +18,19 @@ function QuizTestView(){
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [isLast, setIsLast] = useState(false);
     const [countInterval, setCountInterval] = useState(0);
     const [userSelect, setUserSelect] = useState<null | number>(null);
     const [isUserMutate, setIsUserMutate] = useState(false);
     const [correctIndex, setCorrectIndex] = useState<null | number>(null);
     const [answerDescription, setAnswerDescription] = useState(null);
     const [referenceUrl, setReferenceUrl] = useState(null);
+    const [isMockExam, setIsMockExam] = useState(false);
     const [data, setData] = useState<TgetQuizTestData | null>(null);
     const { isLoading: getQuizTestIsLoading, isError: getQuizTestIsError, data: getQuizTestData, error: getQuizTestError } = useQuery([`getQuizTest-${location.state.testIndex}`], () => getQuizTest({testId: location.state.testId, testIndex: location.state.testIndex}));
     const { mutate, isLoading: putQuizTestIsLoading, isError: putQuizTestIsError, error: putQuizTestError, isSuccess: putQuizTestIsSucesss } = useMutation(putQuizTest);
     const [disabledBtn, setDisabledBtn] = useState(true);
-    
+
     useEffect(() => {
         const timer = setInterval(() => {
             setCountInterval((prevCount) => prevCount + 1);
@@ -38,7 +40,12 @@ function QuizTestView(){
     }, [location])
 
     useEffect(() => {
+        //모의고사인 경우
+        if(location.pathname.split('/')[4] === 'mockexam'){
+            setIsMockExam(true);
+        }
         if(getQuizTestData){
+            setIsLast(getQuizTestData.lastIndex);
             setData(getQuizTestData)
         }
 
@@ -51,15 +58,7 @@ function QuizTestView(){
 
     const submitBtnClickHandler = (event: React.MouseEvent) => {
         if(disabledBtn === false){
-            if(isUserMutate){
-                //유저가 답을 제출한 경우 '다음 문제로 넘어가야 하는 경우'
-                navigate(`/quiz/test/gaiq/mockquiz?quiz=${data && data['testId']}&test-index=${location.state.testIndex + 1}`, 
-                {
-                    state: 
-                    {testIndex: location.state.testIndex + 1, testId: data && data['testId'], totalIndex: location.state.totalIndex, prevPathName: location.pathname}
-                });
-            } else {
-                //유저가 답을 아직 제출하지 않은 경우 '정답 및 해설을 표시해야 하는 경우'
+            if(isMockExam){
                 if(userSelect !== null){
                     mutate(
                         {
@@ -78,6 +77,50 @@ function QuizTestView(){
                             }
                         }
                     )
+                    if(isLast){
+                        navigate(`/quiz/test/mockexam/result/?test-id=${data?.testId}`)
+                    } else {
+                        //유저가 답을 제출한 경우 '다음 문제로 넘어가야 하는 경우'
+                        navigate(`/quiz/test/gaiq/mockexam?quiz=${data && data['testId']}&test-index=${location.state.testIndex + 1}`, 
+                        {
+                            state: 
+                            {testIndex: location.state.testIndex + 1, testId: data && data['testId'], totalIndex: location.state.totalIndex, prevPathName: location.pathname}
+                        });
+                    }
+                }
+            }else{
+                if(isUserMutate){
+                    if(isLast){
+                        navigate('/quiz/test/gaiq');
+                    } else {
+                        //유저가 답을 제출한 경우 '다음 문제로 넘어가야 하는 경우'
+                        navigate(`/quiz/test/gaiq/mockquiz?quiz=${data && data['testId']}&test-index=${location.state.testIndex + 1}`, 
+                        {
+                            state: 
+                            {testIndex: location.state.testIndex + 1, testId: data && data['testId'], totalIndex: location.state.totalIndex, prevPathName: location.pathname}
+                        });
+                    }
+                } else {
+                    //유저가 답을 아직 제출하지 않은 경우 '정답 및 해설을 표시해야 하는 경우'
+                    if(userSelect !== null){
+                        mutate(
+                            {
+                                testId: location.state.testId, 
+                                testIndex: location.state.testIndex,
+                                userCorrect: userSelect,
+                                interval: countInterval,
+                            },
+                            {
+                                onSuccess: (data) => {
+                                    setIsUserMutate(true);
+                                    setCorrectIndex(data.correct)
+                                    setAnswerDescription(data.description);
+                                    setReferenceUrl(data.reference_url);
+                                    dispatch({type:"mutateRadio", correctIndex: data.correct, isMutate: true, selectIndex: userSelect});
+                                }
+                            }
+                        )
+                    }
                 }
             }
         }
@@ -103,19 +146,20 @@ function QuizTestView(){
                 <div className={styles.test_list_container}>
                     {data ? data.contentList.map((contentElement: string, index: number) => {
                         return <QuizContentRadio 
-                                    key={index} 
+                                    key={contentElement+index} 
                                     index={index}
                                     value={contentElement}
                                     isMutate={isUserMutate} 
                                     selectIndex={userSelect}
                                     correctIndex={correctIndex}
+                                    isMockExam={isMockExam}
                                     onChangeHandler={(event: React.ChangeEvent) => {
                                         setDisabledBtn(false);
                                         setUserSelect(index);
                                     }}/>
                     }) : null}
                 </div>
-                {isUserMutate ? 
+                {isUserMutate && !isMockExam ? 
                 <div>
                     <AnswerAndExplainContainer 
                         quizList={data && data.contentList}
@@ -126,7 +170,7 @@ function QuizTestView(){
                 </div>
                 : null}
                 <div className={styles.test_btn_container}>
-                    <button onClick={submitBtnClickHandler} disabled={disabledBtn}>{userSelect !== null && !isUserMutate ? "제출하기" : "다음"}</button>
+                    <button onClick={submitBtnClickHandler} disabled={disabledBtn}>{userSelect !== null && !isUserMutate && !isMockExam ? "제출하기" : "다음"}</button>
                 </div>
             </div>
         </div>
