@@ -1,4 +1,5 @@
 import uuid
+import math
 
 from app.database.mysql import select, insert, update
 from app.logic.test_logic import find_test, get_ex_test, make_questionlist, \
@@ -116,12 +117,19 @@ async def result_test(test_id: str):
     using_time = find_time(test_id)
     if len(wrong_content_id) != 0:
         wrong_content_list = find_wrong_content(wrong_content_id)
+        for _ in wrong_content_list:
+            if _['Tag'] is not None:
+                try:
+                    _['Tag'] = _['Tag'].split(',')
+                except Exception as error:
+                    raise HTTPException(status_code=500, detail=str(error))
     else:
         wrong_content_list = None
     if test_info['PassNum'] <= correct:
         pass_check = True
     else:
         pass_check = False
+
     return jsonable_encoder({
                              'testId':test_id, 
                              'correct':correct,
@@ -131,7 +139,7 @@ async def result_test(test_id: str):
                              'questionNum':test_info['QuestionNum'],
                              'pass': pass_check,
                              'passNum': test_info['PassNum'],
-                             'passPercent': test_info['PassNum'] / test_info['QuestionNum'] * 100,
-                             'correctPercent': correct/test_info['QuestionNum'] * 100,
+                             'passPercent': math.trunc(test_info['PassNum'] / test_info['QuestionNum'] * 100),
+                             'correctPercent': math.trunc(correct / test_info['QuestionNum'] * 100),
                              'wrongQuestion':wrong_content_list
                             })
