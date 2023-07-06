@@ -35,7 +35,16 @@ type WorkbookPresenterPropsType = {
     navigate: NavigateFunction,
     dispatch: Dispatch
     headerLogoOnClickHandler: ReactEventHandler,
-    modalState: { modalStateId: number, navLocation?: string, navigationState?: string, mutateFunc?: UseMutateFunction },
+    modalState: { 
+        modalStateId: number, 
+        navLocation?: string, 
+        navigationState?: {
+            prevPathName: string, 
+            testId:string, 
+            testIndex: number,
+            totalIndex: number,
+        }, 
+        mutateFunc?: UseMutateFunction },
     isToast?: boolean,
     toastType: 'check' | 'alert' | 'warning',
     toastMsg?: string,
@@ -52,25 +61,26 @@ function WorkbookPresenter({navigate, dispatch, location, headerLogoOnClickHandl
                 description="이전에 문제를 풀던 기록이 남아 있어요! 이어서 진행하면 이전에 풀었던 문제부터 진행할 수 있어요!"
                 okBtnTitle="처음부터 풀기" 
                 cancelbtnTitle="이어서 풀기" 
-                okBtnClickEventHandler={(event: React.MouseEvent<HTMLButtonElement>) => {
-                    // if(modalState && modalState.navLocation && modalState.navigationState){
-                    //     deleteQuiz({testId: modalState.navigationState.testId})
-                    //     modalState.mutateFunc(
-                    //         {type: 'gaiq', testName: 'exam', userId: 'TestUser'}, 
-                    //         {onSuccess: (data: {testId: string, testindex: number}) => {
-                    //             if(data){
-                    //                 let navState = {testIndex: data['testindex'], testId: data['testId'], totalIndex: modalState.navigationState ? modalState.navigationState['totalIndex'] : 10 , prevPathName: location.pathname}
-                    //                 let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
-                    //                 navigate(navLocation, 
-                    //                     {
-                    //                         state: navState
-                    //                     }
-                    //                 );
-                    //             }
-                    //         }})
+                okBtnClickEventHandler={(event: React.MouseEvent<HTMLButtonElement>) => {                   
+                    if(modalState && modalState.navLocation && modalState.navigationState){
+                        let totalIndex = modalState.navigationState.totalIndex;
 
-                    //     dispatch({type: "WorkbookModalClose"});
-                    // }
+                        deleteQuiz({testId: modalState.navigationState.testId})
+                        createQuiz(
+                            {type: 'gaiq', userId: 'TestUser', testNum: totalIndex}, 
+                            {onSuccess: (data: {testId: string, testIndex: number}) => {
+                                if(data){
+                                    let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: totalIndex, prevPathName: location.pathname}
+                                    let navLocation = totalIndex === 50 ? '/quiz/test/mockexam/start/' : `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                    navigate(navLocation, 
+                                        {
+                                            state: navState
+                                        }
+                                    );
+                                }
+                                dispatch({type: "WorkbookModalClose"});
+                            }})
+                    }
                 }} 
                 cancelBtnClickEventHandler={(event: React.MouseEvent<HTMLButtonElement>) => {
                     if(modalState && modalState.navLocation && modalState.navigationState){

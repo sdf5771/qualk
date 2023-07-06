@@ -10,7 +10,7 @@ async function deleteQuizData({testId}: TdeleteQuizDataProps){
         }
     });
 
-    return response.json();
+    // return response.json();
 }
 
 export default deleteQuizData;
