@@ -97,7 +97,7 @@ async def user_input_test(test_id: str, test_index: int, user_input: int, interv
                             })
 
 @router.delete("/", status_code=204)
-async def delete_test(test_id: str):
+async def user_delete_test(test_id: str):
     """
         사용자가 시험 문제를 입력하고 맞았는지 틀렸느지 바로 정답 확인 하는 곳
     """
