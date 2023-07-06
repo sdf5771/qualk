@@ -64,9 +64,9 @@ function SideBarPresenter({bannerOnClickHandler} : SideBarPresenterPropsType){
                     }
                 } ) : null}
             </div>
-            <div className={styles.banner_container}>
+            {/* <div className={styles.banner_container}>
                 <div onClick={bannerOnClickHandler} className={styles.qualk_banner}></div>
-            </div>
+            </div> */}
         </div>
     );
 }

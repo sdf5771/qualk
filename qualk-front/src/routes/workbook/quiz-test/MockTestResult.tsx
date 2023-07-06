@@ -98,8 +98,8 @@ function MockTestResult(){
                     <span className={styles.title}>모의고사 결과 분석</span>
                 </div>
                 <div style={{marginTop: '29px', display: 'flex', gap: '40px', width: '100%'}}>
-                    <TestTimeViewer userTime={data ? data.userTime : 0} totalTime={data ? data.totalTime : 0} comment={timeCmt} isPass={data ? data.isPass : false} />
-                    <WrongTestChart userCorrected={data ? data.correct : 0} totalIndex={data ? data.questionNum : 0} correctPercent={data ? data.correctPercent : 0} command={correctCmtState} isPass={data ? data.isPass : false} />
+                    <TestTimeViewer userTime={data ? data.userTime : 0} totalTime={data ? data.totalTime : 0} comment={timeCmt} isPass={data ? data.pass : false} />
+                    <WrongTestChart userCorrected={data ? data.correct : 0} totalIndex={data ? data.questionNum : 0} correctPercent={data ? data.correctPercent : 0} command={correctCmtState} isPass={data ? data.pass : false} />
                 </div>
             </div>
 
