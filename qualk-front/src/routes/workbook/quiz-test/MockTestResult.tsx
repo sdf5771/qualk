@@ -20,7 +20,7 @@ function MockTestResult(){
     const location = useLocation();
     const dispatch = useDispatch();
     const queryStr = location.search ? location.search.split('=')[1] : '';
-    const { isLoading, isError, data, error } = useQuery([`getQuizResult`], () => getQuizResult({testId: queryStr}));
+    const { isLoading, isError, data, error, isFetching } = useQuery([`getQuizResult`], () => getQuizResult({testId: queryStr}));
     const { mutate } = useMutation(createQuizTest);
     const [correctCmtState, setCorrectCmtState] = useState('');
     const [timeCmt, setTimeCmt] = useState('');
@@ -40,13 +40,9 @@ function MockTestResult(){
         navigate('/not_found');
     }
 
-    console.log('data ', data);
-    console.log('correctCmtState ', correctCmtState);
-    console.log('timeCmt ', timeCmt);
-
     const reTestStartClickHandler = (event: React.MouseEvent<HTMLSpanElement>) => {
         mutate(
-            {type: 'gaiq', userId: 'seobisback', testNum: 50}, 
+            {type: 'gaiq', userId: 'TestUser', testNum: 50}, 
             {onSuccess: (data: {testId: string, testIndex: number}) => {
                 if(data){
                     let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname}
@@ -111,9 +107,11 @@ function MockTestResult(){
                 <div>
                     <span className={styles.title}>틀린문제</span>
                 </div>
-                <div style={{marginTop: '29px', display: 'flex', flexDirection: 'column', gap: '20px'}}>
-                    {data.wrongQuestion ? data.wrongQuestion.map((quizData: {ContentID: number, CreateDate: string, Tag: string[] | null, Type: string, Title: string, View: number}) => {
+                <div style={{marginTop: '29px', marginBottom: '100px', display: 'flex', flexDirection: 'column', gap: '20px'}}>
+                    {data && data.wrongQuestion ? 
+                    data.wrongQuestion.map((quizData: {ContentID: number, CreateDate: string, Tag: string[] | null, Type: string, Title: string, View: number}) => {
                         return <WorkbookElement 
+                                    key={quizData.ContentID}
                                     question_id={quizData.ContentID}
                                     question_type={quizData.Type}
                                     question_name={quizData.Title}

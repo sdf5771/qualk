@@ -56,7 +56,7 @@ function WorkbookPresenter({navigate, dispatch, location, headerLogoOnClickHandl
                     // if(modalState && modalState.navLocation && modalState.navigationState){
                     //     deleteQuiz({testId: modalState.navigationState.testId})
                     //     modalState.mutateFunc(
-                    //         {type: 'gaiq', testName: 'exam', userId: 'seobisback'}, 
+                    //         {type: 'gaiq', testName: 'exam', userId: 'TestUser'}, 
                     //         {onSuccess: (data: {testId: string, testindex: number}) => {
                     //             if(data){
                     //                 let navState = {testIndex: data['testindex'], testId: data['testId'], totalIndex: modalState.navigationState ? modalState.navigationState['totalIndex'] : 10 , prevPathName: location.pathname}

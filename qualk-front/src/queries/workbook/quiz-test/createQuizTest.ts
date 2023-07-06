@@ -11,8 +11,6 @@ async function createQuizTest({type, testNum, userId}: TcreateQuizTest){
         "QuestionNum": testNum
     }
 
-    console.log('data ', data);
-
     const response = await fetch(`/api/v1/test/`,{
         method: 'POST',
         headers: {

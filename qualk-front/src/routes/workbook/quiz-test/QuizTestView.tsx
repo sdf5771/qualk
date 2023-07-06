@@ -7,6 +7,7 @@ import getQuizTest from 'queries/workbook/quiz-test/getQuizTest';
 import QuizContentRadio from 'components/workbook/quiz-test/QuizContentRadio';
 import putQuizTest from 'queries/workbook/quiz-test/putQuizTest';
 import AnswerAndExplainContainer from 'components/workbook/workbook-detail/answer-and-explanation/AnswerAndExplainContainer';
+import useInterval from 'hook/useInterval';
 
 type TgetQuizTestData = {
     testId: string,
@@ -30,18 +31,32 @@ function QuizTestView(){
     const { isLoading: getQuizTestIsLoading, isError: getQuizTestIsError, data: getQuizTestData, error: getQuizTestError } = useQuery([`getQuizTest-${location.state.testIndex}`], () => getQuizTest({testId: location.state.testId, testIndex: location.state.testIndex}));
     const { mutate, isLoading: putQuizTestIsLoading, isError: putQuizTestIsError, error: putQuizTestError, isSuccess: putQuizTestIsSucesss } = useMutation(putQuizTest);
     const [disabledBtn, setDisabledBtn] = useState(true);
-    
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCountInterval((prevCount) => prevCount + 1);
-        },1000)
-        console.log('timer ', timer);
 
+    useInterval(() => {
+        setCountInterval(countInterval + 1);
+    }, 1000);
+
+    useEffect(() => {
         return () => {
-            clearInterval(timer);
             setCountInterval(0);
         }
-    }, [location])
+    }, [location.search])
+    
+    // useEffect(() => {
+    //     const timer = setInterval(() => {
+    //         setCountInterval((prevCount) => {
+    //             console.log('prevCount ', prevCount)
+    //             return prevCount + 1
+    //         });
+    //     },1000)
+    //     console.log('timer ', timer);
+    //     console.log('location ', location);
+
+    //     return () => {
+    //         clearInterval(timer);
+    //         setCountInterval(0);
+    //     }
+    // }, [location.search])
 
     useEffect(() => {
         //모의고사인 경우

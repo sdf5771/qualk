@@ -54,10 +54,9 @@ function QuizTestMain(){
                                 SVGComponent={QualkImageFirst}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
                                     mutate(
-                                        {type: 'gaiq', userId: 'seobisback', testNum: 10}, 
+                                        {type: 'gaiq', userId: 'TestUser', testNum: 10}, 
                                         {onSuccess: (data: {testId: string, testIndex: number}) => {
                                             if(data){
-                                                console.log('data ', data);
                                                 let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 10, prevPathName: location.pathname}
                                                 let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
                                                 if(data.testIndex !== 1){
@@ -83,7 +82,7 @@ function QuizTestMain(){
                                 SVGComponent={QualkImageSecond}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
                                     mutate(
-                                        {type: 'gaiq', userId: 'seobisback', testNum: 20}, 
+                                        {type: 'gaiq', userId: 'TestUser', testNum: 20}, 
                                         {onSuccess: (data: {testId: string, testIndex: number}) => {
                                             if(data){
                                                 let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 20, prevPathName: location.pathname}
@@ -111,7 +110,7 @@ function QuizTestMain(){
                                 SVGComponent={QualkImageThird}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
                                     mutate(
-                                        {type: 'gaiq', userId: 'seobisback', testNum: 30}, 
+                                        {type: 'gaiq', userId: 'TestUser', testNum: 30}, 
                                         {onSuccess: (data: {testId: string, testIndex: number}) => {
                                             if(data){
                                                 let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 30, prevPathName: location.pathname}
@@ -146,7 +145,7 @@ function QuizTestMain(){
                                 SVGComponent={QualkMockTestImage}
                                 clickEventHandler={(event: React.MouseEvent<HTMLDivElement>) => {
                                     mutate(
-                                        {type: 'gaiq', userId: 'seobisback', testNum: 50}, 
+                                        {type: 'gaiq', userId: 'TestUser', testNum: 50}, 
                                         {onSuccess: (data: {testId: string, testIndex: number}) => {
                                             if(data){
                                                 let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname}
