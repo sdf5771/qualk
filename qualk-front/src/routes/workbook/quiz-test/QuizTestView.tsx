@@ -30,13 +30,17 @@ function QuizTestView(){
     const { isLoading: getQuizTestIsLoading, isError: getQuizTestIsError, data: getQuizTestData, error: getQuizTestError } = useQuery([`getQuizTest-${location.state.testIndex}`], () => getQuizTest({testId: location.state.testId, testIndex: location.state.testIndex}));
     const { mutate, isLoading: putQuizTestIsLoading, isError: putQuizTestIsError, error: putQuizTestError, isSuccess: putQuizTestIsSucesss } = useMutation(putQuizTest);
     const [disabledBtn, setDisabledBtn] = useState(true);
-
+    
     useEffect(() => {
         const timer = setInterval(() => {
             setCountInterval((prevCount) => prevCount + 1);
         },1000)
+        console.log('timer ', timer);
 
-        return () => clearInterval(timer);
+        return () => {
+            clearInterval(timer);
+            setCountInterval(0);
+        }
     }, [location])
 
     useEffect(() => {

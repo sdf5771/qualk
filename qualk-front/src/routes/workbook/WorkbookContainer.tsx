@@ -3,11 +3,16 @@ import WorkbookPresenter from "./WorkbookPresenter";
 import {useNavigate, useLocation} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {RootState} from "reducers/reducers";
+import { useMutation } from '@tanstack/react-query';
+import deleteQuizData from 'queries/workbook/quiz-test/deleteQuizData';
+import createQuizTest from 'queries/workbook/quiz-test/createQuizTest';
 
 function WorkbookContainer(){
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+    const { mutate: deleteQuiz } = useMutation(deleteQuizData);
+    const { mutate: createQuiz } = useMutation(createQuizTest);
     const workbookModalSelector = useSelector((state: RootState) => state.workbookModalReducer)
     const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
 
@@ -39,6 +44,8 @@ function WorkbookContainer(){
             toastType={toastType}
             isToast={isToast}
             toastMsg={toastMsg}
+            deleteQuiz={deleteQuiz}
+            createQuiz={createQuiz}
         />
     );
 }

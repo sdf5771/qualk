@@ -1,4 +1,4 @@
-type TcreateQuizTest = {
+export type TcreateQuizTest = {
     type: string,
     testNum: number,
     userId: string,

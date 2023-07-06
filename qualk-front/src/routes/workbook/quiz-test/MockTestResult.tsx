@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
 import getQuizResult from 'queries/workbook/quiz-test/getQuizResult';
 import styles from 'stylesheets/workbook/quiz-test/MockTestResult.module.css'
 import {ReactComponent as ArrowLeftIconDefault} from "assets/images/public/arrow_left_icon.svg";
@@ -12,12 +13,15 @@ import WrongTestChart from 'components/workbook/quiz-test/WrongTestChart';
 import WorkbookElement from 'components/workbook/listview/WorkbookElement';
 import correctComment from 'javascripts/correctComment';
 import timeComment from 'javascripts/timeComment';
+import createQuizTest from 'queries/workbook/quiz-test/createQuizTest';
 
 function MockTestResult(){
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
     const queryStr = location.search ? location.search.split('=')[1] : '';
     const { isLoading, isError, data, error } = useQuery([`getQuizResult`], () => getQuizResult({testId: queryStr}));
+    const { mutate } = useMutation(createQuizTest);
     const [correctCmtState, setCorrectCmtState] = useState('');
     const [timeCmt, setTimeCmt] = useState('');
 
@@ -28,14 +32,37 @@ function MockTestResult(){
         }
     }, [data])
 
-    // 404 Error redirect 하는 부분 (디자인 수정 후)
-    // if(isError){
-    //     navigate('/');
-    // }
+    // 404 Error redirect 
+    if(isError){
+        navigate('/not_found');
+    }
+    if( !isLoading && data === undefined){
+        navigate('/not_found');
+    }
 
     console.log('data ', data);
     console.log('correctCmtState ', correctCmtState);
     console.log('timeCmt ', timeCmt);
+
+    const reTestStartClickHandler = (event: React.MouseEvent<HTMLSpanElement>) => {
+        mutate(
+            {type: 'gaiq', userId: 'seobisback', testNum: 50}, 
+            {onSuccess: (data: {testId: string, testIndex: number}) => {
+                if(data){
+                    let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname}
+                    let navLocation = `/quiz/test/gaiq/mockexam?quiz=${data['testId']}`;
+                    if(data.testIndex !== 1){
+                        dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                    } else {
+                        navigate(`/quiz/test/mockexam/start/`, 
+                        {
+                            state: navState
+                        }
+                        );
+                    }
+                }
+            }})
+    }
 
     return(
         <div className={styles.mock_test_result_root}>
@@ -55,7 +82,7 @@ function MockTestResult(){
                 </div>
                 <div>
                     <span className={styles.title}>{data ? data.canonialName : ''} 결과</span>
-                    <span className={styles.re_test}>다시 응시하기</span>
+                    <span className={styles.re_test} onClick={reTestStartClickHandler}>다시 응시하기</span>
                 </div>
             </div>
 
@@ -84,17 +111,17 @@ function MockTestResult(){
                 <div>
                     <span className={styles.title}>틀린문제</span>
                 </div>
-                <div style={{marginTop: '29px', display: 'flex', flexDirection: 'column'}}>
-                    {/* {data.wrongQuestion ? data.wrongQuestion.map((quizData: {ContentID: number, CreateDate: string, Tag: string[] | null, Title: string, View: number}) => {
+                <div style={{marginTop: '29px', display: 'flex', flexDirection: 'column', gap: '20px'}}>
+                    {data.wrongQuestion ? data.wrongQuestion.map((quizData: {ContentID: number, CreateDate: string, Tag: string[] | null, Type: string, Title: string, View: number}) => {
                         return <WorkbookElement 
                                     question_id={quizData.ContentID}
-                                    question_type={}
+                                    question_type={quizData.Type}
                                     question_name={quizData.Title}
                                     question_view={quizData.View}
                                     question_create={quizData.CreateDate}
                                     question_tag={quizData.Tag}
                                     />
-                    }) : null} */}
+                    }) : null}
                 </div>
             </div>
         </div>

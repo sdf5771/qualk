@@ -18,7 +18,9 @@ import MockTestStart from './quiz-test/MockTestStart';
 import MockTestResult from './quiz-test/MockTestResult';
 import PublicOkCancelModal from 'components/public/public-ok-cancel-modal/publicOkCancelModal';
 import { Dispatch } from 'redux';
-import { UseMutateFunction } from '@tanstack/react-query';
+import { MutateFunction, Mutation, MutationFunction, UseMutateFunction } from '@tanstack/react-query';
+import { TcreateQuizTest } from 'queries/workbook/quiz-test/createQuizTest';
+import { TdeleteQuizDataProps } from 'queries/workbook/quiz-test/deleteQuizData';
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -37,9 +39,11 @@ type WorkbookPresenterPropsType = {
     isToast?: boolean,
     toastType: 'check' | 'alert' | 'warning',
     toastMsg?: string,
+    deleteQuiz: UseMutateFunction<any, unknown, TdeleteQuizDataProps, unknown>,
+    createQuiz: UseMutateFunction<any, unknown, TcreateQuizTest, unknown>
 }
 
-function WorkbookPresenter({navigate, dispatch, location, headerLogoOnClickHandler, modalState, isToast, toastType, toastMsg}: WorkbookPresenterPropsType){
+function WorkbookPresenter({navigate, dispatch, location, headerLogoOnClickHandler, modalState, isToast, toastType, toastMsg, deleteQuiz, createQuiz}: WorkbookPresenterPropsType){
     const workbookModalState = {
         0: null,
         1: <SharePostModalContainer />,
@@ -49,7 +53,8 @@ function WorkbookPresenter({navigate, dispatch, location, headerLogoOnClickHandl
                 okBtnTitle="처음부터 풀기" 
                 cancelbtnTitle="이어서 풀기" 
                 okBtnClickEventHandler={(event: React.MouseEvent<HTMLButtonElement>) => {
-                    // if(modalState && modalState.navLocation && modalState.navigationState && modalState.mutateFunc){
+                    // if(modalState && modalState.navLocation && modalState.navigationState){
+                    //     deleteQuiz({testId: modalState.navigationState.testId})
                     //     modalState.mutateFunc(
                     //         {type: 'gaiq', testName: 'exam', userId: 'seobisback'}, 
                     //         {onSuccess: (data: {testId: string, testindex: number}) => {
