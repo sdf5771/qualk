@@ -139,7 +139,7 @@ function QuizTestMain(){
                         <div className={styles.mockexam_body}>
                             <MockExamSelectElement 
                                 testLength={50} 
-                                time={75} 
+                                time={90} 
                                 title="연습은 그만! 이제 실전으로" 
                                 description='GAIQ 테스트와 비슷한 환경에서 테스트를 대비해보세요!'
                                 SVGComponent={QualkMockTestImage}

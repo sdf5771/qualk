@@ -9,7 +9,6 @@ type TTestTimeViewerProps = {
 }
 
 function TestTimeViewer({userTime, totalTime, comment, isPass}: TTestTimeViewerProps){
-    console.log('isPass ', isPass);
     return(
         <div className={styles.test_time_view_root}>
             <div className={styles.title_container}>

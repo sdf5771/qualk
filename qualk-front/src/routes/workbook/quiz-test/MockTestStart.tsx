@@ -51,7 +51,7 @@ function MockTestStart(){
                 </div>
                 <div className={styles.description_container}>
                     <span className={styles.title}>유의사항</span>
-                    <p className={styles.description}>GAIQ 인증평가 모의 테스트는 <b>50문항으로 구성</b>되어 있으며 <b>응시시간 75분안에 완료</b>해야 합니다.</p>
+                    <p className={styles.description}>GAIQ 인증평가 모의 테스트는 <b>50문항으로 구성</b>되어 있으며 <b>응시시간 90분안에 완료</b>해야 합니다.</p>
                     <p className={styles.description}>GAIQ 인증평가 모의테스트를 통과하려면 <b>80%이상의 점수(40문제 이상 정답)</b>가 필요합니다.</p>
                     <p className={styles.description}>평가를 일찍 종료하거나 충분한 질문에 올바르게 답하기 전에 타이머가 종료되면 통과하지 못하고 중단한 부분부터 다시 시작할 수 없습니다.</p>
                 </div>

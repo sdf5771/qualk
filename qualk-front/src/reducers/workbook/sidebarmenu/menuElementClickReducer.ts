@@ -4,7 +4,7 @@ type actionType = {type: string, isActive: boolean, menuId: number};
 
 function menuElementClickReducer<T, U>(currentState: initialState, action: actionType){
     if(currentState === undefined){
-        return {isActive: true, menuId: 1};
+        return {isActive: true, menuId: 0};
     }
     const newState = {...currentState};
 
