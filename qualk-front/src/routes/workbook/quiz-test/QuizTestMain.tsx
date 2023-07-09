@@ -16,6 +16,7 @@ import {ReactComponent as QualkImageThird} from 'assets/images/workbook/quiz-tes
 import {ReactComponent as QualkMockTestImage} from 'assets/images/workbook/quiz-test/qualk_mock_test.svg'
 import { useMutation } from '@tanstack/react-query';
 import createQuizTest from 'queries/workbook/quiz-test/createQuizTest';
+import useRedirect from 'hook/useRedirect';
 
 function QuizTestMain(){
     const menuElementActivateSelector = useSelector((state:RootState) => state.childMenuClickReducer);
@@ -24,6 +25,11 @@ function QuizTestMain(){
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+    const {notFoundPageRedirect} = useRedirect();
+
+    useEffect(() => {
+        notFoundPageRedirect();
+    }, [location.pathname])
 
     useEffect(() => {
         setCategory(menuElementActivateSelector);

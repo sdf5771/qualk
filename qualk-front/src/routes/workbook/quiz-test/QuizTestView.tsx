@@ -41,22 +41,6 @@ function QuizTestView(){
             setCountInterval(0);
         }
     }, [location.search])
-    
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         setCountInterval((prevCount) => {
-    //             console.log('prevCount ', prevCount)
-    //             return prevCount + 1
-    //         });
-    //     },1000)
-    //     console.log('timer ', timer);
-    //     console.log('location ', location);
-
-    //     return () => {
-    //         clearInterval(timer);
-    //         setCountInterval(0);
-    //     }
-    // }, [location.search])
 
     useEffect(() => {
         //모의고사인 경우
