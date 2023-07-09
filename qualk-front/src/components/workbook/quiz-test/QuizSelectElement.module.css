@@ -1,7 +1,8 @@
 .quiz_select_element_root{
     padding: 40px 30px;
     width: calc(360px - 60px);
-    height: calc(410px - 80px);
+    /* height: calc(410px - 80px); */
+    min-height: calc(410px - 80px);
     display: flex;
     flex-direction: column;
     border-radius: 30px;
@@ -38,6 +39,7 @@
     line-height: 1.63;
     letter-spacing: -0.64px;
     color: #5b5b5b;
+    white-space: pre-line;
 }
 
 .quiz_decobox{
@@ -54,7 +56,8 @@
 }
 
 .quiz_select_element_image_container{
-    margin-top: 40px;
+    /* margin-top: 40px; */
+    margin-top: auto;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -53,9 +53,8 @@ function QuizTestMain(){
                             <QuizSelectElement 
                                 testLength={10} 
                                 time={10} 
-                                title="인생은 실전!" 
-                                description='GAIQ 테스트와 비슷한 환경에서
-                                 테스트를 대비해보세요!'
+                                title="처음은 간단하게 시작해볼까요?" 
+                                description={`아직은 자신 없는 ${category['activeMenu']} 테스트, \n 랜덤으로 출제되는 10문제 퀴즈로 워밍업해보세요!`}
                                 option={{backgroundColor: "#fffaed", fontColor: "#ffba00"}}
                                 SVGComponent={QualkImageFirst}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
@@ -80,10 +79,9 @@ function QuizTestMain(){
                                 />
                             <QuizSelectElement 
                                 testLength={20} 
-                                time={10} 
+                                time={20} 
                                 title="이제 할만 하죠?" 
-                                description='GAIQ 테스트와 비슷한 환경에서
-                                 테스트를 대비해보세요!'
+                                description={`${category['activeMenu']} 테스트에 대한 감이 생기셨나요? \n 그렇다면 랜덤으로 출제되는 20문제 퀴즈로 실력을 좀 더 높여볼까요?`}
                                 option={{backgroundColor: "#fdfaf2", fontColor: "#ff9300"}}
                                 SVGComponent={QualkImageSecond}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
@@ -108,10 +106,9 @@ function QuizTestMain(){
                                 />
                             <QuizSelectElement 
                                 testLength={30} 
-                                time={10} 
+                                time={30} 
                                 title="테스트 폼 미쳤다!" 
-                                description='GAIQ 테스트와 비슷한 환경에서
-                                 테스트를 대비해보세요!'
+                                description={`이제 거의 다 왔어요! 랜덤으로 출제되는 \n 30문제 퀴즈를 통한 ${category['activeMenu']} 테스트 완벽 준비!`}
                                 option={{backgroundColor: "#fdfaf2", fontColor: "#ff6c00"}}
                                 SVGComponent={QualkImageThird}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
@@ -147,7 +144,7 @@ function QuizTestMain(){
                                 testLength={50} 
                                 time={90} 
                                 title="연습은 그만! 이제 실전으로" 
-                                description='GAIQ 테스트와 비슷한 환경에서 테스트를 대비해보세요!'
+                                description={`${category['activeMenu']} 테스트의 실제 응시 환경처럼 주어진 90분 내에 50문항을 풀어볼까요? \n 시험이 끝나고 난 뒤, 합격 결과를 예측해볼 수 있어요!`}
                                 SVGComponent={QualkMockTestImage}
                                 clickEventHandler={(event: React.MouseEvent<HTMLDivElement>) => {
                                     mutate(

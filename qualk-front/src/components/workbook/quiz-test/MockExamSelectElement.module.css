@@ -76,6 +76,7 @@
     line-height: 1.63;
     letter-spacing: -0.64px;
     color: #5b5b5b;
+    white-space: pre-line;
 }
 
 .mock_exam_select_element_image_container{
