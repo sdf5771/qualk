@@ -31,7 +31,7 @@ function WorkbookContainer(){
             && location.pathname.split('/')[2] != 'search'
             && location.pathname.split('/')[2] != 'test'
             ){
-            navigate('/quiz/gaiq')
+            navigate('/notfound')
         }
     }, [])
     return(
