@@ -106,7 +106,7 @@ async def user_delete_test(test_id: str):
                              'testId':test_id
                             })
 
-@router.get("/result/")
+@router.get("/result")
 async def result_test(test_id: str):
     """
          시험 문제를 다 푼뒤 결과 페이지
