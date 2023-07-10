@@ -29,7 +29,7 @@ GET | api/v1/quiz/{type}/old/{last_index} | 오래된 순으로 가져오기
 ## Test API
 HTTP Method | URI | description | 
 ---|---|---|
-POST | /api/v1/test | test 처음에 들어갈 때 만드는 것
+POST | /api/v1/test | test 생성
 GET | /api/v1/test | testId 와 testIndex를 입력해서 문제 정보를 가져옴
 PUT | /api/v1/test | 사용자가 입력한 정답을 서버로 보내는 것
 POST | /api/v1/test | test 생성
