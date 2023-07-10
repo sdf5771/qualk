@@ -137,7 +137,7 @@ function QuizTestView(){
                     <span>{location.state.testIndex}/{location.state.totalIndex}</span>
                 </div>
 
-                <div onClick={() => {navigate(`${location.state.prevPathName}`)}} className={styles.quiz_exit}>
+                <div onClick={() => {navigate(`/quiz/test/gaiq/`)}} className={styles.quiz_exit}>
                     <span>종료하기</span>
                 </div>
             </div>
