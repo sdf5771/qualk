@@ -40,7 +40,7 @@ function MockTestStart(){
                     <span>50문항</span>
                 </div>
                 <div className={`${styles.mock_exam_decobox} ${styles.border_color}`}>
-                    <span>응시시간 75분</span>
+                    <span>응시시간 90분</span>
                 </div>
             </div>
 
