@@ -56,9 +56,9 @@
 
 .content_radio_root > .label_container > label {
     font-family: Pretendard;
-    font-size: 18px;
-    line-height: 2.33;
-    letter-spacing: -0.72px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.56px;
     color: #5b5b5b;
     cursor:pointer;
 }

@@ -60,10 +60,10 @@
 }
 .test_title > span{
     font-family: Pretendard;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 1.67;
-    letter-spacing: -0.96px;
+    line-height: 1.6;
+    letter-spacing: -0.8px;
     color: #5b5b5b;
 }
 
