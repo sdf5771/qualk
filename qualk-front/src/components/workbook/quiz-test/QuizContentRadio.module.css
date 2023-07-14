@@ -63,8 +63,9 @@
     cursor:pointer;
 }
 .explain_p{
+    font-family: Pretendard;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.14;
     letter-spacing: -0.56px;
 }

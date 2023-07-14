@@ -28,6 +28,14 @@
     justify-content: space-between;
     align-items: center;
 }
+.header > span{
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.56;
+    letter-spacing: -0.72px;
+    color: #5b5b5b;
+}
 .description_conatiner{
     margin-top: 20px;
     width: 300px;

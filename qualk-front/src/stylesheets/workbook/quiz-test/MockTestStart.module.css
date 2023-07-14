@@ -18,35 +18,20 @@
     display: flex;
     gap: 14px;
 }
-.mock_exam_decobox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 32px;
-    border-radius: 17px;
-    padding: 0 16px;
+
+.deco_box{
+    position: relative;
 }
-.mock_exam_decobox.bg_color{
-    background-color: #ffa700;
-}
-.mock_exam_decobox.bg_color > span{
+.deco_box > span{
+    position: absolute;
+    top: 5px;
+    left: 15px;
     font-family: Pretendard;
     font-size: 14px;
     font-weight: bold;
     line-height: 1.43;
     letter-spacing: -0.56px;
     color: #fff;
-}
-.mock_exam_decobox.border_color{
-    border: solid 1px #ffa711;
-}
-.mock_exam_decobox.border_color > span{
-    font-family: Pretendard;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.43;
-    letter-spacing: -0.56px;
-    color: #ffa700;
 }
 
 .mock_test_guide_root{
@@ -59,21 +44,20 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 16px;
+    gap: 10px;
 }
 .guide_title_container > span{
     font-family: Pretendard;
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -1.04px;
+    letter-spacing: -0.8px;
     color: #5b5b5b;
 }
 .guide_title_container > p{
     margin: 0;
     font-family: Pretendard;
     font-size: 16px;
-    line-height: 1.19;
+    line-height: 1.75;
     letter-spacing: -0.64px;
     color: #5b5b5b;
 }
@@ -81,9 +65,8 @@
     margin-top: 30px;
     display: flex;
     flex-direction: column;
-    width: calc(100% - 80px);
-    height: calc(207px - 64px);
-    padding: 40px 32px;
+    width: calc(100% - 60px);
+    padding: 30px 30px;
     border-radius: 20px;
     background-color: #fdfaf2;
 }
@@ -99,7 +82,7 @@
     margin: 0;
     font-family: Pretendard;
     font-size: 16px;
-    line-height: 2.25;
+    line-height: 1.75;
     letter-spacing: -0.64px;
     color: #5b5b5b;
 }
@@ -117,14 +100,18 @@
     padding:0; 
     overflow:visible;
     cursor:pointer;
-    border: solid 1px #fdba01;
-    background-color: #fdfaf2;
+    border: solid 1px #e4e4e4;
+    background-color: #ffffff;
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
-    line-height: 1.19;
-    letter-spacing: -0.64px;
+    letter-spacing: -0.56px;
     text-align: center;
-    color: #ffba00;
+    color: #5b5b5b;
     border-radius: 8px;
+    transition: all 0.2s ease;
+}
+.btn_container > button:hover{
+    border: solid 1px #ffa711;
+    color: #ffa700;
 }
