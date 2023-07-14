@@ -16,22 +16,22 @@
 
 .quiz_index_container{
     display: flex;
-    gap: 10px;
+    gap: 4px;
     align-items: center;
 }
 .quiz_index_container > span:first-child{
     font-family: Pretendard;
     font-size: 18px;
-    font-weight: 600;
-    line-height: 1.17;
+    font-weight: 500;
+    line-height: 1.56;
     letter-spacing: -0.72px;
-    color: #ffba00;
+    color: #ffa700;
 }
 .quiz_index_container > span:last-child{
     font-family: Pretendard;
     font-size: 18px;
-    font-weight: bold;
-    line-height: 1.17;
+    font-weight: 500;
+    line-height: 1.56;
     letter-spacing: -0.72px;
     color: #ffa700;
 }
@@ -41,11 +41,10 @@
 }
 .quiz_exit > span{
     font-family: Pretendard;
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 1.19;
-    letter-spacing: -0.64px;
-    color: #d6d6d6;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    color: #bababa;
     text-decoration: underline;
 }
 
@@ -55,7 +54,7 @@
     width: 100%;
 }
 .test_title{
-    margin-top: 40px;
+    margin-top: 20px;
     width: 840px;
 }
 .test_title > span{
@@ -68,7 +67,7 @@
 }
 
 .test_list_container{
-    margin-top: 46px;
+    margin-top: 30px;
     display: flex;
     width: 100%;
     flex-direction: column;
