@@ -28,15 +28,10 @@ function SharePostModalPresenter({dispatch, modalCloseOnClickHandler, copyOnClic
                     </div>
                 </div>
                 <div className={styles.modal_body}>
-                    <div className={styles.url_container}>
-                        <span className={styles.url_txt}>{urlPath}</span>
-                        <span onClick={copyOnClickHandler} className={styles.copy_clipboard}>복사</span>
-                    </div>
-                    <div className={styles.new_line}></div>
                     <div className={styles.share_btn_container}>
                         <SharePlatformElement
                             icon="instagram"
-                            platformName="Instagram"
+                            platformName="인스타그램"
                             onClickEvent={() => {
                                 dispatch({type: 'toast open', toastType: 'alert', toastMsg: '아직 준비중인 기능이에요.'})
                                 // socialShare('instagram');
@@ -44,14 +39,14 @@ function SharePostModalPresenter({dispatch, modalCloseOnClickHandler, copyOnClic
                         />
                         <SharePlatformElement
                             icon="facebook"
-                            platformName="Facebook"
+                            platformName="페이스북"
                             onClickEvent={() => {
                                 socialShare('facebook');
                             }}
                         />
                         <SharePlatformElement
                             icon="twitter"
-                            platformName="Twitter"
+                            platformName="트위터"
                             onClickEvent={() => {
                                 socialShare('twitter');
                             }}
@@ -68,9 +63,14 @@ function SharePostModalPresenter({dispatch, modalCloseOnClickHandler, copyOnClic
                             platformName="이메일"
                             onClickEvent={() => {
                                 dispatch({type: 'toast open', toastType: 'alert', toastMsg: '아직 준비중인 기능이에요.'})
-                                // socialShare('email');
                             }}
                         />
+                    </div>
+                    <div className={styles.new_line}></div>
+                    <span className={styles.link_copy_title}>링크복사</span>
+                    <div className={styles.url_container}>
+                        <span className={styles.url_txt}>{urlPath}</span>
+                        <span onClick={copyOnClickHandler} className={styles.copy_clipboard}>복사</span>
                     </div>
                 </div>
             </div>

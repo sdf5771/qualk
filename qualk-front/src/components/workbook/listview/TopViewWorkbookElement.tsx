@@ -30,7 +30,7 @@ function TopViewWorkbookElement({ question_id, question_type, question_name, que
             <div className={styles.top_view_workbook_tag_container}>
                 {question_tag ? question_tag.map((data:string, index:number) => {
                     if(data){
-                        return <KeywordElement key={index} keywordTitle={data} theme="yellow"/>
+                        return <KeywordElement key={index} keywordTitle={data} />
                     }
                 }) : null}
             </div>

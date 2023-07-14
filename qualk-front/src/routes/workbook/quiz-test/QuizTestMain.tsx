@@ -13,6 +13,9 @@ import {ReactComponent as MockTestLogo} from 'assets/images/workbook/quiz-test/m
 import {ReactComponent as QualkImageFirst} from 'assets/images/workbook/quiz-test/qualk_image_01.svg'
 import {ReactComponent as QualkImageSecond} from 'assets/images/workbook/quiz-test/qualk_image_02.svg'
 import {ReactComponent as QualkImageThird} from 'assets/images/workbook/quiz-test/qualk_image_03.svg'
+import {ReactComponent as QualkImageFirstHover} from 'assets/images/workbook/quiz-test/qualk_image_01_hover.svg'
+import {ReactComponent as QualkImageSecondHover} from 'assets/images/workbook/quiz-test/qualk_image_02_hover.svg'
+import {ReactComponent as QualkImageThirdHover} from 'assets/images/workbook/quiz-test/qualk_image_03_hover.svg'
 import {ReactComponent as QualkMockTestImage} from 'assets/images/workbook/quiz-test/qualk_mock_test.svg'
 import { useMutation } from '@tanstack/react-query';
 import createQuizTest from 'queries/workbook/quiz-test/createQuizTest';
@@ -54,9 +57,10 @@ function QuizTestMain(){
                                 testLength={10} 
                                 time={10} 
                                 title="처음은 간단하게 시작해볼까요?" 
-                                description={`아직은 자신 없는 ${category['activeMenu']} 테스트, \n 랜덤으로 출제되는 10문제 퀴즈로 워밍업해보세요!`}
-                                option={{backgroundColor: "#fffaed", fontColor: "#ffba00"}}
+                                description={`아직은 자신 없는 ${category['activeMenu']} 테스트, \n 랜덤으로 출제되는 10문제 퀴즈로 \n 워밍업해보세요!`}
+                                option={{backgroundColor: "#ffba00", fontColor: "#ffffff"}}
                                 SVGComponent={QualkImageFirst}
+                                SVGComponentHover={QualkImageFirstHover}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
                                     mutate(
                                         {type: 'gaiq', userId: 'TestUser', testNum: 10}, 
@@ -81,9 +85,10 @@ function QuizTestMain(){
                                 testLength={20} 
                                 time={20} 
                                 title="이제 할만 하죠?" 
-                                description={`${category['activeMenu']} 테스트에 대한 감이 생기셨나요? \n 그렇다면 랜덤으로 출제되는 20문제 퀴즈로 실력을 좀 더 높여볼까요?`}
-                                option={{backgroundColor: "#fdfaf2", fontColor: "#ff9300"}}
+                                description={`${category['activeMenu']} 테스트에 대한 감이 생기셨나요? \n 그렇다면 랜덤으로 출제되는 20문제 퀴즈로 \n 실력을 좀 더 높여볼까요?`}
+                                option={{backgroundColor: "#ff9300", fontColor: "#ffffff"}}
                                 SVGComponent={QualkImageSecond}
+                                SVGComponentHover={QualkImageSecondHover}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
                                     mutate(
                                         {type: 'gaiq', userId: 'TestUser', testNum: 20}, 
@@ -108,9 +113,10 @@ function QuizTestMain(){
                                 testLength={30} 
                                 time={30} 
                                 title="테스트 폼 미쳤다!" 
-                                description={`이제 거의 다 왔어요! 랜덤으로 출제되는 \n 30문제 퀴즈를 통한 ${category['activeMenu']} 테스트 완벽 준비!`}
-                                option={{backgroundColor: "#fdfaf2", fontColor: "#ff6c00"}}
+                                description={`이제 거의 다 왔어요! \n 랜덤으로 출제되는 30문제 퀴즈를 통한 \n ${category['activeMenu']} 테스트 완벽 준비!`}
+                                option={{backgroundColor: "#ff6c00", fontColor: "#ffffff"}}
                                 SVGComponent={QualkImageThird}
+                                SVGComponentHover={QualkImageThirdHover}
                                 onClickHandler={(event:React.MouseEvent<HTMLDivElement>) => {
                                     mutate(
                                         {type: 'gaiq', userId: 'TestUser', testNum: 30}, 

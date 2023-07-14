@@ -10,7 +10,7 @@
     cursor: pointer;
 }
 .mock_exam_select_element_root:hover{
-    border: solid 1px #ffba00;
+    border: solid 1px #ff6c0b;
 }
 .mock_exam_select_element_info_container{
     display: flex;
@@ -24,12 +24,28 @@
     gap: 14px;
 }
 
+.svg_container{
+    position: relative;
+}
+.svg_container > span{
+    z-index: 1;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.43;
+    letter-spacing: -0.56px;
+    color: #fff;
+}
+
 .mock_exam_decobox{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 32px;
-    border-radius: 17px;
+    height: 30px;
+    border-radius: 8px;
     padding: 0 16px;
 }
 .mock_exam_decobox.bg_color{
@@ -49,10 +65,10 @@
 .mock_exam_decobox.border_color > span{
     font-family: Pretendard;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
     line-height: 1.43;
     letter-spacing: -0.56px;
-    color: #ffa700;
+    color: #fff;
 }
 
 .mock_exam_select_element_content_container{

@@ -3,12 +3,11 @@ import styles from './KeywordElement.module.css';
 
 type KeywordPropsType = {
     keywordTitle: string,
-    theme: 'yellow' | 'gray',
 }
 
-function KeywordElement({keywordTitle, theme}:KeywordPropsType){
+function KeywordElement({keywordTitle}:KeywordPropsType){
     return(
-        <div className={`${styles.keyword_ele_main} ${theme === 'gray' ? styles.gray : styles.yellow}`}>
+        <div className={`${styles.keyword_ele_main}`}>
             <span>#{keywordTitle}</span>
         </div>
     );

@@ -1,15 +1,10 @@
-import React, {ReactEventHandler, useEffect, useState} from 'react';
+import React, {ReactEventHandler, useEffect} from 'react';
 import styles from './SharePlatformElement.module.css';
-import {ReactComponent as InstagramIcon} from 'assets/images/public/instagram_icon.svg';
-import {ReactComponent as InstagramIconActive} from 'assets/images/public/instagram_icon_active.svg';
-import {ReactComponent as FacebookIcon} from 'assets/images/public/facebook_icon.svg';
-import {ReactComponent as FacebookIconActive} from 'assets/images/public/facebook_icon_active.svg';
-import {ReactComponent as TwitterIcon} from 'assets/images/public/twitter_icon.svg';
-import {ReactComponent as TwitterIconActive} from 'assets/images/public/twitter_icon_active.svg';
-import {ReactComponent as MailIcon} from 'assets/images/public/mail_icon.svg';
-import {ReactComponent as MailIconActive} from 'assets/images/public/mail_icon_active.svg';
-import {ReactComponent as KakaoIcon} from 'assets/images/public/kakao_icon.svg';
-import {ReactComponent as KakaoIconActive} from 'assets/images/public/kakao_icon_active.svg';
+import {ReactComponent as InstagramIcon} from 'assets/images/public/Web-Icon44-instagram.svg';
+import {ReactComponent as FacebookIcon} from 'assets/images/public/Web-Icon44-facebook.svg';
+import {ReactComponent as TwitterIcon} from 'assets/images/public/Web-Icon44-twitter.svg';
+import {ReactComponent as MailIcon} from 'assets/images/public/Web-Icon44-email.svg';
+import {ReactComponent as KakaoIcon} from 'assets/images/public/Web-Icon44-kakao.svg';
 
 type SharePlatformElementPropsType = {
     platformName: string,
@@ -18,9 +13,7 @@ type SharePlatformElementPropsType = {
 }
 
 function SharePlatformElement({platformName, icon, onClickEvent}: SharePlatformElementPropsType){
-    const [isHover, setIsHover] = useState(false);
     let DefaultIcon = InstagramIcon;
-    let ActiveIcon = InstagramIconActive;
 
     useEffect(() => {
         if(icon === 'kakao'){
@@ -40,38 +33,25 @@ function SharePlatformElement({platformName, icon, onClickEvent}: SharePlatformE
     switch(icon){
         case "instagram":
             DefaultIcon = InstagramIcon
-            ActiveIcon = InstagramIconActive;
             break
         case "facebook" :
             DefaultIcon = FacebookIcon
-            ActiveIcon = FacebookIconActive;
             break
         case "mail" :
             DefaultIcon = MailIcon
-            ActiveIcon = MailIconActive;
             break
         case "kakao" :
             DefaultIcon = KakaoIcon
-            ActiveIcon = KakaoIconActive;
             break
         case "twitter" :
             DefaultIcon = TwitterIcon
-            ActiveIcon = TwitterIconActive;
             break
     }
 
-    const onMouseOverHandler = (event: React.MouseEvent) => {
-        setIsHover(true)
-    }
-
-    const onMouseOutHandler = (event: React.MouseEvent) => {
-        setIsHover(false)
-    }
-
     return(
-        <div onMouseOver={onMouseOverHandler} onMouseOut={onMouseOutHandler} className={styles.platform_root} onClick={onClickEvent}>
+        <div className={styles.platform_root} onClick={onClickEvent}>
             <div className={styles.icon_container}>
-                {isHover ? <ActiveIcon /> : <DefaultIcon />}
+                <DefaultIcon />
             </div>
             <div className={styles.title_container}>
                 <span>{platformName}</span>

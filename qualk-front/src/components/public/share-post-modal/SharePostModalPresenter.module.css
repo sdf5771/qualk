@@ -20,9 +20,9 @@
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    width: 360px;
-    height: 231px;
-    border-radius: 20px;
+    width: 422px;
+    /* height: 231px; */
+    border-radius: 16px;
     background-color: #fff;
 }
 .modal_header{
@@ -34,11 +34,12 @@
     align-items: center;
 }
 .modal_title{
-    font-family: "pretendard", sans-serif;
-    font-size: 16px;
+    font-family: Pretendard;
+    font-size: 20px;
     font-weight: 500;
-    letter-spacing: -0.64px;
-    color: #797979;
+    line-height: 1.6;
+    letter-spacing: -0.8px;
+    color: #5b5b5b;
 }
 .modal_close_container{
     cursor: pointer;
@@ -49,8 +50,17 @@
     padding: 0 27px 0 33px;
     width: calc(100% - 27px - 33px);
 }
+.link_copy_title{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.8px;
+    color: #5b5b5b;
+}
 .url_container{
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,21 +71,23 @@
     border: solid 1px #fdba01;
     background-color: #fdfaf2;
     transition: border 0.2s ease;
-    transition: background 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 .url_txt{
-    font-family: "pretendard", sans-serif;
-    font-size: 12px;
-    letter-spacing: -0.48px;
-    color: #9a9a9a;
+    font-family: Pretendard;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: -0.56px;
+    color: #ffa700;
 }
 .copy_clipboard{
-    cursor: pointer;
-    font-family: "pretendard", sans-serif;
-    font-size: 12px;
+    font-family: Pretendard;
+    font-size: 16px;
     font-weight: bold;
-    letter-spacing: -0.48px;
-    color: #fca701;
+    letter-spacing: -0.64px;
+    text-align: right;
+    color: #ffa700;
+    cursor: pointer;
 }
 
 .url_container:hover{
@@ -89,7 +101,8 @@
     border-bottom: 1px solid #f2f2f2;
 }
 .share_btn_container{
+    margin-top: 20px;
     width: 100%;
     display: flex;
-    gap: 21px;
+    gap: 35px;
 }

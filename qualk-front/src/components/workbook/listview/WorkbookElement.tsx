@@ -48,7 +48,7 @@ function WorkbookElement({ question_id, question_type, question_name, question_v
             <div className={styles.workbook_keyword_container}>
                 {question_tag ? question_tag.map((data:string, index:number) => {
                     if(data){
-                        return <KeywordElement key={index} keywordTitle={data} theme="gray"/>
+                        return <KeywordElement key={index} keywordTitle={data} />
                     }
                 }) : null}
             </div>

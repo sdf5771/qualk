@@ -1,23 +1,14 @@
 .workbook_element_root{
     display: flex;
     flex-direction: column;
-    /*width: 100%;*/
-    /*height: 155px;*/
-    /*min-height: 155px;*/
-    /*max-height: 155px;*/
     border-radius: 10px;
     border: solid 1px #e4e4e4;
-    /*background-color: #fff;*/
     padding: 20px;
     transition: background-color 0.2s ease;
     cursor: pointer;
 }
 .workbook_element_root:hover {
     padding: 20px;
-    /*height: 155px;*/
-    /*min-height: 155px;*/
-    /*max-height: 155px;*/
-    background-color: #fffaed;
     border: solid 1px #fdba01;
 }
 .workbook_element_header{
@@ -31,11 +22,11 @@
     gap: 5px;
 }
 .workbook_title > span{
-    font-family: como, sans-serif;
+    font-family: Pretendard;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: bold;
     letter-spacing: -0.56px;
-    color: #ffba00;
+    color: #ffa700;
 }
 
 .workbook_element_right_side_container{
@@ -51,11 +42,13 @@
     align-items: center;
 }
 .workbook_element_right_side_container > div:first-child > span{
-    font-family: "pretendard", sans-serif;
-    font-size: 0.875rem;
+    font-family: Pretendard;
+    font-size: 14px;
     font-weight: 500;
+    line-height: 1.43;
     letter-spacing: -0.56px;
     color: #bababa;
+
 }
 .eye_icon{
     width: 22px;
@@ -70,9 +63,10 @@
 
 }
 .workbook_element_right_side_container > div:last-child > span{
-    font-family: "pretendard", sans-serif;
-    font-size: 0.875rem;
-    font-weight: 300;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.43;
     letter-spacing: -0.56px;
     color: #bababa;
 }
@@ -88,7 +82,7 @@
     font-weight: 500;
     letter-spacing: -0.72px;
     color: #797979;
-    line-height: 1.67;
+    line-height: 1.56;
     letter-spacing: -0.72px;
     overflow: hidden;
     display: -webkit-box;
@@ -101,11 +95,6 @@
     display:flex;
     flex-direction: row;
     width: 100%;
-    gap: 4px;
+    gap: 10px;
     min-height: 24px;
 }
-
-.workbook_element_root:hover > .workbook_keyword_container > div{border: solid 1px #fedd81!important;}
-.workbook_element_root:hover > .workbook_keyword_container > div > span{color: #ffba00!important;}
-
-

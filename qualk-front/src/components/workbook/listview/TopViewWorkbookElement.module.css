@@ -5,13 +5,12 @@
     height: calc(214px - 40px);
     padding: 20px;
     border-radius: 20px;
-    border: solid 1px #fdba01;
-    background-color: #fdfaf2;
-    transition: background-color 0.2s ease;
+    border: solid 1px #e4e4e4;
+    transition: border 0.2s ease;
     cursor: pointer;
 }
 .top_view_workbook_root:hover {
-    background-color: #fef0c6;
+    border: solid 1px #fda124;
 }
 .top_view_workbook_header{
     display: flex;
@@ -27,28 +26,28 @@
     color: #ffb100;
 }
 .top_view_workbook_content{
-    margin-top: 15px;
+    margin-top: 9px;
     display: flex;
     width: 100%;
 }
 .top_view_workbook_content > span{
-    font-family: "pretendard", sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.6;
-    letter-spacing: -0.8px;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.56;
+    letter-spacing: -0.72px;
     color: #5b5b5b;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     word-wrap: break-word;
 }
 .top_view_workbook_tag_container{
-    margin-top: 35px;
+    margin-top: 19px;
     display: flex;
     width: 100%;
-    gap: 4px;
+    gap: 10px;
     flex-wrap: wrap;
 }

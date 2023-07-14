@@ -1,17 +1,24 @@
 .quiz_select_element_root{
-    padding: 40px 30px;
+    padding: 30px 30px;
     width: calc(360px - 60px);
     /* height: calc(410px - 80px); */
-    min-height: calc(410px - 80px);
+    min-height: calc(409px - 30px);
     display: flex;
     flex-direction: column;
     border-radius: 30px;
     border: solid 1px #e4e4e4;
     background-color: #fff;
     cursor: pointer;
+    transition: all 0.4s ease;
 }
-.quiz_select_element_root:hover{
+.quiz_select_element_root.ffba00:hover{
     border: solid 1px #ffba00;
+}
+.quiz_select_element_root.ff9300:hover{
+    border: solid 1px #ff9300;
+}
+.quiz_select_element_root.ff6c00:hover{
+    border: solid 1px #ff6c00;
 }
 .quiz_select_element_header{
     width: 100%;
@@ -22,37 +29,43 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .quiz_select_element_content_container > span:first-child{
+    margin-top: 20px;
     font-family: Pretendard;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 2.5;
-    letter-spacing: -0.96px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
     color: #5b5b5b;
 }
 .quiz_select_element_content_container > span:last-child{
     font-family: Pretendard;
-    font-size: 16px;
-    line-height: 1.63;
-    letter-spacing: -0.64px;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: -0.56px;
+    text-align: left;
     color: #5b5b5b;
     white-space: pre-line;
 }
 
 .quiz_decobox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(73px - 24px);
+    height: calc(30px - 12px);
     padding: 6px 12px;
-    border-radius: 13px;
+    border-radius: 8px;
 }
 .quiz_decobox > span{
     font-family: Pretendard;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.17;
-    letter-spacing: -0.48px;
-    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.43;
+    letter-spacing: -0.56px;
+    /* text-align: center; */
 }
 
 .quiz_select_element_image_container{
