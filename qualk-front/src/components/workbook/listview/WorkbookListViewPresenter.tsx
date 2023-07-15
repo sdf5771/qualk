@@ -12,10 +12,7 @@ import MoreBtnContainer from "./more-btn/MoreBtnContainer";
 import NoContents from "components/public/no-contents/NoContents";
 
 type workbookListViewPropsType = {
-    categoryData: {
-        activeMenu: string,
-        activeMenuId: number,
-    },
+    menuName: string,
     workbookData: WorkbookDataType[] | null,
     favoriteWorkbookData: WorkbookDataType[],
     filterActive: string,
@@ -25,7 +22,7 @@ type workbookListViewPropsType = {
     setCurrentPageNumber: React.Dispatch<React.SetStateAction<number>>,
 }
 
-function WorkbookListViewPresenter({categoryData, workbookData, isLastData, lastIndex, favoriteWorkbookData, filterActive, filterOnClickHandler, setCurrentPageNumber}: workbookListViewPropsType){
+function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastIndex, favoriteWorkbookData, filterActive, filterOnClickHandler, setCurrentPageNumber}: workbookListViewPropsType){
     const uniqueWorkbookElement = React.useMemo(() => {
         const map = new Map();
         if(workbookData){
@@ -38,13 +35,13 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
         }
     }, [workbookData])
 
-    if(categoryData.activeMenu === "GAIQ"){
+    if(menuName === "GAIQ"){
         return (
             <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in}`}>
                 <div className={styles.favorite_container}>
                     <div className={styles.favorite_header}>
                         <GaiqLogo width="50px" height="50px"/>
-                        <span>{categoryData ? categoryData['activeMenu'] : 'Loading'}</span>
+                        <span>{menuName ? menuName : 'Loading'}</span>
                     </div>
                     <div className={styles.favorite_help_container}>
                         <EyeImage width="36px" height="36px" />
@@ -52,7 +49,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
                     </div>
                     <div className={styles.favorite_content_container}>
                         {favoriteWorkbookData ? favoriteWorkbookData.map((data: WorkbookDataType) => {
-                            if(data && categoryData['activeMenu'] === data['question_type']){
+                            if(data && menuName === data['question_type']){
                                 return <TopViewWorkbookElement
                                     key={`${data['question_type']}-${data['question_id']}-top3`}
                                     question_id={data['question_id']}
@@ -80,7 +77,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
                     </div>
                     <div className={styles.listview_body}>
                         { uniqueWorkbookElement ? uniqueWorkbookElement.map((data: WorkbookDataType, index) => {
-                            if(data && categoryData['activeMenu'] === data['question_type']){
+                            if(data && menuName === data['question_type']){
                                 return <WorkbookElement
                                     key={`${data['question_type']}-${data['question_id']}`}
                                     question_id={data['question_id']}
@@ -105,7 +102,7 @@ function WorkbookListViewPresenter({categoryData, workbookData, isLastData, last
                 <div className={styles.favorite_container}>
                     <div className={styles.favorite_header}>
                         <GaiqLogo width="50px" height="50px"/>
-                        <span>{categoryData ? categoryData['activeMenu'] : 'Loading'}</span>
+                        <span>{menuName ? menuName : 'Loading'}</span>
                     </div>
                     <div className={styles.no_contents_container}>
                         <NoContents />

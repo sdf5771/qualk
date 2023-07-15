@@ -2,7 +2,6 @@ import React, {ReactEventHandler} from 'react';
 import styles from 'stylesheets/workbook/WorkbookPresenter.module.css';
 import publicScrollbar from 'stylesheets/public/scrollbar.module.css';
 import styled from 'styled-components';
-import SideBarContainer from "../../components/workbook/sidebarmenu/SideBarMenuContainer";
 import SearchBarContainer from "../../components/public/searchbar/SearchBarContainer";
 import WorkbookListViewContainer from "../../components/workbook/listview/WorkbookListViewContainer";
 import {ReactComponent as QualkHeaderLogo} from 'assets/images/workbook/listview/qualk_logo_122_40.svg';
@@ -16,11 +15,13 @@ import QuizTestMain from "./quiz-test/QuizTestMain";
 import QuizTestView from './quiz-test/QuizTestView';
 import MockTestStart from './quiz-test/MockTestStart';
 import MockTestResult from './quiz-test/MockTestResult';
+import QuizTestNoContents from './quiz-test/QuizTestNoContents';
 import PublicOkCancelModal from 'components/public/public-ok-cancel-modal/publicOkCancelModal';
 import { Dispatch } from 'redux';
-import { MutateFunction, Mutation, MutationFunction, UseMutateFunction } from '@tanstack/react-query';
+import { UseMutateFunction } from '@tanstack/react-query';
 import { TcreateQuizTest } from 'queries/workbook/quiz-test/createQuizTest';
 import { TdeleteQuizDataProps } from 'queries/workbook/quiz-test/deleteQuizData';
+import SNB from 'components/workbook/left-nav-bar/SNB';
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -122,14 +123,18 @@ function WorkbookPresenter({navigate, dispatch, location, headerLogoOnClickHandl
                 </div>
                 <div className={`${styles.workbook_body} ${publicScrollbar.public_scroll}`}>
                     <div className={styles.left_side_container}>
-                        <SideBarContainer />
+                        <SNB />
                     </div>
                     <div className={styles.right_side_container}>
                         <Routes>
                             <Route path='/test/mockexam/start/' element={<MockTestStart />} />
                             <Route path='/test/mockexam/result/*' element={<MockTestResult />} />
-                            <Route path='/test/:id' element={<QuizTestMain />} />
-                            <Route path='/test/:id/*' element={<QuizTestView />} />
+
+                            <Route path='/test/gaiq' element={<QuizTestMain />} />
+                            <Route path='/test/gaiq/*' element={<QuizTestView />} />
+                            <Route path='/test/sqid' element={<QuizTestNoContents />} />
+                            <Route path='/test/sqld' element={<QuizTestNoContents />} />
+
                             <Route path='/search' element={<QuizSearch />} />
                             <Route path='/:id/*' element={<WorkbookDetailContainer />} />
                             <Route path='/:id' element={<WorkbookListViewContainer />} />
