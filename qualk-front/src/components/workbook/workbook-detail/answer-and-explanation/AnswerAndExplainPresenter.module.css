@@ -9,12 +9,12 @@
     width: 100%;
 }
 .title_container > span{
-    font-family: "pretendard", sans-serif;
+    font-family: Pretendard;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
+    line-height: 1.56;
     letter-spacing: -0.72px;
-    text-align: left;
-    color: #ff9300;
+    color: #5b5b5b;
 }
 .content_container{
     margin-top: 20px;
@@ -29,35 +29,34 @@
     width: 100%;
 }
 .answer_container > span{
-    font-family: "pretendard", sans-serif;
+    font-family: Pretendard;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
+    line-height: 1.63;
     letter-spacing: -0.64px;
-    text-align: left;
-    color: #ffba00;
+    color: #ffa700;
 }
 .explain_container{
     margin-top: 20px;
 }
 .explain_container > span{
-    font-family: "pretendard", sans-serif;
+    font-family: Pretendard;
     font-size: 14px;
-    line-height: 1.86;
+    line-height: 1.71;
     letter-spacing: -0.56px;
-    text-align: left;
-    color: #797979;
+    color: #5b5b5b;
 }
 .reference_container{
     margin-top: 30px;
     width: 100%;
 }
 .reference_container > span{
-    font-family: "pretendard", sans-serif;
+    font-family: Pretendard;
     font-size: 14px;
-    line-height: 1.86;
+    font-weight: 500;
+    line-height: 1.43;
     letter-spacing: -0.56px;
-    text-align: left;
-    color: #ffba00;
+    color: #ffa700;
 }
 .reference_container > span:nth-child(2){
     text-decoration: underline;
