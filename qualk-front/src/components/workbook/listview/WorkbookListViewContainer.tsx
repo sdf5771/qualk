@@ -32,7 +32,17 @@ function WorkbookListViewContainer(){
 
 
     return (
-        <WorkbookListViewPresenter menuName={menuName} workbookData={currentWorkbookData} isLastData={workbookData ? workbookData['isLastData'] : false} lastIndex={workbookData ? workbookData['lastIndex'] : 0} favoriteWorkbookData={favData} filterActive={filterActive} filterOnClickHandler={filterOnClickHandler} setCurrentPageNumber={setCurrentPageNumber}/>
+        <WorkbookListViewPresenter 
+            menuName={menuName} 
+            workbookData={currentWorkbookData} 
+            isLastData={workbookData ? workbookData['isLastData'] : false} 
+            lastIndex={workbookData ? workbookData['lastIndex'] : 0} 
+            favoriteWorkbookData={favData} filterActive={filterActive} 
+            filterOnClickHandler={filterOnClickHandler} 
+            setCurrentPageNumber={setCurrentPageNumber}
+            workBookIsLoading={workBookIsLoading}
+            favIsLoading={favIsLoading}
+        />
     );
 }
 

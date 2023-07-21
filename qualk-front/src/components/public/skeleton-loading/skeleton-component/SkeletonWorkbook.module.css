@@ -1,0 +1,16 @@
+.skeleton_workbook_root{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 30px 20px;
+    width: calc(100% - 40px);
+    height: calc(168px - 50px);
+    border-radius: 10px;
+    border: solid 1px #e4e4e4;
+    background-color: #fff;
+}
+.body_container{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

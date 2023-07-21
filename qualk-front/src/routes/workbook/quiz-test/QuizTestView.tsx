@@ -2,12 +2,13 @@ import React, {useState, useEffect} from 'react';
 import styles from 'stylesheets/workbook/quiz-test/QuizTestView.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import getQuizTest from 'queries/workbook/quiz-test/getQuizTest';
 import QuizContentRadio from 'components/workbook/quiz-test/QuizContentRadio';
 import putQuizTest from 'queries/workbook/quiz-test/putQuizTest';
 import AnswerAndExplainContainer from 'components/workbook/workbook-detail/answer-and-explanation/AnswerAndExplainContainer';
 import useInterval from 'hook/useInterval';
+import TestTimer from 'components/public/test-timer/TestTimer';
 
 type TgetQuizTestData = {
     testId: string,
@@ -20,6 +21,8 @@ function QuizTestView(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isLast, setIsLast] = useState(false);
+    const [timerMinute, setTimerMinute] = useState(89);
+    const [timerSecond, setTimerSecond] = useState(59);
     const [countInterval, setCountInterval] = useState(0);
     const [userSelect, setUserSelect] = useState<null | number>(null);
     const [isUserMutate, setIsUserMutate] = useState(false);
@@ -35,6 +38,22 @@ function QuizTestView(){
     useInterval(() => {
         setCountInterval(countInterval + 1);
     }, 1000);
+    console.log('getQuizTestData ', getQuizTestData);
+    useEffect(() => {
+        const second = setInterval(() => {
+            setTimerSecond((prev) => prev - 1);
+        }, 1000)
+
+        const minute = setInterval(() => {
+            setTimerMinute((prev) => prev - 1);
+            setTimerSecond(59);
+        }, 59000)
+
+        return () => {
+            clearInterval(second);
+            clearInterval(minute);
+        }
+    }, [location.search])
  
     useEffect(() => {
         return () => {
@@ -137,9 +156,14 @@ function QuizTestView(){
                     <span>{location.state.testIndex}/{location.state.totalIndex}</span>
                 </div>
 
-                <div onClick={() => {navigate(`/quiz/test/gaiq/`)}} className={styles.quiz_exit}>
+                {/* <div onClick={() => {navigate(`/quiz/test/gaiq/`)}} className={styles.quiz_exit}>
                     <span>종료하기</span>
+                </div> */}
+                {isMockExam ? 
+                <div>
+                    <TestTimer time={`${timerMinute >= 10 ? timerMinute : '0' + timerMinute}:${timerSecond >= 10 ? timerSecond : '0' + timerSecond}`}/>
                 </div>
+                : null}
             </div>
 
             <div className={styles.test_container}>
@@ -174,6 +198,7 @@ function QuizTestView(){
                 : null}
                 <div className={styles.test_btn_container}>
                     <button onClick={submitBtnClickHandler} disabled={disabledBtn}>{userSelect !== null && !isUserMutate && !isMockExam ? "제출하기" : "다음"}</button>
+                    <button onClick={() => {navigate(`/quiz/test/gaiq/`)}}>종료하기</button>
                 </div>
             </div>
         </div>

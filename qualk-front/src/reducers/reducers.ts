@@ -5,6 +5,7 @@ import childMenuClickReducer from './workbook/sidebarmenu/childMenuClickReducer'
 import filterClickReducer from './workbook/listview/filterClickReducer';
 import workbookModalReducer from './workbook/workbook-detail/workbookModalReducer';
 import toastMsgReducer from './public/toastMsgReducer';
+import mockTestTimerReducer from './workbook/quiz-test/mockTestTimerReducer';
 
 const rootReducer = combineReducers({
     authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     filterClickReducer,
     workbookModalReducer,
     toastMsgReducer,
+    mockTestTimerReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
