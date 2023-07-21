@@ -220,13 +220,12 @@ async def search_keyword(keyword: str, type: str):
 
 @router.get("/")
 async def get_problem(content_type: str, content_id: int, lang:str):
-    if lang == 'kr':
-        content = get_content_kr(content_type, content_id)
-        table = 'question_info_kr'
-    elif lang == 'en':
-        content = get_content(content_type, content_id)
+    if lang == 'Korea':
+        content = get_content(content_type, content_id, 'question_content_kr')
+    elif lang == 'English':
+        content = get_content(content_type, content_id, 'question_content_en')
         table = 'question_info'
-    view = f"""update {table} set view = view + 1 where content_id = {content_id};"""
+    view = f"""update question_info set view = view + 1 where info_id = {content_id};"""
 
     update(sql=view)
 
