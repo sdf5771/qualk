@@ -2,7 +2,7 @@ import uuid
 import math
 
 from app.database.mysql import select, insert, update
-from app.logic.test_logic import find_test, get_ex_test, make_questionlist, \
+from app.logic.test_logic import find_test, get_ex_test, get_ex_time, make_questionlist, \
                                  get_content, put_content, result_wrong_case_cotent_id, \
                                  check_question, update_test_info, find_test_info, \
                                  find_wrong_content, delete_test, check_index,\
@@ -29,8 +29,9 @@ async def create_test(Input_test: Input_test):
         test_id = check_running_test[0]['TestID']
         ex_test = get_ex_test(test_id)
         test_index = ex_test[0]['TestIndex']
-        if ex_test[0]['Interval'] is not None:
-            time = time - ex_test[0]['Interval']
+        ex_time = get_ex_time(test_id)
+        if ex_time[0]['SUM(`Interval`)'] is not None:
+            time = time - ex_time[0]['SUM(`Interval`)']
     else:
         test_id = str(uuid.uuid4())
         insert_test_info = f"""INSERT INTO TestInfo(TestID,UserID,Status,TestType, QuestionNum)

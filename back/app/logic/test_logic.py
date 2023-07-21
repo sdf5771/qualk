@@ -23,6 +23,13 @@ def get_ex_test(test_id):
         ORDER BY T1.TestIndex ASC"""
     return select(select_ex_test)
 
+def get_ex_time(test_id):
+    select_time= f"""
+        SELECT SUM(`Interval`)
+        FROM TestContent
+        WHERE TestID = '{test_id}';"""
+    return select(select_time)
+
 def make_questionlist(question_type, question_num):
     find_question = f"""
         SELECT ContentID
