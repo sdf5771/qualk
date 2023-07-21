@@ -91,9 +91,9 @@ function QuizTestView(){
             setTimerSecond((prev) => prev - 1);
 
             //setTimeover
-            if(timerMinute === 0 && timerSecond === 0){
-                setIsTimeover(true);
-            }
+            // if(timerMinute === 0 && timerSecond === 0){
+            //     setIsTimeover(true);
+            // }
         }, 1000)
 
         return () => {
@@ -101,11 +101,11 @@ function QuizTestView(){
         }
     }, [timerSecond])
 
-    useEffect(() => {
-        if(isTimeover){
-            navigate(`/quiz/test/mockexam/result/?test-id=${location.state['testId']}`)
-        }
-    }, [isTimeover])
+    // useEffect(() => {
+    //     if(isTimeover){
+    //         navigate(`/quiz/test/mockexam/result/?test-id=${location.state['testId']}`)
+    //     }
+    // }, [isTimeover])
 
     const submitBtnClickHandler = (event: React.MouseEvent) => {
         if(disabledBtn === false){
