@@ -20,9 +20,10 @@ function QuizTestView(){
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [isTimeover, setIsTimeover] = useState(false);
     const [isLast, setIsLast] = useState(false);
-    const [timerMinute, setTimerMinute] = useState(89);
-    const [timerSecond, setTimerSecond] = useState(59);
+    const [timerMinute, setTimerMinute] = useState(0);
+    const [timerSecond, setTimerSecond] = useState(0);
     const [countInterval, setCountInterval] = useState(0);
     const [userSelect, setUserSelect] = useState<null | number>(null);
     const [isUserMutate, setIsUserMutate] = useState(false);
@@ -38,23 +39,7 @@ function QuizTestView(){
     useInterval(() => {
         setCountInterval(countInterval + 1);
     }, 1000);
-    console.log('getQuizTestData ', getQuizTestData);
-    useEffect(() => {
-        const second = setInterval(() => {
-            setTimerSecond((prev) => prev - 1);
-        }, 1000)
 
-        const minute = setInterval(() => {
-            setTimerMinute((prev) => prev - 1);
-            setTimerSecond(59);
-        }, 59000)
-
-        return () => {
-            clearInterval(second);
-            clearInterval(minute);
-        }
-    }, [location.search])
- 
     useEffect(() => {
         return () => {
             setCountInterval(0);
@@ -77,6 +62,50 @@ function QuizTestView(){
             setDisabledBtn(true);
         } 
     },[getQuizTestData, getQuizTestIsLoading])
+    
+    useEffect(() => {
+        let minuteTime = 0;
+        let secondTime = 0;
+
+
+        if(location.state && location.state['testTime']){
+            let currentTestTime = location.state['testTime'];
+
+            minuteTime = currentTestTime / 60;
+            secondTime = currentTestTime % 60;
+
+            setTimerMinute(Math.floor(minuteTime));
+            setTimerSecond(Math.floor(secondTime));
+        }
+
+        
+    }, [location.search])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if(timerSecond === 0){
+                setTimerMinute((prev) => prev - 1);
+                setTimerSecond(60);
+            }
+
+            setTimerSecond((prev) => prev - 1);
+
+            //setTimeover
+            if(timerMinute === 0 && timerSecond === 0){
+                setIsTimeover(true);
+            }
+        }, 1000)
+
+        return () => {
+            clearInterval(interval);
+        }
+    }, [timerSecond])
+
+    useEffect(() => {
+        if(isTimeover){
+            navigate(`/quiz/test/mockexam/result/?test-id=${location.state['testId']}`)
+        }
+    }, [isTimeover])
 
     const submitBtnClickHandler = (event: React.MouseEvent) => {
         if(disabledBtn === false){

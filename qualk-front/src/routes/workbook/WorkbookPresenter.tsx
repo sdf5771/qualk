@@ -44,6 +44,7 @@ type WorkbookPresenterPropsType = {
             testId:string, 
             testIndex: number,
             totalIndex: number,
+            testTime?: number,
         }, 
         mutateFunc?: UseMutateFunction },
     isToast?: boolean,
