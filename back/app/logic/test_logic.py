@@ -13,7 +13,8 @@ def find_test(user_id, test_type, test_num):
 
 def get_ex_test(test_id):
     select_ex_test= f"""
-        SELECT T1.TestIndex
+        SELECT T1.TestIndex,
+               T1.`Interval`
         FROM TestContent as T1
         INNER join QuestionContent as T2
            ON T1.ContentID = T2.ContentID
