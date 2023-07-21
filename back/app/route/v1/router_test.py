@@ -27,6 +27,7 @@ async def create_test(Input_test: Input_test):
     if check_running_test:
         test_id = check_running_test[0]['TestID']
         ex_test = get_ex_test(test_id)
+        print(ex_test)
         test_index = ex_test[0]['TestIndex']
         ex_time = get_ex_time(test_id)
         if ex_time[0]['SUM(`Interval`)'] is not None:
@@ -37,7 +38,7 @@ async def create_test(Input_test: Input_test):
                                VALUES('{test_id}','{Input_test.UserID}', 'RUNNING', '{Input_test.TestType}', {Input_test.QuestionNum})"""
         insert(sql=insert_test_info)
 
-        question_ids = make_questionlist_cache(Input_test.TestType, Input_test.QuestionNum)
+        question_ids = make_questionlist(Input_test.TestType, Input_test.QuestionNum)
         for index, question in enumerate(question_ids, start=1):
             insert_content = f"""INSERT INTO TestContent(TestID, Name, ContentID, TestIndex)
                                  VALUES('{test_id}', '{Input_test.TestType}', '{question['ContentID']}', {index})"""
