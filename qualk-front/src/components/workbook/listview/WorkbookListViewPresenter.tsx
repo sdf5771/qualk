@@ -1,7 +1,6 @@
 import React, {ReactEventHandler} from 'react';
 import styles from './WorkbookListViewPresenter.module.css'
 import publicAnimations from 'stylesheets/public/animation.module.css';
-import publicScrollbar from 'stylesheets/public/scrollbar.module.css';
 import {ReactComponent as GaiqLogo} from 'assets/images/workbook/listview/gaiq_logo.svg';
 import {ReactComponent as ListViewLogo} from 'assets/images/workbook/listview/listview_logo_yellow.svg';
 import {ReactComponent as EyeImage} from 'assets/images/workbook/listview/eye_image_yellow.svg';
@@ -10,6 +9,8 @@ import TopViewWorkbookElement from "./TopViewWorkbookElement";
 import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
 import MoreBtnContainer from "./more-btn/MoreBtnContainer";
 import NoContents from "components/public/no-contents/NoContents";
+import SkeletonComponent from "components/public/skeleton-loading/skeleton-component";
+import Shimmer from 'components/public/skeleton-loading/shimmer/Shimmer';
 
 type workbookListViewPropsType = {
     menuName: string,
@@ -20,9 +21,11 @@ type workbookListViewPropsType = {
     isLastData : boolean,
     lastIndex: number,
     setCurrentPageNumber: React.Dispatch<React.SetStateAction<number>>,
+    workBookIsLoading: boolean, 
+    favIsLoading: boolean
 }
 
-function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastIndex, favoriteWorkbookData, filterActive, filterOnClickHandler, setCurrentPageNumber}: workbookListViewPropsType){
+function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastIndex, favoriteWorkbookData, filterActive, filterOnClickHandler, setCurrentPageNumber, workBookIsLoading, favIsLoading}: workbookListViewPropsType){
     const uniqueWorkbookElement = React.useMemo(() => {
         const map = new Map();
         if(workbookData){
@@ -34,7 +37,7 @@ function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastInde
             return Array.from(map.values());
         }
     }, [workbookData])
-
+    
     if(menuName === "GAIQ"){
         return (
             <div className={`${styles.workbook_listview_root} ${publicAnimations.fade_in}`}>
@@ -48,6 +51,15 @@ function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastInde
                         <span>사람들이 가장 많이 찾아본 문제에요!</span>
                     </div>
                     <div className={styles.favorite_content_container}>
+                        {favIsLoading ? 
+                            <>
+                                <Shimmer />
+                                <SkeletonComponent.SkeletonTopViewWorkbook />
+                                <SkeletonComponent.SkeletonTopViewWorkbook />
+                                <SkeletonComponent.SkeletonTopViewWorkbook />
+                            </>
+                        : null}
+
                         {favoriteWorkbookData ? favoriteWorkbookData.map((data: WorkbookDataType) => {
                             if(data && menuName === data['question_type']){
                                 return <TopViewWorkbookElement
@@ -76,6 +88,18 @@ function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastInde
                         </div>
                     </div>
                     <div className={styles.listview_body}>
+                        {workBookIsLoading || workbookData?.length === 0 ? 
+                        <>
+                            <Shimmer />
+                            <SkeletonComponent.SkeletonWorkbook />
+                            <SkeletonComponent.SkeletonWorkbook />
+                            <SkeletonComponent.SkeletonWorkbook />
+                            <SkeletonComponent.SkeletonWorkbook />
+                            <SkeletonComponent.SkeletonWorkbook />
+                            <SkeletonComponent.SkeletonWorkbook />
+                        </>
+                        : null}
+
                         { uniqueWorkbookElement ? uniqueWorkbookElement.map((data: WorkbookDataType, index) => {
                             if(data && menuName === data['question_type']){
                                 return <WorkbookElement
@@ -88,7 +112,9 @@ function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastInde
                                     question_tag={data['question_tag']}
                                 />
                             }
-                        }) : null}
+                        }) : 
+                        null
+                        }
                     </div>
                     <div className={styles.listview_more_btn_container}>
                         {isLastData ? null : <MoreBtnContainer filterActive={filterActive} lastIndex={lastIndex} setCurrentPageNumber={setCurrentPageNumber}/>}

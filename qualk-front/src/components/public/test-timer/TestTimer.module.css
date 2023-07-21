@@ -1,0 +1,18 @@
+.timer_element_root{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(86px - 16px);
+    height: calc(32px - 4px);
+    padding: 4px 8px;
+    background-color: #fdfaf2;
+    border-radius: 8px;
+}
+
+.timer_element_root > span{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    color: #5b5b5b;
+}
