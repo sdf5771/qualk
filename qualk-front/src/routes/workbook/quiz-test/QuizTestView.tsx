@@ -67,7 +67,6 @@ function QuizTestView(){
         let minuteTime = 0;
         let secondTime = 0;
 
-
         if(location.state && location.state['testTime']){
             let currentTestTime = location.state['testTime'];
 
@@ -77,8 +76,6 @@ function QuizTestView(){
             setTimerMinute(Math.floor(minuteTime));
             setTimerSecond(Math.floor(secondTime));
         }
-
-        
     }, [location.search])
 
     useEffect(() => {

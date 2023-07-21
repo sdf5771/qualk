@@ -156,13 +156,11 @@ function QuizTestMain(){
                                     {type: 'gaiq', userId: 'TestUser', testNum: 50}, 
                                     {onSuccess: (data: {testId: string, testIndex: number, time: number}) => {
                                         if(data){
-                                            console.log('data ', data);
                                             let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname, testTime: data['time']}
                                             let navLocation = `/quiz/test/gaiq/mockexam?quiz=${data['testId']}`;
                                             if(data.testIndex !== 1){
                                                 dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                                             } else {
-                                                console.log('data ', data);
                                                 navigate(`/quiz/test/mockexam/start/`, 
                                                 {
                                                     state: navState
