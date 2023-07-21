@@ -32,7 +32,11 @@ function MockTestStart(){
                             hover: <ArrowLeftIconHover />,
                         }}
                         btnClickEventHandler={(event: React.MouseEvent)=>{
-                            navigate(`/quiz/test/gaiq`)
+                            if(location.state['prevPathName']){
+                                navigate(location.state['prevPathName'])
+                            } else {
+                                navigate(`/quiz/test/gaiq`)
+                            }
                         }}
                     />
             </div>
