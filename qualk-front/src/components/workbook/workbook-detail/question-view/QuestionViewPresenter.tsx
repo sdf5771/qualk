@@ -21,7 +21,7 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
     return(
         <div className={styles.question_view_root}>
             <div className={styles.question_view_title_container}>
-                <span>{workbookData ? workbookData.question_type : ''} (Google Analytics) #{workbookData ? workbookData.question_id : ''}</span>
+                <span>{workbookData ? workbookData.question_type : ''} #{workbookData ? workbookData.question_id : ''}</span>
                 <span>Q. {workbookData ? workbookData.question_name : ''}</span>
             </div>
             <div className={styles.question_container}>
@@ -38,31 +38,46 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
                     referenceData={workbookData && workbookData.question_reference && workbookData.question_reference[0].link ? workbookData.question_reference[0].link : null}
                 />
             <div className={styles.question_btn_container}>
-                <PublicImageBtnContainer
-                    btnText="목록으로"
-                    options={{border: true}}
-                    logoIcon={{
-                        default: <ListviewIconDefault />,
-                        hover: <ListviewIconHover />,
-                    }}
-                    btnClickEventHandler={(event: React.MouseEvent)=>{
-                        navigate(`/quiz/${workbookData.question_type.toLowerCase()}`)
-                    }}
-                />
+                <div>
+                    <PublicImageBtnContainer
+                            btnText="한/영 전환"
+                            options={{border: true}}
+                            logoIcon={{
+                                default: <ListviewIconDefault />,
+                                hover: <ListviewIconHover />,
+                            }}
+                            btnClickEventHandler={(event: React.MouseEvent)=>{
+                                navigate(`/quiz/${workbookData.question_type.toLowerCase()}`)
+                            }}
+                        />
+                </div>
+                <div>
+                    <PublicImageBtnContainer
+                        btnText="목록으로"
+                        options={{border: true}}
+                        logoIcon={{
+                            default: <ListviewIconDefault />,
+                            hover: <ListviewIconHover />,
+                        }}
+                        btnClickEventHandler={(event: React.MouseEvent)=>{
+                            navigate(`/quiz/${workbookData.question_type.toLowerCase()}`)
+                        }}
+                    />
 
-                <PublicImageBtnContainer
-                    btnText="공유하기"
-                    options={{border: true}}
-                    logoIcon={{
-                        default: <ShareIconDefault />,
-                        hover: <ShareIconHover />,
-                    }}
-                    btnClickEventHandler={(event: React.MouseEvent)=>{
-                        if(dispatch){
-                            dispatch({type: 'shareWorkbookClick'});
-                        }
-                    }}
-                />
+                    <PublicImageBtnContainer
+                        btnText="공유하기"
+                        options={{border: true}}
+                        logoIcon={{
+                            default: <ShareIconDefault />,
+                            hover: <ShareIconHover />,
+                        }}
+                        btnClickEventHandler={(event: React.MouseEvent)=>{
+                            if(dispatch){
+                                dispatch({type: 'shareWorkbookClick'});
+                            }
+                        }}
+                    />
+                </div>
             </div>
         </div>
     )
