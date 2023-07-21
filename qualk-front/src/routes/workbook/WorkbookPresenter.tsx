@@ -67,21 +67,24 @@ function WorkbookPresenter({navigate, dispatch, location, headerLogoOnClickHandl
                     if(modalState && modalState.navLocation && modalState.navigationState){
                         let totalIndex = modalState.navigationState.totalIndex;
 
-                        deleteQuiz({testId: modalState.navigationState.testId})
-                        createQuiz(
-                            {type: 'gaiq', userId: 'TestUser', testNum: totalIndex}, 
-                            {onSuccess: (data: {testId: string, testIndex: number}) => {
-                                if(data){
-                                    let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: totalIndex, prevPathName: location.pathname}
-                                    let navLocation = totalIndex === 50 ? '/quiz/test/mockexam/start/' : `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
-                                    navigate(navLocation, 
-                                        {
-                                            state: navState
+                        deleteQuiz({testId: modalState.navigationState.testId}, {onSuccess: (data) => {
+                            if(data && data.ok && data.status === 204){
+                                createQuiz(
+                                    {type: 'gaiq', userId: 'TestUser', testNum: totalIndex}, 
+                                    {onSuccess: (data: {testId: string, testIndex: number, time?: number}) => {
+                                        if(data){
+                                            let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: totalIndex, prevPathName: location.pathname, testTime: data['time']}
+                                            let navLocation = totalIndex === 50 ? '/quiz/test/mockexam/start/' : `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                            navigate(navLocation, 
+                                                {
+                                                    state: navState
+                                                }
+                                            );
                                         }
-                                    );
-                                }
-                                dispatch({type: "WorkbookModalClose"});
-                            }})
+                                        dispatch({type: "WorkbookModalClose"});
+                                }})
+                            }
+                        }})
                     }
                 }} 
                 cancelBtnClickEventHandler={(event: React.MouseEvent<HTMLButtonElement>) => {

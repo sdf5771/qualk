@@ -9,8 +9,8 @@ async function deleteQuizData({testId}: TdeleteQuizDataProps){
             'Content-Type': 'application/json'
         }
     });
-
-    // return response.json();
+    
+    return response
 }
 
 export default deleteQuizData;
