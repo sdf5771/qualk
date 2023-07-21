@@ -12,6 +12,7 @@ origins = [
     "http://localhost",
     "https://localhost",
     "http://localhost:3000",
+    "http://1.224.252.171:3000",
     "https://qualk.co.kr"
 ]
 
