@@ -4,13 +4,16 @@ type initialState = { modalStateId: number, navLocation?: string, navigationStat
     testIndex: number;
     testId: string;
     totalIndex: number;
-    prevPathName: string;}, mutateFunc?: UseMutateFunction };
+    prevPathName: string;
+    testTime?: number;
+}, mutateFunc?: UseMutateFunction };
 
 export type actionType = {type: string, navLocation?: string, navigationState?: {
     testIndex: number;
     testId: string;
     totalIndex: number;
     prevPathName: string;
+    testTime?: number;
 }, mutateFunc?: UseMutateFunction};
 
 function workbookModalReducer<T, U>(currentState: initialState, action: actionType){
