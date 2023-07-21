@@ -6,7 +6,7 @@ from app.logic.test_logic import find_test, get_ex_test, get_ex_time, make_quest
                                  get_content, put_content, result_wrong_case_cotent_id, \
                                  check_question, update_test_info, find_test_info, \
                                  find_wrong_content, delete_test, check_index,\
-                                 find_time
+                                 find_time, make_questionlist_cache
 
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
@@ -16,7 +16,6 @@ router = APIRouter(
     prefix="/api/v1/test"
 )
 
-#모의고사 생성(시험을 처음 치는 경우 or 새롭게 만드는 경우)
 @router.post("/", status_code=201)
 async def create_test(Input_test: Input_test):
     """
@@ -38,13 +37,12 @@ async def create_test(Input_test: Input_test):
                                VALUES('{test_id}','{Input_test.UserID}', 'RUNNING', '{Input_test.TestType}', {Input_test.QuestionNum})"""
         insert(sql=insert_test_info)
 
-        question_ids = make_questionlist(Input_test.TestType, Input_test.QuestionNum)
+        question_ids = make_questionlist_cache(Input_test.TestType, Input_test.QuestionNum)
         for index, question in enumerate(question_ids, start=1):
             insert_content = f"""INSERT INTO TestContent(TestID, Name, ContentID, TestIndex)
                                  VALUES('{test_id}', '{Input_test.TestType}', '{question['ContentID']}', {index})"""
             insert(sql=insert_content)
         test_index = 1
-
     return jsonable_encoder({'testId': test_id, 'testIndex': test_index, 'time': time})
 
 @router.get("/", status_code=200)

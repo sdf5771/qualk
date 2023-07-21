@@ -2,16 +2,16 @@ import random
 import uuid
 
 from app.database.mysql import select, insert, update
-
+from app.logic.quiz_logic import get_content_kr, get_content
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
 
 router = APIRouter(
-    # prefix="/api/v1/quiz"
+    prefix="/api/v1/quiz"
 )
 
 #Top 3 question
-@router.get("/api/v1/quiz/{type}/top_3")
+@router.get("/{type}/top_3")
 async def find_top(type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -37,7 +37,7 @@ async def find_top(type: str):
     return jsonable_encoder(result)
 
 #Select question all
-@router.get("/api/v1/quiz/{type}/view/{last_index}")
+@router.get("/{type}/view/{last_index}")
 async def find_view(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -72,7 +72,7 @@ async def find_view(last_index: int, type: str):
     return jsonable_encoder(result)
 
 #Select question orderby create_date desc
-@router.get("/api/v1/quiz/{type}/new/{last_index}")
+@router.get("/{type}/new/{last_index}")
 async def find_new(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -107,7 +107,7 @@ async def find_new(last_index: int, type: str):
     return jsonable_encoder(result)
 
 #Select question orderby create_date asc
-@router.get("/api/v1/quiz/{type}/old/{last_index}")
+@router.get("/{type}/old/{last_index}")
 async def find_old(last_index: int, type: str):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -141,7 +141,7 @@ async def find_old(last_index: int, type: str):
              }
     return jsonable_encoder(result)
 
-@router.get("/api/v1/quiz/{type}/{quiz_id}")
+@router.get("/{type}/{quiz_id}")
 async def find_problem(type: str, quiz_id: int):
     query = f"""
         SELECT content.content_id AS question_id,
@@ -180,7 +180,7 @@ async def find_problem(type: str, quiz_id: int):
             raise HTTPException(status_code=404, detail=f"{quiz_id} is Not found")
     return jsonable_encoder(result)
 
-@router.get("/api/v1/quiz/search")
+@router.get("/search")
 async def search_keyword(keyword: str, type: str):
     if type == 'keyword':
         query = f"""
@@ -217,3 +217,37 @@ async def search_keyword(keyword: str, type: str):
             except Exception as error:
                 raise HTTPException(status_code=500, detail=str(error))
     return jsonable_encoder(result)
+
+@router.get("/")
+async def get_problem(content_type: str, content_id: int, lang:str):
+    if lang == 'kr':
+        content = get_content_kr(content_type, content_id)
+        table = 'question_info_kr'
+    elif lang == 'en':
+        content = get_content(content_type, content_id)
+        table = 'question_info'
+    view = f"""update {table} set view = view + 1 where content_id = {content_id};"""
+
+    update(sql=view)
+
+    if not content:
+        raise HTTPException(status_code=404, detail="no data")
+    content = content[0]
+    if content['contents'] is not None:
+        try:
+            content['contents'] = content['contents'].split(',')
+        except Exception as error:
+            raise HTTPException(status_code=500, detail=str(error))
+    else:
+        raise HTTPException(status_code=404, detail=f"{content_id} is Not found")
+    return jsonable_encoder({
+        'contentId':content['content_id'],
+        'title':content['title'],
+        'type':content['type'],
+        'contents':content['contents'],
+        'correct':content['contents'],
+        'description':content['description'],
+        'lang':content['lang'],
+        'reference':content['reference_url'],
+        'isTrance':True if content['is_trance'] else False
+    })

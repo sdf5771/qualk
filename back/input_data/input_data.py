@@ -4,6 +4,9 @@ from sqlalchemy import create_engine
 _CREATE_ENGINE = create_engine(f'mysql+pymysql://bijang:quddlr12@192.168.75.179:3306/qualk')
 
 def test():
+    # csv_data = pd.read_csv(r'final_kr.csv', encoding='cp949')
+    # csv_data['항목'] = csv_data['항목'].str.replace(',', '')
+    # csv_data.to_sql('raw_data',con=_CREATE_ENGINE, if_exists='replace')
     """
     INSERT INTO question_content (content_id, type, content_list, description)
     Select `문제 번호`,`자격증 종류`, group_concat(`항목`), MAX(`풀이`)
@@ -23,9 +26,7 @@ def test():
     set content.correct = raw.`index` % 4
     where raw.`정답여부` = 'O';
     """
-    csv_data = pd.read_csv(r'test1.csv', encoding='utf8')
-    csv_data['항목'] = csv_data['항목'].str.replace(',', '')
-    csv_data.to_sql('raw_data',con=_CREATE_ENGINE, if_exists='replace')
+
     # csv_data['문제'] = csv_data['문제'].str.replace(',', '')
     # print(csv_data)
 
