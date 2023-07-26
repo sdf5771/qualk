@@ -244,7 +244,7 @@ async def get_problem(content_type: str, content_id: int, lang:str):
         'title':content['title'],
         'type':content['type'],
         'contents':content['contents'],
-        'correct':content['contents'],
+        'correct':content['correct'],
         'description':content['description'],
         'lang':content['lang'],
         'reference':content['reference_url'],
