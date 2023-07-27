@@ -1,0 +1,11 @@
+.root{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0F0F0F;
+}
+.page_body{
+    display: flex;
+    width: calc(100% - 320px);
+    height: 100%;
+}

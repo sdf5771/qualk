@@ -1,0 +1,38 @@
+.navbar_root{
+    width: calc(320px - 20px);
+    height: calc(100% - 20px);
+    padding: 10px;
+    background-color: #0F0F0F;
+    /* background-color: #181D23; */
+}
+.profile_container{
+    display: flex;
+    align-items: center;
+    width: calc(100% - 20px);
+    height: calc(60px - 20px);
+    background-color: rgba(144, 202, 249, 0.08);
+    border-radius: 4px;
+    padding: 10px;
+    gap: 20px;
+    cursor: pointer;
+}
+.profile_container > span{
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    color: white;
+}
+.menu_list_container{
+    background-color: #121212;
+}
+.list_item_btn{
+    background-color: #181D23;
+}
+.list_item_text{
+    color: white;
+}
+.divide{
+    margin: 10px!important;
+    border-color: #877d7d!important;
+}
