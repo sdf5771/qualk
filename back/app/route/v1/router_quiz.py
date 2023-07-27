@@ -3,220 +3,101 @@ import uuid
 
 from app.database.mysql import select, insert, update
 from app.logic.quiz_logic import get_content_kr, get_content
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from fastapi.encoders import jsonable_encoder
+# Model
+from app.model.model_quiz import QuestionContent, QuestionInfo 
+from typing import List
+from pydantic import BaseModel
+#Conn
+from sqlalchemy import create_engine, desc, asc
+from sqlalchemy.orm import Session, sessionmaker
+from datetime import date
+from dotenv import load_dotenv
+import os
 
-router = APIRouter(
-    prefix="/api/v1/quiz"
-)
+load_dotenv(verbose=True)
 
-#Top 3 question
-@router.get("/{type}/top_3")
-async def find_top(type: str):
-    query = f"""
-        SELECT content.content_id AS question_id,
-               content.type AS question_type,
-               info.title AS question_name,
-               info.view AS question_view,
-               info.create_date AS question_create,
-               info.tag AS question_tag
-        FROM question_content as content
-        inner join question_info as info
-        on content.content_id = info.info_id
-        where content.type = '{type}'
-        order by info.view desc
-        limit 3
-    """
-    result = select(sql=query)
-    for i in result:
-        if i['question_tag'] is not None:
-            try:
-                i['question_tag'] = i['question_tag'].split(',')
-            except Exception as error:
-                raise HTTPException(status_code=500, detail=str(error))
-    return jsonable_encoder(result)
+_DB_ID = os.getenv('DB_ID')
+_DB_PASS = os.getenv('DB_PASS')
+_DB_IP = os.getenv('DB_IP')
+_DB_SCHEMA = os.getenv('DB_SCHEMA')
+_DB_PORT = os.getenv('DB_PORT')
 
-#Select question all
-@router.get("/{type}/view/{last_index}")
-async def find_view(last_index: int, type: str):
-    query = f"""
-        SELECT content.content_id AS question_id,
-               content.type AS question_type,
-               info.title AS question_name,
-               info.view AS question_view,
-               info.create_date AS question_create,
-               info.tag AS question_tag
-        FROM question_content as content
-        inner join question_info as info
-        on content.content_id = info.info_id
-        where content.type = '{type}'
-        ORDER BY question_view DESC,
-				 question_id DESC
-        limit 6 offset {last_index};
-    """
-    data = select(sql=query)
-    for i in data:
-        if i['question_tag'] is not None:
-            try:
-                i['question_tag'] = i['question_tag'].split(',')
-            except Exception as error:
-                raise HTTPException(status_code=500, detail=str(error))
-    isLastData = False
-    if len(data) < 6:
-        isLastData = True
-    result = { 
-                'workbookData': data,
-                'lastIndex': last_index + 6,
-                'isLastData': isLastData,
-             }
-    return jsonable_encoder(result)
+SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{_DB_ID}:{_DB_PASS}@{_DB_IP}:{_DB_PORT}/{_DB_SCHEMA}"
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-#Select question orderby create_date desc
-@router.get("/{type}/new/{last_index}")
-async def find_new(last_index: int, type: str):
-    query = f"""
-        SELECT content.content_id AS question_id,
-               content.type AS question_type,
-               info.title AS question_name,
-               info.view AS question_view,
-               info.create_date AS question_create,
-               info.tag AS question_tag
-        FROM question_content as content
-        inner join question_info as info
-        on content.content_id = info.info_id
-        where content.type = '{type}'
-        order by info.create_date desc,
-                 question_id DESC
-        limit 6 offset {last_index};
-    """
-    data = select(sql=query)
-    for i in data:
-        if i['question_tag'] is not None:
-            try:
-                i['question_tag'] = i['question_tag'].split(',')
-            except Exception as error:
-                raise HTTPException(status_code=500, detail=str(error))
-    isLastData = False
-    if len(data) < 6:
-        isLastData = True
-    result = { 
-                'workbookData': data,
-                'lastIndex': last_index + 6,
-                'isLastData': isLastData,
-             }
-    return jsonable_encoder(result)
+class Question(BaseModel):
+    ContentID: int
+    Title: str
+    Type: str
+    view: int
+    CreateDate: date
+    Tag: List[str]
 
-#Select question orderby create_date asc
-@router.get("/{type}/old/{last_index}")
-async def find_old(last_index: int, type: str):
-    query = f"""
-        SELECT content.content_id AS question_id,
-               content.type AS question_type,
-               info.title AS question_name,
-               info.view AS question_view,
-               info.create_date AS question_create,
-               info.tag AS question_tag
-        FROM question_content as content
-        inner join question_info as info
-        on content.content_id = info.info_id
-        where content.type = '{type}'
-        order by info.create_date asc,
-                 question_id DESC
-        limit 6 offset {last_index};
-    """
-    data = select(sql=query)
-    for i in data:
-        if i['question_tag'] is not None:
-            try:
-                i['question_tag'] = i['question_tag'].split(',')
-            except Exception as error:
-                raise HTTPException(status_code=500, detail=str(error))
-    isLastData = False
-    if len(data) < 6:
-        isLastData = True
-    result = { 
-                'workbookData': data,
-                'lastIndex': last_index + 6,
-                'isLastData': isLastData,
-             }
-    return jsonable_encoder(result)
+router = APIRouter(prefix="/api/v1/quiz")
+db = SessionLocal()
 
-@router.get("/{type}/{quiz_id}")
-async def find_problem(type: str, quiz_id: int):
-    query = f"""
-        SELECT content.content_id AS question_id,
-               info.title AS question_name,
-               content.type AS question_type,
-			   content.content_list AS question_contents,
-               content.correct AS question_correct,
-               content.description AS question_description,
-               info.reference_url AS question_reference,
-               info.view AS question_view,
-               info.create_date AS question_create,
-               info.tag AS question_tag
-        FROM question_content as content
-        inner join question_info as info
-        on content.content_id = info.info_id
-        where content.content_id = {quiz_id}
-        and content.type = '{type}';
-    """
+def get_db():
+    try: 
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
 
-    result = select(sql=query)
+@router.get("/list", response_model=List[Question])
+def find_top(
+             _type: str,
+             list_type : str,
+             page: int = 1,
+             page_size: int = 6,
+             db: Session = Depends(get_db)
+            ):
+    try:
+        if list_type.lower() == 'top3':
+            order = desc(QuestionInfo.view)
+            page_size = 3
+        elif list_type.lower() == 'view':
+            order = desc(QuestionInfo.view)
+        elif list_type.lower() == 'old':
+            order = asc(QuestionInfo.CreateDate)
+        elif list_type.lower() == 'new':
+            order = desc(QuestionInfo.CreateDate)
 
-    view = f"""
-            update question_info set view = view + 1 where info_id = {quiz_id};
-            """
-    insert(sql=view)
-    if not result:
-        raise HTTPException(status_code=404, detail="no data")
-    
-    for i in result:
-        if i['question_contents'] is not None:
-            try:
-                i['question_contents'] = i['question_contents'].split(',')
-            except Exception as error:
-                raise HTTPException(status_code=500, detail=str(error))
-        else:
-            raise HTTPException(status_code=404, detail=f"{quiz_id} is Not found")
-    return jsonable_encoder(result)
+        first_result = (page - 1) * page_size
 
-@router.get("/search")
-async def search_keyword(keyword: str, type: str):
-    if type == 'keyword':
-        query = f"""
-        SELECT content.content_id AS question_id,
-               content.type AS question_type,
-               info.title AS question_name,
-               info.view AS question_view,
-               info.create_date AS question_create,
-               info.tag AS question_tag
-        FROM question_content as content
-        inner join question_info as info
-        on content.content_id = info.info_id
-        where info.title like '%{keyword}%'
-        or content.content_list like '%{keyword}%';
-    """
-    elif type == 'tag':
-        query = f"""
-        SELECT content.content_id AS question_id,
-               content.type AS question_type,
-               info.title AS question_name,
-               info.view AS question_view,
-               info.create_date AS question_create,
-               info.tag AS question_tag
-        FROM question_content as content
-        inner join question_info as info
-        on content.content_id = info.info_id
-        where info.tag like '%{keyword}%';
-    """
-    result = select(sql=query)
-    for i in result:
-        if i['question_tag'] is not None:
-            try:
-                i['question_tag'] = i['question_tag'].split(',')
-            except Exception as error:
-                raise HTTPException(status_code=500, detail=str(error))
-    return jsonable_encoder(result)
+        result = (
+            db.query(QuestionContent.ContentID, 
+                     QuestionContent.Title, 
+                     QuestionInfo.Type, 
+                     QuestionInfo.view, 
+                     QuestionInfo.CreateDate, 
+                     QuestionInfo.Tag)
+            .join(QuestionInfo, QuestionContent.ContentID == QuestionInfo.ContentID)
+            .filter(QuestionInfo.Type == _type)
+            .order_by(order)
+            .offset(first_result)
+            .limit(page_size)
+            .all()
+        )
+
+        response = []
+        for i in result:
+            tags = i.Tag.split(',') if i.Tag else []
+            question = Question(
+                ContentID=i.ContentID,
+                Title=i.Title,
+                Type=i.Type,
+                view=i.view,
+                CreateDate=i.CreateDate,
+                Tag=tags
+            )
+            response.append(question)
+
+        return response
+    except Exception as error:
+        raise HTTPException(status_code=500, detail=str(error))
 
 @router.get("/")
 async def get_problem(content_type: str, content_id: int, lang:str):
