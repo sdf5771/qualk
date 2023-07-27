@@ -1,6 +1,6 @@
 import random
 import json
-from app.database.redis import redis_connect
+# from app.database.redis import redis_connect
 from app.database.mysql import select, insert, update, delete
 
 
