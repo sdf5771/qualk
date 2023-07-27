@@ -24,6 +24,7 @@ async def create_test(Input_test: Input_test):
     test_id, test_index, time = None, None, 5400
 
     check_running_test = find_test(Input_test.UserID, Input_test.TestType, Input_test.QuestionNum)
+    print(check_running_test)
     if check_running_test:
         test_id = check_running_test[0]['TestID']
         ex_test = get_ex_test(test_id)
