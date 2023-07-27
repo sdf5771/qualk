@@ -35,7 +35,6 @@ class Question(BaseModel):
     view: int
     create: date
     tag: List[str]
-    total: int
 
 
 router = APIRouter(prefix="/api/v1/quiz")
@@ -48,7 +47,7 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/list", response_model=List[Question])
+@router.get("/list")
 def find_top(
              _type: str,
              list_type : str,
@@ -104,7 +103,11 @@ def find_top(
             )
             response.append(question)
 
-        return response
+        return jsonable_encoder({
+                                'quizList': response,
+                                'total': total_pages,
+                                'page': page
+                            })
     except Exception as error:
         raise HTTPException(status_code=500, detail=str(error))
 
