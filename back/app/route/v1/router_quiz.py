@@ -29,12 +29,12 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 class Question(BaseModel):
-    ContentID: int
-    Title: str
-    Type: str
+    contentId: int
+    title: str
+    type: str
     view: int
-    CreateDate: date
-    Tag: List[str]
+    create: date
+    tag: List[str]
 
 router = APIRouter(prefix="/api/v1/quiz")
 db = SessionLocal()
@@ -86,12 +86,12 @@ def find_top(
         for i in result:
             tags = i.Tag.split(',') if i.Tag else []
             question = Question(
-                ContentID=i.ContentID,
-                Title=i.Title,
-                Type=i.Type,
+                contentId=i.ContentID,
+                title=i.Title,
+                type=i.Type,
                 view=i.view,
-                CreateDate=i.CreateDate,
-                Tag=tags
+                create=i.CreateDate,
+                tag=tags
             )
             response.append(question)
 
