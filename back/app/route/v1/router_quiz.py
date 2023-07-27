@@ -35,6 +35,8 @@ class Question(BaseModel):
     view: int
     create: date
     tag: List[str]
+    total: int
+
 
 router = APIRouter(prefix="/api/v1/quiz")
 db = SessionLocal()
@@ -55,15 +57,21 @@ def find_top(
              db: Session = Depends(get_db)
             ):
     try:
-        if list_type.lower() == 'top3':
-            order = desc(QuestionInfo.view)
-            page_size = 3
-        elif list_type.lower() == 'view':
+        if list_type.lower() == 'view':
             order = desc(QuestionInfo.view)
         elif list_type.lower() == 'old':
             order = asc(QuestionInfo.CreateDate)
         elif list_type.lower() == 'new':
             order = desc(QuestionInfo.CreateDate)
+
+        total_results = (
+            db.query(QuestionContent)
+            .join(QuestionInfo, QuestionContent.ContentID == QuestionInfo.ContentID)
+            .filter(QuestionInfo.Type == _type)
+            .count()
+        )
+
+        total_pages = (total_results - 1) // page_size + 1
 
         first_result = (page - 1) * page_size
 
@@ -91,7 +99,8 @@ def find_top(
                 type=i.Type,
                 view=i.view,
                 create=i.CreateDate,
-                tag=tags
+                tag=tags,
+                total=total_pages
             )
             response.append(question)
 
