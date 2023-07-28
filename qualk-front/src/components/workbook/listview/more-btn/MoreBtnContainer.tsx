@@ -3,14 +3,14 @@ import MoreBtnPresenter from "./MoreBtnPresenter";
 
 type MoreBtnContainerPropsType = {
     filterActive: string,
-    lastIndex: number,
+    currentPage: number,
     setCurrentPageNumber: React.Dispatch<React.SetStateAction<number>>,
 }
 
-function MoreBtnContainer({filterActive, lastIndex, setCurrentPageNumber}: MoreBtnContainerPropsType){
+function MoreBtnContainer({filterActive, currentPage, setCurrentPageNumber}: MoreBtnContainerPropsType){
     const onClickHandler = (event:React.MouseEvent) => {
         if(setCurrentPageNumber){
-            setCurrentPageNumber(lastIndex)
+            setCurrentPageNumber(currentPage + 1)
         }
     }
 

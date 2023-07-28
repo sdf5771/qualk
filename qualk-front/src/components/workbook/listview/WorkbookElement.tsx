@@ -5,48 +5,40 @@ import KeywordElement from "./KeywordElement";
 import {ReactComponent as ViewEyeIcon} from 'assets/images/workbook/listview/view_eye_icon.svg';
 import {useNavigate, useLocation} from 'react-router-dom';
 import {useDispatch} from "react-redux";
+import { WorkbookDataType } from '../type/WorkbookDataType';
 
-type WorkbookElementPropsType = {
-    question_id: number,
-    question_type: string,
-    question_name: string,
-    question_view: number,
-    question_create: string,
-    question_tag: string[] | null,
-}
-
-function WorkbookElement({ question_id, question_type, question_name, question_view, question_create, question_tag}: WorkbookElementPropsType){
+function WorkbookElement({ contentId, type, title, view, create, tag}: WorkbookDataType){
     const navigate = useNavigate();
     const location = useLocation();
     const workbookElementClickDispatch = useDispatch();
     const workbookElementOnClickHandler = (event: React.MouseEvent) => {
-        workbookElementClickDispatch({type: 'workbookElementClick', questionType: question_type, questionId: question_id})
-        navigate(`/quiz/${question_type.toLowerCase()}/${question_id}`, {state: {beforeLocation: location.pathname + location.search}})
+        workbookElementClickDispatch({type: 'workbookElementClick', questionType: type, questionId: contentId})
+        navigate(`/quiz/${type.toLowerCase()}/${contentId}`, {state: {beforeLocation: location.pathname + location.search}})
     }
 
     return(
         <div onClick={workbookElementOnClickHandler} className={`${styles.workbook_element_root} ${publicAnimation.fade_and_slide}`}>
             <div className={styles.workbook_element_header}>
                 <div className={styles.workbook_title}>
-                    <span>{question_type}</span>
-                    <span>#{question_id}</span>
+                    <span>{type}</span>
+                    <span>#{contentId}</span>
                 </div>
                 <div className={styles.workbook_element_right_side_container}>
                     <div>
                         <ViewEyeIcon width="22px" height="22px"/>
-                        <span>{question_view}</span>
+                        <span>{view}</span>
                     </div>
                     <div></div>
                     <div>
-                        <span>{question_create}</span>
+                        <span>{create}</span>
                     </div>
                 </div>
             </div>
             <div className={styles.workbook_element_title_container}>
-                <span>{question_name}</span>
+                <span>{title}</span>
             </div>
             <div className={styles.workbook_keyword_container}>
-                {question_tag ? question_tag.map((data:string, index:number) => {
+                {tag ? tag.map((data:string, index:number) => {
                     if(data){
                         return <KeywordElement key={index} keywordTitle={data} />
                     }

@@ -18,20 +18,20 @@ type workbookListViewPropsType = {
     favoriteWorkbookData: WorkbookDataType[],
     filterActive: string,
     filterOnClickHandler: ReactEventHandler,
-    isLastData : boolean,
-    lastIndex: number,
+    totalPage : number,
+    currentPage: number,
     setCurrentPageNumber: React.Dispatch<React.SetStateAction<number>>,
     workBookIsLoading: boolean, 
     favIsLoading: boolean
 }
 
-function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastIndex, favoriteWorkbookData, filterActive, filterOnClickHandler, setCurrentPageNumber, workBookIsLoading, favIsLoading}: workbookListViewPropsType){
+function WorkbookListViewPresenter({menuName, workbookData, totalPage, currentPage, favoriteWorkbookData, filterActive, filterOnClickHandler, setCurrentPageNumber, workBookIsLoading, favIsLoading}: workbookListViewPropsType){
     const uniqueWorkbookElement = React.useMemo(() => {
         const map = new Map();
         if(workbookData){
             workbookData.forEach((data) => {
                 if(data){
-                    map.set(data['question_id'], data)
+                    map.set(data.contentId, data)
                 }
             })
             return Array.from(map.values());
@@ -61,15 +61,15 @@ function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastInde
                         : null}
 
                         {favoriteWorkbookData ? favoriteWorkbookData.map((data: WorkbookDataType) => {
-                            if(data && menuName === data['question_type']){
+                            if(data && menuName === data.type){
                                 return <TopViewWorkbookElement
-                                    key={`${data['question_type']}-${data['question_id']}-top3`}
-                                    question_id={data['question_id']}
-                                    question_type={data['question_type']}
-                                    question_name={data['question_name']}
-                                    question_view={data['question_view']}
-                                    question_create={data['question_create']}
-                                    question_tag={data['question_tag']}
+                                    key={`${data.type}-${data.contentId}-top3`}
+                                    contentId={data.contentId}
+                                    type={data.type}
+                                    title={data.title}
+                                    view={data.view ? data.view : 0}
+                                    create={data.create ? data.create : ''}
+                                    tag={data.tag ? data.tag : []}
                                 />
                             }
                         }) : null}
@@ -101,15 +101,15 @@ function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastInde
                         : null}
 
                         { uniqueWorkbookElement ? uniqueWorkbookElement.map((data: WorkbookDataType, index) => {
-                            if(data && menuName === data['question_type']){
+                            if(data && menuName === data.type){
                                 return <WorkbookElement
-                                    key={`${data['question_type']}-${data['question_id']}`}
-                                    question_id={data['question_id']}
-                                    question_type={data['question_type']}
-                                    question_name={data['question_name']}
-                                    question_view={data['question_view']}
-                                    question_create={data['question_create']}
-                                    question_tag={data['question_tag']}
+                                    key={`${data.type}-${data.contentId}`}
+                                    contentId={data.contentId}
+                                    type={data.type}
+                                    title={data.title}
+                                    view={data.view}
+                                    create={data.create}
+                                    tag={data.tag}
                                 />
                             }
                         }) : 
@@ -117,7 +117,7 @@ function WorkbookListViewPresenter({menuName, workbookData, isLastData, lastInde
                         }
                     </div>
                     <div className={styles.listview_more_btn_container}>
-                        {isLastData ? null : <MoreBtnContainer filterActive={filterActive} lastIndex={lastIndex} setCurrentPageNumber={setCurrentPageNumber}/>}
+                        {totalPage === currentPage ? null : <MoreBtnContainer filterActive={filterActive} currentPage={currentPage} setCurrentPageNumber={setCurrentPageNumber}/>}
                     </div>
                 </div>
             </div>
