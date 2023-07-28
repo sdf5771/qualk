@@ -9,8 +9,8 @@ type TuseTransLanguageQuizData = {
 }
 
 function useTransLanguageQuizData({ lang, testId, type }:TuseTransLanguageQuizData){
-    const { isLoading, isError, data, error, refetch } = useQuery(['transData', testId], () => getTransLangData(type, testId, lang));
-
+    const { isLoading, isError, data, error, refetch } = useQuery(['transData', testId, lang], () => getTransLangData(type, testId, lang));
+    
     return { isLoading, isError, data, error, refetch }
 }
 
