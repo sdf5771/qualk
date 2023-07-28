@@ -21,21 +21,21 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
     return(
         <div className={styles.question_view_root}>
             <div className={styles.question_view_title_container}>
-                <span>{workbookData ? workbookData.question_type : ''} #{workbookData ? workbookData.question_id : ''}</span>
-                <span>Q. {workbookData ? workbookData.question_name : ''}</span>
+                <span>{workbookData ? workbookData.type : ''} #{workbookData ? workbookData.contentId : ''}</span>
+                <span>Q. {workbookData ? workbookData.title : ''}</span>
             </div>
             <div className={styles.question_container}>
-                {workbookData && workbookData.question_contents ? workbookData.question_contents.map((question,index) => {
+                {workbookData && workbookData.contents ? workbookData.contents.map((question,index) => {
                     if(question){
-                        return <QuestionElement key={index} questionTitle={question} isCorrect={workbookData.question_correct === index ? true : false}/>
+                        return <QuestionElement key={index} questionTitle={question} isCorrect={workbookData.correct === index ? true : false}/>
                     }
                 }) : null}
             </div>
             <AnswerAndExplainContainer 
-                    quizList={workbookData && workbookData.question_contents}
-                    correctIndex={workbookData && workbookData.question_correct}
-                    description={workbookData && workbookData.question_description ? workbookData.question_description : null}
-                    referenceData={workbookData && workbookData.question_reference && workbookData.question_reference[0].link ? workbookData.question_reference[0].link : null}
+                    quizList={workbookData && workbookData.contents ? workbookData.contents : null}
+                    correctIndex={workbookData && workbookData.correct ? workbookData.correct : 0}
+                    description={workbookData && workbookData.description ? workbookData.description : null}
+                    referenceData={workbookData && workbookData.reference && workbookData.reference ? workbookData.reference : null}
                 />
             <div className={styles.question_btn_container}>
                 <div>
@@ -47,7 +47,11 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
                                 hover: <ListviewIconHover />,
                             }}
                             btnClickEventHandler={(event: React.MouseEvent)=>{
-                                navigate(`/quiz/${workbookData.question_type.toLowerCase()}`)
+                                if(workbookData.lang && workbookData.lang === 'Korea'){
+                                    dispatch({type: 'English'})
+                                } else {
+                                    dispatch({type: 'Korea'})
+                                }
                             }}
                         />
                 </div>
@@ -60,7 +64,7 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
                             hover: <ListviewIconHover />,
                         }}
                         btnClickEventHandler={(event: React.MouseEvent)=>{
-                            navigate(`/quiz/${workbookData.question_type.toLowerCase()}`)
+                            navigate(`/quiz/${workbookData.type.toLowerCase()}`)
                         }}
                     />
 

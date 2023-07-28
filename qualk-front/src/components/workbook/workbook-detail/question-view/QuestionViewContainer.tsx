@@ -11,6 +11,7 @@ type QuestionViewContainerPropsType = {
 function QuestionViewContainer({workbookData}: QuestionViewContainerPropsType){
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     return(
         <QuestionViewPresenter navigate={navigate} workbookData={workbookData} dispatch={dispatch} />
     )

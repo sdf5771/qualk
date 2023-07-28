@@ -6,6 +6,7 @@ import filterClickReducer from './workbook/listview/filterClickReducer';
 import workbookModalReducer from './workbook/workbook-detail/workbookModalReducer';
 import toastMsgReducer from './public/toastMsgReducer';
 import mockTestTimerReducer from './workbook/quiz-test/mockTestTimerReducer';
+import transferWorkbookData from './workbook/workbook-detail/transferWorkbookData';
 
 const rootReducer = combineReducers({
     authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     workbookModalReducer,
     toastMsgReducer,
     mockTestTimerReducer,
+    transferWorkbookData,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

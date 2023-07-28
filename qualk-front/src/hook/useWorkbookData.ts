@@ -1,33 +1,31 @@
 import React from "react";
 import {useQuery} from "@tanstack/react-query";
-import getQuestionFindView from 'queries/workbook/listview/getQuestionFindView';
-import getQuestionFindOld from 'queries/workbook/listview/getQuestionFindOld';
-import getQuestionFindNew from 'queries/workbook/listview/getQuestionFindNew';
 import {WorkbookDataType} from 'components/workbook/type/WorkbookDataType';
+import getQuestionList from "queries/workbook/listview/getQuestionList";
 
 
 async function getDatas(type: string, sort: string, pageNumber: number){
     switch(sort){
         case 'sortViewed':
-            return getQuestionFindView(type, pageNumber);
+            return getQuestionList(type, 'view', pageNumber, 6);
         case 'sortOldest':
-            return getQuestionFindOld(type, pageNumber);
+            return getQuestionList(type, 'old', pageNumber, 6);
         case 'sortLatest':
-            return getQuestionFindNew(type, pageNumber);
+            return getQuestionList(type, 'new', pageNumber, 6);
     }
 }
 
 async function getMoreDatas(type: string, sort: string, pageNumber: number, currentData: WorkbookDataType[], setCurrentWorkbookData?: React.Dispatch<React.SetStateAction<WorkbookDataType[]>>){
     const newData = await getDatas(type, sort, pageNumber);
-
+    
     if(setCurrentWorkbookData){
-        setCurrentWorkbookData([...currentData, ...newData.workbookData]);
+        setCurrentWorkbookData([...currentData, ...newData.quizList]);
     }
 
     return {
-        workbookData: [...currentData, ...newData.workbookData],
-        lastIndex: newData.lastIndex,
-        isLastData: newData.isLastData,
+        workbookData: [...currentData, ...newData.quizList],
+        currentPage: newData.page,
+        totalPage: newData.total,
     }
 
 }
