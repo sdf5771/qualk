@@ -21,48 +21,67 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
     return(
         <div className={styles.question_view_root}>
             <div className={styles.question_view_title_container}>
-                <span>{workbookData ? workbookData.question_type : ''} (Google Analytics) #{workbookData ? workbookData.question_id : ''}</span>
-                <span>Q. {workbookData ? workbookData.question_name : ''}</span>
+                <span>{workbookData ? workbookData.type : ''} #{workbookData ? workbookData.contentId : ''}</span>
+                <span>Q. {workbookData ? workbookData.title : ''}</span>
             </div>
             <div className={styles.question_container}>
-                {workbookData && workbookData.question_contents ? workbookData.question_contents.map((question,index) => {
+                {workbookData && workbookData.contents ? workbookData.contents.map((question,index) => {
                     if(question){
-                        return <QuestionElement key={index} questionTitle={question} isCorrect={workbookData.question_correct === index ? true : false}/>
+                        return <QuestionElement key={index} questionTitle={question} isCorrect={workbookData.correct === index ? true : false}/>
                     }
                 }) : null}
             </div>
             <AnswerAndExplainContainer 
-                    quizList={workbookData && workbookData.question_contents}
-                    correctIndex={workbookData && workbookData.question_correct}
-                    description={workbookData && workbookData.question_description ? workbookData.question_description : null}
-                    referenceData={workbookData && workbookData.question_reference && workbookData.question_reference[0].link ? workbookData.question_reference[0].link : null}
+                    quizList={workbookData && workbookData.contents ? workbookData.contents : null}
+                    correctIndex={workbookData && workbookData.correct ? workbookData.correct : 0}
+                    description={workbookData && workbookData.description ? workbookData.description : null}
+                    referenceData={workbookData && workbookData.reference && workbookData.reference ? workbookData.reference : null}
                 />
             <div className={styles.question_btn_container}>
-                <PublicImageBtnContainer
-                    btnText="목록으로"
-                    options={{border: true}}
-                    logoIcon={{
-                        default: <ListviewIconDefault />,
-                        hover: <ListviewIconHover />,
-                    }}
-                    btnClickEventHandler={(event: React.MouseEvent)=>{
-                        navigate(`/quiz/${workbookData.question_type.toLowerCase()}`)
-                    }}
-                />
+                <div>
+                    <PublicImageBtnContainer
+                            btnText="한/영 전환"
+                            options={{border: true}}
+                            logoIcon={{
+                                default: <ListviewIconDefault />,
+                                hover: <ListviewIconHover />,
+                            }}
+                            btnClickEventHandler={(event: React.MouseEvent)=>{
+                                if(workbookData.lang && workbookData.lang === 'Korea'){
+                                    dispatch({type: 'English'})
+                                } else {
+                                    dispatch({type: 'Korea'})
+                                }
+                            }}
+                        />
+                </div>
+                <div>
+                    <PublicImageBtnContainer
+                        btnText="목록으로"
+                        options={{border: true}}
+                        logoIcon={{
+                            default: <ListviewIconDefault />,
+                            hover: <ListviewIconHover />,
+                        }}
+                        btnClickEventHandler={(event: React.MouseEvent)=>{
+                            navigate(`/quiz/${workbookData.type.toLowerCase()}`)
+                        }}
+                    />
 
-                <PublicImageBtnContainer
-                    btnText="공유하기"
-                    options={{border: true}}
-                    logoIcon={{
-                        default: <ShareIconDefault />,
-                        hover: <ShareIconHover />,
-                    }}
-                    btnClickEventHandler={(event: React.MouseEvent)=>{
-                        if(dispatch){
-                            dispatch({type: 'shareWorkbookClick'});
-                        }
-                    }}
-                />
+                    <PublicImageBtnContainer
+                        btnText="공유하기"
+                        options={{border: true}}
+                        logoIcon={{
+                            default: <ShareIconDefault />,
+                            hover: <ShareIconHover />,
+                        }}
+                        btnClickEventHandler={(event: React.MouseEvent)=>{
+                            if(dispatch){
+                                dispatch({type: 'shareWorkbookClick'});
+                            }
+                        }}
+                    />
+                </div>
             </div>
         </div>
     )

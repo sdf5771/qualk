@@ -39,13 +39,13 @@ function QuizResultContainer({containerType, containerTitle, searchData, searchT
                     }
 
                     return <WorkbookElement
-                        key={`${data['question_type']}-${data['question_id']}`}
-                        question_id={data['question_id']}
-                        question_type={data['question_type']}
-                        question_name={data['question_name']}
-                        question_view={data['question_view']}
-                        question_create={data['question_create']}
-                        question_tag={data['question_tag']}
+                        key={`${data.type}-${data.contentId}`}
+                        contentId={data.contentId}
+                        type={data.type}
+                        title={data.title}
+                        view={data.view}
+                        create={data.create}
+                        tag={data.tag}
                     />
                 }) : null}
             </div>

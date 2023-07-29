@@ -12,9 +12,8 @@ type AnswerAndExplainContainerPropsType = {
 
 function AnswerAndExplainContainer({quizList, correctIndex, description, referenceData}: AnswerAndExplainContainerPropsType){
     const [answer, setAnswer] = useState('');
-
     useEffect(() => {
-        if(quizList !== null && correctIndex != null){
+        if(quizList !== null && correctIndex !== null){
             quizList.forEach((quizStr, index) => {
                 if(correctIndex === index){
                     setAnswer(quizStr);

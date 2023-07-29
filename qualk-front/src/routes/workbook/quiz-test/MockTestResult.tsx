@@ -109,15 +109,15 @@ function MockTestResult(){
                 </div>
                 <div style={{marginTop: '29px', marginBottom: '100px', display: 'flex', flexDirection: 'column', gap: '20px'}}>
                     {data && data.wrongQuestion ? 
-                    data.wrongQuestion.map((quizData: {ContentID: number, CreateDate: string, Tag: string[] | null, Type: string, Title: string, View: number}) => {
+                    data.wrongQuestion.map((quizData: {ContentID: number, CreateDate: string, Tag: string[] | [], Type: string, Title: string, View: number}) => {
                         return <WorkbookElement 
                                     key={quizData.ContentID}
-                                    question_id={quizData.ContentID}
-                                    question_type={quizData.Type}
-                                    question_name={quizData.Title}
-                                    question_view={quizData.View}
-                                    question_create={quizData.CreateDate}
-                                    question_tag={quizData.Tag}
+                                    contentId={quizData.ContentID}
+                                    type={quizData.Type}
+                                    title={quizData.Title}
+                                    view={quizData.View}
+                                    create={quizData.CreateDate}
+                                    tag={quizData.Tag}
                                     />
                     }) : null}
                 </div>
