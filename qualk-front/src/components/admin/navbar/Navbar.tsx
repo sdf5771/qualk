@@ -54,68 +54,64 @@ function Navbar(){
                 <span>UserName</span>
             </div>
             <Divider variant="middle" className={styles.divide}/>
-            <div className={styles.menu_list_container}>
-                <Box sx={{ width: '100%', bgcolor: '#111519' }}>
-                    <nav>
-                        <List component="nav">
-                            <ListItem disablePadding divider>
-                                <ListItemButton
-                                selected={selectedIndex === 1}
-                                onClick={(event) => handleListItemClick(event, 1, '/dashboard')}
-                                className={styles.list_item_btn}
-                                >
-                                <ListItemText primary="Dashboard" className={styles.list_item_text} />
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton
-                                selected={selectedIndex === 2}
-                                onClick={(event) => handleListItemClick(event, 2, '/userlist')}
-                                className={styles.list_item_btn}
-                                >
-                                    <ListItemText primary="UserList" className={styles.list_item_text}/>
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton
-                                selected={selectedIndex === 3}
-                                onClick={(event) => handleListItemClick(event, 3, '/quizlist')}
-                                className={styles.list_item_btn}
-                                >
-                                    <ListItemText primary="QuizList" className={styles.list_item_text} />
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton
-                                selected={selectedIndex === 4}
-                                onClick={(event) => handleListItemClick(event, 4, '/wikilist')}
-                                className={styles.list_item_btn}
-                                >
-                                    <ListItemText primary="WikiList" className={styles.list_item_text} />
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton
-                                selected={selectedIndex === 5}
-                                onClick={(event) => handleListItemClick(event, 5, '/community')}
-                                className={styles.list_item_btn}
-                                >
-                                    <ListItemText primary="Community" className={styles.list_item_text} />
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton
-                                selected={selectedIndex === 6}
-                                onClick={(event) => handleListItemClick(event, 6, '/article')}
-                                className={styles.list_item_btn}
-                                >
-                                    <ListItemText primary="Article" className={styles.list_item_text}/>
-                                </ListItemButton>
-                            </ListItem>
-                        </List>
-                    </nav>
-                </Box>
-            </div>
+            <Box sx={{ width: '100%', borderRadius: '4px' }}>
+                <List component="nav" className={styles.list_root}>
+                    <ListItem disablePadding divider>
+                        <ListItemButton
+                        selected={selectedIndex === 1}
+                        onClick={(event) => handleListItemClick(event, 1, '/dashboard')}
+                        sx={{borderRadius: '4px', bgcolor: '#322f2f'}}
+                        >
+                        <ListItemText primary="Dashboard" primaryTypographyProps={{fontSize: '0.875rem', color: 'white'}}/>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton
+                        selected={selectedIndex === 2}
+                        onClick={(event) => handleListItemClick(event, 2, '/userlist')}
+                        sx={{borderRadius: '4px', bgcolor: '#322f2f'}}
+                        >
+                            <ListItemText primary="UserList" primaryTypographyProps={{fontSize: '0.875rem', color: 'white'}}/>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton
+                        selected={selectedIndex === 3}
+                        onClick={(event) => handleListItemClick(event, 3, '/quizlist')}
+                        sx={{borderRadius: '4px', bgcolor: '#322f2f'}}
+                        >
+                            <ListItemText primary="QuizList" primaryTypographyProps={{fontSize: '0.875rem', color: 'white'}} />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton
+                        selected={selectedIndex === 4}
+                        onClick={(event) => handleListItemClick(event, 4, '/wikilist')}
+                        sx={{borderRadius: '4px', bgcolor: '#322f2f'}}
+                        >
+                            <ListItemText primary="WikiList" primaryTypographyProps={{fontSize: '0.875rem', color: 'white'}} />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton
+                        selected={selectedIndex === 5}
+                        onClick={(event) => handleListItemClick(event, 5, '/community')}
+                        sx={{borderRadius: '4px', bgcolor: '#322f2f'}}
+                        >
+                            <ListItemText primary="Community" primaryTypographyProps={{fontSize: '0.875rem', color: 'white'}} />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton
+                        selected={selectedIndex === 6}
+                        onClick={(event) => handleListItemClick(event, 6, '/article')}
+                        sx={{borderRadius: '4px', bgcolor: '#322f2f'}}
+                        >
+                            <ListItemText primary="Article" primaryTypographyProps={{fontSize: '0.875rem', color: 'white'}}/>
+                        </ListItemButton>
+                    </ListItem>
+                </List>
+            </Box>
             <Divider variant="middle" className={styles.divide}/>
             <div>
 
