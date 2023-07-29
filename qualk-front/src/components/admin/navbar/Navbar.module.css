@@ -6,16 +6,20 @@
 }
 .profile_container{
     display: flex;
+    justify-content: space-between;
     align-items: center;
     width: calc(100% - 20px);
     height: calc(60px - 20px);
     background-color: #322f2f;
     border-radius: 4px;
     padding: 10px;
-    gap: 20px;
-    cursor: pointer;
 }
-.profile_container > span{
+.profile_container > div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.profile_container > div > span{
     font-family: Pretendard;
     font-size: 16px;
     font-weight: 600;

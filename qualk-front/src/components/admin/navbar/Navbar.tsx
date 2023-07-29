@@ -8,6 +8,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
+import { IconButton } from '@mui/material';
+import { LoginOutlined } from '@mui/icons-material';
 
 
 function Navbar(){
@@ -50,8 +52,13 @@ function Navbar(){
     return(
         <div className={styles.navbar_root}>
             <div className={styles.profile_container}>
-                <Avatar />
-                <span>UserName</span>
+                <div>
+                    <Avatar />
+                    <span>UserName</span>
+                </div>
+                <IconButton aria-label="Logout" color="info">
+                    <LoginOutlined />
+                </IconButton>
             </div>
             <Divider variant="middle" className={styles.divide}/>
             <Box sx={{ width: '100%', borderRadius: '4px' }}>
