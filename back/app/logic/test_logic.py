@@ -43,9 +43,10 @@ def make_questionlist(question_type, question_num):
     return random.sample(questionid_list, question_num)
 
 def make_questionlist_cache(question_type, question_num):
-    r = redis_connect()
-    questionid_list_json = r.get(question_type)
+    # r = redis_connect()
+    # questionid_list_json = r.get(question_type)
     # Redis에 데이터가 없다면 DB에서 가져옴
+    questionid_list_json = None
     if questionid_list_json is None:
         find_question = f"""
             SELECT ContentID
@@ -54,7 +55,7 @@ def make_questionlist_cache(question_type, question_num):
         questionid_list = select(sql=find_question)
 
         # 가져온 데이터를 Redis에 저장
-        r.set(question_type, json.dumps(questionid_list))
+        # r.set(question_type, json.dumps(questionid_list))
     else:
         # Redis에서 가져온 데이터를 Python 리스트로 변환
         questionid_list = json.loads(questionid_list_json)
