@@ -88,7 +88,7 @@ function WorkbookListViewPresenter({menuName, workbookData, totalPage, currentPa
                         </div>
                     </div>
                     <div className={styles.listview_body}>
-                        {workBookIsLoading || workbookData?.length === 0 ? 
+                        {workBookIsLoading || uniqueWorkbookElement?.length === 0 ? 
                         <>
                             <Shimmer />
                             <SkeletonComponent.SkeletonWorkbook />

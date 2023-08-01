@@ -15,7 +15,7 @@ function WorkbookListViewContainer(){
     const filterElementClickDispatch = useDispatch();
     const [menuName, setMenuName] = useState('');
     const { isLoading: favIsLoading, isError: favIsError, data: favData, error: favError } = useQuery( [menuName, 'topviews'], () => getQuestionList(menuName, 'view', 1, 3), {staleTime: 100000});
-    const { isLoading: workBookIsLoading, isError: workBookIsError, data: workbookData, error: workBookError } = useWorkbookData(menuName, filterActive, currentPageNumber, currentWorkbookData, setCurrentWorkbookData);
+    const { isLoading: workBookIsLoading, isError: workBookIsError, data: workbookData, error: workBookError, refetch: workBookRefetch } = useWorkbookData(menuName, filterActive, currentPageNumber, currentWorkbookData, setCurrentWorkbookData);
 
     const filterOnClickHandler = (event: React.MouseEvent) => {
         if(event.currentTarget.id != filterActive){
@@ -30,6 +30,9 @@ function WorkbookListViewContainer(){
         setMenuName(location.pathname.split('/')[2].toUpperCase());
     }, [location])
 
+    if(workBookError){
+        workBookRefetch();
+    }
 
     return (
         <WorkbookListViewPresenter 
