@@ -1,0 +1,20 @@
+.nav_root{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1400px;
+    height: 44px;
+}
+.menu_list{
+    display: flex;
+    margin-left: 117px;
+    width: calc(900px - 117px);
+}
+.menu_list > span{
+    font-family: BCAlphapipe;
+    font-size: 20px;
+    letter-spacing: -0.8px;
+    text-align: left;
+    color: #bababa;
+    cursor: pointer;
+}

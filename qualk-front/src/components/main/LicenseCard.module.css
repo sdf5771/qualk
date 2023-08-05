@@ -1,0 +1,17 @@
+.card_root{
+    width: 260px;
+    height: 336px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    border-top-left-radius: 50px;
+    border: solid 2px #ffba00;
+    background-color: #fff;
+    transition: all 0.2s ease;
+    /* transition: opacity 0.3s ease, visibility 0.3s ease; */
+    cursor: pointer;
+}
+.card_root.need_update:hover{
+    border: solid 2px #e4e4e4;
+}
