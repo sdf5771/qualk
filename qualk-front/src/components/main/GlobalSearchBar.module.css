@@ -66,6 +66,7 @@
 .keyword_container{
     margin-top: 14px;
     display: flex;
+    align-items: center;
     width: 752px;
     height: 24px;
     gap: 40px;
@@ -87,4 +88,6 @@
     line-height: 1.6;
     letter-spacing: -0.8px;
     color: #5b5b5b;
+    cursor: pointer;
+    word-wrap: break-word;
 }
