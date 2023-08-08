@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
 import styles from './ReactiveContents.module.css';
+import {ReactComponent as DuckDefault} from 'assets/images/main/reactive-section/duck_default.svg';
+import {ReactComponent as DuckQuiz} from 'assets/images/main/reactive-section/duck_quiz.svg';
+import {ReactComponent as DuckMockTest} from 'assets/images/main/reactive-section/duck_mocktest.svg';
+import {ReactComponent as DuckWorkbook} from 'assets/images/main/reactive-section/duck_workbook.svg';
 
 function ReactiveContents(){
     const contents = [{
@@ -14,7 +18,7 @@ function ReactiveContents(){
             onClickHandler: () => {
 
             }
-        }
+        },
     },
     {
         id: 2,
@@ -28,7 +32,7 @@ function ReactiveContents(){
             onClickHandler: () => {
                 
             }
-        }
+        },
     },
     {
         id: 3,
@@ -42,7 +46,7 @@ function ReactiveContents(){
             onClickHandler: () => {
                 
             }
-        }
+        },
     },]
     const [contentsData, setContentsData] = useState(contents);
     const [activeData, setActiveData] = useState(1); 
@@ -51,7 +55,9 @@ function ReactiveContents(){
         <div className={styles.root_container}>
             <div className={styles.change_step_container}>
                 <div className={styles.duck_container}>
-
+                    {contentsData[0].id === activeData ? <DuckWorkbook /> : <DuckDefault />}
+                    {contentsData[1].id === activeData ? <DuckQuiz /> : <DuckDefault />}
+                    {contentsData[2].id === activeData ? <DuckMockTest /> : <DuckDefault />}
                 </div>
                 <div className={styles.info_box}>
                     <span>당신을 위한 Qualk 사용 방법 3단계</span>
