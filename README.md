@@ -20,6 +20,11 @@
 ├──📁 back
 │   ├──📁 __pycache__
 │   ├──📁 app
+│       ├──📁 database
+        ├──📁 entitiy
+        ├──📁 logic
+        ├──📁 model
+        ├──📁 route
 │   ├──📁 input_data
 │   └──📁 test
 └──📁 qualk-front
@@ -30,6 +35,9 @@
 ```
 
 #### back - back-end source
+- app : database, entitiy, router, model, logic
+- input_data : csv to database
+- test : test
 #### qualk-front - front-end source
 
 

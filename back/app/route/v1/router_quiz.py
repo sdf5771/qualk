@@ -47,21 +47,51 @@ def get_db():
     finally:
         db.close()
 
+@router.get("/search")
+def search_data(
+        query: str,
+        db: Session = Depends(get_db)
+    ):
+    try:
+        result = (
+            db.query(QuestionContent.ContentID, 
+                     QuestionContent.Title, 
+                     QuestionInfo.Type, 
+                     QuestionInfo.view, 
+                     QuestionInfo.CreateDate, 
+                     QuestionInfo.Tag)
+            .join(QuestionInfo, QuestionContent.ContentID == QuestionInfo.ContentID)
+            .filter(QuestionInfo.Title.like(f"%{query}%"))
+            .all()
+        )
+        return result
+    except Exception as error:
+        raise HTTPException(status_code=500, detail=str(error))    
+
 @router.get("/list")
 def find_top(
              _type: str,
-             list_type : str,
              page: int = 1,
              page_size: int = 6,
+             list_type : str = None,
+             serach: str = 'None',
              db: Session = Depends(get_db)
             ):
     try:
-        if list_type.lower() == 'view':
+        if list_type is None:
+            order = None
+        elif list_type.lower() == 'view':
             order = desc(QuestionInfo.view)
         elif list_type.lower() == 'old':
             order = asc(QuestionInfo.CreateDate)
         elif list_type.lower() == 'new':
             order = desc(QuestionInfo.CreateDate)
+            
+
+        if serach is None:
+            filter_data = (QuestionInfo.Type == _type)
+        else:
+            filter_data = (QuestionInfo.Title.like(f"%{serach}%"))
 
         total_results = (
             db.query(QuestionContent)
@@ -82,7 +112,7 @@ def find_top(
                      QuestionInfo.CreateDate, 
                      QuestionInfo.Tag)
             .join(QuestionInfo, QuestionContent.ContentID == QuestionInfo.ContentID)
-            .filter(QuestionInfo.Type == _type)
+            .filter(filter_data)
             .order_by(order)
             .offset(first_result)
             .limit(page_size)

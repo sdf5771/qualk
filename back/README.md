@@ -17,14 +17,91 @@ poetry add python-multipart
 poetry run uvicorn main:app
 ```
 
-## 순수 문제 API
-HTTP Method | URI | description |
----|---|---|
-GET | api/v1/quiz/{type}/{quiz_id} | 선택 퀴즈 가져오기
-GET | api/v1/quiz/{type}/top_3 | view 상위 3가지 가져오기 
-GET | api/v1/quiz/{type}/view/{last_index} | 조회수 순으로 가져오기
-GET | api/v1/quiz/{type}/new/{last_index} | 최신순 으로 가져오기 
-GET | api/v1/quiz/{type}/old/{last_index} | 오래된 순으로 가져오기
+## API : api/v1/quiz/list
+
+Method : GET
+Parameter | description | 예시
+---|---| ---|
+_type | 문제 유형 |  GAIQ, SQLD
+page | 페이지 번호 | 1, 2, 3, 4, 5, 6
+page_size | 페이지를 나누는 단위 | 3, 6
+list_type | 조회를 어떻게 할지 | top3, old, new
+search | 문제의 제목 검색어 | which
+
+## response : api/v1/quiz/list
+
+```
+request : curl -X 'GET' \
+      'http://localhost:8000/api/v1/quiz/list?_type=GAIQ&page=1&page_size=6&serach=which' \
+  -H 'accept: application/json'
+
+response:
+{
+  "quizList": [
+    {
+      "contentId": 1,
+      "title": "Which of the following tools could you use in order to collect and send data from a mobile app to a Google Analytics 4 property?",
+      "type": "GAIQ",
+      "view": 367,
+      "create": "2023-03-13",
+      "tag": [
+        "SDK"
+      ]
+    },
+    {
+      "contentId": 3,
+      "title": "You collect data or your point-of-sale system that could complement the data you are sending to Google Analytics from your website and app.\nWhich of these features allows you to collect and send events directly to Google Analytics servers?",
+      "type": "GAIQ",
+      "view": 5,
+      "create": "2023-03-13",
+      "tag": [
+        "Measurement Protocol"
+      ]
+    },
+    {
+      "contentId": 5,
+      "title": "You've just set up an option on your website for your users to sign up for a newsletter. You want to count those new sign-up events as conversions and create an audience for users who signed up.\nWhich part of your Google Analytics 4 property lets you manage events, conversions, and audiences?",
+      "type": "GAIQ",
+      "view": 0,
+      "create": "2023-03-13",
+      "tag": [
+        "Configure"
+      ]
+    },
+    {
+      "contentId": 8,
+      "title": "Which of these structures represents a Google Analytics account's hierarchy?",
+      "type": "GAIQ",
+      "view": 0,
+      "create": "2023-03-13",
+      "tag": [
+        "Account",
+        " Property",
+        "Data stream"
+      ]
+    },
+    {
+      "contentId": 9,
+      "title": "Which section would you open in your Google Analytics property in order to find advanced techniques that can help you uncover deeper insights about your customers’ engagement?",
+      "type": "GAIQ",
+      "view": 0,
+      "create": "2023-03-13",
+      "tag": []
+    },
+    {
+      "contentId": 11,
+      "title": "You manage a gardening company and you post a new how-to video on your website for your customers. In Google Analytics you find lots of data about the user interactions with this video.\nWhile looking through your data, which of these is a “user property\" collected by Google Analytics?",
+      "type": "GAIQ",
+      "view": 0,
+      "create": "2023-03-13",
+      "tag": []
+    }
+  ],
+  "total": 9,
+  "page": 1
+}
+```
+
 
 ## Test API
 HTTP Method | URI | description | 
