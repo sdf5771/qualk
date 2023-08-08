@@ -4,8 +4,10 @@ import {ReactComponent as DuckDefault} from 'assets/images/main/reactive-section
 import {ReactComponent as DuckQuiz} from 'assets/images/main/reactive-section/duck_quiz.svg';
 import {ReactComponent as DuckMockTest} from 'assets/images/main/reactive-section/duck_mocktest.svg';
 import {ReactComponent as DuckWorkbook} from 'assets/images/main/reactive-section/duck_workbook.svg';
+import { useNavigate } from 'react-router-dom';
 
 function ReactiveContents(){
+    const navigate = useNavigate();
     const contents = [{
         id: 1,
         title: "시험문제 엿보기",
@@ -16,7 +18,7 @@ function ReactiveContents(){
         btnElementOption: {
             title: '시험문제 엿보러가기',
             onClickHandler: () => {
-
+                navigate('/quiz/gaiq')
             }
         },
     },
@@ -30,7 +32,7 @@ function ReactiveContents(){
         btnElementOption: {
             title: '퀴즈 풀러가기',
             onClickHandler: () => {
-                
+                navigate('/quiz/test/gaiq')
             }
         },
     },
@@ -44,7 +46,7 @@ function ReactiveContents(){
         btnElementOption: {
             title: '모의고사 풀러가기',
             onClickHandler: () => {
-                
+                navigate('/quiz/test/gaiq')
             }
         },
     },]
