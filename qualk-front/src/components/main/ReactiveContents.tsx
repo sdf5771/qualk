@@ -46,7 +46,7 @@ function ReactiveContents(){
         btnElementOption: {
             title: '모의고사 풀러가기',
             onClickHandler: () => {
-                navigate('/quiz/test/gaiq')
+                navigate('/quiz/test/mockexam/start/')
             }
         },
     },]

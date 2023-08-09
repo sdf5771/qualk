@@ -19,7 +19,7 @@ function QuizResultContainer({containerType, containerTitle, searchData, searchT
             <div className={styles.result_header}>
                 <div className={styles.result_title}>
                     <span>{containerTitle}</span>
-                    <span>{searchData ? searchData.length : 0}</span>
+                    <span>{searchData ? searchData.quizList.length : 0}</span>
                 </div>
                 {searchType == "all" ?
                     <div className={styles.btn_container}
@@ -30,7 +30,7 @@ function QuizResultContainer({containerType, containerTitle, searchData, searchT
 
             </div>
             <div className={styles.quiz_container}>
-                {searchData ? searchData.map((data: WorkbookDataType, index: number) => {
+                {searchData ? searchData.quizList.map((data: WorkbookDataType, index: number) => {
 
                     renderCount++;
 

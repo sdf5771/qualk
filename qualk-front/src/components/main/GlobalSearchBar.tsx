@@ -3,8 +3,10 @@ import styles from './GlobalSearchBar.module.css';
 import {ReactComponent as SearchLogo} from 'assets/images/workbook/searchbar/search_icon.svg';
 import {ReactComponent as QualkMainTitle} from 'assets/images/main/qualk_main_title.svg';
 import useSeachKeyword from 'hook/useSeachKeyword';
+import { useNavigate } from 'react-router-dom';
 
 function GlobalSearchBar(){
+    const navigate = useNavigate();
     const {writeKeyword, getSeachKeyword} = useSeachKeyword();
     const [searchInput, setSearchInput] = useState('');
     const [keywords, setKeywords] = useState([]);
@@ -21,6 +23,7 @@ function GlobalSearchBar(){
         if(searchInput !== ''){
             writeKeyword({keyword: searchInput});
             setSearchInput('');
+            navigate(`/quiz/search?keyword=${searchInput}&type=all`);
         }
     }
 
