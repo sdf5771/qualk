@@ -26,13 +26,14 @@ _type | 문제 유형 |  GAIQ, SQLD
 page | 페이지 번호 | 1, 2, 3, 4, 5, 6
 page_size | 페이지를 나누는 단위 | 3, 6
 list_type | 조회를 어떻게 할지 | top3, old, new
-search | 문제의 제목 검색어 | which
+search | 검색어 | which
+search_type | 검색어 type | keyword, tag 로 검색할지
 
 ## response : api/v1/quiz/list
 
 ```
 request : curl -X 'GET' \
-      'http://localhost:8000/api/v1/quiz/list?_type=GAIQ&page=1&page_size=6&serach=which' \
+  'http://localhost:8000/api/v1/quiz/list?_type=GAIQ&page=1&page_size=6&serach=which&search_type=keyword' \
   -H 'accept: application/json'
 
 response:

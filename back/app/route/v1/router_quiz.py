@@ -45,28 +45,7 @@ def get_db():
         db = SessionLocal()
         yield db
     finally:
-        db.close()
-
-@router.get("/search")
-def search_data(
-        query: str,
-        db: Session = Depends(get_db)
-    ):
-    try:
-        result = (
-            db.query(QuestionContent.ContentID, 
-                     QuestionContent.Title, 
-                     QuestionInfo.Type, 
-                     QuestionInfo.view, 
-                     QuestionInfo.CreateDate, 
-                     QuestionInfo.Tag)
-            .join(QuestionInfo, QuestionContent.ContentID == QuestionInfo.ContentID)
-            .filter(QuestionInfo.Title.like(f"%{query}%"))
-            .all()
-        )
-        return result
-    except Exception as error:
-        raise HTTPException(status_code=500, detail=str(error))    
+        db.close()  
 
 @router.get("/list")
 def find_top(
@@ -75,6 +54,7 @@ def find_top(
              page_size: int = 6,
              list_type : str = None,
              serach: str = 'None',
+             search_type: str = 'None',
              db: Session = Depends(get_db)
             ):
     try:
@@ -86,12 +66,14 @@ def find_top(
             order = asc(QuestionInfo.CreateDate)
         elif list_type.lower() == 'new':
             order = desc(QuestionInfo.CreateDate)
-            
 
         if serach is None:
             filter_data = (QuestionInfo.Type == _type)
         else:
-            filter_data = (QuestionInfo.Title.like(f"%{serach}%"))
+            if search_type == 'keyword':
+                filter_data = (QuestionInfo.Title.like(f"%{serach}%"))
+            elif search_type == 'tag':
+                filter_data = (QuestionInfo.Tag.like(f"%{serach}%"))
 
         total_results = (
             db.query(QuestionContent)
