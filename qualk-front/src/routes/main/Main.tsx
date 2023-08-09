@@ -12,8 +12,10 @@ import TableauImage from 'assets/images/main/license/tableau.png';
 import ADsPImage from 'assets/images/main/license/ADsP.png';
 import SQLDImage from 'assets/images/main/license/sqld.png';
 import ReactiveContents from 'components/main/ReactiveContents';
+import { useNavigate } from 'react-router-dom';
 
 function Main(){
+    const navigate = useNavigate();
     return(
         <div className={styles.main_root}>
             <section className={styles.main_section}>
@@ -68,7 +70,7 @@ function Main(){
                     <LicenseCard ImageComponent={<img src={TableauImage} width="173px" height="134px" />} isUsed={false} />
                     <LicenseCard ImageComponent={<img src={ADsPImage} width="216px" height="132px" />} isUsed={false} />
                     <LicenseCard ImageComponent={<BigDataImage />} isUsed={false} />
-                    <LicenseCard ImageComponent={<img src={GAIQImage} width="227px" height="124px" />} isUsed={true} />
+                    <LicenseCard onClickHandler={(event: React.MouseEvent<HTMLDivElement>) => {navigate('/quiz/gaiq')}} ImageComponent={<img src={GAIQImage} width="227px" height="124px" />} isUsed={true} />
                 </div>
             </section>
             <section className={styles.contents_section}>

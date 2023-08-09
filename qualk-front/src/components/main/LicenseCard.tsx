@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styles from './LicenseCard.module.css';
+import publicAnimations from 'stylesheets/public/animation.module.css';
 import {ReactComponent as NoContents} from 'assets/images/main/license/need_update.svg';
 
 type TLicenseCardProps = {
@@ -18,7 +19,7 @@ function LicenseCard({ImageComponent, onClickHandler, isUsed}: TLicenseCardProps
             onClick={onClickHandler ? onClickHandler : () => {}} 
             className={`${styles.card_root} ${isUsed ? '' : styles.need_update}`}>
             <div className={styles.image_container}>
-                {isHover && !isUsed ? <NoContents /> : ImageComponent}
+                {isHover && !isUsed ? <NoContents className={publicAnimations.fade_in_out} /> : ImageComponent}
             </div>
         </div>
     )
