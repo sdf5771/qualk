@@ -37,8 +37,16 @@ function useSeachKeyword(){
         let items = getSeachKeyword();
         const newItems = [];
         const isItemsOverWrite = items && items.length >= 9;
+        const isAlreadyWrited = items ? items.includes(keyword) : false;
         
         if(items){
+            if(isAlreadyWrited){
+                let currentItems = getSeachKeyword();
+                let filterData = currentItems.filter((item: string) => item !== keyword)
+                
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(filterData));
+            }
+
             if(isItemsOverWrite){
                 popSearchKeyword();
                 pushSearchKeyword({keyword});
