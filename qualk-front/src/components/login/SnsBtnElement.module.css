@@ -1,0 +1,15 @@
+.sns_btn_element_root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    width: 208px;
+    height: 42px;
+    border-radius: 6px;
+    border: solid 1px #e4e4e4;
+    background-color: #fff;
+}
+.sns_btn_element_root > img{
+    width: 24px;
+    height: 24px;
+}

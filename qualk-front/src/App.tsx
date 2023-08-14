@@ -7,6 +7,8 @@ import { useTheme } from 'hook/useTheme';
 import Main from 'routes/main/Main';
 import WorkbookContainer from "routes/workbook/WorkbookContainer";
 import NotFound from 'routes/notfound/NotFound';
+import LoginPage from 'routes/login/LoginPage';
+import CreateAccount from 'routes/createAccount/CreateAccount';
 
 const queryClient = new QueryClient();
 
@@ -19,6 +21,8 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Main />} />
                     <Route path='/quiz/*' element={<WorkbookContainer />} />
+                    <Route path='/login' element={<LoginPage />} />
+                    <Route path='/createaccount' element={<CreateAccount />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </ThemeProvider>

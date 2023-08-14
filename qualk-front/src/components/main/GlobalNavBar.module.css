@@ -5,6 +5,9 @@
     width: 1400px;
     height: 44px;
 }
+.nav_root > .logo{
+    cursor: pointer;
+}
 .menu_list{
     display: flex;
     margin-left: 117px;

@@ -9,7 +9,7 @@ function GlobalNavBar(){
     
     return(
         <div className={styles.nav_root}>
-            <div>
+            <div className={styles.logo} onClick={() => {navigate('/')}}>
                 <QualkHeaderLogo width='122px' height='40px' />
             </div>
             <div className={styles.menu_list}>
