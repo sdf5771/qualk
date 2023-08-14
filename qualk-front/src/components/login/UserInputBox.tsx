@@ -16,9 +16,10 @@ function UserInputBox({type, title, inputOption}: TUserInputBoxPropsType){
     
     return (
         <div className={styles.inputbox_root}>
+            {title ? 
             <div className={styles.title}>
                 <span>{title}</span>
-            </div>
+            </div> : null}
             <div className={styles.input_container}>
                 <input 
                     type={type === 'pw' ? 'password' : 'email'}

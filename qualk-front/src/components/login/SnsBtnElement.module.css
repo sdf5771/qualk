@@ -8,6 +8,7 @@
     border-radius: 6px;
     border: solid 1px #e4e4e4;
     background-color: #fff;
+    cursor: pointer;
 }
 .sns_btn_element_root > img{
     width: 24px;

@@ -22,7 +22,7 @@ function App() {
                     <Route path='/' element={<Main />} />
                     <Route path='/quiz/*' element={<WorkbookContainer />} />
                     <Route path='/login' element={<LoginPage />} />
-                    <Route path='/createaccount' element={<CreateAccount />} />
+                    <Route path='/createAccount' element={<CreateAccount />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </ThemeProvider>

@@ -67,7 +67,7 @@ function LoginForm(){
             <div className={styles.regist_btn_container}>
                 <span>계정이 없으신가요?</span>
                 <span onClick={(event: React.MouseEvent<HTMLSpanElement>) => {
-                    navigate('/regist');
+                    navigate('/createAccount');
                 }}>회원가입</span>
             </div>
         </div>
