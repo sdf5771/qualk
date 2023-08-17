@@ -2,9 +2,7 @@ import React, {ReactEventHandler} from 'react';
 import styles from 'stylesheets/workbook/WorkbookPresenter.module.css';
 import publicScrollbar from 'stylesheets/public/scrollbar.module.css';
 import styled from 'styled-components';
-import SearchBarContainer from "../../components/public/searchbar/SearchBarContainer";
 import WorkbookListViewContainer from "../../components/workbook/listview/WorkbookListViewContainer";
-import {ReactComponent as QualkHeaderLogo} from 'assets/images/workbook/listview/qualk_logo_122_40.svg';
 import SharePostModalContainer from 'components/public/share-post-modal/SharePostModalContainer';
 import {Location, NavigateFunction, Route, Routes} from "react-router-dom";
 import WorkbookDetailContainer from "components/workbook/workbook-detail/WorkbookDetailContainer";
@@ -22,6 +20,7 @@ import { UseMutateFunction } from '@tanstack/react-query';
 import { TcreateQuizTest } from 'queries/workbook/quiz-test/createQuizTest';
 import { TdeleteQuizDataProps } from 'queries/workbook/quiz-test/deleteQuizData';
 import SNB from 'components/workbook/left-nav-bar/SNB';
+import GlobalNavBar from 'components/main/GlobalNavBar';
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -35,7 +34,6 @@ type WorkbookPresenterPropsType = {
     location: Location,
     navigate: NavigateFunction,
     dispatch: Dispatch
-    headerLogoOnClickHandler: ReactEventHandler,
     modalState: { 
         modalStateId: number, 
         navLocation?: string, 
@@ -54,7 +52,7 @@ type WorkbookPresenterPropsType = {
     createQuiz: UseMutateFunction<any, unknown, TcreateQuizTest, unknown>
 }
 
-function WorkbookPresenter({navigate, dispatch, location, headerLogoOnClickHandler, modalState, isToast, toastType, toastMsg, deleteQuiz, createQuiz}: WorkbookPresenterPropsType){
+function WorkbookPresenter({navigate, dispatch, location, modalState, isToast, toastType, toastMsg, deleteQuiz, createQuiz}: WorkbookPresenterPropsType){
     const workbookModalState = {
         0: null,
         1: <SharePostModalContainer />,
@@ -118,12 +116,7 @@ function WorkbookPresenter({navigate, dispatch, location, headerLogoOnClickHandl
             />
             <div className={styles.workbook_main}>
                 <div className={styles.workbook_header_container}>
-                    <div className={styles.workbook_header}>
-                        <div onClick={headerLogoOnClickHandler} className={styles.logo_container}>
-                            <QualkHeaderLogo width="122px" height="40px"/>
-                        </div>
-                        <SearchBarContainer />
-                    </div>
+                    <GlobalNavBar />
                 </div>
                 <div className={`${styles.workbook_body} ${publicScrollbar.public_scroll}`}>
                     <div className={styles.left_side_container}>

@@ -15,7 +15,10 @@ function GlobalNavBar(){
             <div className={styles.menu_list}>
                 <span onClick={() => navigate('/quiz/gaiq')}>Quiz</span>
             </div>
-            <SearchBarContainer />
+            <div className={styles.userinfo_box}>
+                <SearchBarContainer />
+                <button onClick={() => navigate('/login')} className={styles.login_btn}>로그인</button>
+            </div>
         </div>
     )
 }

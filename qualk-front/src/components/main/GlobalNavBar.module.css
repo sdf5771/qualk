@@ -6,6 +6,8 @@
     height: 44px;
 }
 .nav_root > .logo{
+    display: flex;
+    align-items: center;
     cursor: pointer;
 }
 .menu_list{
@@ -19,5 +21,26 @@
     letter-spacing: -0.8px;
     text-align: left;
     color: #bababa;
+    cursor: pointer;
+}
+.userinfo_box{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.login_btn{
+    outline: none;
+    border: 0;
+    width: 80px;
+    height: 32px;
+    border-radius: 6px;
+    box-shadow: 0 0 99px 0 rgba(0, 0, 0, 0.16);
+    background-color: #fdfaf2;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    text-align: center;
+    color: #ffba00;
     cursor: pointer;
 }
