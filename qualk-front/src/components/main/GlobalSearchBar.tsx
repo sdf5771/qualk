@@ -52,7 +52,9 @@ function GlobalSearchBar(){
                             setIsActiveKeywordBox(true);
                         }}
                         onBlur={() => {
-                            setIsActiveKeywordBox(false);
+                            setTimeout(() => {
+                                setIsActiveKeywordBox(false);
+                            }, 100)
                         }}
                         onChange={inputOnChangehandler} 
                         onKeyUp={onKeyUpHandler}
