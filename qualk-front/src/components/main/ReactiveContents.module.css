@@ -1,0 +1,168 @@
+.root_container{
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+
+.change_step_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 346px);
+}
+
+.change_step_container > .duck_container{
+    display: flex;
+    width: 200px;
+    gap: 42px;
+}
+.change_step_container > .info_box { 
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.change_step_container > .info_box > span:first-child { 
+    font-family: Pretendard;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -1.28px;
+    text-align: center;
+    color: #5b5b5b;
+}
+.change_step_container > .info_box > span:last-child { 
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: #bababa;
+}
+
+.change_step_container > .btn_container{
+    margin-top: 30px;
+    display: flex;
+    width: 680px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    gap: 20px;
+}
+.change_step_container > .btn_container > button{ 
+    border:none; 
+    box-shadow:none; 
+    width: 200px;
+    height: 44px;
+    border-radius: 6px;
+    background-color: #fff;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    text-align: center;
+    color: #e4e4e4;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+.change_step_container > .btn_container > button.workbook{ 
+    color: #fff;
+    background-color: #ffba00;
+}
+.change_step_container > .btn_container > button.quiz{ 
+    color: #fff;
+    background-color: #ff9300;
+}
+.change_step_container > .btn_container > button.mocktest{ 
+    color: #fff;
+    background-color: #ff6c00;
+}
+
+
+.use_step_container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 346px;
+    transition: background-color 0.3s ease;
+}
+.use_step_container > div{
+    margin-top: 61px;
+    display: flex;
+    width: 920px;
+    height: 200px;
+    gap: 40px;
+}
+.use_step_container > div > .step_box{
+    display: flex;
+    flex-direction: column;
+    width: 680px;
+}
+.use_step_container > div > .step_box > span:first-child{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.56px;
+    text-align: left;
+    color: #5b5b5b;
+}
+.use_step_container > div > .step_box > span:nth-child(2){
+    margin-top: 20px;
+    font-family: Pretendard;
+    font-size: 34px;
+    font-weight: bold;
+    letter-spacing: -0.68px;
+    text-align: left;
+    color: #5b5b5b;
+}
+.use_step_container > div > .step_box > span:last-child{
+    margin-top: 40px;
+    font-family: Pretendard;
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: -0.64px;
+    text-align: left;
+    color: #5b5b5b;
+    white-space: pre-line;
+}
+.use_step_container.workbook{
+    background-color: #FEF8E5;
+}
+.use_step_container.quiz{
+    background-color: #FFF4E5;
+}
+.use_step_container.mocktest{
+    background-color: #FFF0E5;
+}
+
+.use_step_container > div > .btn_container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: calc(100% - 680px - 40px);
+}
+.button_ele{
+    border: none;
+    box-shadow:none; 
+    width: 200px;
+    height: 44px;
+    border-radius: 6px;
+    background-color: #fff;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.button_ele.workbook{color: #ffba00;}
+.button_ele.quiz{color: #ff9300;}
+.button_ele.mocktest{color: #ff6c00;}

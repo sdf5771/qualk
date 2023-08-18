@@ -5,5 +5,9 @@ export interface QuizResultContainerPropsType {
     containerType: string,
     searchType: string,
     searchKeyword: string,
-    searchData: WorkbookDataType[],
+    searchData: {
+        quizList: WorkbookDataType[],
+        page: number,
+        total: number,
+    },
 }

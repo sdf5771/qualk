@@ -1,55 +1,170 @@
 .main_root{
     width: 100vw;
-    height: 100vh;
-    position: relative;
+    /* height: 100vh; */
     display: flex;
+    flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
 }
-.background_container{
-    /*transform: translateY(-50%);*/
-    width: 100vw;
+.main_section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     height: 100vh;
-    min-width: 1920px;
-    min-height: 1080px;
-    /*max-width: 1920px;*/
-    /*max-height: 1080px;*/
-    background-color: #FFF0C6;
-    /*overflow-y: auto;*/
+    background-color: #fdfaf2;
+    background-image: url('assets/images/main/main_background_image02.svg');
+    background-position: center;
+    /* background-repeat: inherit; */
+    background-repeat: no-repeat;
+    background-size: auto;
 }
-.logo_container{
+.main_section > .header_container{
     display: flex;
+    justify-content: center;
+    align-items: flex-end;
     width: 100%;
-    justify-content:center;
-    left: 50%;
-    top: 279px;
-    transform: translateX(-50%);
+    height: 61px;
+}
+.main_section > .background_container{
+    width: 100%;
+    height: calc(100% - 61px);   
+}
+.search_container{
+    z-index: 10;
     position: absolute;
-}
-.btn_container{
-    display: flex;
-    justify-content:center;
     left: 50%;
-    /*top: 830px;*/
-    /*position: absolute;*/
-    transform: translateX(-50%);
-    bottom: 100px;
-    position: fixed;
-    width: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
-.content_btn{
-    width: 200px;
-    height: 50px;
-    border: 0;
-    outline: none;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+.scroll_container{
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0%);
+}
+
+.explain_section{
+    width: 100%;
+    height: 927px;
+    background-color: #ffffff;
+    position: relative;
+}
+.graphic_container{
+    position:absolute;
+    bottom: 150px;
+}
+.duck_graphic_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+.duck_graphic_container > span{
+    font-family: Como;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.8px;
+    color: #ffba00;
+}
+
+.deco_container{
+    z-index: 10;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    width: 100%;
+    top: 178px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 160px;
+}
+.deco_container > .left_box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 120px;
+}
+.info_title_container > span{
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.46;
+    letter-spacing: -1.92px;
+    color: #5b5b5b;
+}
+.info_title_container > span > b{
+    font-weight: 600;
+    color: #ffba00;
+}
+.info_box{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.border_box{
+    width: calc(680px - 80px);
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #fdfaf2;
+}
+.border_box > span{
+
+}
+.border_box > span{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.8;
+    letter-spacing: -0.4px;
+    text-align: left;
+    color: #5b5b5b;
+}
+.border_box > span > b{
+    font-family: Pretendard;
+    font-size: 20px;
     font-weight: bold;
-    letter-spacing: -0.32px;
+    line-height: 1.5;
+    letter-spacing: -0.8px;
+    text-align: left;
+    color: #ffba00;
+}
+.line_container{
+    position: absolute;
+    bottom: -25px;
+}
+
+.license_section{
+    width: 100%;
+    height: 780px;
+    background-color: #fdfaf2;
+}
+.license_section > .title_container {
+    margin-top: 150px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.license_section > .title_container > span{
+    font-family: Pretendard;
+    font-size: 32px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: -1.28px;
     text-align: center;
-    color: #ffa700;
-    cursor: pointer;
+    color: #5b5b5b;
+}
+.license_section > .license_list{
+    margin-top: 80px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contents_section{
+    width: 100%;
+    height: 854px;
 }
