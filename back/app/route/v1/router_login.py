@@ -76,17 +76,16 @@ async def login(base_user: BaseUser):
 async def auth_test(request: Request, response: Response):
     try:
         refresh_token = request.cookies.get("lseerapple")
-        print(refresh_token)
         payload = jwt.decode(refresh_token, REFRESH_SECRET_KEY, algorithms=[ALGORITHM])
-        print(payload)
         if payload == 'expired':
             return HTTPException(status_code=401, detail=str('refresh token expired'))
     except Exception as e:
         return HTTPException(status_code=500, detail=str(f'{e}'))
+    
     access_token = create_access_token(payload)
     refresh_token = create_refresh_token(payload)
 
-    response = JSONResponse(content={"access_token": access_token})
+    response = JSONResponse(content={"accessToken": access_token})
     response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
     return response
 
