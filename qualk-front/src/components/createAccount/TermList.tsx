@@ -1,10 +1,20 @@
 import React from 'react';
 import styles from './TermList.module.css';
+import {ReactComponent as RightArrow} from 'assets/images/createAccount/right_arrow.svg';
 
 function TermList(){
     return (
         <div className={styles.term_list}>
             <div className={styles.all_agree_box}>
+                <input className={styles.radio_style} type="radio" />
+                <span>전체 약관 동의</span>
+            </div>
+            <div className={styles.ordinary_term_box}>
+                <input className={styles.radio_style} type="radio" />
+                <span>전체 약관 동의</span>
+                <RightArrow/>
+            </div>
+            <div className={styles.ordinary_term_box}>
                 <input className={styles.radio_style} type="radio" />
                 <span>전체 약관 동의</span>
             </div>
