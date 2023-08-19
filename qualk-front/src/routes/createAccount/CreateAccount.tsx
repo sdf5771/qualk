@@ -4,6 +4,7 @@ import GlobalNavBar from 'components/main/GlobalNavBar';
 import {ReactComponent as QualkTitle} from 'assets/images/createAccount/create_account_qualk_title.svg';
 import UserInputBox from 'components/login/UserInputBox';
 import { useNavigate } from 'react-router-dom';
+import TermList from 'components/createAccount/TermList';
 
 function CreateAccount(){
     const [allowed, setAllowed] = useState(true);
@@ -72,8 +73,8 @@ function CreateAccount(){
                         } />
                     </div>
                 </div>
-                <div>
-
+                <div className={styles.term_container}>
+                    <TermList />
                 </div>
                 <div className={styles.btn_container}>
                     <button disabled={allowed} className={styles.confirm_btn}>가입하기</button>
