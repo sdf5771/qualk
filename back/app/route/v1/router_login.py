@@ -60,7 +60,7 @@ async def login(base_user: BaseUser):
         .all()
     )
     if not total_results:
-        raise HTTPException(status_code=404, detail=str('wrong id or password'))
+        raise HTTPException(status_code=401, detail=str('wrong id or password'))
     
     total_results = [{'sub':result.userId} for result in total_results][0]
 
@@ -98,12 +98,6 @@ async def auth_test(Token: AccessToken):
     return jsonable_encoder({
         'userId': payload["sub"]
     })
-
-
-
-# @router.delete("/")
-# async def create_test(user: user):
-#     return jsonable_encoder()
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES'))
 REFRESH_TOKEN_EXPIRE_MINUTES = int(os.getenv('REFRESH_TOKEN_EXPIRE_MINUTES'))
