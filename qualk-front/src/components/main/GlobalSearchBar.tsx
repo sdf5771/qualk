@@ -64,11 +64,11 @@ function GlobalSearchBar(){
                 </div>
                 <div className={`${styles.keyword_container} ${isActiveKeywordBox ? styles.active : ''}`}>
                     {keywords ? keywords.map((data:string, index:number) => {
-                        return <div className={styles.keyword_box}>
+                        return <div key={index + 'data'} className={styles.keyword_box}>
                             <div>
                                 <KeywordLogo />
                             </div>
-                            <span key={index + 'data'} onClick={() => setSearchInput(data)}>#{data}</span>
+                            <span onClick={() => setSearchInput(data)}>#{data}</span>
                         </div>
                     }) : null}
                 </div>

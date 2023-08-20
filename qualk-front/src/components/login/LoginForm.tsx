@@ -6,11 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import SnsBtnElement from './SnsBtnElement';
 import kakaoLoginImg from 'assets/images/login/kakao_login.png';
 import googleLoginImg from 'assets/images/login/google_login.png';
+import useAuth from 'hook/useAuth';
+import { useDispatch } from 'react-redux';
 
 function LoginForm(){
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [idVal, setIdVal] = useState('');
-    const [pwVal, setPwVal] = useState(''); 
+    const [pwVal, setPwVal] = useState('');
+    const { defaultLogin, logOut, googleLogin, kakaoLogin } = useAuth();
+    const [isValid, setIsValid] = useState(false);
 
     const idInputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIdVal(event.target.value);
@@ -18,6 +23,15 @@ function LoginForm(){
 
     const pwInputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPwVal(event.target.value);
+        
+    }
+
+    const loginBtnClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+        if(idVal.replace(" ","") && pwVal.replace(" ","")){
+            defaultLogin({email: idVal, password: pwVal});
+        } else {
+            dispatch({type: 'toast open', toastType: 'warning', toastMsg: '아이디와 비밀번호를 확인해주세요.'})
+        }
     }
 
     return (
@@ -49,7 +63,7 @@ function LoginForm(){
                         } />
                 </div>
                 <div className={styles.btn_container}>
-                    <button className={styles.login}>로그인</button>
+                    <button onClick={loginBtnClickHandler} className={styles.login}>로그인</button>
                     <button className={styles.remind}>아이디 및 비밀번호 찾기</button>
                 </div>
             </div>

@@ -9,6 +9,7 @@
     height: 20px;
     border: solid 1px #e4e4e4;
     background-color: #ffffff;
+    cursor: pointer;
 }
 .radio_style[type='radio'], .content_radio_root > div > input[type='radio']:checked {
     display: inline-flex;
@@ -62,7 +63,8 @@
     background-color: #fff;
     gap: 10px;
 }
-.ordinary_term_box > span{
+.ordinary_term_box > p{
+    margin: 0;
     width: 354px;
     font-family: Pretendard;
     font-size: 16px;

@@ -1,0 +1,96 @@
+.modal_root{
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.modal_root > div{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.background{
+    z-index: 11;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.2);
+}
+
+.modal_box{
+    z-index: 12;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(440px - 60px);
+    height: calc(448px - 60px);
+    padding: 30px;
+    border-radius: 16px;
+    background-color: #fff;
+}
+.modal_box > .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.modal_box > .header > span{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.8px;
+    text-align: left;
+    color: #5b5b5b;
+}
+.modal_box > .header > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+}
+
+.modal_box > .detail_container{
+    margin-top: 20px;
+    width: 100%;
+    height: 270px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modal_box > .detail_container > span{
+    font-family: Pretendard;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: -0.56px;
+    text-align: left;
+    color: #8e8e8e;
+    white-space: pre-line;
+}
+
+.modal_box > .btn_container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.confirm_btn{
+    outline: none;
+    width: 380px;
+    height: 44px;
+    border-radius: 6px;
+    border: solid 1px #e4e4e4;
+    background-color: #fff;
+    cursor: pointer;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    text-align: center;
+    color: #5b5b5b;
+}

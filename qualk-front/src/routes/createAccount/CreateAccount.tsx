@@ -1,27 +1,65 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from 'stylesheets/createAccount/CreateAccount.module.css';
 import GlobalNavBar from 'components/main/GlobalNavBar';
 import {ReactComponent as QualkTitle} from 'assets/images/createAccount/create_account_qualk_title.svg';
 import UserInputBox from 'components/login/UserInputBox';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from 'reducers/reducers';
 import TermList from 'components/createAccount/TermList';
+import TermModal from 'components/createAccount/TermModal';
 
 function CreateAccount(){
     const [allowed, setAllowed] = useState(true);
     const [idVal, setIdVal] = useState('');
     const [pwVal, setPwVal] = useState('');
     const [pwConfirm, setPwConfirm] = useState('');
+    const [idIsValid, setIdIsValid] = useState(false);
+    const [pwIsValid, setPwIsValid] = useState(false);
+    const [confirmValid, setConfirmValid] = useState(false);
     const navigate = useNavigate();
+    const {isOpen: modalIsOpen, title: modalTitle, detail: modalDetail} = useSelector((state: RootState) => state.termModalReducer);
+
+    useEffect(() => {
+        isAllowBtn()
+    }, [idVal, pwVal, pwConfirm])
+
+    const isAllowBtn = () => {
+        if(idIsValid && pwIsValid && confirmValid){
+            setAllowed(false);
+        } else {
+            setAllowed(true)
+        }
+    }
 
     const idInputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        let regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        
+        if(regex.test(event.target.value)){
+            setIdIsValid(true);
+        } else {
+            setIdIsValid(false);
+        }
         setIdVal(event.target.value);
     }
 
     const pwInputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        let regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+        
+        if(regex.test(event.target.value)){
+            setPwIsValid(true)
+        } else {
+            setPwIsValid(false);
+        }
         setPwVal(event.target.value);
     }
 
     const pwConfirmOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if(pwVal === pwConfirm){
+            setConfirmValid(true);
+        } else {
+            setConfirmValid(false);
+        }
         setPwConfirm(event.target.value);
     }
 
@@ -80,6 +118,7 @@ function CreateAccount(){
                     <button disabled={allowed} className={styles.confirm_btn}>가입하기</button>
                 </div>
             </div>
+            {modalIsOpen ? <TermModal title={modalTitle} detail={modalDetail} /> : null}
         </div>
     )
 }

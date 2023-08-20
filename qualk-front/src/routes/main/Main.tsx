@@ -13,9 +13,13 @@ import ADsPImage from 'assets/images/main/license/ADsP.png';
 import SQLDImage from 'assets/images/main/license/sqld.png';
 import ReactiveContents from 'components/main/ReactiveContents';
 import { useNavigate } from 'react-router-dom';
+import ToastMsg from 'components/public/toast-msg/ToastMsg';
+import { useSelector } from 'react-redux';
+import { RootState } from 'reducers/reducers';
 
 function Main(){
     const navigate = useNavigate();
+    const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
     return(
         <div className={styles.main_root}>
             <section className={styles.main_section}>
@@ -76,6 +80,7 @@ function Main(){
             <section className={styles.contents_section}>
                 <ReactiveContents />
             </section>
+            {isToast && toastMsg && toastType ? <ToastMsg type={toastType} msgText={toastMsg} /> : null}
         </div>
     )
 }
