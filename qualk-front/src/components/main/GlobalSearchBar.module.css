@@ -6,13 +6,13 @@
 }
 
 .title_container{
-    margin-top: 56px;
-    margin-left: 10px;
+    /* margin-top: 56px;
+    margin-left: 10px; */
 }
-
-.search_box{
+.search_box {
     margin-top: 64px;
     display: flex;
+    flex-direction: column;
     width: calc(920px - 50px);
     height: calc(64px - 32px);
     align-items: center;
@@ -20,9 +20,18 @@
     border-radius: 12px;
     box-shadow: 0 4px 30px 0 rgba(198, 140, 0, 0.2);
     background-color: #fff;
+    transition: height 0.3s ease;
+}
+.search_box.active{
+    height: calc(298px - 32px);
+}
+.search_area {
+    display: flex;
+    align-items: center;
+    width: 100%;
     gap: 20px;
 }
-.search_box > input{
+.search_area > input {
     -webkit-appearance : none;
     -moz-appearance:none;
     appearance:none;
@@ -35,17 +44,17 @@
     text-align: left;
     color: #5b5b5b;
 }
-.search_box > input::placeholder{
+.search_area > input::placeholder{
     font-family: Pretendard;
     font-size: 16px;
     line-height: 1.75;
     letter-spacing: -0.64px;
     color: #bababa;
 }
-.search_box > input:focus {
+.search_area > input:focus {
     outline: none;
 }
-.search_box > button{
+.search_area > button{
     width: 46px;
     background: inherit; 
     border:none; 
@@ -64,30 +73,33 @@
 }
 
 .keyword_container{
-    margin-top: 14px;
+    display: none;
+}
+.keyword_container.active{
+    display: flex!important;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 870px;
+    max-height: 200px;
+    overflow: auto;
+    gap: 10px;
+}
+.keyword_box{
     display: flex;
     align-items: center;
-    width: 752px;
-    height: 24px;
-    gap: 40px;
-}
-.keyword_container > span{
-    font-family: Pretendard;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.8px;
-    color: #ffba00;
-}
-.keyword_container > .keyword_box{
-    display: flex;
-    gap: 21px;
-}
-.keyword_container > .keyword_box > span{
-    font-family: Pretendard;
-    font-size: 20px;
-    line-height: 1.6;
-    letter-spacing: -0.8px;
-    color: #5b5b5b;
+    width: 100%;
+    height: 32px;
+    gap: 10px; 
     cursor: pointer;
-    word-wrap: break-word;
+}
+.keyword_box > div{
+    width: 32px;
+    height: 32px;
+}
+.keyword_box > span{
+    font-family: Pretendard;
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: -0.64px;
+    color: #bababa;   
 }

@@ -1,0 +1,69 @@
+.inputbox_root{
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+}
+.inputbox_root > .title{
+    width: 100%;
+}
+.inputbox_root > .title > span{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    text-align: left;
+    color: #5b5b5b;
+}
+
+.inputbox_root > .input_container{
+    margin-top: 10px;
+    width: calc(440px - 40px);
+    height: calc(50px - 32px);
+    padding: 16px 20px;
+    border-radius: 6px;
+    border: solid 1px #e4e4e4;
+    background-color: #fff;
+}
+.inputbox_root > .input_container.wrong{
+    width: 440px;
+    height: 50px;
+    padding: 16px 20px 15px;
+    border-radius: 6px;
+    border: solid 1px #ff4609;
+    background-color: #fff;
+}
+.inputbox_root > .input_container > input{
+    width: 100%;
+    height: 100%;
+    font-family: Pretendard;
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: -0.64px;
+    text-align: left;
+    color: #5b5b5b;
+    border: 0px;
+    outline: 0;
+}
+.inputbox_root > .input_container > input::placeholder{
+    font-family: Pretendard;
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: -0.64px;
+    text-align: left;
+    color: #bababa;
+}
+.error_container{
+    margin-top: 7px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.error_container > span{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.43;
+    letter-spacing: -0.56px;
+    text-align: left;
+    color: #ff5700;
+}

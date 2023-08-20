@@ -7,6 +7,7 @@ import workbookModalReducer from './workbook/workbook-detail/workbookModalReduce
 import toastMsgReducer from './public/toastMsgReducer';
 import mockTestTimerReducer from './workbook/quiz-test/mockTestTimerReducer';
 import transferWorkbookData from './workbook/workbook-detail/transferWorkbookData';
+import termModalReducer from './createAccount/termModalReducer';
 
 const rootReducer = combineReducers({
     authReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     toastMsgReducer,
     mockTestTimerReducer,
     transferWorkbookData,
+    termModalReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

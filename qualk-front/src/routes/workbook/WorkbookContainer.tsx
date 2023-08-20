@@ -16,10 +16,6 @@ function WorkbookContainer(){
     const workbookModalSelector = useSelector((state: RootState) => state.workbookModalReducer)
     const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
 
-    const headerLogoOnClickHandler = (event:React.MouseEvent) => {
-        navigate('/');
-    }
-
     // 잘못된 경로로 접속할 경우 임시 redirect
     useEffect(() => {
         if(location.pathname.split('/')[2] != 'gaiq'
@@ -39,7 +35,6 @@ function WorkbookContainer(){
             navigate={navigate}
             dispatch={dispatch}
             location={location}
-            headerLogoOnClickHandler={headerLogoOnClickHandler}
             modalState={workbookModalSelector ? workbookModalSelector : {modalStateId: 0}}
             toastType={toastType}
             isToast={isToast}
