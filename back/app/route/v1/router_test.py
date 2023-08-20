@@ -40,8 +40,6 @@ async def create_test(
         실질적인 문제 들어가기를 눌렀을 경우이고 실질적인 문제를 새롭게 만들었을 경우
     """
     payload = access_verify_token(authorization)
-    print(payload)
-    print(type(payload))
     if payload == 'expired':
         return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
@@ -49,8 +47,9 @@ async def create_test(
 
     test_id, test_index, time = None, None, 5400
 
-    check_running_test = find_test(Input_test.UserID, Input_test.TestType, Input_test.QuestionNum)
-    print(check_running_test)
+    user_id = payload['sub']
+
+    check_running_test = find_test(user_id, Input_test.TestType, Input_test.QuestionNum)
     if check_running_test:
         test_id = check_running_test[0]['TestID']
         ex_test = get_ex_test(test_id)
@@ -61,7 +60,7 @@ async def create_test(
     else:
         test_id = str(uuid.uuid4())
         insert_test_info = f"""INSERT INTO TestInfo(TestID,UserID,Status,TestType, QuestionNum)
-                               VALUES('{test_id}','{Input_test.UserID}', 'RUNNING', '{Input_test.TestType}', {Input_test.QuestionNum})"""
+                               VALUES('{test_id}','{user_id}', 'RUNNING', '{Input_test.TestType}', {Input_test.QuestionNum})"""
         insert(sql=insert_test_info)
 
         question_ids = make_questionlist_cache(Input_test.TestType, Input_test.QuestionNum)
@@ -106,11 +105,10 @@ async def user_input_test(
         사용자가 시험 문제를 입력하고 맞았는지 틀렸느지 바로 정답 확인 하는 곳
     """
     payload = access_verify_token(authorization)
-    print(payload)
     if payload == 'expired':
-        return JSONResponse(content={"error" :"Token expired"},status_code=401)
+        return JSONResponse(content={"error" :"Token expired"}, status_code=401)
     if payload == 'Not enough segments':
-        return JSONResponse(content={"error" :"Not token"},status_code=401)
+        return JSONResponse(content={"error" :"Not token"}, status_code=401)
     
     put_content(user_input, interval, test_id, test_index)
     question_data = check_question(test_id, test_index)
@@ -186,6 +184,7 @@ async def result_test(test_id: str,
 def access_verify_token(token: str):
     try:
         # JWT 토큰을 디코딩하고 만료 시간을 검증합니다.
+        token = token.split(" ")[-1]
         payload = jwt.decode(token, ACCESS_SECRET_KEY, algorithms=[ALGORITHM])
         return payload
     except jwt.ExpiredSignatureError:
