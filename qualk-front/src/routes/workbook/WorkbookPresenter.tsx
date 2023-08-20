@@ -68,7 +68,7 @@ function WorkbookPresenter({navigate, dispatch, location, modalState, isToast, t
                         deleteQuiz({testId: modalState.navigationState.testId}, {onSuccess: (data) => {
                             if(data && data.ok && data.status === 204){
                                 createQuiz(
-                                    {type: 'gaiq', userId: 'TestUser', testNum: totalIndex}, 
+                                    {type: 'gaiq', testNum: totalIndex}, 
                                     {onSuccess: (data: {testId: string, testIndex: number, time?: number}) => {
                                         if(data){
                                             let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: totalIndex, prevPathName: location.pathname, testTime: data['time']}

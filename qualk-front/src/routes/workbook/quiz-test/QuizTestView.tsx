@@ -32,7 +32,7 @@ function QuizTestView(){
     const [referenceUrl, setReferenceUrl] = useState(null);
     const [isMockExam, setIsMockExam] = useState(false);
     const [data, setData] = useState<TgetQuizTestData | null>(null);
-    const { isLoading: getQuizTestIsLoading, isError: getQuizTestIsError, data: getQuizTestData, error: getQuizTestError } = useQuery([`getQuizTest-${location.state.testIndex}`], () => getQuizTest({testId: location.state.testId, testIndex: location.state.testIndex}));
+    const { isLoading: getQuizTestIsLoading, isError: getQuizTestIsError, data: getQuizTestData, error: getQuizTestError, refetch: getQuizTestRefetch } = useQuery([`getQuizTest-${location.state.testIndex}`], () => getQuizTest({testId: location.state.testId, testIndex: location.state.testIndex}));
     const { mutate, isLoading: putQuizTestIsLoading, isError: putQuizTestIsError, error: putQuizTestError, isSuccess: putQuizTestIsSucesss } = useMutation(putQuizTest);
     const [disabledBtn, setDisabledBtn] = useState(true);
 
@@ -97,6 +97,13 @@ function QuizTestView(){
             clearInterval(interval);
         }
     }, [timerSecond])
+
+    useEffect(() => {
+        if(getQuizTestIsError){
+            console.log('getQuiz is Error, Refetch')
+            getQuizTestRefetch()
+        }
+    }, [getQuizTestIsLoading])
 
     // useEffect(() => {
     //     if(isTimeover){

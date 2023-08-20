@@ -1,12 +1,12 @@
+import responseErrorHandler from "javascripts/responseErrorHandler";
+
 export type TcreateQuizTest = {
     type: string,
     testNum: number,
-    userId: string,
 }
 
-async function createQuizTest({type, testNum, userId}: TcreateQuizTest){
+async function createQuizTest({type, testNum}: TcreateQuizTest){
     let data = {
-        "UserID": userId,
         "TestType": type.toUpperCase(),
         "QuestionNum": testNum
     }
@@ -20,6 +20,15 @@ async function createQuizTest({type, testNum, userId}: TcreateQuizTest){
         },
         body: JSON.stringify(data)
     })
+    .then(async (res) => {
+        if (!res.ok) {
+            await responseErrorHandler(res);
+            throw new Error()
+        } else {
+            console.log('create res ', res);
+            return res;
+        }
+    });
 
     return response.json()
 }

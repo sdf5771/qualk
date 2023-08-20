@@ -1,3 +1,5 @@
+import responseErrorHandler from "javascripts/responseErrorHandler";
+
 type TgetQuizTestProps = {
     testId: string;
     testIndex: number;
@@ -12,8 +14,17 @@ async function getQuizTest({testId, testIndex}: TgetQuizTestProps){
             Authorization: ACCESSTOKEN ? ACCESSTOKEN : '',
         },
     })
+    .then(async (res) => {
+        if (!res.ok) {
+            await responseErrorHandler(res);
+            throw new Error()
+        } else {
+            console.log('get res ', res);
+            return res;
+        }
+    });
 
-    return response.json()
+    return response.json();
 }
 
 export default getQuizTest;

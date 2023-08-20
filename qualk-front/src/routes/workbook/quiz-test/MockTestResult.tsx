@@ -42,7 +42,7 @@ function MockTestResult(){
 
     const reTestStartClickHandler = (event: React.MouseEvent<HTMLSpanElement>) => {
         mutate(
-            {type: 'gaiq', userId: 'TestUser', testNum: 50}, 
+            {type: 'gaiq', testNum: 50}, 
             {onSuccess: (data: {testId: string, testIndex: number}) => {
                 if(data){
                     let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname}
