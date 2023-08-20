@@ -83,7 +83,7 @@ async def get_quiz(test_id: str,
     payload = access_verify_token(authorization)
     if payload == 'expired':
         return JSONResponse(content={"error" :"Token expired"},status_code=401)
-    if not payload:
+    if payload == 'Not enough segments':
         return JSONResponse(content={"error" :"Not token"},status_code=401)
     questionid_list = get_content(test_id, test_index)
     last_index = test_index % 10 == 0 and check_index(test_id) == test_index
@@ -109,7 +109,7 @@ async def user_input_test(
     print(payload)
     if payload == 'expired':
         return JSONResponse(content={"error" :"Token expired"},status_code=401)
-    if not payload:
+    if payload == 'Not enough segments':
         return JSONResponse(content={"error" :"Not token"},status_code=401)
     
     put_content(user_input, interval, test_id, test_index)
@@ -133,7 +133,7 @@ async def user_delete_test(test_id: str,
     payload = access_verify_token(authorization)
     if payload == 'expired':
         return JSONResponse(content={"error" :"Token expired"},status_code=401)
-    if not payload:
+    if payload == 'Not enough segments':
         return JSONResponse(content={"error" :"Not token"},status_code=401)
 
     delete_test(test_id)
