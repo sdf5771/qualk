@@ -40,10 +40,14 @@ async def create_test(
         실질적인 문제 들어가기를 눌렀을 경우이고 실질적인 문제를 새롭게 만들었을 경우
     """
     payload = access_verify_token(authorization)
+    
     if payload == 'expired':
-        return JSONResponse(content={"error" :"Token expired"},status_code=401)
+        raise HTTPException(status_code=401, detail="Token expired")
+        # raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
-        return JSONResponse(content={"error" :"Not token"},status_code=401)
+        raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Not token"},status_code=401)
 
     test_id, test_index, time = None, None, 5400
 
@@ -81,9 +85,12 @@ async def get_quiz(test_id: str,
     """
     payload = access_verify_token(authorization)
     if payload == 'expired':
-        return JSONResponse(content={"error" :"Token expired"},status_code=401)
+        raise HTTPException(status_code=401, detail="Token expired")
+        # raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
-        return JSONResponse(content={"error" :"Not token"},status_code=401)
+        raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Not token"},status_code=401)
     questionid_list = get_content(test_id, test_index)
     last_index = test_index % 10 == 0 and check_index(test_id) == test_index
     return jsonable_encoder({
@@ -106,9 +113,12 @@ async def user_input_test(
     """
     payload = access_verify_token(authorization)
     if payload == 'expired':
-        return JSONResponse(content={"error" :"Token expired"}, status_code=401)
+        raise HTTPException(status_code=401, detail="Token expired")
+        # raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
-        return JSONResponse(content={"error" :"Not token"}, status_code=401)
+        raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Not token"},status_code=401)
     
     put_content(user_input, interval, test_id, test_index)
     question_data = check_question(test_id, test_index)
@@ -145,9 +155,12 @@ async def result_test(test_id: str,
     """
     payload = access_verify_token(authorization)
     if payload == 'expired':
-        return JSONResponse(content={"error" :"Token expired"},status_code=401)
-    if not payload:
-        return JSONResponse(content={"error" :"Not token"},status_code=401)
+        raise HTTPException(status_code=401, detail="Token expired")
+        # raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
+    if payload == 'Not enough segments':
+        raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Not token"},status_code=401)
     wrong_content_id = result_wrong_case_cotent_id(test_id)
     test_info = find_test_info(test_id)
     correct = test_info['QuestionNum'] - len(wrong_content_id)
