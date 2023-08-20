@@ -3,10 +3,12 @@ export type TdeleteQuizDataProps = {
 }
 
 async function deleteQuizData({testId}: TdeleteQuizDataProps){
+    const ACCESSTOKEN = localStorage.getItem('accessToken');
     const response = await fetch(`/api/v1/test/?test_id=${testId}`, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: ACCESSTOKEN ? ACCESSTOKEN : '',
         }
     });
     
