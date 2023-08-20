@@ -10,6 +10,7 @@ from app.logic.test_logic import find_test, get_ex_test, get_ex_time, make_quest
 
 from fastapi import APIRouter, HTTPException, Header
 from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 from app.entitiy.test import Input_test
 from dotenv import load_dotenv
 
@@ -40,7 +41,8 @@ async def create_test(
     """
     payload = access_verify_token(authorization)
     if payload == 'expired':
-        return HTTPException(status_code=401, detail=str('Access token expired'))
+        
+        return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if not payload:
         return HTTPException(status_code=401, detail=str('Access token Wrong'))
 
@@ -79,7 +81,7 @@ async def get_quiz(test_id: str,
     """
     payload = access_verify_token(authorization)
     if payload == 'expired':
-        return HTTPException(status_code=401, detail=str('Access token expired'))
+        return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if not payload:
         return HTTPException(status_code=401, detail=str('Access token Wrong'))
     questionid_list = get_content(test_id, test_index)
@@ -104,7 +106,7 @@ async def user_input_test(
     """
     payload = access_verify_token(authorization)
     if payload == 'expired':
-        return HTTPException(status_code=401, detail=str('Access token expired'))
+        return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if not payload:
         return HTTPException(status_code=401, detail=str('Access token Wrong'))
     
@@ -128,7 +130,7 @@ async def user_delete_test(test_id: str,
     """
     payload = access_verify_token(authorization)
     if payload == 'expired':
-        return HTTPException(status_code=401, detail=str('Access token expired'))
+        return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if not payload:
         return HTTPException(status_code=401, detail=str('Access token Wrong'))
 
@@ -143,7 +145,7 @@ async def result_test(test_id: str,
     """
     payload = access_verify_token(authorization)
     if payload == 'expired':
-        return HTTPException(status_code=401, detail=str('Access token expired'))
+        return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if not payload:
         return HTTPException(status_code=401, detail=str('Access token Wrong'))
     wrong_content_id = result_wrong_case_cotent_id(test_id)
