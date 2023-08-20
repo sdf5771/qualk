@@ -43,14 +43,6 @@ db = SessionLocal()
 router = APIRouter(
     prefix="/api/v1/login"
 )
-
-# @router.post("/create")
-# async def create_test(user: user):
-#     sql=f"""INSERT INTO user(userId, password) VALUES('{user.userId}', '{user.password}');"""
-#     insert(sql)
-    
-#     return jsonable_encoder({'loginId' : user.userId})
-
 @router.post("/")
 async def login(base_user: BaseUser):
     total_results = (
@@ -129,11 +121,8 @@ def access_verify_token(token: str):
         return payload
     except jwt.ExpiredSignatureError:
         return "expired"
-        # 토큰이 만료된 경우 여기서 처리합니다.
     except Exception as e:
         return f"{e}"
-        # 그 외의 다른 오류를 처리합니다.
-        # raise Exception("Invalid token")
     
 def refresh_verify_token(token: str):
     try:
@@ -141,8 +130,6 @@ def refresh_verify_token(token: str):
         payload = jwt.decode(token, REFRESH_SECRET_KEY, algorithms=[ALGORITHM])
         return payload
     except jwt.ExpiredSignatureError:
-        # 토큰이 만료된 경우 여기서 처리합니다.
         return "expired"
     except Exception as e:
-        # 그 외의 다른 오류를 처리합니다.
         return f"{e}"

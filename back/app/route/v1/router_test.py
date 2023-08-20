@@ -8,19 +8,42 @@ from app.logic.test_logic import find_test, get_ex_test, get_ex_time, make_quest
                                  find_wrong_content, delete_test, check_index,\
                                  find_time, make_questionlist_cache
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Header
 from fastapi.encoders import jsonable_encoder
 from app.entitiy.test import Input_test
+from dotenv import load_dotenv
+
+import os
+from passlib.context import CryptContext
+import jwt
+import datetime
+
+
 
 router = APIRouter(
     prefix="/api/v1/test"
 )
 
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES'))
+REFRESH_TOKEN_EXPIRE_MINUTES = int(os.getenv('REFRESH_TOKEN_EXPIRE_MINUTES'))
+ACCESS_SECRET_KEY = os.getenv('ACCESS_SECRET_KEY')
+REFRESH_SECRET_KEY = os.getenv('REFRESH_SECRET_KEY')
+ALGORITHM = os.getenv('ALGORITHM')
+
 @router.post("/", status_code=201)
-async def create_test(Input_test: Input_test):
+async def create_test(
+                        Input_test: Input_test, 
+                        authorization: str = Header('authorization')
+                    ):
     """
         실질적인 문제 들어가기를 눌렀을 경우이고 실질적인 문제를 새롭게 만들었을 경우
     """
+    payload = access_verify_token(authorization)
+    if payload == 'expired':
+        return HTTPException(status_code=401, detail=str('Access token expired'))
+    if not payload:
+        return HTTPException(status_code=401, detail=str('Access token Wrong'))
+
     test_id, test_index, time = None, None, 5400
 
     check_running_test = find_test(Input_test.UserID, Input_test.TestType, Input_test.QuestionNum)
@@ -47,10 +70,18 @@ async def create_test(Input_test: Input_test):
     return jsonable_encoder({'testId': test_id, 'testIndex': test_index, 'time': time})
 
 @router.get("/", status_code=200)
-async def get_quiz(test_id: str, test_index: int):
+async def get_quiz(test_id: str,
+                   test_index: int,
+                   authorization: str = Header('authorization')
+                ):
     """
         시험 문제 내용 출력
     """
+    payload = access_verify_token(authorization)
+    if payload == 'expired':
+        return HTTPException(status_code=401, detail=str('Access token expired'))
+    if not payload:
+        return HTTPException(status_code=401, detail=str('Access token Wrong'))
     questionid_list = get_content(test_id, test_index)
     last_index = test_index % 10 == 0 and check_index(test_id) == test_index
     return jsonable_encoder({
@@ -61,10 +92,22 @@ async def get_quiz(test_id: str, test_index: int):
                              })
 
 @router.put("/")
-async def user_input_test(test_id: str, test_index: int, user_input: int, interval: int):
+async def user_input_test(
+                        test_id: str, 
+                        test_index: int, 
+                        user_input: int, 
+                        interval: int,
+                        authorization: str = Header('authorization')
+                    ):
     """
         사용자가 시험 문제를 입력하고 맞았는지 틀렸느지 바로 정답 확인 하는 곳
     """
+    payload = access_verify_token(authorization)
+    if payload == 'expired':
+        return HTTPException(status_code=401, detail=str('Access token expired'))
+    if not payload:
+        return HTTPException(status_code=401, detail=str('Access token Wrong'))
+    
     put_content(user_input, interval, test_id, test_index)
     question_data = check_question(test_id, test_index)
     if test_index % 10 == 0 and check_index(test_id) == test_index:
@@ -77,18 +120,32 @@ async def user_input_test(test_id: str, test_index: int, user_input: int, interv
                             })
 
 @router.delete("/", status_code=204)
-async def user_delete_test(test_id: str):
+async def user_delete_test(test_id: str,
+                           authorization: str = Header('authorization')
+                        ):
     """
         사용자가 시험 문제를 입력하고 맞았는지 틀렸느지 바로 정답 확인 하는 곳
     """
+    payload = access_verify_token(authorization)
+    if payload == 'expired':
+        return HTTPException(status_code=401, detail=str('Access token expired'))
+    if not payload:
+        return HTTPException(status_code=401, detail=str('Access token Wrong'))
+
     delete_test(test_id)
     return jsonable_encoder({'testId':test_id})
 
 @router.get("/result")
-async def result_test(test_id: str):
+async def result_test(test_id: str,
+                      authorization: str = Header('authorization')):
     """
          시험 문제를 다 푼뒤 결과 페이지
     """
+    payload = access_verify_token(authorization)
+    if payload == 'expired':
+        return HTTPException(status_code=401, detail=str('Access token expired'))
+    if not payload:
+        return HTTPException(status_code=401, detail=str('Access token Wrong'))
     wrong_content_id = result_wrong_case_cotent_id(test_id)
     test_info = find_test_info(test_id)
     correct = test_info['QuestionNum'] - len(wrong_content_id)
@@ -121,3 +178,13 @@ async def result_test(test_id: str):
                              'correctPercent': math.trunc(correct / test_info['QuestionNum'] * 100),
                              'wrongQuestion':wrong_content_list
                             })
+
+def access_verify_token(token: str):
+    try:
+        # JWT 토큰을 디코딩하고 만료 시간을 검증합니다.
+        payload = jwt.decode(token, ACCESS_SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except jwt.ExpiredSignatureError:
+        return "expired"
+    except Exception as e:
+        return f"{e}"
