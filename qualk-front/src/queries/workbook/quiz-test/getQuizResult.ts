@@ -9,7 +9,7 @@ async function getQuizResult({testId}: TgetQuizResultProps){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: ACCESSTOKEN ? ACCESSTOKEN : '',
+            Authorization: ACCESSTOKEN ? `Bearer ${ACCESSTOKEN}` : '',
         }
     });
 

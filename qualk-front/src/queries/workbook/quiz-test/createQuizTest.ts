@@ -16,7 +16,7 @@ async function createQuizTest({type, testNum}: TcreateQuizTest){
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: ACCESSTOKEN ? ACCESSTOKEN : '',
+            Authorization: ACCESSTOKEN ? `Bearer ${ACCESSTOKEN}` : '',
         },
         body: JSON.stringify(data)
     })

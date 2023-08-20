@@ -11,7 +11,7 @@ async function getQuizTest({testId, testIndex}: TgetQuizTestProps){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: ACCESSTOKEN ? ACCESSTOKEN : '',
+            Authorization: ACCESSTOKEN ? `Bearer ${ACCESSTOKEN}` : '',
         },
     })
     .then(async (res) => {

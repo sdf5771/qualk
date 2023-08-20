@@ -11,7 +11,7 @@ async function putQuizTest({testId, testIndex, userCorrect, interval}: TputQuizT
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: ACCESSTOKEN ? ACCESSTOKEN : '',
+            Authorization: ACCESSTOKEN ? `Bearer ${ACCESSTOKEN}` : '',
         },
     })
 

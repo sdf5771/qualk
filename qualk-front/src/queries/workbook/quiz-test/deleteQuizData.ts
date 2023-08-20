@@ -8,7 +8,7 @@ async function deleteQuizData({testId}: TdeleteQuizDataProps){
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: ACCESSTOKEN ? ACCESSTOKEN : '',
+            Authorization: ACCESSTOKEN ? `Bearer ${ACCESSTOKEN}` : '',
         }
     });
     
