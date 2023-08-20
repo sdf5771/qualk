@@ -1,3 +1,4 @@
+import responseErrorHandler from "javascripts/responseErrorHandler";
 
 type TgetQuizResultProps = {
     testId: string;
@@ -10,6 +11,14 @@ async function getQuizResult({testId}: TgetQuizResultProps){
         headers: {
             'Content-Type': 'application/json',
             Authorization: ACCESSTOKEN ? `Bearer ${ACCESSTOKEN}` : '',
+        }
+    })
+    .then(async (res) => {
+        if (!res.ok) {
+            await responseErrorHandler(res);
+            throw new Error()
+        } else {
+            return res;
         }
     });
 

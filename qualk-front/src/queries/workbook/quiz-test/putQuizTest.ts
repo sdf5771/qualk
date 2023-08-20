@@ -1,3 +1,5 @@
+import responseErrorHandler from "javascripts/responseErrorHandler";
+
 type TputQuizTest = {
     testId: string,
     testIndex: number,
@@ -14,6 +16,14 @@ async function putQuizTest({testId, testIndex, userCorrect, interval}: TputQuizT
             Authorization: ACCESSTOKEN ? `Bearer ${ACCESSTOKEN}` : '',
         },
     })
+    .then(async (res) => {
+        if (!res.ok) {
+            await responseErrorHandler(res);
+            throw new Error()
+        } else {
+            return res;
+        }
+    });
 
     return response.json()
 }

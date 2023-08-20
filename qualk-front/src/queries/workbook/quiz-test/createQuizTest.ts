@@ -25,7 +25,6 @@ async function createQuizTest({type, testNum}: TcreateQuizTest){
             await responseErrorHandler(res);
             throw new Error()
         } else {
-            console.log('create res ', res);
             return res;
         }
     });

@@ -19,7 +19,6 @@ async function getQuizTest({testId, testIndex}: TgetQuizTestProps){
             await responseErrorHandler(res);
             throw new Error()
         } else {
-            console.log('get res ', res);
             return res;
         }
     });

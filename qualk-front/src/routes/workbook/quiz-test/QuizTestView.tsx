@@ -100,7 +100,6 @@ function QuizTestView(){
 
     useEffect(() => {
         if(getQuizTestIsError){
-            console.log('getQuiz is Error, Refetch')
             getQuizTestRefetch()
         }
     }, [getQuizTestIsLoading])
@@ -129,6 +128,25 @@ function QuizTestView(){
                                 setAnswerDescription(data.description);
                                 setReferenceUrl(data.reference_url);
                                 dispatch({type:"mutateRadio", correctIndex: data.correct, isMutate: true, selectIndex: userSelect});
+                            },
+                            onError: () => {
+                                mutate(
+                                    {
+                                        testId: location.state.testId, 
+                                        testIndex: location.state.testIndex,
+                                        userCorrect: userSelect,
+                                        interval: countInterval,
+                                    },
+                                    {
+                                        onSuccess: (data) => {
+                                            setIsUserMutate(true);
+                                            setCorrectIndex(data.correct)
+                                            setAnswerDescription(data.description);
+                                            setReferenceUrl(data.reference_url);
+                                            dispatch({type:"mutateRadio", correctIndex: data.correct, isMutate: true, selectIndex: userSelect});
+                                        }
+                                    }
+                                )
                             }
                         }
                     )
@@ -172,6 +190,25 @@ function QuizTestView(){
                                     setAnswerDescription(data.description);
                                     setReferenceUrl(data.reference_url);
                                     dispatch({type:"mutateRadio", correctIndex: data.correct, isMutate: true, selectIndex: userSelect});
+                                },
+                                onError: () => {
+                                    mutate(
+                                        {
+                                            testId: location.state.testId, 
+                                            testIndex: location.state.testIndex,
+                                            userCorrect: userSelect,
+                                            interval: countInterval,
+                                        },
+                                        {
+                                            onSuccess: (data) => {
+                                                setIsUserMutate(true);
+                                                setCorrectIndex(data.correct)
+                                                setAnswerDescription(data.description);
+                                                setReferenceUrl(data.reference_url);
+                                                dispatch({type:"mutateRadio", correctIndex: data.correct, isMutate: true, selectIndex: userSelect});
+                                            }
+                                        }
+                                    )
                                 }
                             }
                         )

@@ -8,6 +8,7 @@ type TUserInputBoxPropsType = {
         placeHolderText?: string,
         inputVal?: string,
         onChangeHandler?: React.ChangeEventHandler<HTMLInputElement>,
+        onKeyUpHandler? :React.KeyboardEventHandler<HTMLInputElement>,
         errorMsg?: string,
     }
 }
@@ -26,6 +27,7 @@ function UserInputBox({type, title, inputOption}: TUserInputBoxPropsType){
                     minLength={type === 'pw' ? 8 : 2}
                     maxLength={type === 'pw' ? 15 : 100}
                     onChange={inputOption && inputOption.onChangeHandler ? inputOption.onChangeHandler : () => {}} 
+                    onKeyUp={inputOption && inputOption.onKeyUpHandler ? inputOption.onKeyUpHandler : () => {}}
                     value={inputOption && inputOption.inputVal ? inputOption.inputVal : ''}
                     placeholder={inputOption && inputOption.placeHolderText ? inputOption.placeHolderText : ''}
                     />

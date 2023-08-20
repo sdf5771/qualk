@@ -1,3 +1,5 @@
+import responseErrorHandler from "javascripts/responseErrorHandler";
+
 export type TdeleteQuizDataProps = {
     testId: string;
 }
@@ -9,6 +11,14 @@ async function deleteQuizData({testId}: TdeleteQuizDataProps){
         headers: {
             'Content-Type': 'application/json',
             Authorization: ACCESSTOKEN ? `Bearer ${ACCESSTOKEN}` : '',
+        }
+    })
+    .then(async (res) => {
+        if (!res.ok) {
+            await responseErrorHandler(res);
+            throw new Error()
+        } else {
+            return res;
         }
     });
     

@@ -24,7 +24,7 @@ import useRedirect from 'hook/useRedirect';
 function QuizTestMain(){
     const menuElementActivateSelector = useSelector((state:RootState) => state.childMenuClickReducer);
     const [category, setCategory] = useState(menuElementActivateSelector);
-    const { mutate, isLoading, isError, error, isSuccess } = useMutation(createQuizTest);
+    const { mutate } = useMutation(createQuizTest);
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
@@ -77,8 +77,24 @@ function QuizTestMain(){
                                                 );
                                             }
                                         }
-                                    }, onError: (error) => {
-                                        
+                                    }, onError: () => {
+                                        mutate(
+                                            {type: 'gaiq', testNum: 10}, 
+                                            {onSuccess: (data: {testId: string, testIndex: number}) => {
+                                                if(data){
+                                                    let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 10, prevPathName: location.pathname}
+                                                    let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                                    if(data.testIndex !== 1){
+                                                        dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                                                    } else {
+                                                        navigate(navLocation, 
+                                                        {
+                                                            state: navState
+                                                        }
+                                                        );
+                                                    }
+                                                }
+                                            }})
                                     }})
                             }}
                             />
@@ -107,6 +123,24 @@ function QuizTestMain(){
                                                 );
                                             }
                                         }
+                                    }, onError: () => {
+                                        mutate(
+                                            {type: 'gaiq', testNum: 20}, 
+                                            {onSuccess: (data: {testId: string, testIndex: number}) => {
+                                                if(data){
+                                                    let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 20, prevPathName: location.pathname}
+                                                    let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                                    if(data.testIndex !== 1){
+                                                        dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                                                    } else {
+                                                        navigate(navLocation, 
+                                                        {
+                                                            state: navState
+                                                        }
+                                                        );
+                                                    }
+                                                }
+                                            }})
                                     }})
                             }}
                             />
@@ -135,6 +169,24 @@ function QuizTestMain(){
                                                 );
                                             }
                                         }
+                                    }, onError: () => {
+                                        mutate(
+                                            {type: 'gaiq', testNum: 30}, 
+                                            {onSuccess: (data: {testId: string, testIndex: number}) => {
+                                                if(data){
+                                                    let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 30, prevPathName: location.pathname}
+                                                    let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                                    if(data.testIndex !== 1){
+                                                        dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                                                    } else {
+                                                        navigate(navLocation, 
+                                                        {
+                                                            state: navState
+                                                        }
+                                                        );
+                                                    }
+                                                }
+                                            }})
                                     }})
                             }}
                             />
@@ -170,6 +222,24 @@ function QuizTestMain(){
                                                 );
                                             }
                                         }
+                                    }, onError: () => {
+                                        mutate(
+                                            {type: 'gaiq', testNum: 50}, 
+                                            {onSuccess: (data: {testId: string, testIndex: number, time: number}) => {
+                                                if(data){
+                                                    let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname, testTime: data['time']}
+                                                    let navLocation = `/quiz/test/gaiq/mockexam?quiz=${data['testId']}`;
+                                                    if(data.testIndex !== 1){
+                                                        dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                                                    } else {
+                                                        navigate(`/quiz/test/mockexam/start/`, 
+                                                        {
+                                                            state: navState
+                                                        }
+                                                        );
+                                                    }
+                                                }
+                                            }})
                                     }})
                             }}
                             />

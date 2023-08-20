@@ -26,7 +26,7 @@ function LoginForm(){
         
     }
 
-    const loginBtnClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const loginBtnClickHandler = () => {
         if(idVal.replace(" ","") && pwVal.replace(" ","")){
             defaultLogin({email: idVal, password: pwVal});
         } else {
@@ -58,6 +58,9 @@ function LoginForm(){
                             {
                                 placeHolderText:'영문, 숫자, 특수 문자 조합 최소 8자 ~ 15자',
                                 onChangeHandler: pwInputOnChangeHandler,
+                                onKeyUpHandler: (event: React.KeyboardEvent<HTMLInputElement>) => {
+                                    if(event.key === 'Enter') loginBtnClickHandler();
+                                },
                                 inputVal: pwVal,
                             }
                         } />
