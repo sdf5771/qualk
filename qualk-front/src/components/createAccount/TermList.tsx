@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './TermList.module.css';
 import {ReactComponent as RightArrow} from 'assets/images/createAccount/right_arrow.svg';
 import { useDispatch } from 'react-redux';
@@ -7,6 +7,17 @@ import {TtermData, termData} from 'javascripts/termData';
 function TermList(){
     const dispatch = useDispatch();
     const [termList, setTermList] = useState(termData);
+
+    const isAllRequiredAgreed = (data: TtermData[]): boolean => {
+        const requiredAgreeItems = data.filter(item => item.isRequired && !item.isAgree);
+        return requiredAgreeItems.length === 0;
+    };
+
+    useEffect(() => {
+        if(isAllRequiredAgreed(termList)){
+            dispatch({type: 'termList all agreed'});
+        }
+    }, [termList])
 
     return (
         <div className={styles.term_list}>

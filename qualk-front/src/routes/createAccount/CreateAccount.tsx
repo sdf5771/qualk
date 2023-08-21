@@ -11,56 +11,69 @@ import TermModal from 'components/createAccount/TermModal';
 
 function CreateAccount(){
     const [allowed, setAllowed] = useState(true);
+    
     const [idVal, setIdVal] = useState('');
     const [pwVal, setPwVal] = useState('');
     const [pwConfirm, setPwConfirm] = useState('');
+    
     const [idIsValid, setIdIsValid] = useState(false);
     const [pwIsValid, setPwIsValid] = useState(false);
     const [confirmValid, setConfirmValid] = useState(false);
+
     const navigate = useNavigate();
     const {isOpen: modalIsOpen, title: modalTitle, detail: modalDetail} = useSelector((state: RootState) => state.termModalReducer);
-
-    useEffect(() => {
-        isAllowBtn()
-    }, [idVal, pwVal, pwConfirm])
+    const termListAgreedSelector = useSelector((state:RootState) => state.termListAgreedReducer);
 
     const isAllowBtn = () => {
-        if(idIsValid && pwIsValid && confirmValid){
+        if(idIsValid && pwIsValid && confirmValid && termListAgreedSelector){
             setAllowed(false);
         } else {
             setAllowed(true)
         }
     }
 
+    useEffect(() => {
+        isAllowBtn()
+    }, [idIsValid, pwIsValid, confirmValid, termListAgreedSelector])
+
     const idInputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        let regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        let regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/g;
         
-        if(regex.test(event.target.value)){
-            setIdIsValid(true);
-        } else {
-            setIdIsValid(false);
-        }
         setIdVal(event.target.value);
+
+        setTimeout(() => {
+            if(regex.test(event.target.value)){
+                setIdIsValid(true);
+            } else {
+                setIdIsValid(false);
+            }
+        }, 100)
     }
 
     const pwInputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        let regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-        
-        if(regex.test(event.target.value)){
-            setPwIsValid(true)
-        } else {
-            setPwIsValid(false);
-        }
+        let regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/g;
+
         setPwVal(event.target.value);
+
+        setTimeout(() => {
+            if(regex.test(event.target.value)){
+                setPwIsValid(true)
+            } else {
+                setPwIsValid(false);
+            }
+        }, 100);
     }
 
     const pwConfirmOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if(pwVal === pwConfirm){
-            setConfirmValid(true);
-        } else {
-            setConfirmValid(false);
-        }
         setPwConfirm(event.target.value);
+
+        setTimeout(() => {
+            if(pwVal === event.target.value){
+                setConfirmValid(true);
+            } else {
+                setConfirmValid(false);
+            }
+        }, 100)
     }
 
     return (
@@ -68,7 +81,7 @@ function CreateAccount(){
             <div className={styles.header_container}>
                 <GlobalNavBar />
             </div>
-            <div className={styles.body_container}>
+            <form className={styles.body_container}>
                 <div className={styles.title}>
                     <QualkTitle />
                     <h2>회원가입</h2>
@@ -86,6 +99,8 @@ function CreateAccount(){
                                 placeHolderText:'example@gmail.com',
                                 onChangeHandler: idInputOnChangeHandler,
                                 inputVal: idVal,
+                                errorMsg: '이메일 형식에 맞추어주세요.',
+                                isError: !idIsValid && idVal !== '',
                             }
                         } />
                     <div>
@@ -97,6 +112,8 @@ function CreateAccount(){
                                     placeHolderText:'영문, 숫자, 특수 문자 조합 최소 8자 ~ 15자',
                                     onChangeHandler: pwInputOnChangeHandler,
                                     inputVal: pwVal,
+                                    errorMsg: '비밀번호 조합을 확인해주세요.',
+                                    isError: !pwIsValid && pwVal !== '',
                                 }
                             } />
                         <UserInputBox 
@@ -107,6 +124,8 @@ function CreateAccount(){
                                 placeHolderText:'비밀번호 재확인',
                                 onChangeHandler: pwConfirmOnChangeHandler,
                                 inputVal: pwConfirm,
+                                errorMsg: '비밀번호가 비밀번호 확인 값과 일치하지 않습니다.',
+                                isError: !confirmValid && pwConfirm !== '',
                             }
                         } />
                     </div>
@@ -117,7 +136,7 @@ function CreateAccount(){
                 <div className={styles.btn_container}>
                     <button disabled={allowed} className={styles.confirm_btn}>가입하기</button>
                 </div>
-            </div>
+            </form>
             {modalIsOpen ? <TermModal title={modalTitle} detail={modalDetail} /> : null}
         </div>
     )

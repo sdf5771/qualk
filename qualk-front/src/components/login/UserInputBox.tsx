@@ -10,6 +10,7 @@ type TUserInputBoxPropsType = {
         onChangeHandler?: React.ChangeEventHandler<HTMLInputElement>,
         onKeyUpHandler? :React.KeyboardEventHandler<HTMLInputElement>,
         errorMsg?: string,
+        isError?: boolean,
     }
 }
 
@@ -22,18 +23,31 @@ function UserInputBox({type, title, inputOption}: TUserInputBoxPropsType){
                 <span>{title}</span>
             </div> : null}
             <div className={styles.input_container}>
+                {type === 'id' ? 
                 <input 
-                    type={type === 'pw' ? 'password' : 'email'}
-                    minLength={type === 'pw' ? 8 : 2}
-                    maxLength={type === 'pw' ? 15 : 100}
+                    type='email'
+                    minLength={2}
+                    maxLength={100}
                     onChange={inputOption && inputOption.onChangeHandler ? inputOption.onChangeHandler : () => {}} 
                     onKeyUp={inputOption && inputOption.onKeyUpHandler ? inputOption.onKeyUpHandler : () => {}}
                     value={inputOption && inputOption.inputVal ? inputOption.inputVal : ''}
                     placeholder={inputOption && inputOption.placeHolderText ? inputOption.placeHolderText : ''}
                     />
+                : 
+                <input 
+                    type='password'
+                    minLength={8}
+                    maxLength={15}
+                    onChange={inputOption && inputOption.onChangeHandler ? inputOption.onChangeHandler : () => {}} 
+                    onKeyUp={inputOption && inputOption.onKeyUpHandler ? inputOption.onKeyUpHandler : () => {}}
+                    value={inputOption && inputOption.inputVal ? inputOption.inputVal : ''}
+                    placeholder={inputOption && inputOption.placeHolderText ? inputOption.placeHolderText : ''}
+                    autoComplete='off'
+                    />
+                }
             </div>
             <div className={styles.error_container}>
-                <span>{inputOption?.errorMsg ? inputOption.errorMsg : ''}</span>
+                <span>{inputOption?.isError && inputOption?.errorMsg ? inputOption.errorMsg : ''}</span>
             </div>
         </div>
     )
