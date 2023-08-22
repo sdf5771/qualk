@@ -11,11 +11,11 @@ async function responseErrorHandler(response: Response){
         localStorage.setItem('accessToken', result.accessToken);
     }
 
+    const newRes = await response.json();
+    
     if(!response.ok){
         switch (response.status){
             case 401:
-                const newRes = await response.json();
-
                 if(newRes.detail === 'Token expired'){
                     //accessToken 만료 
                     await replaceAccessToken();
@@ -29,6 +29,8 @@ async function responseErrorHandler(response: Response){
                 }
 
                 return Error;
+            case 500:
+                store.dispatch({type: 'toast open', toastType: 'warning', toastMsg: '로그인 서버에 오류가 발생하였습니다.'});
         }
     }
 

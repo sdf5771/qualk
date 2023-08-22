@@ -12,7 +12,7 @@ async function signUp({email, password}: {email: string, password: string}){
         },
         body: JSON.stringify(data),
     }).then((res) => {
-        if(!res.ok && res.status !== 200) throw Error;
+        if(!res.ok && res.status !== 200) throw Error(res.statusText);
 
         return res;
     })

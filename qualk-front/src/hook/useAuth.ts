@@ -24,9 +24,8 @@ function useAuth(){
             navigate('/');
         },
         onError: (e) => {
+            console.log(e);
             dispatch({type: 'toast open', toastType: 'warning', toastMsg: '로그인에 실패했어요. 아이디와 비밀번호를 확인해주세요.'})
-
-            console.log('Login Error ', e);
         },
     });
 
