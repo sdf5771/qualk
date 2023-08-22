@@ -109,7 +109,7 @@ function CreateAccount(){
                             title="비밀번호" 
                             inputOption={
                                 {
-                                    placeHolderText:'영문, 숫자, 특수 문자 조합 최소 8자 ~ 15자',
+                                    placeHolderText:'영문, 숫자, 특수 문자 조합 최소 8자 ~ 15자 (!, @, #, $, %, ^, &, +, =)',
                                     onChangeHandler: pwInputOnChangeHandler,
                                     inputVal: pwVal,
                                     errorMsg: '비밀번호 조합을 확인해주세요.',

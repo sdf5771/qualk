@@ -6,13 +6,25 @@ import {ReactComponent as ArrowLeftIconDefault} from "assets/images/public/arrow
 import {ReactComponent as ArrowLeftIconHover} from "assets/images/public/arrow_left_icon_hover.svg";
 import {ReactComponent as TestCountContainer} from 'assets/images/workbook/quiz-test/mocktest_testcount.svg';
 import {ReactComponent as TestTimeContainer} from 'assets/images/workbook/quiz-test/mocktest_test_time.svg';
+import { useDispatch } from 'react-redux';
 
 function MockTestStart(){
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const testStartOnClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         const navState = location.state;
+        
+        // 잘못된 접근으로 testId가 생성되지 않은 경우
+        if(!navState){
+            dispatch({type: 'toast open', toastType: 'warning', toastMsg: '잘못된 접근이에요. 다시 시도해주세요.'})
+            setTimeout(() => {
+                navigate('/quiz/test/gaiq');
+            }, 1000)
+        }
+        
+        // testId가 생성된 경우
         const navLocation = `/quiz/test/gaiq/mockexam?quiz=${navState['testId']}`;
         navigate(navLocation, 
             {
