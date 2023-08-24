@@ -47,14 +47,21 @@ router = APIRouter(
 @router.post("/create")
 async def create(
                 base_user: BaseUser,
-                terms_1 : bool,
-                terms_2 : bool,
-                terms_3 : bool):
+                terms_1 : int,
+                terms_2 : int,
+                terms_3 : int):
 
-    sql = """INSERT INTO user(userId, password) VALUES ('{base_user.userId}','{base_user.password}')"""
+    sql = f"""INSERT INTO user(userId, password) VALUES ('{base_user.userId}','{base_user.password}')"""
     insert(sql)
 
-    
+    sql = f"""INSERT INTO terms(userId, termes_id, termes_bool ) VALUES ('{base_user.userId}','1', '{terms_1}')"""
+    insert(sql)
+
+    sql = f"""INSERT INTO terms(userId, termes_id, termes_bool ) VALUES ('{base_user.userId}','2', '{terms_2}')"""
+    insert(sql)
+
+    sql = f"""INSERT INTO terms(userId, termes_id, termes_bool ) VALUES ('{base_user.userId}','3', '{terms_3}')"""
+    insert(sql)
 
     userid = {'sub':base_user.userId}
     
