@@ -34,7 +34,7 @@ _DB_IP = os.getenv('DB_IP')
 _DB_SCHEMA = os.getenv('DB_SCHEMA')
 _DB_PORT = os.getenv('DB_PORT')
 
-SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{_DB_ID}:{_DB_PASS}@{_DB_IP}:{_DB_PORT}/{_DB_SCHEMA}"
+SQLALCHEMY_DATABASE_URL = f"ysql+pymysql://{_DB_ID}:{_DB_PASS}@{_DB_IP}:{_DB_PORT}/{_DB_SCHEMA}"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -43,6 +43,29 @@ db = SessionLocal()
 router = APIRouter(
     prefix="/api/v1/login"
 )
+
+@router.post("/create")
+async def create(
+                base_user: BaseUser,
+                terms_1 : bool,
+                terms_2 : bool,
+                terms_3 : bool):
+
+    sql = """INSERT INTO user(userId, password) VALUES ('{base_user.userId}','{base_user.password}')"""
+    insert(sql)
+
+    
+
+    userid = {'sub':base_user.userId}
+    
+    access_token = create_access_token(userid)
+    refresh_token = create_refresh_token(userid)
+
+    response = JSONResponse(content={"accessToken": access_token})
+    response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
+
+    return response
+
 @router.post("/")
 async def login(base_user: BaseUser):
     total_results = (
@@ -54,10 +77,10 @@ async def login(base_user: BaseUser):
     if not total_results:
         raise HTTPException(status_code=401, detail=str('wrong id or password'))
     
-    total_results = [{'sub':result.userId} for result in total_results][0]
+    userid = [{'sub':result.userId} for result in total_results][0]
 
-    access_token = create_access_token(total_results)
-    refresh_token = create_refresh_token(total_results)
+    access_token = create_access_token(userid)
+    refresh_token = create_refresh_token(userid)
 
     response = JSONResponse(content={"accessToken": access_token})
     response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
