@@ -67,13 +67,13 @@ def find_top(
         elif list_type.lower() == 'new':
             order = desc(QuestionInfo.CreateDate)
 
-        if serach is None:
+        if search is None:
             filter_data = (QuestionInfo.Type == _type)
         else:
             if search_type == 'keyword':
-                filter_data = (QuestionInfo.Title.like(f"%{serach}%"))
+                filter_data = (QuestionInfo.Title.like(f"%{search}%"))
             elif search_type == 'tag':
-                filter_data = (QuestionInfo.Tag.like(f"%{serach}%"))
+                filter_data = (QuestionInfo.Tag.like(f"%{search}%"))
 
         total_results = (
             db.query(QuestionContent)
