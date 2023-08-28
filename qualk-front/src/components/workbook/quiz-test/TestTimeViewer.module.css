@@ -42,7 +42,7 @@
 }
 .timestamp_container > span.passed{color: #ffa700;}
 .timestamp_container > span.failed{color: #5b5b5b;}
-
+.timestamp_container > span.perfect{color: #45cc79;}
 .description_container{
     margin-top: 20px;
     width: 100%;

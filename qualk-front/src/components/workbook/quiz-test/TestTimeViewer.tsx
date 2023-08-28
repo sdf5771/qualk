@@ -6,9 +6,10 @@ type TTestTimeViewerProps = {
     totalTime: number;
     comment: string;
     isPass: boolean;
+    isPerfect: boolean;
 }
 
-function TestTimeViewer({userTime, totalTime, comment, isPass}: TTestTimeViewerProps){
+function TestTimeViewer({userTime, totalTime, comment, isPass, isPerfect}: TTestTimeViewerProps){
     return(
         <div className={styles.test_time_view_root}>
             <div className={styles.title_container}>
@@ -16,7 +17,7 @@ function TestTimeViewer({userTime, totalTime, comment, isPass}: TTestTimeViewerP
                 <p>전체 {totalTime}분</p>
             </div>
             <div className={styles.timestamp_container}>
-                <span className={isPass ? styles.passed : styles.failed}>{userTime}분</span>
+                <span className={isPerfect ? styles.perfect : isPass ? styles.passed : styles.failed}>{userTime}분</span>
             </div>
             <div className={styles.description_container}>
                 <p>{comment}</p>

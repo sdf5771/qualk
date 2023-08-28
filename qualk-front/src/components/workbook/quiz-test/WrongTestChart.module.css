@@ -53,6 +53,9 @@
 .wrong_test_container > span.failed{
     color: #5b5b5b;
 }
+.wrong_test_container > span.perfect{
+    color: #45cc79;
+}
 .feedback_container{
     margin-top: 20px;
     width: 100%;

@@ -8,9 +8,10 @@ type TWrongTestChartProps = {
     correctPercent: number;
     command: string;
     isPass: boolean;
+    isPerfect: boolean;
 }
 
-function WrongTestChart({userCorrected, totalIndex, correctPercent, command, isPass}: TWrongTestChartProps){
+function WrongTestChart({userCorrected, totalIndex, correctPercent, command, isPass, isPerfect}: TWrongTestChartProps){
     return(
         <div className={styles.wrong_test_chart_root}>
             <div className={styles.explain_container}>
@@ -19,7 +20,7 @@ function WrongTestChart({userCorrected, totalIndex, correctPercent, command, isP
                     <p>전체 {totalIndex}문제</p>
                 </div>
                 <div className={styles.wrong_test_container}>
-                    <span className={isPass ? styles.passed : styles.failed}>{totalIndex - userCorrected}문제</span>
+                    <span className={isPerfect ? styles.perfect : isPass ? styles.passed : styles.failed}>{totalIndex - userCorrected}문제</span>
                 </div>
                 <div className={styles.feedback_container}>
                     <p>{command}</p>
@@ -27,7 +28,7 @@ function WrongTestChart({userCorrected, totalIndex, correctPercent, command, isP
             </div>
             <div className={styles.chart_container}>
                 <div className={styles.chart}>
-                    <CustomDoughnutChart correctPercent={correctPercent} isPass={isPass} />
+                    <CustomDoughnutChart correctPercent={correctPercent} isPass={isPass} isPerfect={isPerfect} />
                 </div>
                 <div className={styles.chart_description_container}><p>정답률</p></div>
             </div>

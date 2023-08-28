@@ -59,7 +59,7 @@ function MockTestResult(){
                 }
             }})
     }
-
+    console.log('data ', data);
     return(
         <div className={styles.mock_test_result_root}>
             <div className={styles.mock_test_result_header}>
@@ -90,6 +90,7 @@ function MockTestResult(){
                     passNum={data ? data.passNum : 0}  
                     totalTime={data ? data.totalTime : 0}  
                     isPass={data ? data.pass : false}  
+                    isPerfect={data && data.correct === data.questionNum ? true : false}
                     />
             </div>
 
@@ -98,11 +99,26 @@ function MockTestResult(){
                     <span className={styles.title}>모의고사 결과 분석</span>
                 </div>
                 <div style={{marginTop: '29px', display: 'flex', gap: '40px', width: '100%'}}>
-                    <TestTimeViewer userTime={data ? data.userTime : 0} totalTime={data ? data.totalTime : 0} comment={timeCmt} isPass={data ? data.pass : false} />
-                    <WrongTestChart userCorrected={data ? data.correct : 0} totalIndex={data ? data.questionNum : 0} correctPercent={data ? data.correctPercent : 0} command={correctCmtState} isPass={data ? data.pass : false} />
+                    <TestTimeViewer 
+                        userTime={data ? data.userTime : 0} 
+                        totalTime={data ? data.totalTime : 0} 
+                        comment={timeCmt} 
+                        isPass={data ? data.pass : false} 
+                        isPerfect={data && data.correct === data.questionNum ? true : false}
+                        />
+                    <WrongTestChart 
+                        userCorrected={data ? data.correct : 0} 
+                        totalIndex={data ? data.questionNum : 0} 
+                        correctPercent={data ? data.correctPercent : 0} 
+                        command={correctCmtState} 
+                        isPass={data ? data.pass : false} 
+                        isPerfect={data && data.correct === data.questionNum ? true : false}
+                        />
                 </div>
             </div>
 
+            {data && data.correct === data.questionNum 
+            ? null : 
             <div className={styles.wrong_test_container}>
                 <div>
                     <span className={styles.title}>틀린문제</span>
@@ -122,6 +138,7 @@ function MockTestResult(){
                     }) : null}
                 </div>
             </div>
+            }
         </div>
     )
 }
