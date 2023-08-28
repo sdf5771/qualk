@@ -68,17 +68,11 @@ async def create(
 
     sql = f"""INSERT INTO user(userId, password) VALUES ('{base_user.userId}','{base_user.password}')"""
     insert(sql)
+    for index, terms in enumerate(base_user.terms):
+        sql = f"""INSERT INTO terms_consent_history(termsId, userId, hasAgreed) VALUES ({index},'{base_user.userId}', '{terms}')"""
+        insert(sql)        
 
-    sql = f"""INSERT INTO terms_consent_history(termsId, userId, hasAgreed) VALUES (1,'{base_user.userId}', '{base_user.terms_1}')"""
-    insert(sql)
-
-    sql = f"""INSERT INTO terms_consent_history(termsId, userId, hasAgreed) VALUES (2,'{base_user.userId}', '{base_user.terms_2}')"""
-    insert(sql)
-
-    sql = f"""INSERT INTO terms_consent_history(termsId, userId, hasAgreed) VALUES (3,'{base_user.userId}', '{base_user.terms_3}')"""
-    insert(sql)
-
-    userid = {'sub':base_user.userId}
+    # userid = {'sub':base_user.userId}
     
     # access_token = create_access_token(userid)
     # refresh_token = create_refresh_token(userid)
