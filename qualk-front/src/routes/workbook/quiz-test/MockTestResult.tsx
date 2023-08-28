@@ -59,7 +59,7 @@ function MockTestResult(){
                 }
             }})
     }
-    console.log('data ', data);
+
     return(
         <div className={styles.mock_test_result_root}>
             <div className={styles.mock_test_result_header}>
