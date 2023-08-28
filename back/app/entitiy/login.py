@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import List
 
 class BaseUser(BaseModel):
     userId: str
@@ -7,9 +8,7 @@ class BaseUser(BaseModel):
 class BaseCreate(BaseModel):
     userId: str
     password: str
-    terms_1: int
-    terms_2: int
-    terms_3: int
+    terms: List[int]
     
 
 class AccessToken(BaseModel):
