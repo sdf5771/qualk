@@ -9,7 +9,6 @@ const correctComment = (correctPercent: number, passPercent: number, isPass: boo
                 return "지금과 같은 정답율이라면 합격은 따놓은 당상이에요! \n 혹시 모를 상황을 대비해서 꼼꼼하게 오답을 보완하여 완벽한 준비를 해보세요!"
             }
             return ""
-            break
 
         case false:
             if((passPercent - 10) >= correctPercent){
@@ -19,7 +18,6 @@ const correctComment = (correctPercent: number, passPercent: number, isPass: boo
             }
 
             return ""
-            break
     }
 }
 
