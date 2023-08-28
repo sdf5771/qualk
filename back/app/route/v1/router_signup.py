@@ -43,7 +43,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 db = SessionLocal()
 
 router = APIRouter(
-    prefix="/api/v1/singup"
+    prefix="/api/v1/signup"
 )
 
 def get_db():
@@ -51,7 +51,7 @@ def get_db():
         db = SessionLocal()
         yield db
     finally:
-        db.close()  
+        db.close()
 
 @router.post("/")
 async def create(
@@ -91,7 +91,6 @@ async def get_terms():
         db.query(terms_content)
         .all()
         )
-    
     return jsonable_encoder(total_results)
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES'))
