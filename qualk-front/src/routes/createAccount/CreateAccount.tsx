@@ -4,12 +4,15 @@ import GlobalNavBar from 'components/main/GlobalNavBar';
 import {ReactComponent as QualkTitle} from 'assets/images/createAccount/create_account_qualk_title.svg';
 import UserInputBox from 'components/login/UserInputBox';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'reducers/reducers';
 import TermList from 'components/createAccount/TermList';
 import TermModal from 'components/createAccount/TermModal';
+import ToastMsg from 'components/public/toast-msg/ToastMsg';
 
 function CreateAccount(){
+    const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
+    const dispatch = useDispatch();
     const [allowed, setAllowed] = useState(true);
     
     const [idVal, setIdVal] = useState('');
@@ -37,7 +40,7 @@ function CreateAccount(){
     }, [idIsValid, pwIsValid, confirmValid, termListAgreedSelector])
 
     const idInputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        let regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/g;
+        let regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         
         setIdVal(event.target.value);
 
@@ -74,6 +77,13 @@ function CreateAccount(){
                 setConfirmValid(false);
             }
         }, 100)
+    }
+
+    const sendSignUpDataClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        if(!allowed){
+            dispatch({type: 'toast open', toastType: 'alert', toastMsg: '회원가입 기능은 아직 준비중이에요.'})
+        }
     }
 
     return (
@@ -134,10 +144,11 @@ function CreateAccount(){
                     <TermList />
                 </div>
                 <div className={styles.btn_container}>
-                    <button disabled={allowed} className={styles.confirm_btn}>가입하기</button>
+                    <button onClick={sendSignUpDataClickHandler} disabled={allowed} className={styles.confirm_btn}>가입하기</button>
                 </div>
             </form>
             {modalIsOpen ? <TermModal title={modalTitle} detail={modalDetail} /> : null}
+            {isToast && toastMsg && toastType ? <ToastMsg type={toastType} msgText={toastMsg} /> : null}
         </div>
     )
 }

@@ -77,8 +77,16 @@ function LoginForm(){
                     <hr />
                 </div>
                 <div className={styles.sns_element_container}>
-                    <SnsBtnElement BtnLogo={googleLoginImg}/>
-                    <SnsBtnElement BtnLogo={kakaoLoginImg} />
+                    <SnsBtnElement 
+                        onClickHandler={() => {
+                            dispatch({type: 'toast open', toastType: 'alert', toastMsg: '아직 준비중인 기능이에요.'})
+                        }} 
+                        BtnLogo={googleLoginImg}/>
+                    <SnsBtnElement 
+                        onClickHandler={() => {
+                            dispatch({type: 'toast open', toastType: 'alert', toastMsg: '아직 준비중인 기능이에요.'})
+                        }}  
+                        BtnLogo={kakaoLoginImg} />
                 </div>
             </div>
             <div className={styles.regist_btn_container}>
