@@ -3,7 +3,7 @@ import uuid
 
 from app.database.mysql import select, insert, update
 
-from fastapi import APIRouter, HTTPException, Request, Response
+from fastapi import APIRouter, HTTPException, Request, Response, Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from app.entitiy.login import BaseCreate, AccessToken, Token
@@ -46,17 +46,23 @@ router = APIRouter(
     prefix="/api/v1/singup"
 )
 
+def get_db():
+    try: 
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()  
+
 @router.post("/")
 async def create(
-                base_user: BaseCreate
-            ):
+                base_user: BaseCreate,
+                db: Session = Depends(get_db)
+    ):
     total_results = (
         db.query(user)
         .filter(user.userId == base_user.userId)
         .all()
     )
-    datas = select(sql)
-
     if total_results:
         raise HTTPException(status_code=409, detail=str('이미 존재하는 아이디에요'))
 
@@ -74,8 +80,8 @@ async def create(
 
     userid = {'sub':base_user.userId}
     
-    access_token = create_access_token(userid)
-    refresh_token = create_refresh_token(userid)
+    # access_token = create_access_token(userid)
+    # refresh_token = create_refresh_token(userid)
 
     # response = JSONResponse(content={"accessToken": access_token})
     # response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
@@ -86,12 +92,13 @@ async def create(
     return response
 
 @router.get("/terms")
-async def get_terms(self):
+async def get_terms():
     total_results = (
         db.query(terms_content)
         .all()
         )
-    return "yes"
+    
+    return jsonable_encoder(total_results)
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES'))
 REFRESH_TOKEN_EXPIRE_MINUTES = int(os.getenv('REFRESH_TOKEN_EXPIRE_MINUTES'))

@@ -13,7 +13,7 @@ class terms_content(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     content = Column(String)
-    required = Column(Integer)
+    isRequired = Column(Integer)
 
     
 
