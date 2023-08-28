@@ -15,6 +15,4 @@ class terms_content(Base):
     content = Column(String)
     isRequired = Column(Integer)
 
-    
-
     # content = relationship("QuestionContent", back_populates="info")
