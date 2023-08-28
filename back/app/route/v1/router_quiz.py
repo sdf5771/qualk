@@ -53,7 +53,7 @@ def find_top(
              page: int = 1,
              page_size: int = 6,
              list_type : str = None,
-             serach: str = None,
+             search: str = None,
              search_type: str = None,
              db: Session = Depends(get_db)
             ):
