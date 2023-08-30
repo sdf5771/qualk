@@ -64,7 +64,7 @@ async def create(
         .all()
     )
     if total_results:
-        raise HTTPException(status_code=409, detail=str('이미 존재하는 아이디에요'))
+        raise HTTPException(status_code=409, detail=str('이미 존재하는 아이디에요.'))
 
     sql = f"""INSERT INTO user(userId, password) VALUES ('{base_user.userId}','{base_user.password}')"""
     insert(sql)
@@ -80,7 +80,7 @@ async def create(
     # response = JSONResponse(content={"accessToken": access_token})
     # response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
 
-    response = JSONResponse(content={"message": "회원가입 완료에요"}, status_code=201)
+    response = JSONResponse(content={"message": "회원가입 성공했어요!"}, status_code=201)
     # response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
 
     return response
