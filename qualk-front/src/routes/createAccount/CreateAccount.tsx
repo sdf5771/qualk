@@ -9,6 +9,9 @@ import { RootState } from 'reducers/reducers';
 import TermList from 'components/createAccount/TermList';
 import TermModal from 'components/createAccount/TermModal';
 import ToastMsg from 'components/public/toast-msg/ToastMsg';
+import signUp from 'queries/auth/signUp';
+import { useMutation } from '@tanstack/react-query';
+import { TtermData } from 'javascripts/termData';
 
 function CreateAccount(){
     const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
@@ -24,8 +27,11 @@ function CreateAccount(){
     const [confirmValid, setConfirmValid] = useState(false);
 
     const navigate = useNavigate();
-    const {isOpen: modalIsOpen, title: modalTitle, detail: modalDetail} = useSelector((state: RootState) => state.termModalReducer);
+    const {isOpen: modalIsOpen, title: modalTitle, content: modalContent} = useSelector((state: RootState) => state.termModalReducer);
     const termListAgreedSelector = useSelector((state:RootState) => state.termListAgreedReducer);
+    const termListDataSelector: TtermData[] = useSelector((state:RootState) => state.termListDataReducer);
+
+    const { mutate: createAccount } = useMutation(signUp);
 
     const isAllowBtn = () => {
         if(idIsValid && pwIsValid && confirmValid && termListAgreedSelector){
@@ -82,7 +88,21 @@ function CreateAccount(){
     const sendSignUpDataClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if(!allowed){
-            dispatch({type: 'toast open', toastType: 'alert', toastMsg: '회원가입 기능은 아직 준비중이에요.'})
+            const agreeTermsData: number[] = []
+
+             termListDataSelector.forEach((data) => {
+                agreeTermsData.push(data.isAgree);
+            })
+            
+            createAccount({email: idVal, password: pwVal, agreeTermsData: agreeTermsData}, {
+                onSuccess: (data) => {
+                    dispatch({type: 'toast open', toastType: 'check', toastMsg: data.message})
+                    navigate('/login');
+                },
+                onError: async ( error ) => {
+                    dispatch({type: 'toast open', toastType: 'warning', toastMsg: `${error}`})
+                }
+            });
         }
     }
 
@@ -147,7 +167,7 @@ function CreateAccount(){
                     <button onClick={sendSignUpDataClickHandler} disabled={allowed} className={styles.confirm_btn}>가입하기</button>
                 </div>
             </form>
-            {modalIsOpen ? <TermModal title={modalTitle} detail={modalDetail} /> : null}
+            {modalIsOpen ? <TermModal title={modalTitle} content={modalContent} /> : null}
             {isToast && toastMsg && toastType ? <ToastMsg type={toastType} msgText={toastMsg} /> : null}
         </div>
     )

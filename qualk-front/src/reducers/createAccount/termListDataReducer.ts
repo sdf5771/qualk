@@ -1,4 +1,4 @@
-import { TtermData, termData } from "javascripts/termData";
+import { TtermData } from "javascripts/termData";
 
 type initialState = TtermData[];
 
@@ -6,7 +6,7 @@ export type actionType = {type: string, termListData: TtermData[]};
 
 function termListDataReducer(currentState: initialState, action: actionType){
     if(currentState === undefined){
-        return termData;
+        return []
     }
 
     let newState = currentState;

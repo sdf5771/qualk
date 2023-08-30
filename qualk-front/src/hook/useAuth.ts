@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Cookies} from 'react-cookie';
 import { useMutation } from '@tanstack/react-query';
-import signUp from 'queries/auth/signUp';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import signIn from 'queries/auth/signIn';
 
 const cookies = new Cookies();
 
@@ -14,7 +14,7 @@ function useAuth(){
     const getCookie = (name: string) => cookies.get(name);
     const setCookie = (name: string, value: string, options?: any) => cookies.set(name, value, {...options});
     
-    const { mutate: getUserAuthData } = useMutation(signUp, {
+    const { mutate: getUserAuthData } = useMutation(signIn, {
         onSuccess: (data) => {
             let {accessToken} = data
 

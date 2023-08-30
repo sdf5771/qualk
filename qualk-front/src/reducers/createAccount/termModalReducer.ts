@@ -1,6 +1,6 @@
-type initialState = {isOpen: boolean, title: string, detail : string};
+type initialState = {isOpen: boolean, title: string, content : string};
 
-export type actionType = {type: string, title: string, detail : string};
+export type actionType = {type: string, title: string, content : string};
 
 function termModalReducer(currentState: initialState, action: actionType){
     if(currentState === undefined){
@@ -12,11 +12,11 @@ function termModalReducer(currentState: initialState, action: actionType){
     if(action.type === 'term modal open'){
         newState.isOpen = true;
         newState.title = action.title;
-        newState.detail = action.detail;
+        newState.content = action.content;
     } else if(action.type === 'term modal close'){
         newState.isOpen = false;
         newState.title = action.title;
-        newState.detail = action.detail;
+        newState.content = action.content;
     }
 
     return newState;
