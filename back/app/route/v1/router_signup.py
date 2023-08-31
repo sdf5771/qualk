@@ -3,7 +3,7 @@ import uuid
 
 from app.database.mysql import select, insert, update
 
-from fastapi import APIRouter, HTTPException, Request, Response
+from fastapi import APIRouter, HTTPException, Request, Response, Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from app.entitiy.login import BaseCreate, AccessToken, Token
@@ -43,55 +43,59 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 db = SessionLocal()
 
 router = APIRouter(
-    prefix="/api/v1/singup"
+    prefix="/api/v1/signup"
 )
+
+def get_db():
+    try: 
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
 
 @router.post("/")
 async def create(
-                base_user: BaseCreate
-            ):
+                base_user: BaseCreate,
+                db: Session = Depends(get_db)
+    ):
     total_results = (
         db.query(user)
         .filter(user.userId == base_user.userId)
         .all()
     )
-    datas = select(sql)
-
     if total_results:
         raise HTTPException(status_code=409, detail=str('이미 존재하는 아이디에요.'))
 
     sql = f"""INSERT INTO user(userId, password) VALUES ('{base_user.userId}','{base_user.password}')"""
     insert(sql)
+    for index, terms in enumerate(base_user.terms):
+        sql = f"""INSERT INTO terms_consent_history(termsId, userId, hasAgreed) VALUES ({index},'{base_user.userId}', '{terms}')"""
+        insert(sql)        
 
-    sql = f"""INSERT INTO terms_consent_history(termsId, userId, hasAgreed) VALUES (1,'{base_user.userId}', '{base_user.terms_1}')"""
-    insert(sql)
-
-    sql = f"""INSERT INTO terms_consent_history(termsId, userId, hasAgreed) VALUES (2,'{base_user.userId}', '{base_user.terms_2}')"""
-    insert(sql)
-
-    sql = f"""INSERT INTO terms_consent_history(termsId, userId, hasAgreed) VALUES (3,'{base_user.userId}', '{base_user.terms_3}')"""
-    insert(sql)
-
-    userid = {'sub':base_user.userId}
+    # userid = {'sub':base_user.userId}
     
-    access_token = create_access_token(userid)
-    refresh_token = create_refresh_token(userid)
+    # access_token = create_access_token(userid)
+    # refresh_token = create_refresh_token(userid)
 
     # response = JSONResponse(content={"accessToken": access_token})
     # response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
 
+<<<<<<< HEAD:back/app/route/v1/router_singup.py
     response = JSONResponse(content={"message": "회원가입에 성공했어요!"}, status_code=201)
+=======
+    response = JSONResponse(content={"message": "회원가입 성공했어요!"}, status_code=201)
+>>>>>>> origin/main-page-renewal-2023-08:back/app/route/v1/router_signup.py
     # response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
 
     return response
 
 @router.get("/terms")
-async def get_terms(self):
+async def get_terms():
     total_results = (
         db.query(terms_content)
         .all()
         )
-    return "yes"
+    return jsonable_encoder(total_results)
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES'))
 REFRESH_TOKEN_EXPIRE_MINUTES = int(os.getenv('REFRESH_TOKEN_EXPIRE_MINUTES'))
