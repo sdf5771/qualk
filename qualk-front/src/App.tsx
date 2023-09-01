@@ -11,6 +11,7 @@ import NotFound from 'routes/notfound/NotFound';
 import LoginPage from 'routes/login/LoginPage';
 import CreateAccount from 'routes/createAccount/CreateAccount';
 import helloWorld from 'javascripts/instrument';
+import ChangePasswordPage from 'routes/changePassword/ChangePasswordPage';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
                         <Route path='/quiz/*' element={<WorkbookContainer />} />
                         <Route path='/login' element={<LoginPage />} />
                         <Route path='/createAccount' element={<CreateAccount />} />
+                        <Route path='/changepassword/:id' element={<ChangePasswordPage />} />
                         <Route path='*' element={<NotFound />} />
                     </Routes>
                 </ThemeProvider>
