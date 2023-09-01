@@ -10,6 +10,7 @@ import transferWorkbookData from './workbook/workbook-detail/transferWorkbookDat
 import termModalReducer from './createAccount/termModalReducer';
 import termListAgreedReducer from './createAccount/termListAgreedReducer';
 import termListDataReducer from './createAccount/termListDataReducer';
+import findPasswordModalReducer from './login/findPasswordModalReducer';
 
 const rootReducer = combineReducers({
     authReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     transferWorkbookData,
     termModalReducer,
     termListAgreedReducer,
-    termListDataReducer
+    termListDataReducer,
+    findPasswordModalReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

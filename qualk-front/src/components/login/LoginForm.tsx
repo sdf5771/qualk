@@ -34,6 +34,10 @@ function LoginForm(){
         }
     }
 
+    const findPasswordClickHandler = () => {
+        dispatch({type: 'find password modal open'});
+    }
+
     return (
         <div className={styles.login_form_root}>
             <div className={styles.user_input_container}>
@@ -67,7 +71,7 @@ function LoginForm(){
                 </div>
                 <div className={styles.btn_container}>
                     <button onClick={loginBtnClickHandler} className={styles.login}>로그인</button>
-                    <button className={styles.remind}>비밀번호 찾기</button>
+                    <button onClick={findPasswordClickHandler} className={styles.remind}>비밀번호 찾기</button>
                 </div>
             </div>
             <div className={styles.sns_login_container}>
