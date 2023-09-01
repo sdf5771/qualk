@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import styles from 'stylesheets/changePassword/ChangePasswordPage.module.css';
 import {ReactComponent as QualkTitle} from 'assets/images/createAccount/create_account_qualk_title.svg';
 import GlobalNavBar from 'components/main/GlobalNavBar';
@@ -11,6 +11,18 @@ function ChangePasswordPage(){
 
     const [pwIsValid, setPwIsValid] = useState(false);
     const [confirmValid, setConfirmValid] = useState(false);
+
+    const isAllowBtn = () => {
+        if(pwIsValid && confirmValid){
+            setAllowed(false);
+        } else {
+            setAllowed(true)
+        }
+    }
+
+    useEffect(() => {
+        isAllowBtn()
+    }, [pwIsValid, confirmValid])
 
     const pwInputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         let regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/g;
