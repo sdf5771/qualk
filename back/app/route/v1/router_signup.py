@@ -80,19 +80,13 @@ async def create(
     # response = JSONResponse(content={"accessToken": access_token})
     # response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
 
-<<<<<<< HEAD:back/app/route/v1/router_singup.py
-    response = JSONResponse(content={"message": "회원가입에 성공했어요!"}, status_code=201)
-=======
     response = JSONResponse(content={"message": "회원가입 성공했어요!"}, status_code=201)
->>>>>>> origin/main-page-renewal-2023-08:back/app/route/v1/router_signup.py
     # response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
 
     return response
 
 @router.get("/terms")
-async def get_terms(
-            db: Session = Depends(get_db)
-        ):
+async def get_terms():
     total_results = (
         db.query(terms_content)
         .all()
