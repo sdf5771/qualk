@@ -86,7 +86,7 @@ async def create(
     return response
 
 @router.get("/terms")
-async def get_terms():
+async def get_terms(db: Session = Depends(get_db)):
     total_results = (
         db.query(terms_content)
         .all()
