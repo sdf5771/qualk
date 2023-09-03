@@ -3,7 +3,7 @@ import uuid
 
 from app.database.mysql import select, insert, update
 
-from fastapi import APIRouter, HTTPException, Request, Response
+from fastapi import APIRouter, HTTPException, Request, Response, Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from app.entitiy.login import BaseUser, AccessToken, Token
@@ -39,14 +39,22 @@ SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{_DB_ID}:{_DB_PASS}@{_DB_IP}:{_DB_PO
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-db = SessionLocal()
+def get_db():
+    try: 
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close() 
 
 router = APIRouter(
     prefix="/api/v1/login"
 )
 
 @router.post("/")
-async def login(base_user: BaseUser):
+async def login(
+                base_user: BaseUser,
+                db: Session = Depends(get_db)
+                ):
     total_results = (
         db.query(user)
         .filter(user.userId == base_user.userId)
