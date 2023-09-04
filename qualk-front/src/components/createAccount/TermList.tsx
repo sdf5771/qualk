@@ -2,22 +2,46 @@ import React, {useState, useEffect} from 'react';
 import styles from './TermList.module.css';
 import {ReactComponent as RightArrow} from 'assets/images/createAccount/right_arrow.svg';
 import { useDispatch } from 'react-redux';
-import {TtermData, termData} from 'javascripts/termData';
+import {TtermData} from 'javascripts/termData';
+import { useQuery } from '@tanstack/react-query';
+import getTermData from 'queries/auth/getTermData';
+
 
 function TermList(){
-    const dispatch = useDispatch();
-    const [termList, setTermList] = useState(termData);
+    const {isLoading, isError, data, error, refetch} = useQuery(['termData'], getTermData, {staleTime: 100000});
+    const dispatch = useDispatch();   
+    const [termList, setTermList] = useState<TtermData[]>([]);
+
 
     const isAllRequiredAgreed = (data: TtermData[]): boolean => {
-        const requiredAgreeItems = data.filter(item => item.isRequired && !item.isAgree);
+        const requiredAgreeItems = data.filter(item => item.isRequired === 1 && item.isAgree === 0);
         return requiredAgreeItems.length === 0;
     };
 
     useEffect(() => {
-        if(isAllRequiredAgreed(termList)){
-            dispatch({type: 'termList all agreed'});
+        if(data){
+            const newTermArray: TtermData[] = [];
+
+            data.forEach((term: TtermData) => {
+                let newTermData = term;
+                newTermData.isAgree = 0;
+
+                newTermArray.push(newTermData);
+            })
+
+            setTermList(newTermArray);
         }
+    }, [data])
+        
+    useEffect(() => {
+        if(termList && isAllRequiredAgreed(termList)){
+            dispatch({type: 'termList all agreed'});
+            dispatch({type: 'termListData mutate', termListData: termList})
+        } else {
+            dispatch({type: 'termList not agreed'});
+            }
     }, [termList])
+        
 
     return (
         <div className={styles.term_list}>
@@ -27,7 +51,7 @@ function TermList(){
                         setTermList((current) => {
                             let newTermList = [...current];
                             newTermList.forEach((term) => {
-                                term.isAgree = true;
+                                term.isAgree = 1;
                             })
                             return newTermList;
                         })
@@ -42,17 +66,17 @@ function TermList(){
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                 setTermList((current) => {
                                     let newTermList = [...current];
-                                    newTermList[index].isAgree = true;
+                                    newTermList[index].isAgree = 1;
                                     return newTermList;
                                 })
                             }} 
                             className={styles.radio_style} 
                             type="radio" 
-                            checked={data.isAgree}
+                            checked={data.isAgree ? true : false}
                             />
                         <p>{data.isRequired ? <span style={{color: '#ffba00'}}>[필수] </span> : '[선택] '}{data.title}</p>
                         <RightArrow style={{cursor:'pointer'}} onClick={() => {
-                            dispatch({type: 'term modal open', title: data.title, detail: data.detail})
+                            dispatch({type: 'term modal open', title: data.title, content: data.content})
                         }} />
                     </div>
                 )
