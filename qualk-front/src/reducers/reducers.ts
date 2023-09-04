@@ -9,6 +9,8 @@ import mockTestTimerReducer from './workbook/quiz-test/mockTestTimerReducer';
 import transferWorkbookData from './workbook/workbook-detail/transferWorkbookData';
 import termModalReducer from './createAccount/termModalReducer';
 import termListAgreedReducer from './createAccount/termListAgreedReducer';
+import termListDataReducer from './createAccount/termListDataReducer';
+import findPasswordModalReducer from './login/findPasswordModalReducer';
 
 const rootReducer = combineReducers({
     authReducer,
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
     transferWorkbookData,
     termModalReducer,
     termListAgreedReducer,
+    termListDataReducer,
+    findPasswordModalReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
