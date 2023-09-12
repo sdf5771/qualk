@@ -71,7 +71,7 @@ function LoginForm(){
                 </div>
                 <div className={styles.btn_container}>
                     <button onClick={loginBtnClickHandler} className={styles.login}>로그인</button>
-                    <button onClick={findPasswordClickHandler} className={styles.remind}>비밀번호 찾기</button>
+                    <button onClick={findPasswordClickHandler} className={styles.remind}>비밀번호 재설정</button>
                 </div>
             </div>
             <div className={styles.sns_login_container}>
