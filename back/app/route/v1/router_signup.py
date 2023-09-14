@@ -10,6 +10,9 @@ from app.entitiy.login import BaseCreate, AccessToken, Token
 from app.model.model_login import user
 from app.model.model_singup import terms_content
 
+# auth
+from app.utils.auth import hash_password
+
 # login 보안
 import secrets
 from fastapi.security import OAuth2PasswordRequestForm
@@ -66,7 +69,7 @@ async def create(
     if total_results:
         raise HTTPException(status_code=409, detail=str('이미 존재하는 아이디에요.'))
 
-    sql = f"""INSERT INTO user(userId, password) VALUES ('{base_user.userId}','{base_user.password}')"""
+    sql = f"""INSERT INTO user(userId, password) VALUES ('{base_user.userId}','{hash_password(base_user.password)}')"""
     insert(sql)
     for index, terms in enumerate(base_user.terms):
         sql = f"""INSERT INTO terms_consent_history(termsId, userId, hasAgreed) VALUES ({index},'{base_user.userId}', '{terms}')"""

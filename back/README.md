@@ -6,7 +6,7 @@
 poetry export -f requirements.txt > requirements.txt
 ```
 
-## qulak 패키지 추가 하는 방법
+## qualk 패키지 추가 하는 방법
 예시)
 ```
 poetry add python-multipart

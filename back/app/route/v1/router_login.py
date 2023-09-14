@@ -9,6 +9,9 @@ from fastapi.encoders import jsonable_encoder
 from app.entitiy.login import BaseUser, AccessToken, Token
 from app.model.model_login import user
 
+# auth
+from app.utils.auth import hash_password
+
 # login 보안
 import secrets
 from fastapi.security import OAuth2PasswordRequestForm
@@ -58,13 +61,15 @@ async def login(
     total_results = (
         db.query(user)
         .filter(user.userId == base_user.userId)
-        .filter(user.password == base_user.password)
+        .filter(user.password == hash_password(base_user.password))
         .all()
     )
     if not total_results:
         raise HTTPException(status_code=401, detail=str('wrong id or password'))
-    
+
     userid = [{'sub':result.userId} for result in total_results][0]
+
+    print(userid)
 
     access_token = create_access_token(userid)
     refresh_token = create_refresh_token(userid)
