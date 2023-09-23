@@ -19,7 +19,13 @@ router = APIRouter(
     prefix="/api/v1/upload"
 )
 
-BASE_DIR = r'C:'
+import platform
+os_name = platform.system()
+if  os_name == 'Windows':
+    BASE_DIR = r'C:'
+elif os_name == 'Darwin':
+    BASE_DIR = r'/Users/seobwookim/documents/github/'
+
 STATIC_DIR = os.path.join(BASE_DIR,r'static')
 IMG_DIR = os.path.join(STATIC_DIR,r'images')
 SERVER_IMG_DIR = os.path.join('http://localhost:8000/','static/','images/')
@@ -30,7 +36,6 @@ async def upload_board(filename, in_files: List[UploadFile] = File(...)):
     file_urls=[]
     for file in in_files:
         currentTime = datetime.now().strftime("%Y%m%d%H%M%S")
-        # saved_file_name = ''.join([currentTime,secrets.token_hex(16),'.png'])
         saved_file_name = filename
         logger.info(saved_file_name)
         file_location = os.path.join(IMG_DIR,saved_file_name)
