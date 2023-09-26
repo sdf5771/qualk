@@ -7,11 +7,13 @@ import { RootState } from 'reducers/reducers';
 import { useSelector } from 'react-redux';
 import ToastMsg from 'components/public/toast-msg/ToastMsg';
 import FindPasswordModal from 'components/login/FindPasswordModal';
+import SendMailModal from 'components/createAccount/SendMailModal';
 
 function LoginPage(){
     const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
     const {isOpen: findPasswordModalIsOpen} = useSelector((state: RootState) => state.findPasswordModalReducer);
-    
+    const {isOpen: sendMailModalIsOpen} = useSelector((state: RootState) => state.sendMailModalReducer);
+
     return (
         <div className={styles.login_page_root}>
             <div className={styles.header_container}>
@@ -27,6 +29,7 @@ function LoginPage(){
             </div>
             {isToast && toastMsg && toastType ? <ToastMsg type={toastType} msgText={toastMsg} /> : null}
             {findPasswordModalIsOpen ? <FindPasswordModal /> : null}
+            {sendMailModalIsOpen ? <SendMailModal /> : null}
         </div>
     )
 }

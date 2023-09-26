@@ -99,6 +99,7 @@ function CreateAccount(){
                onSuccess: (data) => {
                    dispatch({type: 'toast open', toastType: 'check', toastMsg: data.message})
                    navigate('/login');
+                   dispatch({type: 'sendmail modal open'});
                },
                onError: async ( error ) => {
                    dispatch({type: 'toast open', toastType: 'warning', toastMsg: `${error}`})
