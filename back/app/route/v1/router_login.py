@@ -5,9 +5,10 @@ from app.database.mysql import select, insert, update
 
 from fastapi import APIRouter, HTTPException, Request, Response, Depends
 from fastapi.responses import JSONResponse
-from fastapi.encoders import jsonable_encoder
 from app.entitiy.login import BaseUser, AccessToken, Token
-from app.model.model_login import user
+from app.model.model_login import user, AuthToken
+from app.utils.auth import *
+from app.auth_smtp import *
 
 # auth
 from app.utils.auth import hash_password
@@ -26,8 +27,8 @@ from dotenv import load_dotenv
 from passlib.context import CryptContext
 import jwt
 import datetime
-
 import os
+import logging
 
 load_dotenv(verbose=True)
 
@@ -37,7 +38,6 @@ _DB_IP = os.getenv('DB_IP')
 _DB_SCHEMA = os.getenv('DB_SCHEMA')
 _DB_PORT = os.getenv('DB_PORT')
 
-# SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{_DB_ID}:{_DB_PASS}@{_DB_IP}:{_DB_PORT}/{_DB_SCHEMA}"
 SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{_DB_ID}:{_DB_PASS}@{_DB_IP}:{_DB_PORT}/{_DB_SCHEMA}"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -69,14 +69,13 @@ async def login(
 
     userid = [{'sub':result.userId} for result in total_results][0]
 
-    print(userid)
-
     access_token = create_access_token(userid)
     refresh_token = create_refresh_token(userid)
 
     response = JSONResponse(content={"accessToken": access_token})
     response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
 
+ 
     return response
 
 @router.post("/refresh")
@@ -108,43 +107,55 @@ async def auth_test(Token: AccessToken):
         'userId': payload["sub"]
     })
 
-ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES'))
-REFRESH_TOKEN_EXPIRE_MINUTES = int(os.getenv('REFRESH_TOKEN_EXPIRE_MINUTES'))
-ACCESS_SECRET_KEY = os.getenv('ACCESS_SECRET_KEY')
-REFRESH_SECRET_KEY = os.getenv('REFRESH_SECRET_KEY')
-ALGORITHM = os.getenv('ALGORITHM')
 
-def create_access_token(data: dict):
-    to_encode = data.copy()
-    print(ACCESS_TOKEN_EXPIRE_MINUTES)
-    expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, ACCESS_SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+@router.get("/add_auth_email")
+async def get_date(
+                    userid:str,
+                    db: Session = Depends(get_db)
+                ):
 
-def create_refresh_token(data: dict):
-    to_encode = data.copy()
-    expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, REFRESH_SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+    payload = {'sub': userid}
 
-def access_verify_token(token: str):
-    try:
-        # JWT 토큰을 디코딩하고 만료 시간을 검증합니다.
-        payload = jwt.decode(token, ACCESS_SECRET_KEY, algorithms=[ALGORITHM])
-        return payload
-    except jwt.ExpiredSignatureError:
-        return "expired"
-    except Exception as e:
-        return f"{e}"
+    access_token = create_access_token(payload)
+    token = AuthToken(userId=userid, token=access_token)
+
+    db.add(token)
+    db.commite()
+    db.close()
     
-def refresh_verify_token(token: str):
-    try:
-        # JWT 토큰을 디코딩하고 만료 시간을 검증합니다.
-        payload = jwt.decode(token, REFRESH_SECRET_KEY, algorithms=[ALGORITHM])
-        return payload
-    except jwt.ExpiredSignatureError:
-        return "expired"
-    except Exception as e:
-        return f"{e}"
+    response = JSONResponse(export_auth_email(access_token))
+
+    return response
+
+@router.get("/check_auth_email/")
+async def recive_auth_email(token):
+    total_results = (
+        db.query(AuthToken)
+        .filter(AuthToken.userId == base_user.userId)
+        .all()
+    )
+    if not total_results:
+        raise HTTPException(status_code=401, detail=str('wrong id or password'))
+
+    id = access_verify_token(token)
+    return id
+
+@router.get("/refresh_auth_email/")
+async def recive_auth_email(token):
+    total_results = (
+        db.query(AuthToken)
+        .filter(AuthToken.userId == base_user.userId)
+        .all()
+    )
+    if not total_results:
+        raise HTTPException(status_code=401, detail=str('wrong id or password'))
+
+    id = access_verify_token(token)
+    return id
+
+
+def export_auth_email(access_token):
+    return "http://localhost:8000/api/v1/login/check_auth_email/?token=" + access_token
+
+def refresh_auth_email(access_token):
+    return "http://localhost:8000/api/v1/login/refresh_auth_email/?token=" + access_token
