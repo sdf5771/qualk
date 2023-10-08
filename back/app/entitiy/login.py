@@ -20,3 +20,6 @@ class Token(BaseModel):
 class ChangePassword(BaseModel):
     token: str
     newPassword : str
+
+class Userid(BaseModel):
+    userId: str
