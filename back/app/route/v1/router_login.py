@@ -223,5 +223,5 @@ def export_auth_email(userid, access_token):
     return "Success"
 
 def refresh_auth_email(userid, access_token):
-    send_mail(userid, "http://localhost:8000/api/v1/login/refresh_auth_email/?token=" + access_token, 1)
+    send_mail(userid, "http://localhost:3000/changepassword/" + access_token, 1)
     return "Success"
