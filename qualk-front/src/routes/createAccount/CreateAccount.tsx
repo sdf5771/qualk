@@ -12,7 +12,7 @@ import ToastMsg from 'components/public/toast-msg/ToastMsg';
 import signUp from 'queries/auth/signUp';
 import { useMutation } from '@tanstack/react-query';
 import { TtermData } from 'javascripts/termData';
-
+import sendAuthMail from 'queries/auth/sendAuthMail';
 
 function CreateAccount(){
     const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
@@ -33,6 +33,7 @@ function CreateAccount(){
     const termListDataSelector: TtermData[] = useSelector((state:RootState) => state.termListDataReducer);
 
     const { mutate: createAccount } = useMutation(signUp);
+    const { mutate: sendMail } = useMutation(sendAuthMail);
 
     const isAllowBtn = () => {
         if(idIsValid && pwIsValid && confirmValid && termListAgreedSelector){
@@ -99,6 +100,7 @@ function CreateAccount(){
                onSuccess: (data) => {
                    dispatch({type: 'toast open', toastType: 'check', toastMsg: data.message})
                    navigate('/login');
+                   sendMail(idVal)
                    dispatch({type: 'sendmail modal open'});
                },
                onError: async ( error ) => {
