@@ -12,14 +12,6 @@ app.include_router(router_test.router)
 app.include_router(router_signup.router)
 app.include_router(router_upload.router)
 
-origins = [
-    "http://localhost",
-    "https://localhost",
-    "http://localhost:3000",
-    "http://1.224.252.171:3000",
-    "https://qualk.co.kr"
-]
-
 # app.add_middleware(
 #     CORSMiddleware,
 #     allow_origins=origins,

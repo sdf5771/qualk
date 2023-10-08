@@ -137,6 +137,7 @@ async def recive_auth_email(
         eamil_check_user.emailCheck = 1
         db.commit()
         db.close()
+    db.close()
 
     return RedirectResponse("https://qualk.co.kr")
 
@@ -145,6 +146,8 @@ async def recive_auth_email(token,
                             db: Session = Depends(get_db)):
     
     id = access_verify_token(token)
+
+    print(id)
 
     if id == 'expired':
         return HTTPException(status_code=401, detail=str('Access token expired'))
@@ -157,7 +160,7 @@ async def recive_auth_email(token,
     if not total_results:
         raise HTTPException(status_code=401, detail=str('wrong id or password'))
 
-    return RedirectResponse("http://localhost:3000/changepassword/" + token)
+    return RedirectResponse("https://qualk.co.kr/changepassword/" + token)
 
 @router.post("/refresh_password")
 async def refresh_password(
@@ -219,9 +222,9 @@ async def output_email(
     return response
 
 def export_auth_email(userid, access_token):
-    send_mail(userid, "http://localhost:8000/api/v1/login/check_auth_email/?token=" + access_token)
+    send_mail(userid, "https://qualk.co.kr/api/v1/login/check_auth_email/?token=" + access_token)
     return "Success"
 
 def refresh_auth_email(userid, access_token):
-    send_mail(userid, "http://localhost:3000/changepassword/" + access_token, 1)
+    send_mail(userid, "https://qualk.co.kr/changepassword/" + access_token, 1)
     return "Success"
