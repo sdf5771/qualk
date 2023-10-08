@@ -6,7 +6,7 @@ from app.database.mysql import select, insert, update
 from fastapi import APIRouter, HTTPException, Request, Response, Depends
 from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.encoders import jsonable_encoder
-from app.entitiy.login import BaseUser, AccessToken, Token
+from app.entitiy.login import BaseUser, AccessToken, ChangePassword
 from app.model.model_login import user, AuthToken
 from app.utils.auth import *
 from app.utils.auth_smtp import *
@@ -65,6 +65,8 @@ async def login(
         .filter(user.password == hash_password(base_user.password))
         .all()
     )
+    db.close()
+
     if not total_results:
         raise HTTPException(status_code=401, detail=str('wrong id or password'))
 
@@ -106,26 +108,7 @@ async def auth_access(Token: AccessToken):
     return jsonable_encoder({
         'userId': payload["sub"]
     })
-
-
-@router.get("/add_auth_email")
-async def get_date(
-                    userid:str,
-                    db: Session = Depends(get_db)
-                ):
-
-    payload = {'sub': userid}
-
-    access_token = create_access_token(payload)
-    token = AuthToken(userId=userid, token=access_token)
-
-    db.add(token)
-    db.commit()
-    db.close()
     
-    response = JSONResponse(export_auth_email(userid, access_token))
-
-    return response
 
 @router.get("/check_auth_email/")
 async def recive_auth_email(
@@ -174,13 +157,11 @@ async def recive_auth_email(token,
     if not total_results:
         raise HTTPException(status_code=401, detail=str('wrong id or password'))
 
-    return RedirectResponse("https://qualk.co.kr")
+    return RedirectResponse("http://localhost:3000/changepassword/" + token)
 
 @router.post("/refresh_password")
 async def refresh_password(
-                    auth_user: BaseUser,
-                    # userid,
-                    # password,
+                    auth_user: ChangePassword,
                     db: Session = Depends(get_db)
                 ):
 
@@ -199,10 +180,48 @@ async def refresh_password(
     
     return "비밀번호가 정상적으로 변경 되었습니다."
 
+@router.get("/add_auth_email")
+async def get_date(
+                    userid:str,
+                    db: Session = Depends(get_db)
+                ):
+
+    payload = {'sub': userid}
+
+    access_token = create_access_token(payload)
+    token = AuthToken(userId=userid, token=access_token)
+
+    db.add(token)
+    db.commit()
+    db.close()
+    
+    response = JSONResponse(export_auth_email(userid, access_token))
+
+    return response
+
+@router.get("/change_password_auth_email")
+async def output_email(
+            userid: str,
+            db: Session = Depends(get_db)
+        ):
+    
+    payload = {'sub': userid}
+
+    access_token = create_access_token(payload)
+    token = AuthToken(userId=userid, token=access_token)
+
+    db.add(token)
+    db.commit()
+    db.close()
+    
+    response = JSONResponse(refresh_auth_email(userid, access_token))
+
+    return response
+
 def export_auth_email(userid, access_token):
     send_mail(userid, "http://localhost:8000/api/v1/login/check_auth_email/?token=" + access_token)
     return "Success"
 
 def refresh_auth_email(userid, access_token):
-    send_mail(userid, "http://localhost:8000/api/v1/login/refresh_auth_email/?token=" + access_token,1)
+    send_mail(userid, "http://localhost:8000/api/v1/login/refresh_auth_email/?token=" + access_token, 1)
     return "Success"

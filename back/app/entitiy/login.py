@@ -16,3 +16,7 @@ class AccessToken(BaseModel):
 class Token(BaseModel):
     accessToken: str
     refreshToken: str
+
+class ChangePassword(BaseModel):
+    token: str
+    newPassword : str
