@@ -6,7 +6,7 @@ from app.database.mysql import select, insert, update
 from fastapi import APIRouter, HTTPException, Request, Response, Depends
 from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.encoders import jsonable_encoder
-from app.entitiy.login import BaseUser, AccessToken, ChangePassword
+from app.entitiy.login import BaseUser, AccessToken, ChangePassword, Userid
 from app.model.model_login import user, AuthToken
 from app.utils.auth import *
 from app.utils.auth_smtp import *
@@ -199,22 +199,22 @@ async def get_date(
 
     return response
 
-@router.get("/change_password_auth_email")
+@router.post("/change_password_auth_email")
 async def output_email(
-            userid: str,
+            userid: Userid,
             db: Session = Depends(get_db)
         ):
     
-    payload = {'sub': userid}
+    payload = {'sub': userid.userId}
 
     access_token = create_access_token(payload)
-    token = AuthToken(userId=userid, token=access_token)
+    token = AuthToken(userId=userid.userId, token=access_token)
 
     db.add(token)
     db.commit()
     db.close()
     
-    response = JSONResponse(refresh_auth_email(userid, access_token))
+    response = JSONResponse(refresh_auth_email(userid.userId, access_token))
 
     return response
 
