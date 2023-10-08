@@ -33,7 +33,7 @@ function ChangePasswordPage(){
 
     useEffect(() => {
         setTokenStr(location.pathname.split('/')[2])
-        validToken(tokenStr)
+        validToken(location.pathname.split('/')[2])
     }, [location.pathname])
 
     const isAllowBtn = () => {
