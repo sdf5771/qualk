@@ -20,9 +20,17 @@ origins = [
     "https://qualk.co.kr"
 ]
 
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # 특정 도메인을 지정하거나 모든 도메인을 허용하려면 "*" 사용
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

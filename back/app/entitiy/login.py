@@ -10,7 +10,6 @@ class BaseCreate(BaseModel):
     password: str
     terms: List[int]
     
-
 class AccessToken(BaseModel):
     accessToken: str
 

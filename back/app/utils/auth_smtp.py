@@ -15,8 +15,64 @@ from dotenv import load_dotenv
 import base64
 
 load_dotenv(verbose=True)
+def export_email_form(url):
+    email_form = f"""
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff; padding-top: 67px;">
+    <tbody style="display: block; max-width: 600px; margin: 0 auto;">
+    <tr width="100%" style="display: block;">
+    <td width="100%" style=" display: block;">
 
-email_form = f"""
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="display: inline-block;">
+    <tbody style="display: block; width: 100%; margin: 0 auto;">
+
+    <tr style="display: block; width: 100%;">
+    <td style="display: block; margin: 0 auto; width: 200px; height: 54px; text-align: center;">
+    <img width="200px" src='https://qualk.co.kr/mail-asset/qualk_logo.png' />
+    </td>
+    </tr>
+
+    <tr style="margin-top: 66px; display: block; width: 100%;">
+    <td style="display: block; margin: 0 auto; width: 198px; height: 198px; text-align: center;">
+    <img width="198px" height="198px" src='https://qualk.co.kr/mail-asset/congrats.png' />
+    </td>
+    </tr>
+
+    <tr style="margin-top: 53px; display: block; width: 100%;">
+    <td style="display: block; margin: 0 auto; font-size: 24px; font-weight: 600; letter-spacing: -0.96px; text-align: center; color: #ffba00;">회원가입을 축하드립니다!</td>
+    </tr>
+
+    <tr style="margin-top: 20px; display: block; width: 100%;">
+    <td style="display: block; margin: 0 auto; font-size: 18px; font-weight: 500; line-height: 1.56; letter-spacing: -0.72px; text-align: center; color: #5b5b5b;">로그인 하시려면 아래 버튼을 클릭해주세요! <br>앞으로의 함께할 여정이 기대돼요!</td>
+    </tr>
+
+    <tr style="margin-top: 20px; display: block; width: 100%;">
+    <td style="display: block; width: 100%;">
+        <a href="{url}" style="text-decoration: none;">
+            <button style="display: block; margin: 0 auto; width: 440px; height: 44px; border-radius: 8px; background-color: #ffba00; border: 0; outline: none; cursor: pointer; font-size: 14px; font-weight: 600; letter-spacing: -0.56px; color: #fff;">회원가입 인증 확인</button>
+        </a>
+    </td>
+    </tr>
+
+    <tr style="margin-top: 20px; display: block; width: 100%;">
+    <td style="display: block; margin: 0 auto; width: 400px; height: 38px; padding: 20; border-radius: 10px; background-color: #f9f9f9; font-size: 14px; font-weight: 500; line-height: 1.43; letter-spacing: -0.56px; text-align: center; color: #bababa;">본 메일은 회원가입을 완료하신 회원께 보내드리는 메일입니다.<br>만약 본인이 요청한 것이 아닌 경우, 본 메일은 무시하거나 삭제해 주세요.</td>
+    </tr>
+
+    <tr style="margin-top: 60px; margin-bottom: 172px; display: block; width: 100%;">
+    <td style="display: block; margin: 0 auto; font-size: 14px; font-weight: 500; line-height: 1.71; letter-spacing: -0.56px; text-align: center; color: #bababa;">본 메일은 발신전용 메일이에요. <br>Copyright @ 2023 Qualk, All rights reserved.</td>
+    </tr>
+
+    </tbody>
+    </table>
+
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    """
+    return email_form
+
+def refresh_email_form(url):
+    email_form = f"""
 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff; padding-top: 67px;">
 <tbody style="display: block; max-width: 600px; margin: 0 auto;">
 <tr width="100%" style="display: block;">
@@ -31,30 +87,30 @@ email_form = f"""
 </td>
 </tr>
 
-<tr style="margin-top: 66px; display: block; width: 100%;">
-<td style="display: block; margin: 0 auto; width: 198px; height: 198px; text-align: center;">
-<img width="198px" height="198px" src='https://qualk.co.kr/mail-asset/congrats.png' />
+<tr style="margin-top: 54px; display: block; width: 100%;">
+<td style="display: block; margin: 0 auto; width: 244px; height: 209px; text-align: center;">
+<img width="244px" height="209px" src='https://qualk.co.kr/mail-asset/duck01.png' />
 </td>
 </tr>
 
 <tr style="margin-top: 53px; display: block; width: 100%;">
-<td style="display: block; margin: 0 auto; font-size: 24px; font-weight: 600; letter-spacing: -0.96px; text-align: center; color: #ffba00;">회원가입을 축하드립니다!</td>
+<td style="display: block; margin: 0 auto; font-size: 24px; font-weight: 600; letter-spacing: -0.96px; text-align: center; color: #5b5b5b;">비밀번호 재설정</td>
 </tr>
 
 <tr style="margin-top: 20px; display: block; width: 100%;">
-<td style="display: block; margin: 0 auto; font-size: 18px; font-weight: 500; line-height: 1.56; letter-spacing: -0.72px; text-align: center; color: #5b5b5b;">로그인 하시려면 아래 버튼을 클릭해주세요! <br>앞으로의 함께할 여정이 기대돼요!</td>
+<td style="display: block; margin: 0 auto; font-size: 18px; font-weight: 500; line-height: 1.56; letter-spacing: -0.72px; text-align: center; color: #5b5b5b;">000님 안녕하세요, <br>비밀번호를 재설정 하시려면 아래 버튼을 클릭해주세요.</td>
 </tr>
 
 <tr style="margin-top: 20px; display: block; width: 100%;">
 <td style="display: block; width: 100%;">
-    <a href="{data}" style="text-decoration: none;">
-        <button style="display: block; margin: 0 auto; width: 440px; height: 44px; border-radius: 8px; background-color: #ffba00; border: 0; outline: none; cursor: pointer; font-size: 14px; font-weight: 600; letter-spacing: -0.56px; color: #fff;">회원가입 인증 확인</button>
+    <a href="{url}" style="text-decoration: none;">
+        <button style="display: block; margin: 0 auto; width: 440px; height: 44px; border-radius: 8px; background-color: #ffba00; border: 0; outline: none; cursor: pointer; font-size: 14px; font-weight: 600; letter-spacing: -0.56px; color: #fff;">비밀번호 재설정하기</button>
     </a>
 </td>
 </tr>
 
 <tr style="margin-top: 20px; display: block; width: 100%;">
-<td style="display: block; margin: 0 auto; width: 400px; height: 38px; padding: 20; border-radius: 10px; background-color: #f9f9f9; font-size: 14px; font-weight: 500; line-height: 1.43; letter-spacing: -0.56px; text-align: center; color: #bababa;">본 메일은 회원가입을 완료하신 회원께 보내드리는 메일입니다.<br>만약 본인이 요청한 것이 아닌 경우, 본 메일은 무시하거나 삭제해 주세요.</td>
+<td style="display: block; margin: 0 auto; width: 400px; height: 38px; padding: 20; border-radius: 10px; background-color: #f9f9f9; font-size: 14px; font-weight: 500; line-height: 1.43; letter-spacing: -0.56px; text-align: center; color: #bababa;">본 메일은 비밀번호 재설정을 요청하신 회원께 보내드리는 메일입니다.<br>만약 본인이 요청한 것이 아닌 경우, 본 메일은 무시하거나 삭제해 주세요.</td>
 </tr>
 
 <tr style="margin-top: 60px; margin-bottom: 172px; display: block; width: 100%;">
@@ -68,9 +124,8 @@ email_form = f"""
 </tr>
 </tbody>
 </table>
-"""
-
-refresh_form = f""" """
+    """
+    return email_form
 
 def gmail_authenticate():
     SCOPES = ['https://mail.google.com/']
@@ -103,11 +158,14 @@ def send_message(service, user_id, message):
     except errors.HttpError as error:
         print('An error occurred: %s' % error)
 
-def send_mail():
+def send_mail(to_email, url, option=None):
     """
         smtp sample
     """
+    if option == None:
+        email_message = export_email_form(url)
+    else:
+        email_message = refresh_email_form(url)
     service = gmail_authenticate()
-    message = create_message("qualk", "kzsc5464@gmail.com", "qualk 이메일 인증 테스트", email_form.format())
+    message = create_message("qualk", to_email, "qualk 이메일 인증", email_message)
     send_message(service, "qualkofficial@gmail.com", message)
-send_mail()
