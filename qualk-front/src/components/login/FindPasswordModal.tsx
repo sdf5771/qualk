@@ -2,13 +2,29 @@ import React, {useState} from 'react';
 import styles from './FindPasswordModal.module.css';
 import {ReactComponent as ModalClose} from 'assets/images/public/modal_close_default.svg';
 import { useDispatch } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import changePasswordSendMail from 'queries/auth/changePasswordSendMail';
 
 function FindPasswordModal(){
     const dispatch = useDispatch();
     const [inputVal, setInputVal] = useState('');
+    const {mutate, isLoading, isSuccess, isError} = useMutation(changePasswordSendMail,{
+        onSuccess(data, variables, context) {
+            dispatch({type: 'find password modal close'});
+            dispatch({type: 'toast open', toastType: 'check', toastMsg: '이메일 계정의 메일함을 확인해주세요!'})
+        },
+        onError(){
+            dispatch({type: 'toast open', toastType: 'warning', toastMsg: '계정 정보를 확인해주세요.'})
+            setInputVal('')
+        }
+    });
 
     const okBtnOnClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        dispatch({type: 'find password modal close'});
+        if(inputVal){
+            mutate(inputVal);
+        } else {
+            dispatch({type: 'toast open', toastType: 'warning', toastMsg: '가입하신 계정 정보를 입력해주세요.'})
+        }
     }
 
     const inputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
