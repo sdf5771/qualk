@@ -71,7 +71,7 @@ def export_email_form(url):
     """
     return email_form
 
-def refresh_email_form(url):
+def refresh_email_form(url, userid):
     email_form = f"""
 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff; padding-top: 67px;">
 <tbody style="display: block; max-width: 600px; margin: 0 auto;">
@@ -98,7 +98,7 @@ def refresh_email_form(url):
 </tr>
 
 <tr style="margin-top: 20px; display: block; width: 100%;">
-<td style="display: block; margin: 0 auto; font-size: 18px; font-weight: 500; line-height: 1.56; letter-spacing: -0.72px; text-align: center; color: #5b5b5b;">000님 안녕하세요, <br>비밀번호를 재설정 하시려면 아래 버튼을 클릭해주세요.</td>
+<td style="display: block; margin: 0 auto; font-size: 18px; font-weight: 500; line-height: 1.56; letter-spacing: -0.72px; text-align: center; color: #5b5b5b;">{userid}님 안녕하세요, <br>비밀번호를 재설정 하시려면 아래 버튼을 클릭해주세요.</td>
 </tr>
 
 <tr style="margin-top: 20px; display: block; width: 100%;">
@@ -165,7 +165,7 @@ def send_mail(to_email, url, option=None):
     if option == None:
         email_message = export_email_form(url)
     else:
-        email_message = refresh_email_form(url)
+        email_message = refresh_email_form(url, to_email)
     service = gmail_authenticate()
     message = create_message("qualk", to_email, "qualk 이메일 인증", email_message)
     send_message(service, "qualkofficial@gmail.com", message)
