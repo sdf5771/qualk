@@ -3,14 +3,38 @@ import styles from 'stylesheets/changePassword/ChangePasswordPage.module.css';
 import {ReactComponent as QualkTitle} from 'assets/images/createAccount/create_account_qualk_title.svg';
 import GlobalNavBar from 'components/main/GlobalNavBar';
 import UserInputBox from 'components/login/UserInputBox';
-
+import { useMutation } from '@tanstack/react-query';
+import validationPwChangeToken from 'queries/auth/validationPwChangeToken';
+import { useLocation, useNavigate } from 'react-router-dom';
+import passwordChangeRequest from 'queries/auth/passwordChangeRequest';
 function ChangePasswordPage(){
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [tokenStr, setTokenStr] = useState('');
+    const {mutate: validToken} = useMutation(validationPwChangeToken, {
+        onError(error, variables, context) {
+            navigate('/notfound')
+        },
+    });
+    const {mutate: passwordChange} = useMutation(passwordChangeRequest, {
+        onSuccess(data, variables, context) {
+            navigate('/login')
+        },
+        onError(error, variables, context) {
+            console.log(error)
+        },
+    });
     const [allowed, setAllowed] = useState(true);
     const [pwVal, setPwVal] = useState('');
     const [pwConfirm, setPwConfirm] = useState('');
 
     const [pwIsValid, setPwIsValid] = useState(false);
     const [confirmValid, setConfirmValid] = useState(false);
+
+    useEffect(() => {
+        setTokenStr(location.pathname.split('/')[2])
+        validToken(tokenStr)
+    }, [location.pathname])
 
     const isAllowBtn = () => {
         if(pwIsValid && confirmValid){
@@ -53,7 +77,7 @@ function ChangePasswordPage(){
     const updatePasswordClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if(!allowed){
-
+            passwordChange({token: tokenStr, password: pwVal})
         }
     }
 
