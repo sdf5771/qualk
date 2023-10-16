@@ -1,0 +1,70 @@
+.quiz_result_root{
+    width: 100%;
+    height: 100%;
+    max-width: 1160px;
+    min-width: 1160px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.quiz_result_header{
+    margin-top: 39px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.re_test{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    color: #bababa;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.result_container{
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    gap: 40px;
+}
+
+.result_section{
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+}
+.result_section > .header{
+    width: 100%;
+}
+.result_section > .header > span{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    color: #5b5b5b;
+}
+
+.another_test_section{
+    display: flex;
+    flex-direction: column;
+    width: 680px;
+}
+.another_test_section > .header{
+    width: 100%;
+}
+.another_test_section > .header > span{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    color: #5b5b5b;
+}
+.test_element_container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}

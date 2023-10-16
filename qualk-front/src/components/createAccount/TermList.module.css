@@ -7,6 +7,8 @@
 .radio_style{
     width: 20px;
     height: 20px;
+    min-width: 20px;
+    min-height: 20px;
     border: solid 1px #e4e4e4;
     background-color: #ffffff;
     cursor: pointer;
@@ -18,6 +20,8 @@
     appearance: none;
     width: 20px;
     height: 20px;
+    min-width: 20px;
+    min-height: 20px;
     border-radius: 12px;
 }
 .radio_style[type='radio']:checked {

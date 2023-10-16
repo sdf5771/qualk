@@ -1,0 +1,36 @@
+.quiz_select_shortcut_root{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: calc(100% - 2px - 60px);
+    height: calc(167px - 2px - 60px);
+    border-radius: 10px;
+    border: solid 1px #e4e4e4;
+    background-color: #fff;
+}
+.header_container{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.text_container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+.title{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    color: #5b5b5b;
+}
+.description{
+    font-family: Pretendard;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: -0.56px;
+    color: #5b5b5b;
+}

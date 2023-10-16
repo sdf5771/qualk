@@ -21,6 +21,7 @@ import { TcreateQuizTest } from 'queries/workbook/quiz-test/createQuizTest';
 import { TdeleteQuizDataProps } from 'queries/workbook/quiz-test/deleteQuizData';
 import SNB from 'components/workbook/left-nav-bar/SNB';
 import GlobalNavBar from 'components/main/GlobalNavBar';
+import QuizTestResult from './quiz-test/QuizTestResult';
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -131,6 +132,7 @@ function WorkbookPresenter({navigate, dispatch, location, modalState, isToast, t
                             <Route path='/test/gaiq/*' element={<QuizTestView />} />
                             <Route path='/test/sqid' element={<QuizTestNoContents />} />
                             <Route path='/test/sqld' element={<QuizTestNoContents />} />
+                            <Route path='/test/result/*' element={<QuizTestResult />} />
 
                             <Route path='/search' element={<QuizSearch />} />
                             <Route path='/:id/*' element={<WorkbookDetailContainer />} />
