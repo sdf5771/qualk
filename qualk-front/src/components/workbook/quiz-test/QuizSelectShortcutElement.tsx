@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import styles from './QuizSelectShortcutElement.module.css'
 
 type TQuizSelectShortcutElement = {
-    locationUrl : string,
     title : string,
     description : string,
     quizType : number,
+    onClickHandler? : React.MouseEventHandler<HTMLDivElement>,
 }
 const defaultTheme = {
     10: {
@@ -25,7 +25,7 @@ type TdefaultTheme = {
     bgColor: string,
     fontColor: string,
 }
-function QuizSelectShortcutElement({locationUrl, title, description, quizType} : TQuizSelectShortcutElement){
+function QuizSelectShortcutElement({title, description, quizType, onClickHandler} : TQuizSelectShortcutElement){
     const [theme, setTheme] = useState<TdefaultTheme | null>(null);
     useEffect(() => {
         if (quizType === 10){
@@ -36,9 +36,10 @@ function QuizSelectShortcutElement({locationUrl, title, description, quizType} :
             setTheme(defaultTheme[30])
         }
     }, [quizType])
+
    
     return (
-        <div className={styles.quiz_select_shortcut_root}>
+        <div onClick={onClickHandler ? onClickHandler : () => {}} className={styles.quiz_select_shortcut_root}>
             <div className={styles.header_container}>
                 <div className={styles.first_color_box} style={{backgroundColor: theme ? theme.bgColor : ''}}>
                     <span>{quizType}문제</span>
