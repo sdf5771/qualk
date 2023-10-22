@@ -9,11 +9,12 @@ type TWrongTestChartProps = {
     command: string;
     isPass: boolean;
     isPerfect: boolean;
+    isHalfSize?: boolean;
 }
 
-function WrongTestChart({userCorrected, totalIndex, correctPercent, command, isPass, isPerfect}: TWrongTestChartProps){
+function WrongTestChart({userCorrected, totalIndex, correctPercent, command, isPass, isPerfect, isHalfSize}: TWrongTestChartProps){
     return(
-        <div className={styles.wrong_test_chart_root}>
+        <div className={`${styles.wrong_test_chart_root} ${isHalfSize ? styles.half_size : ''}`}>
             <div className={styles.explain_container}>
                 <div className={styles.header}>
                     <span>틀린문제</span>

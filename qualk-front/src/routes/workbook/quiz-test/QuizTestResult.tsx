@@ -5,6 +5,8 @@ import PublicImageBtnContainer from 'components/public/public-image-btn/PublicIm
 import {ReactComponent as ArrowLeftIconDefault} from "assets/images/public/arrow_left_icon.svg";
 import {ReactComponent as ArrowLeftIconHover} from "assets/images/public/arrow_left_icon_hover.svg";
 import QuizSelectShortcutElement from 'components/workbook/quiz-test/QuizSelectShortcutElement';
+import LatestHistory from 'components/workbook/quiz-test/LatestHistory';
+import WrongTestChart from 'components/workbook/quiz-test/WrongTestChart';
 
 function QuizTestResult(){
     const navigate = useNavigate();
@@ -52,8 +54,18 @@ function QuizTestResult(){
                     <div className={styles.header}>
                         <span>GAIQ 10문제 퀴즈 결과</span>
                     </div>
-                    <div>
-
+                    <div className={styles.result_section_body}>
+                        <WrongTestChart 
+                        userCorrected={8}
+                        totalIndex={10}
+                        correctPercent={81}
+                        command={`GAIQ 10문제 퀴즈 결과
+                        총 10문제 중 8문제를 맞추셨어요!`}
+                        isPass={true}
+                        isPerfect={false}
+                        isHalfSize={true}
+                        />
+                        <LatestHistory />
                     </div>
                 </div>
 
@@ -62,9 +74,24 @@ function QuizTestResult(){
                         <span>다른 퀴즈도 도전해 볼까요?</span>
                     </div>
                     <div className={styles.test_element_container}>
-                        <QuizSelectShortcutElement />
-                        <QuizSelectShortcutElement />
-                        <QuizSelectShortcutElement />
+                        <QuizSelectShortcutElement 
+                        locationUrl={''} 
+                        title={'처음은 간단하게 시작해볼까요?'}
+                        description={'랜덤으로 출제되는 10문제 퀴즈로 워밍업해보세요!'}
+                        quizType={10}
+                        />
+                        <QuizSelectShortcutElement 
+                        locationUrl={''} 
+                        title={'이제 할만하죠?'}
+                        description={'그렇다면 랜덤으로 출제되는 20문제 퀴즈로 실력을 좀 더 높여볼까요?'}
+                        quizType={20}
+                        />
+                        <QuizSelectShortcutElement 
+                        locationUrl={''} 
+                        title={'테스트 폼 미쳤다!'}
+                        description={'랜덤으로 출제되는 30문제 퀴즈를 통한 GAIQ 테스트 완벽 준비!'}
+                        quizType={30}
+                        />
                     </div>
                 </div>
 

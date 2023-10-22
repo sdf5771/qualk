@@ -7,6 +7,9 @@
     border: 1px solid #e4e4e4;
     background-color: #ffffff;
 }
+.wrong_test_chart_root.half_size{
+    min-width: calc(440px - 60px - 2px);
+}
 .explain_container{
     width: 465px;
     height: 100%;
