@@ -51,12 +51,16 @@ function TermList(){
                         setTermList((current) => {
                             let newTermList = [...current];
                             newTermList.forEach((term) => {
-                                term.isAgree = 1;
+                                if(event.target.checked){
+                                    term.isAgree = 1;
+                                } else {
+                                    term.isAgree = 0;
+                                }
                             })
                             return newTermList;
                         })
                     }} 
-                    className={styles.radio_style} type="radio" />
+                    className={styles.radio_style} type="checkbox" />
                 <span>전체 약관 동의</span>
             </div>
             {termList ? termList.map((data: TtermData, index: number) => {
@@ -66,12 +70,16 @@ function TermList(){
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                 setTermList((current) => {
                                     let newTermList = [...current];
-                                    newTermList[index].isAgree = 1;
+                                    if(event.target.checked){
+                                        newTermList[index].isAgree = 1;
+                                    } else {
+                                        newTermList[index].isAgree = 0;
+                                    }
                                     return newTermList;
                                 })
                             }} 
                             className={styles.radio_style} 
-                            type="radio" 
+                            type="checkbox" 
                             checked={data.isAgree ? true : false}
                             />
                         <p>{data.isRequired ? <span style={{color: '#ffba00'}}>[필수] </span> : '[선택] '}{data.title}</p>
