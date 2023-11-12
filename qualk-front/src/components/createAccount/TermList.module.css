@@ -18,10 +18,10 @@
     justify-content: center;
     align-items: center;
     appearance: none;
-    width: 21px;
-    height: 21px;
-    min-width: 21x;
-    min-height: 21px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
     border-radius: 12px;
 }
 .radio_style[type='checkbox']:checked {
@@ -32,10 +32,10 @@
     background-color: #ffa711;
     content: '';
     visibility: visible;
-    width: 12px;
-    height: 12px;
-    min-width: 12px;
-    min-height: 12px;
+    width: 11px;
+    height: 11px;
+    min-width: 11px;
+    min-height: 11px;
     border-radius: 10px;
 }
 
