@@ -156,11 +156,8 @@ async def result_test(test_id: str,
     payload = access_verify_token(authorization)
     if payload == 'expired':
         raise HTTPException(status_code=401, detail="Token expired")
-        # raise HTTPException(status_code=401, detail="Token expired")
-        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
         raise HTTPException(status_code=401, detail="Not token")
-        # return JSONResponse(content={"error" :"Not token"},status_code=401)
     wrong_content_id = result_wrong_case_cotent_id(test_id)
     test_info = find_test_info(test_id)
     correct = test_info['QuestionNum'] - len(wrong_content_id)
