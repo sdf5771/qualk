@@ -108,13 +108,19 @@ def result_wrong_case_cotent_id(test_id):
                 AND T1.UserInput != T2.Correct;"""
     return select(sql)
 
+#  db.query(TestContent).join
+# 
+# 
+# 
+
 def find_test_info(test_id):
     sql = f"""
         SELECT  T2.Name, 
                 T2.CanonialName, 
                 T2.Time,
                 T2.QuestionNum,
-                T2.PassNum
+                T2.PassNum,
+                T1.UserID
           FROM TestInfo as T1
          INNER JOIN TestType as T2
             ON T1.TestType = T2.Name
