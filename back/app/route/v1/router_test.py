@@ -8,25 +8,21 @@ from app.logic.test_logic import find_test, get_ex_test, get_ex_time, make_quest
                                  find_wrong_content, delete_test, check_index,\
                                  find_time, make_questionlist_cache
 
-from fastapi import APIRouter, HTTPException, Header, Depends
+from fastapi import APIRouter, HTTPException, Header
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from app.entitiy.test import Input_test
 from dotenv import load_dotenv
-from app.model.model_test import TestResult
 
+from sqlalchemy import create_engine, desc, asc
+from sqlalchemy.orm import Session, sessionmaker
 
 import os
 from passlib.context import CryptContext
 import jwt
 import datetime
 
-def get_db():
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
+
 
 router = APIRouter(
     prefix="/api/v1/test"
@@ -50,11 +46,8 @@ async def create_test(
     
     if payload == 'expired':
         raise HTTPException(status_code=401, detail="Token expired")
-        # raise HTTPException(status_code=401, detail="Token expired")
-        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
         raise HTTPException(status_code=401, detail="Not token")
-        # return JSONResponse(content={"error" :"Not token"},status_code=401)
 
     test_id, test_index, time = None, None, 5400
 
@@ -93,11 +86,8 @@ async def get_quiz(test_id: str,
     payload = access_verify_token(authorization)
     if payload == 'expired':
         raise HTTPException(status_code=401, detail="Token expired")
-        # raise HTTPException(status_code=401, detail="Token expired")
-        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
         raise HTTPException(status_code=401, detail="Not token")
-        # return JSONResponse(content={"error" :"Not token"},status_code=401)
     questionid_list = get_content(test_id, test_index)
     last_index = test_index % 10 == 0 and check_index(test_id) == test_index
     return jsonable_encoder({
@@ -155,13 +145,16 @@ async def user_delete_test(test_id: str,
 async def result_test(test_id: str,
                       authorization: str = Header('authorization')):
     """
-         시험 문제를 다 푼뒤 결과 페이지
+         모의고사 시험 문제를 다 푼뒤 결과 페이지
     """
     payload = access_verify_token(authorization)
     if payload == 'expired':
         raise HTTPException(status_code=401, detail="Token expired")
+        # raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
         raise HTTPException(status_code=401, detail="Not token")
+        # return JSONResponse(content={"error" :"Not token"},status_code=401)
     wrong_content_id = result_wrong_case_cotent_id(test_id)
     test_info = find_test_info(test_id)
     correct = test_info['QuestionNum'] - len(wrong_content_id)
@@ -195,49 +188,24 @@ async def result_test(test_id: str,
                              'wrongQuestion':wrong_content_list
                             })
 
-@router.get("/ex_result")
-async def ex_result(
-                    user_id: str,
-                    authorization: str = Header('authorization'),
-                    db: Session = Depends(get_db)
-                    ):
-    """
-
-    """
-    payload = access_verify_token(authorization)
-
-    if payload == 'expired':
-        raise HTTPException(status_code=401, detail="Token expired")
-    if payload == 'Not enough segments':
-        raise HTTPException(status_code=401, detail="Not token")
-
-    ex_result = (
-        db.query(TestResult)
-        .filter(userId=user_id)
-        .ont()
-    )
-
-
-@router.get("/quiz_result")
+@router.get("/test_result")
 async def result_test(test_id: str,
-                      authorization: str = Header('authorization'),
-                      db: Session = Depends(get_db) 
-                    ):
+                      authorization: str = Header('authorization')):
     """
          시험 문제를 다 푼뒤 결과 페이지
     """
     payload = access_verify_token(authorization)
-
     if payload == 'expired':
         raise HTTPException(status_code=401, detail="Token expired")
+        # raise HTTPException(status_code=401, detail="Token expired")
+        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
         raise HTTPException(status_code=401, detail="Not token")
-
+        # return JSONResponse(content={"error" :"Not token"},status_code=401)
     wrong_content_id = result_wrong_case_cotent_id(test_id)
     test_info = find_test_info(test_id)
     correct = test_info['QuestionNum'] - len(wrong_content_id)
     using_time = find_time(test_id)
-
     if len(wrong_content_id) != 0:
         wrong_content_list = find_wrong_content(wrong_content_id)
         for _ in wrong_content_list:
@@ -253,28 +221,12 @@ async def result_test(test_id: str,
     else:
         pass_check = False
 
-    ex_result = (
-        db.query(TestResult)
-        .filter(userId=test_info['UserID'])
-        .one()
-    )
-
-    result_data = TestResult(
-                            TestId=test_id, UserId=test_info['UserID'], TestType=test_info['CanonialName'], 
-                            QuestionTotal=test_info['QuestionNum'], QuestionCorrect=correct,
-                            TotalTime=using_time)
-    db.add(result_data)
-    db.commit()
-
     return jsonable_encoder({
                              'testId':test_id, 
                              'correct':correct,
-                             'canonialName':test_info['CanonialName'],
-                             'questionNum':test_info['QuestionNum'],
+                             'questionNum'
                              'correctPercent': math.trunc(correct / test_info['QuestionNum'] * 100),
-                             'ex_questionNum':ex_result.QuestionTotal,
-                             'ex_correct':ex_result.QuestionCorrect,
-                             'ex_create':ex_result.CreateDate
+                             'wrongQuestion':wrong_content_list
                             })
 
 def access_verify_token(token: str):

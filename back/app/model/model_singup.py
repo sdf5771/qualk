@@ -16,6 +16,6 @@ class TermsContenthistory(Base):
     __tablename__ = 'TermsContenthistory'
 
     id = Column(Integer, primary_key=True)
-    userId = Column(String)
+    userId = Column(String, primary_key=True)
     hasAgreed = Column(Integer)
     

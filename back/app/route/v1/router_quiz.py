@@ -124,34 +124,37 @@ def find_top(
         raise HTTPException(status_code=500, detail=str(error))
 
 @router.get("/")
-async def get_problem(content_type: str, content_id: int, lang:str):
+async def get_problem(
+                        content_type: str, 
+                        content_id: int, 
+                        lang:str
+                    ):
     if lang == 'Korea':
-        content = get_content(content_type, content_id, 'question_content_kr')
+        content = get_content(content_type, content_id, 'QuestionContentKR')
     elif lang == 'English':
-        content = get_content(content_type, content_id, 'question_content_en')
-        table = 'question_info'
-    view = f"""update question_info set view = view + 1 where info_id = {content_id};"""
+        content = get_content(content_type, content_id, 'QuestionContent')
+    view = f"""update QuestionInfo set view = view + 1 where ContentId = {content_id};"""
 
     update(sql=view)
 
     if not content:
         raise HTTPException(status_code=404, detail="no data")
     content = content[0]
-    if content['contents'] is not None:
+    if content['ContentList'] is not None:
         try:
-            content['contents'] = content['contents'].split(',')
+            content['ContentList'] = content['ContentList'].split(',')
         except Exception as error:
             raise HTTPException(status_code=500, detail=str(error))
     else:
         raise HTTPException(status_code=404, detail=f"{content_id} is Not found")
     return jsonable_encoder({
-        'contentId':content['content_id'],
-        'title':content['title'],
-        'type':content['type'],
-        'contents':content['contents'],
-        'correct':content['correct'],
-        'description':content['description'],
-        'lang':content['lang'],
-        'reference':content['reference_url'],
-        'isTrance':True if content['is_trance'] else False
+        'contentId':content['ContentId'],
+        'title':content['Title'],
+        'type':content['Type'],
+        'contents':content['ContentList'],
+        'correct':content['Correct'],
+        'description':content['Description'],
+        'lang':content['Lang'],
+        'reference':content['ReferenceUrl'],
+        'isTrance':True if content['IsTrance'] else False
     })

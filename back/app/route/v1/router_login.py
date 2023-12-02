@@ -33,12 +33,6 @@ import logging
 
 load_dotenv(verbose=True)
 
-_DB_ID = os.getenv('DB_ID')
-_DB_PASS = os.getenv('DB_PASS')
-_DB_IP = os.getenv('DB_IP')
-_DB_SCHEMA = os.getenv('DB_SCHEMA')
-_DB_PORT = os.getenv('DB_PORT')
-
 SQLALCHEMY_DATABASE_URL = os.getenv('MYSQL_ENGINE')
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -63,14 +57,14 @@ async def login(
         db.query(user)
         .filter(user.userId == base_user.userId)
         .filter(user.password == hash_password(base_user.password))
-        .all()
+        .one()
     )
     db.close()
 
     if not total_results:
         raise HTTPException(status_code=401, detail=str('wrong id or password'))
-
-    userid = [{'sub':result.userId} for result in total_results][0]
+    else:
+        userid = total_results.userId
 
     access_token = create_access_token(userid)
     refresh_token = create_refresh_token(userid)
@@ -79,23 +73,6 @@ async def login(
     response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
 
     return response
-
-# @router.post("/refresh")
-# async def auth_refresh(request: Request, response: Response):
-#     try:
-#         refresh_token = request.cookies.get("lseerapple")
-#         payload = jwt.decode(refresh_token, REFRESH_SECRET_KEY, algorithms=[ALGORITHM])
-#         if payload == 'expired':
-#             return HTTPException(status_code=401, detail=str('refresh token expired'))
-#     except Exception as e:
-#         return HTTPException(status_code=500, detail=str(f'{e}'))
-    
-#     access_token = create_access_token(payload)
-#     refresh_token = create_refresh_token(payload)
-
-#     response = JSONResponse(content={"accessToken": access_token})
-#     response.set_cookie(key="lseerapple", value=refresh_token, httponly=True)
-    # return response
 
 @router.post("/access")
 async def auth_access(Token: AccessToken):
@@ -108,7 +85,6 @@ async def auth_access(Token: AccessToken):
     return jsonable_encoder({
         'userId': payload["sub"]
     })
-    
 
 @router.get("/check_auth_email/")
 async def recive_auth_email(
@@ -192,7 +168,7 @@ async def get_date(
     payload = {'sub': userid}
 
     access_token = create_access_token(payload)
-    token = AuthToken(userId=userid, token=access_token)
+    token = AuthToken(UserId=userid, Token=access_token)
 
     db.add(token)
     db.commit()

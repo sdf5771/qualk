@@ -12,10 +12,10 @@ class user(Base):
     emailCheck = Column(Integer)
 
 class AuthToken(Base):
-    __tablename__ = 'auth_token'
+    __tablename__ = 'AuthToken'
     
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    userId = Column(VARCHAR(50), nullable=False)
-    token = Column(VARCHAR(256))
-    createDate = Column(Date)
+    Id = Column(Integer, primary_key=True, autoincrement=True)
+    UserId = Column(VARCHAR(50), nullable=False)
+    Token = Column(VARCHAR(256))
+    CreateDate = Column(Date)
     
