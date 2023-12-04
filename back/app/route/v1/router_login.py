@@ -61,11 +61,14 @@ async def login(
     )
     db.close()
 
+    print(total_results.userId)
+
     if not total_results:
         raise HTTPException(status_code=401, detail=str('wrong id or password'))
     else:
         userid = total_results.userId
 
+    userid = {'sub':userid}
     access_token = create_access_token(userid)
     refresh_token = create_refresh_token(userid)
 

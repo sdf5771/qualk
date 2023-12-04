@@ -6,7 +6,8 @@ from app.logic.test_logic import find_test, get_ex_test, get_ex_time, make_quest
                                  get_content, put_content, result_wrong_case_cotent_id, \
                                  check_question, update_test_info, find_test_info, \
                                  find_wrong_content, delete_test, check_index,\
-                                 find_time, make_questionlist_cache
+                                 find_time, make_questionlist_cache, find_ex_quiz_result, \
+                                 insert_test_result
 
 from fastapi import APIRouter, HTTPException, Header
 from fastapi.encoders import jsonable_encoder
@@ -174,6 +175,8 @@ async def result_test(test_id: str,
     else:
         pass_check = False
 
+    insert_test_result(test_id, test_info['UserID'], test_info['CanonialName'], test_info['QuestionNum'], correct, int(using_time / 60))
+
     return jsonable_encoder({
                              'testId':test_id, 
                              'correct':correct,
@@ -188,45 +191,51 @@ async def result_test(test_id: str,
                              'wrongQuestion':wrong_content_list
                             })
 
-@router.get("/test_result")
+@router.get("/quiz_result")
 async def result_test(test_id: str,
                       authorization: str = Header('authorization')):
     """
          시험 문제를 다 푼뒤 결과 페이지
     """
-    payload = access_verify_token(authorization)
-    if payload == 'expired':
-        raise HTTPException(status_code=401, detail="Token expired")
-        # raise HTTPException(status_code=401, detail="Token expired")
-        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
-    if payload == 'Not enough segments':
-        raise HTTPException(status_code=401, detail="Not token")
-        # return JSONResponse(content={"error" :"Not token"},status_code=401)
+    # payload = access_verify_token(authorization)
+    # if payload == 'expired':
+    #     raise HTTPException(status_code=401, detail="Token expired")
+    # if payload == 'Not enough segments':
+    #     raise HTTPException(status_code=401, detail="Not token")
+    
+    # 틀린 문제 리스트
     wrong_content_id = result_wrong_case_cotent_id(test_id)
+
     test_info = find_test_info(test_id)
-    correct = test_info['QuestionNum'] - len(wrong_content_id)
+    question_num = test_info['QuestionNum']
+    user_id = test_info['UserID']
+    correct = question_num - len(wrong_content_id)
+
     using_time = find_time(test_id)
-    if len(wrong_content_id) != 0:
-        wrong_content_list = find_wrong_content(wrong_content_id)
-        for _ in wrong_content_list:
-            if _['Tag'] is not None:
-                try:
-                    _['Tag'] = _['Tag'].split(',')
-                except Exception as error:
-                    raise HTTPException(status_code=500, detail=str(error))
+
+    ex_result = find_ex_quiz_result(user_id)
+
+    if len(ex_result)==0:
+        ex_quiz_total=None
+        ex_quiz_correct=None
+        ex_createdate=None
     else:
-        wrong_content_list = None
-    if test_info['PassNum'] <= correct:
-        pass_check = True
-    else:
-        pass_check = False
+        ex_quiz_total=ex_result['QuestionTotal']
+        ex_quiz_correct=ex_result['QuestionCorrect']
+        ex_createdate=ex_result['CreateDate']
+        ex_createdate=ex_createdate.strftime("%Y-%m-%d")
+    
+    # insert_test_result(test_id, test_info['UserID'], test_info['CanonialName'], test_info['QuestionNum'], correct, int(using_time / 60))
 
     return jsonable_encoder({
                              'testId':test_id, 
                              'correct':correct,
-                             'questionNum'
-                             'correctPercent': math.trunc(correct / test_info['QuestionNum'] * 100),
-                             'wrongQuestion':wrong_content_list
+                             'questionNum': question_num,
+                             'wrongNum':question_num - correct,
+                             'correctPercent': math.trunc(correct / question_num * 100),
+                             'excorrect':ex_quiz_correct,
+                             'exquestionNum':ex_quiz_total,
+                             'ex_createdate':ex_createdate
                             })
 
 def access_verify_token(token: str):

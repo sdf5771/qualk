@@ -3,8 +3,6 @@ import json
 # from app.database.redis import redis_connect
 from app.database.mysql import select, insert, update, delete
 
-
-
 def find_test(user_id, test_type, test_num):
     find_test = f"""
         SELECT TestID
@@ -108,11 +106,6 @@ def result_wrong_case_cotent_id(test_id):
                 AND T1.UserInput != T2.Correct;"""
     return select(sql)
 
-#  db.query(TestContent).join
-# 
-# 
-# 
-
 def find_test_info(test_id):
     sql = f"""
         SELECT  T2.Name, 
@@ -128,6 +121,20 @@ def find_test_info(test_id):
          WHERE T1.TestID = '{test_id}';"""
     return select(sql)[0]
 
+def insert_test_result(
+            test_id,
+            user_id,
+            test_type,
+            question_total,
+            question_correct,
+            total_time
+
+):
+    sql = f"""
+        INSERT INTO TestResult(TestId, UserId, TestType, QuestionTotal, QuestionCorrect, TotalTime) VALUES ('{test_id}', '{user_id}', '{test_type}', '{question_total}', '{question_correct}', '{total_time}') 
+    """
+    return insert(sql)
+
 def find_wrong_content(content_id):
     if content_id is None: return None
     content_id_list = []
@@ -140,6 +147,17 @@ def find_wrong_content(content_id):
         WHERE ContentID IN ({content_id_list})     
     """
     return select(sql)
+
+def find_ex_quiz_result(user_id):
+    sql = f"""
+        SELECT *
+          FROM TestResult
+        WHERE UserId = '{user_id}'
+        ORDER BY CreateDate desc
+        Limit 1;
+    """
+    return select(sql)[0]
+
 
 def check_index(test_id):
     sql=f"""
@@ -162,11 +180,3 @@ def find_time(test_id):
         WHERE TestID = '{test_id}';
     """
     return select(sql)[0]['Time']
-# class로 변경 테스트. 모듈 화 하고 싶어서
-# class Test:
-#     def __init__(test_id,
-#                  test_name,
-#                  test_time):
-#         self.TestID = test_id
-#         self.TestName = test_name
-#         self.TestTime = test_time
