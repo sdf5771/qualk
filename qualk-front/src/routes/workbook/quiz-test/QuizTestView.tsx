@@ -164,7 +164,7 @@ function QuizTestView(){
             }else{
                 if(isUserMutate){
                     if(isLast){
-                        navigate('/quiz/test/gaiq');
+                        navigate(`/quiz/test/result/?test-id=${data?.testId}`);
                     } else {
                         //유저가 답을 제출한 경우 '다음 문제로 넘어가야 하는 경우'
                         navigate(`/quiz/test/gaiq/mockquiz?quiz=${data && data['testId']}&test-index=${location.state.testIndex + 1}`, 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from 'stylesheets/workbook/quiz-test/QuizTestResult.module.css';
 import PublicImageBtnContainer from 'components/public/public-image-btn/PublicImageBtnContainer';
@@ -7,35 +7,53 @@ import {ReactComponent as ArrowLeftIconHover} from "assets/images/public/arrow_l
 import QuizSelectShortcutElement from 'components/workbook/quiz-test/QuizSelectShortcutElement';
 import LatestHistory from 'components/workbook/quiz-test/LatestHistory';
 import WrongTestChart from 'components/workbook/quiz-test/WrongTestChart';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import createQuizTest from 'queries/workbook/quiz-test/createQuizTest';
 import { useDispatch } from 'react-redux';
+import getEasyQuizResult from 'queries/workbook/quiz-test/getEasyQuizResult';
+
+type TQuizResultData = {
+    "testId": string,
+    "correct": number,
+    "questionNum": number,
+    "wrongNum": number,
+    "correctPercent": number,
+    "excorrect": number | null,
+    "exquestionNum": number | null,
+    "ex_createdate": string | null
+}
 
 function QuizTestResult(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const location = useLocation();
+    const [testId, setTestId] = useState<string | null>(null);
+    const { isLoading, isError, data: quizResult, error} = useQuery(['test-id', testId], () => getEasyQuizResult({testId: testId ? testId : ''}), {staleTime: 100000})
     const { mutate } = useMutation(createQuizTest);
     const reTestStartClickHandler = (event: React.MouseEvent<HTMLSpanElement>) => {
-        // mutate(
-        //     {type: 'gaiq', testNum: 50}, 
-        //     {onSuccess: (data: {testId: string, testIndex: number}) => {
-        //         if(data){
-        //             let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname}
-        //             let navLocation = `/quiz/test/gaiq/mockexam?quiz=${data['testId']}`;
-        //             if(data.testIndex !== 1){
-        //                 dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
-        //             } else {
-        //                 navigate(`/quiz/test/mockexam/start/`, 
-        //                 {
-        //                     state: navState
-        //                 }
-        //                 );
-        //             }
-        //         }
-        //     }})
+        mutate(
+            {type: 'gaiq', testNum: quizResult ? quizResult['questionNum'] : 0}, 
+            {onSuccess: (data: {testId: string, testIndex: number}) => {
+                if(data){
+                    let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: quizResult ? quizResult['qustionNum'] : 0, prevPathName: location.pathname}
+                    let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                    if(data.testIndex !== 1){
+                        dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
+                    } else {
+                        navigate(navLocation, 
+                        {
+                            state: navState
+                        }
+                        );
+                    }
+                }
+            }})
     }
 
+    useEffect(() => {
+        // URL 내 testId state에 할당
+        setTestId(location.search.split('=')[1])
+    }, [location])
 
     return (
         <div className={styles.quiz_result_root}>
@@ -57,20 +75,25 @@ function QuizTestResult(){
 
                 <div className={styles.result_section}>
                     <div className={styles.header}>
-                        <span>GAIQ 10문제 퀴즈 결과</span>
+                        <span>GAIQ {quizResult ? quizResult['questionNum'] : 0}문제 퀴즈 결과</span>
                     </div>
                     <div className={styles.result_section_body}>
                         <WrongTestChart 
-                        userCorrected={8}
-                        totalIndex={10}
-                        correctPercent={81}
-                        command={`GAIQ 10문제 퀴즈 결과
-                        총 10문제 중 8문제를 맞추셨어요!`}
+                        userCorrected={quizResult ? quizResult['correct'] : 0}
+                        totalIndex={quizResult ? quizResult['questionNum'] : 0}
+                        correctPercent={quizResult ? quizResult['correctPercent'] : 0}
+                        command={`GAIQ ${quizResult ? quizResult['questionNum'] : 0}문제 퀴즈 결과
+                        총 ${quizResult ? quizResult['questionNum'] : 0}문제 중 ${quizResult ? quizResult['correct'] : 0}문제를 맞추셨어요!`}
                         isPass={true}
                         isPerfect={false}
                         isHalfSize={true}
                         />
-                        <LatestHistory />
+                        <LatestHistory 
+                            latestCorrect={quizResult ? quizResult['excorrect'] : null}
+                            latestQuestionNum={quizResult ? quizResult['exquestionNum'] : null}
+                            date={quizResult ? quizResult['ex_createdate'] : ''}
+                            totalIndex={quizResult ? quizResult['questionNum'] : 0}
+                        />
                     </div>
                 </div>
 
