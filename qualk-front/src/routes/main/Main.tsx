@@ -28,7 +28,7 @@ function Main(){
                 </div>
                 <div className={styles.background_container}>
                     <div className={styles.search_container}>
-                        <GlobalSearchBar/>
+                        <GlobalSearchBar option={{useTitleLogo: true}}/>
                     </div>
                     <div className={styles.scroll_container}>
                         <InfiniteScroll />

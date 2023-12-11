@@ -22,6 +22,7 @@ import { TdeleteQuizDataProps } from 'queries/workbook/quiz-test/deleteQuizData'
 import SNB from 'components/workbook/left-nav-bar/SNB';
 import GlobalNavBar from 'components/main/GlobalNavBar';
 import QuizTestResult from './quiz-test/QuizTestResult';
+import SearchBox from 'components/workbook/search/SearchBox';
 
 const LogoTitle = styled.span`
     color: #ff9300;
@@ -50,10 +51,11 @@ type WorkbookPresenterPropsType = {
     toastType: 'check' | 'alert' | 'warning',
     toastMsg?: string,
     deleteQuiz: UseMutateFunction<any, unknown, TdeleteQuizDataProps, unknown>,
-    createQuiz: UseMutateFunction<any, unknown, TcreateQuizTest, unknown>
+    createQuiz: UseMutateFunction<any, unknown, TcreateQuizTest, unknown>,
+    isSearchResultPage: boolean
 }
 
-function WorkbookPresenter({navigate, dispatch, location, modalState, isToast, toastType, toastMsg, deleteQuiz, createQuiz}: WorkbookPresenterPropsType){
+function WorkbookPresenter({navigate, dispatch, location, modalState, isToast, toastType, toastMsg, deleteQuiz, createQuiz, isSearchResultPage}: WorkbookPresenterPropsType){
     const workbookModalState = {
         0: null,
         1: <SharePostModalContainer />,
@@ -105,7 +107,7 @@ function WorkbookPresenter({navigate, dispatch, location, modalState, isToast, t
                 }}
                 />,
     }
-
+    
     return(
         <>
             <SEOMetaTag
@@ -119,10 +121,14 @@ function WorkbookPresenter({navigate, dispatch, location, modalState, isToast, t
                 <div className={styles.workbook_header_container}>
                     <GlobalNavBar />
                 </div>
-                <div className={`${styles.workbook_body} ${publicScrollbar.public_scroll}`}>
-                    <div className={styles.left_side_container}>
-                        <SNB />
-                    </div>
+                <div className={`${isSearchResultPage ? styles.workbook_search_result_body : styles.workbook_body} ${publicScrollbar.public_scroll}`}>
+                        {
+                            isSearchResultPage ? 
+                            <SearchBox /> : 
+                            <div className={styles.left_side_container}>
+                                <SNB />
+                            </div> 
+                        }
                     <div className={styles.right_side_container}>
                         <Routes>
                             <Route path='/test/mockexam/start/' element={<MockTestStart />} />

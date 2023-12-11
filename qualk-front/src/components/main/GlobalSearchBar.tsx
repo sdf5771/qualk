@@ -6,12 +6,26 @@ import useSeachKeyword from 'hook/useSeachKeyword';
 import { useNavigate } from 'react-router-dom';
 import {ReactComponent as KeywordLogo} from 'assets/images/main/keyword_logo.svg';
 
-function GlobalSearchBar(){
+type Tprops = {
+    initialValue?: string,
+    option?: {
+        searchBarWidth?: number | string,
+        useTitleLogo?: boolean,
+    }
+}
+
+function GlobalSearchBar({initialValue, option}: Tprops){
     const navigate = useNavigate();
     const {writeKeyword, getSeachKeyword} = useSeachKeyword();
     const [searchInput, setSearchInput] = useState('');
     const [keywords, setKeywords] = useState([]);
     const [isActiveKeywordBox, setIsActiveKeywordBox] = useState(false);
+
+    useEffect(() => {
+        if(initialValue && initialValue !== ''){
+            setSearchInput(initialValue)
+        }
+    }, [initialValue])
 
     useEffect(() => {
         setKeywords(getSeachKeyword);
@@ -41,10 +55,12 @@ function GlobalSearchBar(){
 
     return(
         <div className={styles.search_root}>
-            <div className={styles.title_container}>
-                <QualkMainTitle />
-            </div>
-            <div className={`${styles.search_box} ${isActiveKeywordBox ? styles.active : ''}`}>
+            {option?.useTitleLogo ?
+                <div className={styles.title_container}>
+                    <QualkMainTitle />
+                </div>
+            : null}
+            <div style={{width: option?.searchBarWidth}} className={`${styles.search_box} ${isActiveKeywordBox ? styles.active : ''}`}>
                 <div className={styles.search_area}>
                     <SearchLogo width="32px" height="32px" />
                     <input 

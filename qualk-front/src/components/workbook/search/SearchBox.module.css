@@ -1,0 +1,8 @@
+.search_box_root{
+    width: 100%;
+    min-height: 220px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../../../assets/images/main/main_background_image03.png);
+}

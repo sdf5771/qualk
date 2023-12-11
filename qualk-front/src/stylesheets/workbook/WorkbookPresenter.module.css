@@ -27,6 +27,18 @@
     overflow-y: scroll;
     border-top: 1px solid #e4e4e4;
 }
+.workbook_search_result_body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 61px);
+    min-width: 1400px;
+    gap: 40px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-top: 1px solid #e4e4e4;
+}
 .left_side_container{
     /*display: flex;*/
     /*width: 200px;*/

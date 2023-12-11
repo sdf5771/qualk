@@ -25,27 +25,7 @@ function QuizSearch(){
 
     return(
         <div className={`${styles.quiz_root} ${publicAnimations.fade_in}`}>
-            <div className={styles.header}>
-                <PublicImageBtnContainer
-                    btnText="뒤로가기"
-                    options={{border: false}}
-                    logoIcon={{
-                        default: <ArrowLeftIconDefault />,
-                        hover: <ArrowLeftIconHover />,
-                    }}
-                    btnClickEventHandler={(event: React.MouseEvent)=>{
-                        if(location.state && location.state.beforeLocation){
-                            navigate(location.state.beforeLocation)
-                        } else {
-                            navigate('/quiz/gaiq')
-                        }
-                    }}
-                />
-            </div>
             <div className={styles.search_result_header}>
-                <div className={styles.title}>
-                    <p>'{searchKeyword}'</p><span>에 대한 검색 결과입니다.</span>
-                </div>
                 <ul className={styles.list_container}>
                     <li onClick={() => navigate(`/quiz/search?keyword=${searchKeyword}&type=all`, {state: {beforeLocation: location.pathname + location.search}})}
                         className={searchType == 'all' ? styles.selected : ''}>

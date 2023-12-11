@@ -10,6 +10,7 @@
     margin-left: 10px; */
 }
 .search_box {
+    z-index: 1;
     margin-top: 64px;
     display: flex;
     flex-direction: column;
@@ -79,7 +80,8 @@
     display: flex!important;
     flex-direction: column;
     margin-top: 20px;
-    width: 870px;
+    /* width: 870px; */
+    width: 100%;
     max-height: 200px;
     overflow: auto;
     gap: 10px;
