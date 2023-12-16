@@ -151,11 +151,8 @@ async def result_test(test_id: str,
     payload = access_verify_token(authorization)
     if payload == 'expired':
         raise HTTPException(status_code=401, detail="Token expired")
-        # raise HTTPException(status_code=401, detail="Token expired")
-        # return JSONResponse(content={"error" :"Token expired"},status_code=401)
     if payload == 'Not enough segments':
         raise HTTPException(status_code=401, detail="Not token")
-        # return JSONResponse(content={"error" :"Not token"},status_code=401)
     wrong_content_id = result_wrong_case_cotent_id(test_id)
     test_info = find_test_info(test_id)
     correct = test_info['QuestionNum'] - len(wrong_content_id)
@@ -197,11 +194,11 @@ async def result_test(test_id: str,
     """
          시험 문제를 다 푼뒤 결과 페이지
     """
-    # payload = access_verify_token(authorization)
-    # if payload == 'expired':
-    #     raise HTTPException(status_code=401, detail="Token expired")
-    # if payload == 'Not enough segments':
-    #     raise HTTPException(status_code=401, detail="Not token")
+    payload = access_verify_token(authorization)
+    if payload == 'expired':
+        raise HTTPException(status_code=401, detail="Token expired")
+    if payload == 'Not enough segments':
+        raise HTTPException(status_code=401, detail="Not token")
     
     # 틀린 문제 리스트
     wrong_content_id = result_wrong_case_cotent_id(test_id)
@@ -225,7 +222,7 @@ async def result_test(test_id: str,
         ex_createdate=ex_result['CreateDate']
         ex_createdate=ex_createdate.strftime("%Y-%m-%d")
     
-    # insert_test_result(test_id, test_info['UserID'], test_info['CanonialName'], test_info['QuestionNum'], correct, int(using_time / 60))
+    insert_test_result(test_id, test_info['UserID'], test_info['CanonialName'], test_info['QuestionNum'], correct, int(using_time / 60))
 
     return jsonable_encoder({
                              'testId':test_id, 
