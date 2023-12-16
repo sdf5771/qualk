@@ -156,7 +156,11 @@ def find_ex_quiz_result(user_id):
         ORDER BY CreateDate desc
         Limit 1;
     """
-    return select(sql)[0]
+    data = select(sql)
+    if len(data) == 0:
+        return None
+    else:
+        return select(sql)[0]
 
 
 def check_index(test_id):
