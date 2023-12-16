@@ -212,7 +212,7 @@ async def result_test(test_id: str,
 
     ex_result = find_ex_quiz_result(user_id)
 
-    if len(ex_result)==0:
+    if ex_result==None:
         ex_quiz_total=None
         ex_quiz_correct=None
         ex_createdate=None
