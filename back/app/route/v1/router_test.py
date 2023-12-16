@@ -226,6 +226,7 @@ async def result_test(test_id: str,
         insert_test_result(test_id, test_info['UserID'], test_info['CanonialName'], test_info['QuestionNum'], correct, int(using_time / 60))
     except pymysql.err.InternalError as e:
 	    code, msg = e.args
+        print(code, msg)
 
     return jsonable_encoder({
                              'testId':test_id, 
