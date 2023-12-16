@@ -1,5 +1,6 @@
 import uuid
 import math
+import pymysql
 
 from app.database.mysql import select, insert, update
 from app.logic.test_logic import find_test, get_ex_test, get_ex_time, make_questionlist, \
@@ -221,8 +222,10 @@ async def result_test(test_id: str,
         ex_quiz_correct=ex_result['QuestionCorrect']
         ex_createdate=ex_result['CreateDate']
         ex_createdate=ex_createdate.strftime("%Y-%m-%d")
-    
-    insert_test_result(test_id, test_info['UserID'], test_info['CanonialName'], test_info['QuestionNum'], correct, int(using_time / 60))
+    try:
+        insert_test_result(test_id, test_info['UserID'], test_info['CanonialName'], test_info['QuestionNum'], correct, int(using_time / 60))
+    except pymysql.err.InternalError as e:
+	    code, msg = e.args
 
     return jsonable_encoder({
                              'testId':test_id, 
