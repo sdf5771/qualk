@@ -77,6 +77,19 @@
     .search_btn{
         cursor: pointer;
     }
+
+    .search_area_box{
+        position: absolute;
+        top: 60px;
+        left: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 96px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 4px 2px rgba(0,0,0, 0.15);
+    }
 }
 
 /* pad */
@@ -110,6 +123,19 @@
     }
     .search_btn{
         cursor: pointer;
+    }
+
+    .search_area_box{
+        position: absolute;
+        top: 60px;
+        left: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 96px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 4px 2px rgba(0,0,0, 0.15);
     }
 }
 

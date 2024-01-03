@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styles from './GlobalNavBar.module.css';
+import publicAnimations from 'stylesheets/public/animation.module.css';
 import SearchBarContainer from 'components/public/searchbar/SearchBarContainer';
 import {ReactComponent as QualkHeaderLogo} from 'assets/images/workbook/listview/qualk_logo_122_40.svg';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +15,7 @@ function GlobalNavBar(){
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const {getAccessToken} = useAuth();
+    const [isActiveSearchBox, setIsActiveSearchBox] = useState(false);
 
     useEffect(() => {
         if(getAccessToken()){
@@ -55,11 +57,16 @@ function GlobalNavBar(){
                         </div>
                     </div>
                     <div className={styles.userinfo_box}>
-                        <div className={styles.search_btn}>
+                        <div className={styles.search_btn} onClick={() => setIsActiveSearchBox(prev => !prev)}>
                             <ResponsiveSearchBtn width="32px" height="32px" />
                         </div>
                     </div>
                 </div>
+                {isActiveSearchBox ? 
+                    <div className={`${styles.search_area_box} ${publicAnimations.fade_and_slide}`}>
+                        <SearchBarContainer />
+                    </div>
+                : null}
             </ReponsiveTabletPC>
 
             <ReponsiveMobile>
@@ -77,6 +84,11 @@ function GlobalNavBar(){
                             <ResponsiveSearchBtn width="32px" height="32px" />
                         </div>
                     </div>
+                    {isActiveSearchBox ? 
+                        <div className={`${styles.search_area_box} ${publicAnimations.fade_and_slide}`}>
+                            <SearchBarContainer />
+                        </div>
+                    : null}
                 </div>
             </ReponsiveMobile>
         </>
