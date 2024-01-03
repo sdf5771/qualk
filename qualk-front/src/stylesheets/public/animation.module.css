@@ -10,6 +10,10 @@
     animation: fadeInOut .5s ease-in-out;
 }
 
+.left_slide_modal{
+    animation: leftSlideModal .3s ease-in-out;
+}
+
 @keyframes fadeIn {
     from{
         opacity: 0
@@ -38,4 +42,13 @@
     }
   }
 
-    
+@keyframes leftSlideModal{
+    from{
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

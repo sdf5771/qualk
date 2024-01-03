@@ -10,12 +10,14 @@ import { ReponsiveMobile, ReponsivePC, ReponsiveTabletPC } from 'components/publ
 import {ReactComponent as QualkTitleLogo} from 'assets/images/public/qualk_title_logo.svg';
 import {ReactComponent as HamburgerBtn} from 'assets/images/public/hamburger_btn.svg';
 import {ReactComponent as ResponsiveSearchBtn} from 'assets/images/public/responsive_search_btn.svg';
+import ResponsiveUserMenu from 'components/public/responsive-user-menu/ResponsiveUserMenu';
 
 function GlobalNavBar(){
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const {getAccessToken} = useAuth();
     const [isActiveSearchBox, setIsActiveSearchBox] = useState(false);
+    const [isActiveHamburger, setIsActiveHamburger] = useState(false);
 
     useEffect(() => {
         if(getAccessToken()){
@@ -50,7 +52,9 @@ function GlobalNavBar(){
                 <div className={styles.nav_root}>
                     <div className={styles.logo}>
                         <div className={styles.responsive_title_container}>
-                            <HamburgerBtn width="24px" height="24px"/>
+                            <div onClick={() => setIsActiveHamburger(true)}>
+                                <HamburgerBtn width="24px" height="24px"/>
+                            </div>
                             <div onClick={() => {navigate('/')}}>
                                 <QualkTitleLogo width='80px' height='22px' />
                             </div>
@@ -67,20 +71,25 @@ function GlobalNavBar(){
                         <SearchBarContainer />
                     </div>
                 : null}
+                {isActiveHamburger ? 
+                    <ResponsiveUserMenu setActiveState={setIsActiveHamburger} />
+                : null}
             </ReponsiveTabletPC>
 
             <ReponsiveMobile>
                 <div className={styles.nav_root}>
                     <div className={styles.logo}>
                         <div className={styles.responsive_title_container}>
-                            <HamburgerBtn width="24px" height="24px"/>
+                            <div onClick={() => setIsActiveHamburger(true)}>
+                                <HamburgerBtn width="24px" height="24px"/>
+                            </div>
                             <div onClick={() => {navigate('/')}}>
                                 <QualkTitleLogo width='80px' height='22px' />
                             </div>
                         </div>
                     </div>
                     <div className={styles.userinfo_box}>
-                        <div className={styles.search_btn}>
+                        <div className={styles.search_btn} onClick={() => setIsActiveSearchBox(prev => !prev)}>
                             <ResponsiveSearchBtn width="32px" height="32px" />
                         </div>
                     </div>
@@ -88,6 +97,9 @@ function GlobalNavBar(){
                         <div className={`${styles.search_area_box} ${publicAnimations.fade_and_slide}`}>
                             <SearchBarContainer />
                         </div>
+                    : null}
+                    {isActiveHamburger ? 
+                        <ResponsiveUserMenu setActiveState={setIsActiveHamburger} />
                     : null}
                 </div>
             </ReponsiveMobile>
