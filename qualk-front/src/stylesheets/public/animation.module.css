@@ -11,7 +11,7 @@
 }
 
 .left_slide_modal{
-    animation: leftSlideModal .3s ease-in-out;
+    animation: leftSlideModal .3s ease;
 }
 
 @keyframes fadeIn {
