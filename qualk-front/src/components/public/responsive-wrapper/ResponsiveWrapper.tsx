@@ -15,7 +15,7 @@ export const ReponsiveMobile = ({children}: Tchildren) => {
 
 export const ReponsiveTabletPC = ({children}: Tchildren) => {
      const isTabletPC = useMediaQuery({
-        query : "(min-width: 769px) and (max-width: 1024px)"
+        query : "(min-width: 768px) and (max-width: 1024px)"
      })
 
      return <>{isTabletPC && children}</>
@@ -23,7 +23,7 @@ export const ReponsiveTabletPC = ({children}: Tchildren) => {
 
 export const ReponsivePC = ({children}: Tchildren) => {
     const isPC = useMediaQuery({
-        query : "(min-width: 1025px)"
+        query : "(min-width: 1024px)"
     })
 
     return <>{isPC && children}</>
