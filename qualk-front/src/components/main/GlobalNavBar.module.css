@@ -1,4 +1,4 @@
-.nav_root{
+/* .nav_root{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,7 +17,7 @@
 }
 .menu_list > span{
     font-family: BCAlphapipe;
-    font-size: 20px;
+    font-size: 1.25rem;
     letter-spacing: -0.8px;
     text-align: left;
     color: #bababa;
@@ -37,10 +37,128 @@
     box-shadow: 0 0 99px 0 rgba(0, 0, 0, 0.16);
     background-color: #fdfaf2;
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: -0.56px;
     text-align: center;
     color: #ffba00;
     cursor: pointer;
+} */
+
+/* mobile */
+@media screen and (max-width: 768px) {
+    .nav_root{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 24px;
+        width: 100%;
+        height: 44px;
+    }
+    .nav_root > .logo{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    .nav_root > .logo > .responsive_title_container{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 16px;
+    }
+    .nav_root > .logo > .responsive_title_container > div{
+        display: flex;
+    }
+    .userinfo_box{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+    .search_btn{
+        cursor: pointer;
+    }
+}
+
+/* pad */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .nav_root{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 24px;
+        width: 100%;
+        height: 44px;
+    }
+    .nav_root > .logo{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    .nav_root > .logo > .responsive_title_container{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 16px;
+    }
+    .nav_root > .logo > .responsive_title_container > div{
+        display: flex;
+    }
+    .userinfo_box{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+    .search_btn{
+        cursor: pointer;
+    }
+}
+
+/* pc */
+@media screen and (min-width: 1025px) {
+    .nav_root{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 96%;
+        height: 44px;
+    }
+    .nav_root > .logo{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    .menu_list{
+        display: flex;
+        margin-left: 117px;
+        width: calc(900px - 117px);
+    }
+    .menu_list > span{
+        font-family: BCAlphapipe;
+        font-size: 1.25rem;
+        letter-spacing: -0.8px;
+        text-align: left;
+        color: #bababa;
+        cursor: pointer;
+    }
+    .userinfo_box{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+    .login_btn{
+        outline: none;
+        border: 0;
+        width: 80px;
+        height: 32px;
+        border-radius: 6px;
+        box-shadow: 0 0 99px 0 rgba(0, 0, 0, 0.16);
+        background-color: #fdfaf2;
+        font-family: Pretendard;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: -0.56px;
+        text-align: center;
+        color: #ffba00;
+        cursor: pointer;
+    }
 }
