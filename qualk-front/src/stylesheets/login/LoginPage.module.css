@@ -12,7 +12,7 @@
     width: 100%;
     height: 60px;
 }
-.login_page_root > .body_container{
+/* .login_page_root > .body_container{
     margin-top: 40px;
     margin-bottom: 100px;
     display: flex;
@@ -28,4 +28,51 @@
     height: 775px;
     background-color: #FFBA00;
     border-radius: 12px;
+} */
+
+/* mobile */
+@media screen and (max-width: 768px) {
+    
+}
+
+/* pad */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .login_page_root > .body_container{
+        margin-top: 40px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 80px;
+    }
+    .login_page_root > .body_container > section:first-child{
+        width: 50%;
+    }
+    .login_page_root > .body_container > section:last-child{
+        width: 50%;
+        height: auto;
+        background-color: #FFBA00;
+        border-radius: 12px;
+    }
+}
+
+/* pc */
+@media screen and (min-width: 1024px) {
+    .login_page_root > .body_container{
+        margin-top: 40px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 160px;
+    }
+    .login_page_root > .body_container > section:first-child{
+        width: 50%;
+    }
+    .login_page_root > .body_container > section:last-child{
+        width: 50%;
+        height: auto;
+        background-color: #FFBA00;
+        border-radius: 12px;
+    }
 }
