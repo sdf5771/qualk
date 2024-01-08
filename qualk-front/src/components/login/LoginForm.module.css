@@ -151,6 +151,10 @@
         background-color: #e4e4e4;
     }
 
+    .user_input_container > .title{
+        margin-top: 44px;
+    }
+
     .user_input_container > .btn_container > .login{
         width: 320px;
         height: 50px;
@@ -201,6 +205,10 @@
         height: 1px;
         margin: 0;
         background-color: #e4e4e4;
+    }
+
+    .user_input_container > .title{
+        margin-top: 56px;
     }
 
     .user_input_container > .btn_container > .login{
