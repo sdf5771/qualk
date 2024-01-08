@@ -26,10 +26,10 @@ function LoginPage(){
                 </section>
                 <section>
                     <ReponsivePC>
-                        <img width={800} src={bgImage} />
+                        <img width={'100%'} height={'100%'} src={bgImage} />
                     </ReponsivePC>
                     <ReponsiveTabletPC>
-                        <img width={480} height={'100%'} src={bgImage} />
+                        <img width={'100%'} height={'100%'} src={bgImage} />
                     </ReponsiveTabletPC>
                 </section>
             </div>

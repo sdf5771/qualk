@@ -42,14 +42,15 @@
         margin-bottom: 100px;
         display: flex;
         justify-content: center;
-        width: 100%;
+        padding: 0 24px;
+        width: calc(100% - 48px);
         gap: 80px;
     }
     .login_page_root > .body_container > section:first-child{
-        width: 50%;
+        width: calc(50% - 40px - 24px);
     }
     .login_page_root > .body_container > section:last-child{
-        width: 50%;
+        width: calc(50% - 40px - 24px);
         height: auto;
         background-color: #FFBA00;
         border-radius: 12px;
@@ -58,7 +59,7 @@
 
 /* pc */
 @media screen and (min-width: 1024px) {
-    .login_page_root > .body_container{
+    /* .login_page_root > .body_container{
         margin-top: 40px;
         margin-bottom: 100px;
         display: flex;
@@ -71,6 +72,24 @@
     }
     .login_page_root > .body_container > section:last-child{
         width: 50%;
+        height: auto;
+        background-color: #FFBA00;
+        border-radius: 12px;
+    } */
+    .login_page_root > .body_container{
+        margin-top: 40px;
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+        padding: 0 24px;
+        width: calc(100% - 48px);
+        gap: 80px;
+    }
+    .login_page_root > .body_container > section:first-child{
+        width: calc(50% - 40px - 24px);
+    }
+    .login_page_root > .body_container > section:last-child{
+        width: calc(50% - 40px - 24px);
         height: auto;
         background-color: #FFBA00;
         border-radius: 12px;
