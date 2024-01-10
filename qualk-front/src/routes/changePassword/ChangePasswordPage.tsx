@@ -13,7 +13,7 @@ function ChangePasswordPage(){
     const [tokenStr, setTokenStr] = useState('');
     const {mutate: validToken} = useMutation(validationPwChangeToken, {
         onError(error, variables, context) {
-            navigate('/notfound')
+            // navigate('/notfound')
         },
     });
     const {mutate: passwordChange} = useMutation(passwordChangeRequest, {

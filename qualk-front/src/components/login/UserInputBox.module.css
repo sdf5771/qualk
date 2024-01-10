@@ -80,8 +80,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0 20px;
-        width: calc(100% - 40px);
+        /* padding: 0 20px; */
+        width: 100%;
     }
 
     .inputbox_root > .input_container{
@@ -148,12 +148,14 @@
     .inputbox_root{
         display: flex;
         flex-direction: column;
-        width: 440px;
+        width: 100%;
+        /* width: 440px; */
     }
 
     .inputbox_root > .input_container{
         margin-top: 10px;
-        width: calc(440px - 40px);
+        width: calc(100% - 40px);
+        /* width: calc(440px - 40px); */
         height: calc(50px - 32px);
         padding: 16px 20px;
         border-radius: 6px;
