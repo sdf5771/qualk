@@ -14,7 +14,7 @@
     height: 60px;
 }
 .create_account_root > .body_container{
-    margin-top: 50px;
+    margin-top: 48px;
     margin-bottom: 100px;
     display: flex;
     flex-direction: column;
@@ -30,8 +30,9 @@
     align-items: center;
 }
 .body_container > .title > h2{
+    margin: 4px 0;
     font-family: Pretendard;
-    font-size: 20px;
+    font-size: 1.75rem;
     font-weight: 600;
     letter-spacing: -0.8px;
     color: #5b5b5b;
