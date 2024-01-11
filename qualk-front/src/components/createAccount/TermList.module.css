@@ -1,6 +1,7 @@
 .term_list{
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 10px;
 }
 
@@ -42,26 +43,29 @@
 .all_agree_box{
     display: flex;
     align-items: center;
-    width: calc(440px - 40px);
+    width: calc(100% - 40px);
+    /* width: calc(440px - 40px); */
     height: calc(50px - 30px);
     padding: 15px 20px;
-    background-color: #fdfaf2;
+    /* background-color: #fdfaf2; */
+    background-color: #f7f7f7;
     border-radius: 8px;
     gap: 10px;
 }
 .all_agree_box > span{
     font-family: Pretendard;
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1.56;
     letter-spacing: -0.72px;
-    color: #5b5b5b;
+    color: #252525;
 }
 
 .ordinary_term_box{
     display: flex;
     align-items: center;
-    width: calc(440px - 30px - 2px);
+    /* width: calc(440px - 30px - 2px); */
+    width: calc(100% - 30px - 2px);
     height: calc(44px - 24px);
     padding: 12px 10px 12px 20px;
     border-radius: 6px;
@@ -71,10 +75,11 @@
 }
 .ordinary_term_box > p{
     margin: 0;
-    width: 354px;
+    /* width: 354px; */
+    width: 100%;
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.75;
     letter-spacing: -0.64px;
-    color: #5b5b5b;
+    color: #252525;
 }
