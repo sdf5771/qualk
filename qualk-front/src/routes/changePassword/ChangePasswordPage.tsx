@@ -13,7 +13,7 @@ function ChangePasswordPage(){
     const [tokenStr, setTokenStr] = useState('');
     const {mutate: validToken} = useMutation(validationPwChangeToken, {
         onError(error, variables, context) {
-            // navigate('/notfound')
+            navigate('/notfound')
         },
     });
     const {mutate: passwordChange} = useMutation(passwordChangeRequest, {
@@ -88,7 +88,7 @@ function ChangePasswordPage(){
             </div>
             <form className={styles.body_container}>
                 <div className={styles.title}>
-                    <QualkTitle />
+                    {/* <QualkTitle /> */}
                     <h2>비밀번호 재설정</h2>
                 </div>
                 <div className={styles.input_form}>
