@@ -15,17 +15,17 @@ import ResponsiveUserMenu from 'components/public/responsive-user-menu/Responsiv
 function GlobalNavBar(){
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const {getAccessToken} = useAuth();
+    const {isFreshToken} = useAuth();
     const [isActiveSearchBox, setIsActiveSearchBox] = useState(false);
     const [isActiveHamburger, setIsActiveHamburger] = useState(false);
 
     useEffect(() => {
-        if(getAccessToken()){
+        if(isFreshToken()){
             setIsLoggedIn(true);
         } else {
             setIsLoggedIn(false);
         }
-    }, [getAccessToken])
+    }, [])
     
     return(
         <>

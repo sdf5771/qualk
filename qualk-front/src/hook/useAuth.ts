@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import signIn from 'queries/auth/signIn';
+import reqFreshToken from 'queries/auth/reqFreshToken';
 
 
 const cookies = new Cookies();
@@ -30,6 +31,18 @@ function useAuth(){
         },
     });
 
+    const { mutate: reqFreshTokenData } = useMutation(reqFreshToken, {
+        onSuccess: (data) => {
+            if(data){
+                
+                return data;
+            }
+        },
+        onError: (e) => {
+            console.log(e);
+        }
+    })
+
     const getAccessToken = () => {
         return localStorage.getItem(ACCESSTOKEN_KEY);
     }
@@ -51,12 +64,28 @@ function useAuth(){
 
     }
 
+    const isFreshToken = () => {
+        let accessToken = getAccessToken();
+        const JWT_TOKEN_EXPIRED_TIME = 540 * 1000; // 9분 후 ACCESS TOKEN 만료 여부 확인 요청
+        // const JWT_TOKEN_EXPIRED_TIME = 60 * 1000; // 1분 후 ACCESS TOKEN 만료 여부 확인 요청
+        if(!accessToken){
+            return false;
+        }
+        reqFreshTokenData();
+        
+        setTimeout(() => {
+            isFreshToken();
+        }, JWT_TOKEN_EXPIRED_TIME)
+        return true;
+    }
+
     return {
         getAccessToken,
         defaultLogin,
         logOut,
         googleLogin,
         kakaoLogin,
+        isFreshToken,
     }
 }
 

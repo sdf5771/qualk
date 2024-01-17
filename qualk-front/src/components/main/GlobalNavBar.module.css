@@ -79,6 +79,7 @@
     }
 
     .search_area_box{
+        z-index: 20;
         position: absolute;
         top: 60px;
         left: 0px;

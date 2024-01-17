@@ -24,14 +24,11 @@ function LoginPage(){
                 <section>
                     <LoginForm />
                 </section>
-                <section>
                     <ReponsivePC>
-                        <img width={'100%'} height={'100%'} src={bgImage} />
+                        <section>
+                            <img width={'100%'} height={'100%'} src={bgImage} />
+                        </section>
                     </ReponsivePC>
-                    <ReponsiveTabletPC>
-                        <img width={'100%'} height={'100%'} src={bgImage} />
-                    </ReponsiveTabletPC>
-                </section>
             </div>
             {isToast && toastMsg && toastType ? <ToastMsg type={toastType} msgText={toastMsg} /> : null}
             {findPasswordModalIsOpen ? <FindPasswordModal /> : null}

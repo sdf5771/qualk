@@ -62,7 +62,7 @@ function GlobalSearchBar({initialValue, option}: Tprops){
             : null}
             <div style={{width: option?.searchBarWidth}} className={`${styles.search_box} ${isActiveKeywordBox ? styles.active : ''}`}>
                 <div className={styles.search_area}>
-                    <SearchLogo width="32px" height="32px" />
+                    <SearchLogo width="24px" height="24px" />
                     <input 
                         onFocus={() => {
                             setIsActiveKeywordBox(true);
@@ -76,7 +76,7 @@ function GlobalSearchBar({initialValue, option}: Tprops){
                         onKeyUp={onKeyUpHandler}
                         value={searchInput} 
                         placeholder='오늘은 어떤 것을 공부해 볼까요? 검색하고 싶은 단어나 태그를 입력해보세요!'/>
-                    <button onClick={seachBtnOnClickHandler}>검색하기</button>
+                    {/* <button onClick={seachBtnOnClickHandler}>검색하기</button> */}
                 </div>
                 <div className={`${styles.keyword_container} ${isActiveKeywordBox ? styles.active : ''}`}>
                     {keywords ? keywords.map((data:string, index:number) => {

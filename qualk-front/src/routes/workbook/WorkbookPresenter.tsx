@@ -23,6 +23,7 @@ import SNB from 'components/workbook/left-nav-bar/SNB';
 import GlobalNavBar from 'components/main/GlobalNavBar';
 import QuizTestResult from './quiz-test/QuizTestResult';
 import SearchBox from 'components/workbook/search/SearchBox';
+import { ReponsivePC, ReponsiveMobile, ReponsiveTabletPC } from 'components/public/responsive-wrapper/ResponsiveWrapper';
 
 const LogoTitle = styled.span`
     color: #ff9300;

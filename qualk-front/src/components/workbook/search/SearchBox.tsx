@@ -12,7 +12,7 @@ function SearchBox(){
     }, [location.search])
     return (
         <div className={styles.search_box_root}>
-            <GlobalSearchBar initialValue={keyword} option={{searchBarWidth: 1420,useTitleLogo: false}} />
+            <GlobalSearchBar initialValue={keyword} option={{useTitleLogo: false}} />
         </div>
     )
 }

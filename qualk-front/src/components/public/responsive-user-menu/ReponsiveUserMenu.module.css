@@ -52,6 +52,16 @@
     font-size: 1rem;
     color: #5b5b5b;
 }
+.user_login_container{
+    width: 126px;
+    cursor: pointer;
+}
+.user_login_container > span{
+    font-family: Pretendard;
+    font-size: 1rem;
+    color: #5b5b5b;
+    text-decoration: underline;
+}
 .modify_profile{
     display: flex;
 }

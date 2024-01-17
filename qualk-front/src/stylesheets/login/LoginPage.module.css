@@ -47,14 +47,15 @@
         gap: 80px;
     }
     .login_page_root > .body_container > section:first-child{
-        width: calc(50% - 40px - 24px);
+        /* width: calc(50% - 40px - 24px); */
+        width: 476px;
     }
-    .login_page_root > .body_container > section:last-child{
+    /* .login_page_root > .body_container > section:last-child{
         width: calc(50% - 40px - 24px);
         height: auto;
         background-color: #FFBA00;
         border-radius: 12px;
-    }
+    } */
 }
 
 /* pc */
