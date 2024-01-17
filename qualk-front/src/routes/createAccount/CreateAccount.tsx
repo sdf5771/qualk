@@ -118,7 +118,7 @@ function CreateAccount(){
             </div>
             <form className={styles.body_container}>
                 <div className={styles.title}>
-                    <QualkTitle />
+                    {/* <QualkTitle /> */}
                     <h2>회원가입</h2>
                     <div className={styles.login}>
                         <span>이미 계정을 가지고 계시다면 ?</span>

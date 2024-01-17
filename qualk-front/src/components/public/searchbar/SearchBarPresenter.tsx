@@ -3,6 +3,7 @@ import styles from './SearchBarPresenter.module.css'
 import {ReactComponent as SearchIcon} from 'assets/images/workbook/searchbar/search_icon.svg';
 import {ReactComponent as SearchIconActive} from 'assets/images/workbook/searchbar/search_icon_active.svg';
 import {ReactComponent as CloseIcon} from 'assets/images/workbook/searchbar/close_icon.svg';
+import { ReponsiveMobile, ReponsivePC, ReponsiveTabletPC } from 'components/public/responsive-wrapper/ResponsiveWrapper';
 
 type SearchBarPresenterPropsType = {
     isActive: boolean,
@@ -34,14 +35,36 @@ function SearchBarPresenter({inputOnClickHandler, inputOnChangeHandler, inputOnK
         >
             {logo}
             <div className={styles.input_container}>
-                <input onClick={inputOnClickHandler}
-                       onChange={inputOnChangeHandler}
-                       onKeyUp={inputOnKeyUpHandler}
-                       onBlur={inputOnBlurHandler}
-                       className={styles.search_input}
-                       placeholder='오늘은 무엇을 찾아볼까요?'
-                       value={inputVal}
-                />
+                <ReponsivePC>
+                    <input onClick={inputOnClickHandler}
+                        onChange={inputOnChangeHandler}
+                        onKeyUp={inputOnKeyUpHandler}
+                        onBlur={inputOnBlurHandler}
+                        className={styles.search_input}
+                        placeholder='오늘은 무엇을 찾아볼까요?'
+                        value={inputVal}
+                    />
+                </ReponsivePC>
+                <ReponsiveTabletPC>
+                    <input onClick={inputOnClickHandler}
+                        onChange={inputOnChangeHandler}
+                        onKeyUp={inputOnKeyUpHandler}
+                        onBlur={inputOnBlurHandler}
+                        className={styles.search_input}
+                        placeholder='검색하고 싶은 키워드를 입력하세요!'
+                        value={inputVal}
+                    />
+                </ReponsiveTabletPC>
+                <ReponsiveMobile>
+                    <input onClick={inputOnClickHandler}
+                        onChange={inputOnChangeHandler}
+                        onKeyUp={inputOnKeyUpHandler}
+                        onBlur={inputOnBlurHandler}
+                        className={styles.search_input}
+                        placeholder='검색하고 싶은 키워드를 입력하세요!'
+                        value={inputVal}
+                    />
+                </ReponsiveMobile>
                 {isVisibleClose ? <div onClick={removeValueOnClickHandler}><CloseIcon /></div> : null}
             </div>
         </div>

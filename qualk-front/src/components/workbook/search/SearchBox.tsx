@@ -8,7 +8,7 @@ function SearchBox(){
     const [keyword, setKeyword] = useState('');
     useEffect(() => {
         const [searchStr, typeStr] = location.search.split('&')
-        setKeyword(searchStr.split('=')[1])
+        setKeyword(decodeURI(searchStr.split('=')[1]))
     }, [location.search])
     return (
         <div className={styles.search_box_root}>

@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import ToastMsg from 'components/public/toast-msg/ToastMsg';
 import FindPasswordModal from 'components/login/FindPasswordModal';
 import SendMailModal from 'components/createAccount/SendMailModal';
+import { ReponsivePC, ReponsiveMobile, ReponsiveTabletPC } from 'components/public/responsive-wrapper/ResponsiveWrapper';
 
 function LoginPage(){
     const {isToast, toastType, toastMsg} = useSelector((state: RootState) => state.toastMsgReducer);
@@ -24,7 +25,12 @@ function LoginPage(){
                     <LoginForm />
                 </section>
                 <section>
-                    <img width={800} height={775} src={bgImage} />
+                    <ReponsivePC>
+                        <img width={'100%'} height={'100%'} src={bgImage} />
+                    </ReponsivePC>
+                    <ReponsiveTabletPC>
+                        <img width={'100%'} height={'100%'} src={bgImage} />
+                    </ReponsiveTabletPC>
                 </section>
             </div>
             {isToast && toastMsg && toastType ? <ToastMsg type={toastType} msgText={toastMsg} /> : null}

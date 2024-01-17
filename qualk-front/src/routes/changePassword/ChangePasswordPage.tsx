@@ -88,7 +88,7 @@ function ChangePasswordPage(){
             </div>
             <form className={styles.body_container}>
                 <div className={styles.title}>
-                    <QualkTitle />
+                    {/* <QualkTitle /> */}
                     <h2>비밀번호 재설정</h2>
                 </div>
                 <div className={styles.input_form}>

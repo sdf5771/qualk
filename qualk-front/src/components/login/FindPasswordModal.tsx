@@ -40,17 +40,17 @@ function FindPasswordModal(){
                     <div onClick={() => {
                         dispatch({type: 'find password modal close'});
                     }}>
-                        <ModalClose />
+                        <ModalClose width={24} height={24} />
                     </div>
                 </div>
                 <div className={styles.description_container}>
                     <span>이메일로 비밀번호 재설정 링크를 보내드려요.</span>
                 </div>
                 <div className={styles.input_container}>
-                    <input onChange={inputOnChangeHandler} type="email" placeholder='가입시 등록한 이메일을 입력해 주세요.' value={inputVal}/>
+                    <input onChange={inputOnChangeHandler} type="email" placeholder='example@gmail.com' value={inputVal}/>
                 </div>
                 <div className={styles.btn_container}>
-                    <button onClick={okBtnOnClickHandler}>확인</button>
+                    <button onClick={okBtnOnClickHandler}>입력한 이메일로 보내기</button>
                 </div>
             </div>
         </div>

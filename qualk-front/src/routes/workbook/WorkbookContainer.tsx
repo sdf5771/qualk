@@ -21,6 +21,8 @@ function WorkbookContainer(){
     useEffect(() => {
         if(location.pathname === '/quiz/search'){
             setIsSearchResultPage(true)
+        } else {
+            setIsSearchResultPage(false);
         }
     }, [location.pathname])
     

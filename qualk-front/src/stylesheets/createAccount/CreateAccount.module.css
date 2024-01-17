@@ -14,11 +14,12 @@
     height: 60px;
 }
 .create_account_root > .body_container{
-    margin-top: 50px;
+    margin-top: 48px;
     margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
 }
 .body_container > .title{
@@ -29,8 +30,9 @@
     align-items: center;
 }
 .body_container > .title > h2{
+    margin: 4px 0;
     font-family: Pretendard;
-    font-size: 20px;
+    font-size: 1.75rem;
     font-weight: 600;
     letter-spacing: -0.8px;
     color: #5b5b5b;
@@ -56,15 +58,17 @@
     text-decoration: underline;
     cursor: pointer;
 }
-.body_container > .input_form{
+/* .body_container > .input_form{
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
+} */
+.body_container > .input_form > div{
+    width: 100%;
 }
-
 .term_container{
     margin-top: 30px;
     width: 100%;
@@ -82,7 +86,7 @@
 .body_container > .btn_container > .confirm_btn{
     outline: 0;
     border: 0;
-    width: 440px;
+    width: 100%;
     height: 44px;
     background-color: #ffba00;
     font-family: Pretendard;
@@ -98,3 +102,64 @@
     background-color: #e4e4e4;
     cursor:not-allowed;
 }
+
+/* mobile */
+@media screen and (max-width: 768px) {
+    .body_container > .input_form{
+        margin-top: 40px;
+        display: flex;
+        width: 100%;
+        max-width: 312px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+    .term_container{
+        max-width: 312px;
+    }
+    .body_container > .btn_container > .confirm_btn{
+        max-width: 312px;
+    }
+}
+
+/* pad */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .body_container > .input_form{
+        margin-top: 40px;
+        display: flex;
+        width: 100%;
+        max-width: 480px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+    .term_container{
+        max-width: 480px;
+    }
+    .body_container > .btn_container > .confirm_btn{
+        max-width: 480px;
+    }
+}
+
+/* pc */
+@media screen and (min-width: 1024px) {
+    .body_container > .input_form{
+        margin-top: 40px;
+        display: flex;
+        width: 100%;
+        max-width: 520px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+    .term_container{
+        max-width: 520px;
+    }
+    .body_container > .btn_container > .confirm_btn{
+        max-width: 520px;
+    }
+}
+

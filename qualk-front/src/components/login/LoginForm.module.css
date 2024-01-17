@@ -9,7 +9,9 @@
 .user_input_container{
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
+    max-width: 478px;
 }
 .user_input_container > .title{
     display: flex;
@@ -21,6 +23,8 @@
     margin-top: 50px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
     gap: 27px;
 }
 .user_input_container > .btn_container{
@@ -32,26 +36,26 @@
     width: 100%;
     gap: 16px;
 }
-.user_input_container > .btn_container > .login{
+/* .user_input_container > .btn_container > .login{
     width: 440px;
     height: 44px;
     border-radius: 6px;
     background-color: #ffba00;
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: -0.56px;
     text-align: center;
     color: #f9f9f9;
     border: 0;
     cursor: pointer;
-}
+} */
 .user_input_container > .btn_container > .remind{
     background-color: inherit;
     border: 0;
     outline: none;
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: -0.56px;
     text-align: center;
@@ -70,7 +74,7 @@
 }
 .regist_btn_container > span{
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.71;
     letter-spacing: -0.56px;
     text-align: center;
@@ -82,38 +86,209 @@
     color: #ffba00;
     cursor: pointer;
 }
-.sns_login_container{
+/* .sns_login_container{
     margin-top: 50px;
     display: flex;
     flex-direction: column;
     width: 100%;
-}
-.sns_login_container > .title_container {
+} */
+/* .sns_login_container > .title_container {
     display: flex;
-    width: 100%;
+    padding: 0 20px;
+    width: calc(100% - 40px);
     justify-content: center;
     align-items: center;
     position: relative;
     gap: 3px;
-}
+} */
 .sns_login_container > .title_container > span{
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.71;
     letter-spacing: -0.56px;
     color: #bababa;
 }
-.sns_login_container > .title_container > hr{
+/* .sns_login_container > .title_container > hr{
     border: 1px #e4e4e4;
     width: 159px;
     height: 1px;
     margin: 0;
     background-color: #e4e4e4;
+} */
+
+/* .sns_login_container > .sns_element_container{
+    margin-top: 28px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 40px);
+    gap: 20px;
+} */
+
+/* mobile */
+@media screen and (max-width: 768px) {
+    .sns_login_container{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+    }
+    .sns_login_container > .title_container {
+        display: flex;
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        gap: 3px;
+    }
+    
+    .sns_login_container > .title_container > hr{
+        border: 1px #e4e4e4;
+        max-width: 159px;
+        width: calc(68% - 120px);
+        height: 1px;
+        margin: 0;
+        background-color: #e4e4e4;
+    }
+
+    .user_input_container > .title{
+        margin-top: 44px;
+    }
+    
+    .user_input_container > .input_form{
+        max-width: 320px;
+    }
+
+    .user_input_container > .btn_container > .login{
+        width: 320px;
+        height: 50px;
+        border-radius: 6px;
+        background-color: #ffba00;
+        font-family: Pretendard;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: -0.56px;
+        text-align: center;
+        color: #f9f9f9;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .sns_login_container > .sns_element_container{
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 320px;
+        gap: 20px;
+    }
 }
 
-.sns_login_container > .sns_element_container{
-    margin-top: 28px;
-    display: flex;
-    width: 100%;
-    gap: 20px;
+/* pad */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .sns_login_container{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .sns_login_container > .title_container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        gap: 3px;
+    }
+    
+    .sns_login_container > .title_container > hr{
+        border: 1px #e4e4e4;
+        max-width: 159px;
+        width: calc(63% - 120px);
+        height: 1px;
+        margin: 0;
+        background-color: #e4e4e4;
+    }
+
+    .user_input_container > .title{
+        margin-top: 56px;
+    }
+
+    .user_input_container > .btn_container > .login{
+        width: 100%;
+        height: 50px;
+        border-radius: 6px;
+        background-color: #ffba00;
+        font-family: Pretendard;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: -0.56px;
+        text-align: center;
+        color: #f9f9f9;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .sns_login_container > .sns_element_container{
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+    }
+}
+
+/* pc */
+@media screen and (min-width: 1024px) {
+    .sns_login_container{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .sns_login_container > .title_container {
+        display: flex;
+        padding: 0 20px;
+        width: calc(100% - 40px);
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        gap: 3px;
+    }
+
+    .sns_login_container > .title_container > hr{
+        border: 1px #e4e4e4;
+        max-width: 159px;
+        width: calc(63% - 120px);
+        height: 1px;
+        margin: 0;
+        background-color: #e4e4e4;
+    }
+
+    .user_input_container > .btn_container > .login{
+        width: 100%;
+        height: 50px;
+        border-radius: 6px;
+        background-color: #ffba00;
+        font-family: Pretendard;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: -0.56px;
+        text-align: center;
+        color: #f9f9f9;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .sns_login_container > .sns_element_container{
+        margin-top: 28px;
+        padding: 0 20px;
+        display: flex;
+        justify-content: center;
+        width: calc(100% - 40px);
+        gap: 20px;
+    }
 }

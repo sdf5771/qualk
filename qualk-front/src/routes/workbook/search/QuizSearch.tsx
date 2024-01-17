@@ -24,9 +24,6 @@ function QuizSearch(){
         setSearchType(location.search.split('&')[1].split('=')[1])
     },[location, searchKeyword])
 
-    console.log('keywordData ', keywordData);
-    console.log('tagData ', tagData)
-
     return(
         <div className={`${styles.quiz_root} ${publicAnimations.fade_in}`}>
             {

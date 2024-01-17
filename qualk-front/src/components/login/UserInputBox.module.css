@@ -1,21 +1,21 @@
-.inputbox_root{
+/* .inputbox_root{
     display: flex;
     flex-direction: column;
     width: 440px;
-}
-.inputbox_root > .title{
+} */
+/* .inputbox_root > .title{
     width: 100%;
-}
+} */
 .inputbox_root > .title > span{
     font-family: Pretendard;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
     letter-spacing: -0.8px;
     text-align: left;
     color: #5b5b5b;
 }
 
-.inputbox_root > .input_container{
+/* .inputbox_root > .input_container{
     margin-top: 10px;
     width: calc(440px - 40px);
     height: calc(50px - 32px);
@@ -23,15 +23,15 @@
     border-radius: 6px;
     border: solid 1px #e4e4e4;
     background-color: #fff;
-}
-.inputbox_root > .input_container.wrong{
+} */
+/* .inputbox_root > .input_container.wrong{
     width: 440px;
     height: 50px;
     padding: 16px 20px 15px;
     border-radius: 6px;
     border: solid 1px #ff4609;
     background-color: #fff;
-}
+} */
 .inputbox_root > .input_container > input{
     width: 100%;
     height: 100%;
@@ -46,7 +46,7 @@
 }
 .inputbox_root > .input_container > input::placeholder{
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.75;
     letter-spacing: -0.64px;
     text-align: left;
@@ -60,10 +60,106 @@
 }
 .error_container > span{
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.43;
     letter-spacing: -0.56px;
     text-align: left;
     color: #ff5700;
+}
+
+/* mobile */
+@media screen and (max-width: 768px) {
+    .inputbox_root > .title{
+        /* padding: 0 20px;
+        width: calc(100% - 40px); */
+        /* max-width: calc(320px - 40px); */
+        width: 100%;
+    }
+    .inputbox_root{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* padding: 0 20px; */
+        width: 100%;
+    }
+
+    .inputbox_root > .input_container{
+        margin-top: 10px;
+        max-width: calc(320px - 40px);
+        width: calc(100% - 40px);
+        height: calc(50px - 32px);
+        padding: 16px 20px;
+        border-radius: 6px;
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+    }
+    .inputbox_root > .input_container.wrong{
+        max-width: calc(320px - 40px);
+        width: calc(100% - 40px);
+        height: 50px;
+        padding: 16px 20px 15px;
+        border-radius: 6px;
+        border: solid 1px #ff4609;
+        background-color: #fff;
+    }
+}
+
+/* pad */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .inputbox_root > .title{
+        /* padding: 0 20px;
+        width: calc(100% - 40px);
+        max-width: calc(346px - 40px); */
+        width: 100%;
+    }
+    .inputbox_root{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .inputbox_root > .input_container{
+        margin-top: 10px;
+        width: calc(100% - 42px);
+        height: calc(50px - 32px);
+        padding: 16px 20px;
+        border-radius: 6px;
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+    }
+    .inputbox_root > .input_container.wrong{
+        max-width: calc(346px - 40px);
+        width: calc(100% - 40px);
+        height: 50px;
+        padding: 16px 20px 15px;
+        border-radius: 6px;
+        border: solid 1px #ff4609;
+        background-color: #fff;
+    }
+}
+
+/* pc */
+@media screen and (min-width: 1024px) {
+    .inputbox_root > .title{
+        width: 100%;
+    }
+    .inputbox_root{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        /* width: 440px; */
+    }
+
+    .inputbox_root > .input_container{
+        margin-top: 10px;
+        width: calc(100% - 40px);
+        /* width: calc(440px - 40px); */
+        height: calc(50px - 32px);
+        padding: 16px 20px;
+        border-radius: 6px;
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+    }
 }
