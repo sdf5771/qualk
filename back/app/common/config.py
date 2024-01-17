@@ -7,7 +7,7 @@ base_dir = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
 @dataclass
 class Config:
     """
-
+        
     """
     BASE_DIR = base_dir
     DB_POOL_RECYCLE: int = 900
@@ -36,8 +36,8 @@ class TestConfig(Config):
 
 def conf():
     """
-    환경 불러오기
-    :return:
+        환경 불러오기
+        :return:
     """
     config = dict(prod=ProdConfig, local=LocalConfig, test=TestConfig)
     return config[environ.get("API_ENV", "local")]()

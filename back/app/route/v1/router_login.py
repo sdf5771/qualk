@@ -53,20 +53,17 @@ async def login(
                 base_user: BaseUser,
                 db: Session = Depends(get_db)
                 ):
-    total_results = (
-        db.query(user)
-        .filter(user.userId == base_user.userId)
-        .filter(user.password == hash_password(base_user.password))
-        .one()
-    )
-    db.close()
+    try:
+        total_results = (
+            db.query(user)
+            .filter(user.userId == base_user.userId)
+            .filter(user.password == hash_password(base_user.password))
+            .one()
+        )
+    except Exception as e:
+        return HTTPException(status_code=401, detail=str('wrong id or password'))
 
-    print(total_results.userId)
-
-    if not total_results:
-        raise HTTPException(status_code=401, detail=str('wrong id or password'))
-    else:
-        userid = total_results.userId
+    userid = total_results.userId
 
     userid = {'sub':userid}
     access_token = create_access_token(userid)
@@ -79,14 +76,32 @@ async def login(
 
 @router.post("/access")
 async def auth_access(Token: AccessToken):
+    """
+    Response
+    {
+            "userId": "sitt",
+            "isExpired": false
+    }
+    """
     try:
         payload = access_verify_token(Token.accessToken)
+        
         if payload == 'expired':
-            return HTTPException(status_code=401, detail=str('Access token expired'))
+            return jsonable_encoder({
+                       'userId': None,
+                       'isExpired': True
+                   })
+        
+        if payload == 'Not enough segments':
+            return jsonable_encoder({
+                       'userId': None,
+                       'isExpired': True
+                   })
     except Exception as e:
         return HTTPException(status_code=500, detail=str(f'{e}'))
     return jsonable_encoder({
-        'userId': payload["sub"]
+        'userId': payload["sub"],
+        'isExpired': False
     })
 
 @router.get("/check_auth_email/")
