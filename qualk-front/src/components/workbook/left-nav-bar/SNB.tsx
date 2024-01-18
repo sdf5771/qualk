@@ -69,7 +69,12 @@ function SNB(){
             <div className={styles.snb_root}>
                 <div ref={dataAnalysisRef} className={activeTitle === 0 ? styles.activeMenu : ''}>
                     <div className={styles.navbar_title} onClick={(event: React.MouseEvent<HTMLDivElement>) => {
-                        setActiveTitle(0);
+                        console.log(activeTitle)
+                        if(activeTitle === 0){
+                            setActiveTitle(null)
+                        } else {
+                            setActiveTitle(0)
+                        }
                     }}>
                         <DataAnalysisLogo className={styles.logo}/>
                         <div>
@@ -96,7 +101,12 @@ function SNB(){
             <div className={styles.snb_root}>
                 <div ref={dataAnalysisRef} className={activeTitle === 0 ? styles.activeMenu : ''}>
                     <div className={styles.navbar_title} onClick={(event: React.MouseEvent<HTMLDivElement>) => {
-                        setActiveTitle(0);
+                        console.log(activeTitle)
+                        if(activeTitle === 0){
+                            setActiveTitle(null)
+                        } else {
+                            setActiveTitle(0)
+                        }
                     }}>
                         <DataAnalysisLogo className={styles.logo}/>
                         <div>
