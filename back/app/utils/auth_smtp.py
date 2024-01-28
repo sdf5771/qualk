@@ -27,13 +27,13 @@ def export_email_form(url):
 
     <tr style="display: block; width: 100%;">
     <td style="display: block; margin: 0 auto; width: 200px; height: 54px; text-align: center;">
-    <img width="200px" src='https://qualk.co.kr/mail-asset/qualk_logo.png' />
+    <img width="200px" src='https://qualk.co.kr/mail-assets/qualk_logo.png' />
     </td>
     </tr>
 
     <tr style="margin-top: 66px; display: block; width: 100%;">
     <td style="display: block; margin: 0 auto; width: 198px; height: 198px; text-align: center;">
-    <img width="198px" height="198px" src='https://qualk.co.kr/mail-asset/congrats.png' />
+    <img width="198px" height="198px" src='https://qualk.co.kr/mail-assets/congrats.png' />
     </td>
     </tr>
 
@@ -83,13 +83,13 @@ def refresh_email_form(url, userid):
 
 <tr style="display: block; width: 100%;">
 <td style="display: block; margin: 0 auto; width: 200px; height: 54px; text-align: center;">
-<img width="200px" src='https://qualk.co.kr/mail-asset/qualk_logo.png' />
+<img width="200px" src='https://qualk.co.kr/mail-assets/qualk_logo.png' />
 </td>
 </tr>
 
 <tr style="margin-top: 54px; display: block; width: 100%;">
 <td style="display: block; margin: 0 auto; width: 244px; height: 209px; text-align: center;">
-<img width="244px" height="209px" src='https://qualk.co.kr/mail-asset/duck01.png' />
+<img width="244px" height="209px" src='https://qualk.co.kr/mail-assets/duck01.png' />
 </td>
 </tr>
 

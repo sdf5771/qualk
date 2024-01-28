@@ -141,8 +141,6 @@ async def recive_auth_email(token,
     
     id = access_verify_token(token)
 
-    print(id)
-
     if id == 'expired':
         return HTTPException(status_code=401, detail=str('Access token expired'))
     
