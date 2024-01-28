@@ -115,7 +115,7 @@ async def recive_auth_email(
 
     total_results = (
         db.query(AuthToken)
-        .filter(AuthToken.userId == id['sub'])
+        .filter(AuthToken.UserId == id['sub'])
         .all()
     )
 
@@ -148,7 +148,7 @@ async def recive_auth_email(token,
     
     total_results = (
         db.query(AuthToken)
-        .filter(AuthToken.userId == id['sub'])
+        .filter(AuthToken.UserId == id['sub'])
         .all()
     )
     if not total_results:
