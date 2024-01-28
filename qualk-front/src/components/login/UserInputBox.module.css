@@ -106,7 +106,7 @@
 }
 
 /* pad */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     .inputbox_root > .title{
         /* padding: 0 20px;
         width: calc(100% - 40px);
@@ -141,7 +141,7 @@
 }
 
 /* pc */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
     .inputbox_root > .title{
         width: 100%;
     }

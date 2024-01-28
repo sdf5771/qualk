@@ -97,4 +97,5 @@
     width: 100%;
     gap: 10px;
     min-height: 24px;
+    flex-wrap: wrap;
 }

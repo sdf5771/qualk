@@ -124,7 +124,7 @@
 }
 
 /* pad */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     .body_container > .input_form{
         margin-top: 40px;
         display: flex;
@@ -144,7 +144,7 @@
 }
 
 /* pc */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
     .body_container > .input_form{
         margin-top: 40px;
         display: flex;

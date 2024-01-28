@@ -90,7 +90,7 @@
 }
 
 /* pad */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     .snb_root{
         z-index: 80;
         position: fixed;
@@ -180,7 +180,7 @@
 }
 
 /* pc */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
     .snb_root{
         margin-top: 40px;
         display: flex;

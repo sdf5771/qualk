@@ -61,7 +61,7 @@
 }
 
 /* pad */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     .top_view_workbook_root{
         display: flex;
         flex-direction: column;
@@ -92,7 +92,7 @@
 }
 
 /* pc */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
     .top_view_workbook_root{
         display: flex;
         flex-direction: column;

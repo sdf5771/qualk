@@ -187,7 +187,7 @@
 }
 
 /* pad */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     .sns_login_container{
         margin-top: 50px;
         display: flex;
@@ -241,7 +241,7 @@
 }
 
 /* pc */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
     .sns_login_container{
         margin-top: 50px;
         display: flex;

@@ -36,7 +36,7 @@
 }
 
 /* pad */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     .login_page_root > .body_container{
         margin-top: 40px;
         margin-bottom: 100px;
@@ -59,7 +59,7 @@
 }
 
 /* pc */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
     /* .login_page_root > .body_container{
         margin-top: 40px;
         margin-bottom: 100px;

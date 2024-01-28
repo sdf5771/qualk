@@ -74,7 +74,7 @@
 }
 
 /* pad */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     .left_side_container{
         /*display: flex;*/
         /*width: 200px;*/
@@ -85,7 +85,7 @@
 }
 
 /* pc */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
     .left_side_container{
         /*display: flex;*/
         /*width: 200px;*/

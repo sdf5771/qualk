@@ -105,14 +105,14 @@
 }
 
 /* pad */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     .modal_box{
         max-width: calc(646px - 48px);
     }
 }
 
 /* pc */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
     .modal_box{
         max-width: calc(680px - 48px);
     }
