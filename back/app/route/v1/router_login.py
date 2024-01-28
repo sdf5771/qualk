@@ -205,7 +205,7 @@ async def output_email(
     payload = {'sub': userid.userId}
 
     access_token = create_access_token(payload)
-    token = AuthToken(userId=userid.userId, token=access_token)
+    token = AuthToken(UserId=userid.userId, Token=access_token)
 
     db.add(token)
     db.commit()
