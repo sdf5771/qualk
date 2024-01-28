@@ -76,7 +76,7 @@ function WorkbookPresenter({navigate, dispatch, location, modalState, isToast, t
                                     {onSuccess: (data: {testId: string, testIndex: number, time?: number}) => {
                                         if(data){
                                             let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: totalIndex, prevPathName: location.pathname, testTime: data['time']}
-                                            let navLocation = totalIndex === 50 ? '/quiz/test/mockexam/start/' : `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                            let navLocation = totalIndex === 50 ? '/openbook/test/mockexam/start/' : `/openbook/test/gaiq/mockquiz?quiz=${data['testId']}`;
                                             navigate(navLocation, 
                                                 {
                                                     state: navState

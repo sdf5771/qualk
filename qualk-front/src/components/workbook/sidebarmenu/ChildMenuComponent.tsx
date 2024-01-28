@@ -24,9 +24,9 @@ function ChildMenuComponent({parentMenuName, childMenuName, childMenuId}: ChildM
         // }
         
         if(parentMenuName === 'Test'){
-            navigate(`/quiz/test/${childMenuName.toLowerCase()}`);
+            navigate(`/openbook/test/${childMenuName.toLowerCase()}`);
         } else {
-            navigate(`/quiz/${childMenuName.toLowerCase()}`);
+            navigate(`/openbook/${childMenuName.toLowerCase()}`);
         }
 
         childMenuClickDispatch({type: 'childMenuClick', parentMenuName: parentMenuName, menuName: childMenuName, menuId: childMenuId})

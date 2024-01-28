@@ -32,13 +32,13 @@ function SNB(){
                     </div>
                     <ul className={`${styles.reset_ul} ${publicAnimations.fade_in}`}>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/gaiq'>GAIQ</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/gaiq'>GAIQ</NavLink>
                         </li>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/sqid'>SQID</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/sqid'>SQID</NavLink>
                         </li>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/sqld'>SQLD</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/sqld'>SQLD</NavLink>
                         </li>
                     </ul>
                 </div>
@@ -53,13 +53,13 @@ function SNB(){
                     </div>
                     <ul className={`${styles.reset_ul} ${publicAnimations.fade_in}`}>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/test/gaiq'>GAIQ</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/test/gaiq'>GAIQ</NavLink>
                         </li>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/test/sqid'>SQID</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/test/sqid'>SQID</NavLink>
                         </li>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/test/sqld'>SQLD</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/test/sqld'>SQLD</NavLink>
                         </li>
                     </ul>
                 </div>
@@ -85,13 +85,13 @@ function SNB(){
                     </div>
                     <ul className={`${styles.reset_ul} ${publicAnimations.fade_in}`}>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/gaiq'>GAIQ</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/gaiq'>GAIQ</NavLink>
                         </li>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/sqid'>SQID</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/sqid'>SQID</NavLink>
                         </li>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/sqld'>SQLD</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/sqld'>SQLD</NavLink>
                         </li>
                     </ul>
                 </div>
@@ -117,13 +117,13 @@ function SNB(){
                     </div>
                     <ul className={`${styles.reset_ul} ${publicAnimations.fade_in}`}>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/gaiq'>GAIQ</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/gaiq'>GAIQ</NavLink>
                         </li>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/sqid'>SQID</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/sqid'>SQID</NavLink>
                         </li>
                         <li>
-                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/quiz/sqld'>SQLD</NavLink>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/sqld'>SQLD</NavLink>
                         </li>
                     </ul>
                 </div>

@@ -19,7 +19,7 @@ function WorkbookContainer(){
 
     // 디자인 수정 이후 검색 결과 페이지에는 SNB를 사용하지 않고, Search Result의 상위 컴포넌트 상단에 검색창이 추가됨
     useEffect(() => {
-        if(location.pathname === '/quiz/search'){
+        if(location.pathname === '/openbook/search'){
             setIsSearchResultPage(true)
         } else {
             setIsSearchResultPage(false);

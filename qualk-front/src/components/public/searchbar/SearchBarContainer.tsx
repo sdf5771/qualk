@@ -32,7 +32,7 @@ function SearchBarContainer(){
     const inputOnKeyUpHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
         event.preventDefault();
         if(event.key === 'Enter'){
-            navigate(`/quiz/search?keyword=${inputVal}&type=all`, {state: {beforeLocation: location.pathname + location.search}})
+            navigate(`/openbook/search?keyword=${inputVal}&type=all`, {state: {beforeLocation: location.pathname + location.search}})
             setInputVal('');
             setVisibleCloseBtn(false);
             event.currentTarget.blur()

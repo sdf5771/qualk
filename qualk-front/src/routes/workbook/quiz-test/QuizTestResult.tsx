@@ -36,7 +36,7 @@ function QuizTestResult(){
             {onSuccess: (data: {testId: string, testIndex: number}) => {
                 if(data){
                     let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: quizResult ? quizResult['qustionNum'] : 0, prevPathName: location.pathname}
-                    let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                    let navLocation = `/openbook/test/gaiq/mockquiz?quiz=${data['testId']}`;
                     if(data.testIndex !== 1){
                         dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                     } else {
@@ -66,7 +66,7 @@ function QuizTestResult(){
                         hover: <ArrowLeftIconHover />,
                     }}
                     btnClickEventHandler={(event: React.MouseEvent)=>{
-                        navigate(`/quiz/test/gaiq`)
+                        navigate(`/openbook/test/gaiq`)
                     }}
                 />
                 <span className={styles.re_test} onClick={reTestStartClickHandler}>다시 응시하기</span>
@@ -112,7 +112,7 @@ function QuizTestResult(){
                                 {onSuccess: (data: {testId: string, testIndex: number}) => {
                                     if(data){
                                         let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 10, prevPathName: location.pathname}
-                                        let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                        let navLocation = `/openbook/test/gaiq/mockquiz?quiz=${data['testId']}`;
                                         if(data.testIndex !== 1){
                                             dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                                         } else {
@@ -129,7 +129,7 @@ function QuizTestResult(){
                                         {onSuccess: (data: {testId: string, testIndex: number}) => {
                                             if(data){
                                                 let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 10, prevPathName: location.pathname}
-                                                let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                                let navLocation = `/openbook/test/gaiq/mockquiz?quiz=${data['testId']}`;
                                                 if(data.testIndex !== 1){
                                                     dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                                                 } else {
@@ -154,7 +154,7 @@ function QuizTestResult(){
                                 {onSuccess: (data: {testId: string, testIndex: number}) => {
                                     if(data){
                                         let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 20, prevPathName: location.pathname}
-                                        let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                        let navLocation = `/openbook/test/gaiq/mockquiz?quiz=${data['testId']}`;
                                         if(data.testIndex !== 1){
                                             dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                                         } else {
@@ -171,7 +171,7 @@ function QuizTestResult(){
                                         {onSuccess: (data: {testId: string, testIndex: number}) => {
                                             if(data){
                                                 let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 20, prevPathName: location.pathname}
-                                                let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                                let navLocation = `/openbook/test/gaiq/mockquiz?quiz=${data['testId']}`;
                                                 if(data.testIndex !== 1){
                                                     dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                                                 } else {
@@ -196,7 +196,7 @@ function QuizTestResult(){
                                 {onSuccess: (data: {testId: string, testIndex: number}) => {
                                     if(data){
                                         let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 30, prevPathName: location.pathname}
-                                        let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                        let navLocation = `/openbook/test/gaiq/mockquiz?quiz=${data['testId']}`;
                                         if(data.testIndex !== 1){
                                             dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                                         } else {
@@ -213,7 +213,7 @@ function QuizTestResult(){
                                         {onSuccess: (data: {testId: string, testIndex: number}) => {
                                             if(data){
                                                 let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 30, prevPathName: location.pathname}
-                                                let navLocation = `/quiz/test/gaiq/mockquiz?quiz=${data['testId']}`;
+                                                let navLocation = `/openbook/test/gaiq/mockquiz?quiz=${data['testId']}`;
                                                 if(data.testIndex !== 1){
                                                     dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                                                 } else {

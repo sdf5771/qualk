@@ -24,7 +24,7 @@ function ReactiveContents(){
         btnElementOption: {
             title: '시험문제 엿보러가기',
             onClickHandler: () => {
-                navigate('/quiz/gaiq')
+                navigate('/openbook/gaiq')
             }
         },
     },
@@ -38,7 +38,7 @@ function ReactiveContents(){
         btnElementOption: {
             title: '퀴즈 풀러가기',
             onClickHandler: () => {
-                navigate('/quiz/test/gaiq')
+                navigate('/openbook/test/gaiq')
             }
         },
     },
@@ -57,11 +57,11 @@ function ReactiveContents(){
                     {onSuccess: (data: {testId: string, testIndex: number, time: number}) => {
                         if(data){
                             let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname, testTime: data['time']}
-                            let navLocation = `/quiz/test/gaiq/mockexam?quiz=${data['testId']}`;
+                            let navLocation = `/openbook/test/gaiq/mockexam?quiz=${data['testId']}`;
                             if(data.testIndex !== 1){
                                 dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                             } else {
-                                navigate(`/quiz/test/mockexam/start/`, 
+                                navigate(`/openbook/test/mockexam/start/`, 
                                 {
                                     state: navState
                                 }
@@ -74,11 +74,11 @@ function ReactiveContents(){
                             {onSuccess: (data: {testId: string, testIndex: number, time: number}) => {
                                 if(data){
                                     let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname, testTime: data['time']}
-                                    let navLocation = `/quiz/test/gaiq/mockexam?quiz=${data['testId']}`;
+                                    let navLocation = `/openbook/test/gaiq/mockexam?quiz=${data['testId']}`;
                                     if(data.testIndex !== 1){
                                         dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                                     } else {
-                                        navigate(`/quiz/test/mockexam/start/`, 
+                                        navigate(`/openbook/test/mockexam/start/`, 
                                         {
                                             state: navState
                                         }
@@ -87,7 +87,6 @@ function ReactiveContents(){
                                 }
                             }})
                     }})
-                // navigate('/quiz/test/mockexam/start/')
             }
         },
     },]

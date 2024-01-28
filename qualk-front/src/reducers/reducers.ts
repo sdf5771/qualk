@@ -12,6 +12,7 @@ import termListAgreedReducer from './createAccount/termListAgreedReducer';
 import termListDataReducer from './createAccount/termListDataReducer';
 import findPasswordModalReducer from './login/findPasswordModalReducer';
 import sendMailModalReducer from './createAccount/sendMailModalReducer';
+import userInfoReducer from './login/userInfoReducer';
 
 const rootReducer = combineReducers({
     authReducer,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
     termListAgreedReducer,
     termListDataReducer,
     findPasswordModalReducer,
-    sendMailModalReducer
+    sendMailModalReducer,
+    userInfoReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

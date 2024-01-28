@@ -28,7 +28,7 @@ function App() {
                 <ThemeProvider theme={theme}>
                     <Routes>
                         <Route path='/' element={<Main />} />
-                        <Route path='/quiz/*' element={<WorkbookContainer />} />
+                        <Route path='/openbook/*' element={<WorkbookContainer />} />
                         <Route path='/login' element={<LoginPage />} />
                         <Route path='/createAccount' element={<CreateAccount />} />
                         <Route path='/changepassword/:id' element={

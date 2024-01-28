@@ -74,7 +74,7 @@ function Main(){
                     <LicenseCard ImageComponent={<img src={TableauImage} width="173px" height="134px" />} isUsed={false} />
                     <LicenseCard ImageComponent={<img src={ADsPImage} width="216px" height="132px" />} isUsed={false} />
                     <LicenseCard ImageComponent={<BigDataImage />} isUsed={false} />
-                    <LicenseCard onClickHandler={(event: React.MouseEvent<HTMLDivElement>) => {navigate('/quiz/gaiq')}} ImageComponent={<img src={GAIQImage} width="227px" height="124px" />} isUsed={true} />
+                    <LicenseCard onClickHandler={(event: React.MouseEvent<HTMLDivElement>) => {navigate('/openbook/gaiq')}} ImageComponent={<img src={GAIQImage} width="227px" height="124px" />} isUsed={true} />
                 </div>
             </section>
             <section className={styles.contents_section}>

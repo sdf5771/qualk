@@ -9,7 +9,7 @@ async function getQuestionDetailData(question_id:number, question_type:string, n
     }).catch((err) => err)
 
     if(!response.ok){
-        navigate(`/quiz/${question_type}`);
+        navigate(`/openbook/${question_type}`);
     }
 
     return response.json()

@@ -23,7 +23,7 @@ function QuizResultContainer({containerType, containerTitle, searchData, searchT
                 </div>
                 {searchType == "all" ?
                     <div className={styles.btn_container}
-                         onClick={() => navigate(`/quiz/search?keyword=${searchKeyword}&type=${containerType}`, {state: {beforeLocation: location.pathname + location.search}})}>
+                         onClick={() => navigate(`/openbook/search?keyword=${searchKeyword}&type=${containerType}`, {state: {beforeLocation: location.pathname + location.search}})}>
                         <span>전체보기</span>
                     </div> : null
                 }

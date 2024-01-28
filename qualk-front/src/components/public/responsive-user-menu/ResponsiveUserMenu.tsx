@@ -8,6 +8,8 @@ import {ReactComponent as SettingsLogo} from 'assets/images/public/userProfile/s
 import {ReactComponent as LogoutLogo} from 'assets/images/public/userProfile/logout_logo.svg';
 import { useNavigate } from 'react-router-dom';
 import useAuth from 'hook/useAuth';
+import { useSelector } from 'react-redux';
+import { RootState } from 'reducers/reducers';
 
 type Tprops = {
     setActiveState: React.Dispatch<React.SetStateAction<boolean>>
@@ -16,8 +18,9 @@ type Tprops = {
 function ResponsiveUserMenu({setActiveState}: Tprops){
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const {getAccessToken} = useAuth();
-
+    const { getAccessToken, removeAccessToken} = useAuth();
+    const userInfoSelector = useSelector((state: RootState) => state.userInfoReducer)
+    console.log(userInfoSelector)
     useEffect(() => {
         if(getAccessToken()){
             setIsLoggedIn(true);
@@ -41,7 +44,7 @@ function ResponsiveUserMenu({setActiveState}: Tprops){
                         <div className={styles.user_profile}>
                             <DefaultUserProfileImg width="30px" height="30px" />
                             <div className={styles.user_name_container}>
-                                <span>테스트</span>
+                                <span>{userInfoSelector['userEmail']}</span>
                             </div>
                         </div>
                         <div className={styles.modify_profile}>
@@ -61,8 +64,8 @@ function ResponsiveUserMenu({setActiveState}: Tprops){
                 }
                 <div className={styles.new_line}></div>
                 <div className={styles.li_container}>
-                    <div className={styles.li_ele} onClick={() => navigate('/quiz/gaiq')}>
-                        <span>Quiz</span>
+                    <div className={styles.li_ele} onClick={() => navigate('/openbook/gaiq')}>
+                        <span>Openbook</span>
                     </div>
                     <div className={styles.li_ele}>
                         <span>Wiki</span>
@@ -78,7 +81,14 @@ function ResponsiveUserMenu({setActiveState}: Tprops){
                         <SettingsLogo width="24px" height="24px" />
                         <span>계정관리</span>
                     </div>
-                    <div className={styles.control_ele}>
+                    <div onClick={() => {
+                        removeAccessToken()
+                        if(getAccessToken()){
+                            setIsLoggedIn(true);
+                        } else {
+                            setIsLoggedIn(false);
+                        }
+                    }} className={styles.control_ele}>
                         <LogoutLogo width="24px" height="24px" />
                         <span>로그아웃</span>
                     </div>

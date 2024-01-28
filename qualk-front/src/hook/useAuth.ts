@@ -31,10 +31,20 @@ function useAuth(){
         },
     });
 
+    const removeAccessToken = () => localStorage.removeItem('accessToken');
+
     const { mutate: reqFreshTokenData } = useMutation(reqFreshToken, {
         onSuccess: (data) => {
             if(data){
-                
+                if(data.isExpired){
+                    removeAccessToken();
+                    dispatch({type: 'Update userInfo', userEmail: ''})
+                    isFreshToken()
+                } else {
+                    if(data.userId){
+                        dispatch({type: 'Update userInfo', userEmail: data.userId})
+                    }
+                }
                 return data;
             }
         },
@@ -71,6 +81,7 @@ function useAuth(){
         if(!accessToken){
             return false;
         }
+
         reqFreshTokenData();
         
         setTimeout(() => {
@@ -86,6 +97,7 @@ function useAuth(){
         googleLogin,
         kakaoLogin,
         isFreshToken,
+        removeAccessToken
     }
 }
 

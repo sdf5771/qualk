@@ -12,7 +12,7 @@ async function reqFreshToken(){
         body: JSON.stringify(data)
     });
     
-    return response;
+    return response.json();
 }
 
 export default reqFreshToken;

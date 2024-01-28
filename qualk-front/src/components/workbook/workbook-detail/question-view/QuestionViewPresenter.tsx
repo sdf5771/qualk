@@ -67,7 +67,7 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
                             hover: <ListviewIconHover />,
                         }}
                         btnClickEventHandler={(event: React.MouseEvent)=>{
-                            navigate(`/quiz/${workbookData.type.toLowerCase()}`)
+                            navigate(`/openbook/${workbookData.type.toLowerCase()}`)
                         }}
                     />
 

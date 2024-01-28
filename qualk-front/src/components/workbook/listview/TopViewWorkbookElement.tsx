@@ -8,7 +8,7 @@ function TopViewWorkbookElement({ contentId, type, title, view, create, tag}: Wo
     const navigate = useNavigate();
     const location = useLocation();
     const topViewWorkbookElementOnClickHandler = (event: React.MouseEvent) => {
-        navigate(`/quiz/${type.toLowerCase()}/${contentId}`, {state: {beforeLocation: location.pathname}})
+        navigate(`/openbook/${type.toLowerCase()}/${contentId}`, {state: {beforeLocation: location.pathname}})
     }
     return(
         <div onClick={topViewWorkbookElementOnClickHandler} className={styles.top_view_workbook_root}>

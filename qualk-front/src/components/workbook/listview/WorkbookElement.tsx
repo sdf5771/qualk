@@ -13,7 +13,7 @@ function WorkbookElement({ contentId, type, title, view, create, tag}: WorkbookD
     const workbookElementClickDispatch = useDispatch();
     const workbookElementOnClickHandler = (event: React.MouseEvent) => {
         workbookElementClickDispatch({type: 'workbookElementClick', questionType: type, questionId: contentId})
-        navigate(`/quiz/${type.toLowerCase()}/${contentId}`, {state: {beforeLocation: location.pathname + location.search}})
+        navigate(`/openbook/${type.toLowerCase()}/${contentId}`, {state: {beforeLocation: location.pathname + location.search}})
     }
 
     return(

@@ -87,10 +87,6 @@ function QuizTestView(){
 
             setTimerSecond((prev) => prev - 1);
 
-            //setTimeover
-            // if(timerMinute === 0 && timerSecond === 0){
-            //     setIsTimeover(true);
-            // }
         }, 1000)
 
         return () => {
@@ -103,12 +99,6 @@ function QuizTestView(){
             getQuizTestRefetch()
         }
     }, [getQuizTestIsLoading])
-
-    // useEffect(() => {
-    //     if(isTimeover){
-    //         navigate(`/quiz/test/mockexam/result/?test-id=${location.state['testId']}`)
-    //     }
-    // }, [isTimeover])
 
     const submitBtnClickHandler = (event: React.MouseEvent) => {
         if(disabledBtn === false){
@@ -151,10 +141,10 @@ function QuizTestView(){
                         }
                     )
                     if(isLast){
-                        navigate(`/quiz/test/mockexam/result/?test-id=${data?.testId}`)
+                        navigate(`/openbook/test/mockexam/result/?test-id=${data?.testId}`)
                     } else {
                         //유저가 답을 제출한 경우 '다음 문제로 넘어가야 하는 경우'
-                        navigate(`/quiz/test/gaiq/mockexam?quiz=${data && data['testId']}&test-index=${location.state.testIndex + 1}`, 
+                        navigate(`/openbook/test/gaiq/mockexam?quiz=${data && data['testId']}&test-index=${location.state.testIndex + 1}`, 
                         {
                             state: 
                             {testIndex: location.state.testIndex + 1, testId: data && data['testId'], totalIndex: location.state.totalIndex, prevPathName: location.pathname}
@@ -164,10 +154,10 @@ function QuizTestView(){
             }else{
                 if(isUserMutate){
                     if(isLast){
-                        navigate(`/quiz/test/result/?test-id=${data?.testId}`);
+                        navigate(`/openbook/test/result/?test-id=${data?.testId}`);
                     } else {
                         //유저가 답을 제출한 경우 '다음 문제로 넘어가야 하는 경우'
-                        navigate(`/quiz/test/gaiq/mockquiz?quiz=${data && data['testId']}&test-index=${location.state.testIndex + 1}`, 
+                        navigate(`/openbook/test/gaiq/mockquiz?quiz=${data && data['testId']}&test-index=${location.state.testIndex + 1}`, 
                         {
                             state: 
                             {testIndex: location.state.testIndex + 1, testId: data && data['testId'], totalIndex: location.state.totalIndex, prevPathName: location.pathname}
@@ -225,10 +215,6 @@ function QuizTestView(){
                     <span>문제</span>
                     <span>{location.state.testIndex}/{location.state.totalIndex}</span>
                 </div>
-
-                {/* <div onClick={() => {navigate(`/quiz/test/gaiq/`)}} className={styles.quiz_exit}>
-                    <span>종료하기</span>
-                </div> */}
                 {isMockExam ? 
                 <div>
                     <TestTimer time={`${timerMinute >= 10 ? timerMinute : '0' + timerMinute}:${timerSecond >= 10 ? timerSecond : '0' + timerSecond}`}/>
@@ -268,7 +254,7 @@ function QuizTestView(){
                 : null}
                 <div className={styles.test_btn_container}>
                     <button onClick={submitBtnClickHandler} disabled={disabledBtn}>{userSelect !== null && !isUserMutate && !isMockExam ? "제출하기" : "다음"}</button>
-                    <button onClick={() => {navigate(`/quiz/test/gaiq/`)}}>종료하기</button>
+                    <button onClick={() => {navigate(`/openbook/test/gaiq/`)}}>종료하기</button>
                 </div>
             </div>
         </div>

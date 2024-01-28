@@ -20,12 +20,12 @@ function MockTestStart(){
         if(!navState){
             dispatch({type: 'toast open', toastType: 'warning', toastMsg: '잘못된 접근이에요. 다시 시도해주세요.'})
             setTimeout(() => {
-                navigate('/quiz/test/gaiq');
+                navigate('/openbook/test/gaiq');
             }, 1000)
         }
         
         // testId가 생성된 경우
-        const navLocation = `/quiz/test/gaiq/mockexam?quiz=${navState['testId']}`;
+        const navLocation = `/openbook/test/gaiq/mockexam?quiz=${navState['testId']}`;
         navigate(navLocation, 
             {
                 state: navState
@@ -47,7 +47,7 @@ function MockTestStart(){
                             if(location.state['prevPathName']){
                                 navigate(location.state['prevPathName'])
                             } else {
-                                navigate(`/quiz/test/gaiq`)
+                                navigate(`/openbook/test/gaiq`)
                             }
                         }}
                     />

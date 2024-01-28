@@ -24,10 +24,10 @@ This project is an application created using Create React App.
 | --- | --- | --- |-------------------------------------------------------|-------------------------------------------------------------------|
 | 웹 | Common | 메인페이지 | `https://qualk.co.kr/`                                  |                                                                   |
 | 웹 | Quiz | 검색페이지 | `https://qualk.co.kr/search?keyword={keyword}&type={type}` | `keyword` : 검색 키워드, `type` : zeplin 디자인 상 ‘전체’, ‘문제’, ‘태그’        |
-| 웹 | Quiz | 퀴즈 메인 페이지 | `https://qualk.co.kr/quiz/`                             |                                                                   |
-| 웹 | Quiz | 퀴즈 리스트 | `https://qualk.co.kr/quiz/menuName`                     | `menuName` : 메뉴 이름 예) GAC - google-analytics                      |
-| 웹 | Quiz | 퀴즈 상세 | `https://qualk.co.kr/quiz/menuName/id`                  | `menuName` : 메뉴 이름, `id` : 해당 메뉴의 문제 고유 번호 예) id = 1, 30 (number) |
-| 웹 | Quiz | 모의퀴즈 페이지 | `https://qualk.co.kr/quiz/test/`                        | `test` : 모의 퀴즈 페이지 depth                                          |
+| 웹 | Quiz | 퀴즈 메인 페이지 | `https://qualk.co.kr/openbook/`                             |                                                                   |
+| 웹 | Quiz | 퀴즈 리스트 | `https://qualk.co.kr/openbook/menuName`                     | `menuName` : 메뉴 이름 예) GAC - google-analytics                      |
+| 웹 | Quiz | 퀴즈 상세 | `https://qualk.co.kr/openbook/menuName/id`                  | `menuName` : 메뉴 이름, `id` : 해당 메뉴의 문제 고유 번호 예) id = 1, 30 (number) |
+| 웹 | Quiz | 모의퀴즈 페이지 | `https://qualk.co.kr/openbook/test/`                        | `test` : 모의 퀴즈 페이지 depth                                          |
 | 웹 | stack |  |                                                       |                                                                   |
 | 웹 | wiki |  |                                                       |                                                                   |
 

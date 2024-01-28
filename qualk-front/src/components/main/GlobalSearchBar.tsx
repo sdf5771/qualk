@@ -39,7 +39,7 @@ function GlobalSearchBar({initialValue, option}: Tprops){
         if(searchInput !== ''){
             writeKeyword({keyword: searchInput});
             setSearchInput('');
-            navigate(`/quiz/search?keyword=${searchInput}&type=all`);
+            navigate(`/openbook/search?keyword=${searchInput}&type=all`);
         }
     }
 

@@ -46,11 +46,11 @@ function MockTestResult(){
             {onSuccess: (data: {testId: string, testIndex: number}) => {
                 if(data){
                     let navState = {testIndex: data['testIndex'], testId: data['testId'], totalIndex: 50, prevPathName: location.pathname}
-                    let navLocation = `/quiz/test/gaiq/mockexam?quiz=${data['testId']}`;
+                    let navLocation = `/openbook/test/gaiq/mockexam?quiz=${data['testId']}`;
                     if(data.testIndex !== 1){
                         dispatch({type: "okCancelModalOpen", navLocation: navLocation ,navigationState: navState, mutateFunc: mutate})
                     } else {
-                        navigate(`/quiz/test/mockexam/start/`, 
+                        navigate(`/openbook/test/mockexam/start/`, 
                         {
                             state: navState
                         }
@@ -72,7 +72,7 @@ function MockTestResult(){
                             hover: <ArrowLeftIconHover />,
                         }}
                         btnClickEventHandler={(event: React.MouseEvent)=>{
-                            navigate(`/quiz/test/gaiq`)
+                            navigate(`/openbook/test/gaiq`)
                         }}
                     />
                 </div>

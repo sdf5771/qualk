@@ -46,6 +46,8 @@
 }
 .user_name_container{
     width: 126px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .user_name_container > span{
     font-family: Pretendard;
