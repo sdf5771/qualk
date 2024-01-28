@@ -93,5 +93,8 @@
         position: sticky;
         top: 0;
     }
+    .right_side_container{
+        width: calc(100% - 220px);
+    }
 }
 
