@@ -94,9 +94,10 @@
 /* pc */
 @media screen and (min-width: 1025px) {
     .top_view_workbook_root{
+        width: 30%;
         display: flex;
         flex-direction: column;
-        width: calc(373px - 48px);
+        /* width: calc(373px - 48px); */
         height: calc(256px - 48px);
         min-width: calc(373px - 48px);
         min-height: calc(256px - 48px);
