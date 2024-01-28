@@ -7,7 +7,8 @@
     cursor: pointer;
 }
 .public_btn_root.border{
-    width: 118px;
+    width: 100%;
+    min-width: 118px;
     height: 38px;
     border-radius: 10px;
     border: solid 1px #e4e4e4;
@@ -26,12 +27,12 @@
     font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.56px;
-    color: #bababa;
+    color: #1e1e1e;
 }
 
-.public_btn_root.border:hover{
+/* .public_btn_root.border:hover{
     border: solid 1px #fdba01;
-    /* background-color: #fffaed; */
+    background-color: #fffaed;
 }
 .public_btn_root:hover > span{
     font-family: "pretendard", sans-serif;
@@ -39,9 +40,24 @@
     font-weight: 600;
     letter-spacing: -0.56px;
     color: #ffa700;
-}
+} */
 .icon_container{
     display: flex;
     justify-content:center;
     align-items: center;
 }
+/* mobile */
+@media screen and (max-width: 768px) {
+    
+}
+
+/* pad */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    
+}
+
+/* pc */
+@media screen and (min-width: 1025px) {
+   
+}
+

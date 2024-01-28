@@ -5,16 +5,64 @@
 .top_view_workbook_header{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     gap: 5px;
 }
-.top_view_workbook_header > span{
+.top_view_workbook_title{
+    display: flex;
+    gap: 5px;
+}
+.top_view_workbook_title > span{
     font-family: como, sans-serif;
     font-size: 0.875rem;
     font-weight: bold;
     letter-spacing: -0.56px;
     color: #ffb100;
 }
+
+.top_view_workbook_right_side_container{
+    display: flex;
+    flex-direction: row;
+    gap: 14.5px;
+    align-items: center;
+}
+.top_view_workbook_right_side_container > div:first-child{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+}
+.top_view_workbook_right_side_container > div:first-child > span{
+    font-family: Pretendard;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.43;
+    letter-spacing: -0.56px;
+    color: #bababa;
+
+}
+.eye_icon{
+    width: 22px;
+    height: 22px;
+}
+.top_view_workbook_right_side_container > div:nth-child(2){
+    width: 1px;
+    height: 14px;
+    background-color: #e4e4e4;
+}
+.top_view_workbook_right_side_container > div:last-child{
+
+}
+.top_view_workbook_right_side_container > div:last-child > span{
+    font-family: Pretendard;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.43;
+    letter-spacing: -0.56px;
+    color: #bababa;
+}
+
 .top_view_workbook_content{
     margin-top: 9px;
     display: flex;
@@ -94,9 +142,10 @@
 /* pc */
 @media screen and (min-width: 1025px) {
     .top_view_workbook_root{
+        width: 30%;
         display: flex;
         flex-direction: column;
-        width: calc(373px - 48px);
+        /* width: calc(373px - 48px); */
         height: calc(256px - 48px);
         min-width: calc(373px - 48px);
         min-height: calc(256px - 48px);

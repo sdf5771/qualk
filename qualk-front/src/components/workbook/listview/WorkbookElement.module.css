@@ -23,7 +23,7 @@
 }
 .workbook_title > span{
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: bold;
     letter-spacing: -0.56px;
     color: #ffa700;
@@ -43,7 +43,7 @@
 }
 .workbook_element_right_side_container > div:first-child > span{
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.43;
     letter-spacing: -0.56px;
@@ -64,7 +64,7 @@
 }
 .workbook_element_right_side_container > div:last-child > span{
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.43;
     letter-spacing: -0.56px;
@@ -78,7 +78,7 @@
 }
 .workbook_element_title_container > span{
     font-family: "pretendard", sans-serif;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 500;
     letter-spacing: -0.72px;
     color: #797979;
