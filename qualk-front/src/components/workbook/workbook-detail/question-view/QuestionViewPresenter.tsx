@@ -7,6 +7,8 @@ import {ReactComponent as ShareIconDefault} from 'assets/images/public/share_ico
 import {ReactComponent as ShareIconHover} from 'assets/images/public/share_icon_hover.svg';
 import {ReactComponent as ListviewIconDefault} from 'assets/images/public/listview_icon_default.svg';
 import {ReactComponent as ListviewIconHover} from 'assets/images/public/listview_icon_hover.svg';
+import {ReactComponent as KoreaLogo} from 'assets/images/workbook/listview/korean_logo.svg'
+import {ReactComponent as EnglishLogo} from 'assets/images/workbook/listview/english_logo.svg'
 import PublicImageBtnContainer from "components/public/public-image-btn/PublicImageBtnContainer";
 import {NavigateFunction} from "react-router-dom";
 import { actionType } from 'reducers/workbook/workbook-detail/workbookModalReducer';
@@ -18,6 +20,7 @@ type QuestionViewPresenterPropsType = {
 }
 
 function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPresenterPropsType){
+    console.log(workbookData.lang);
     return(
         <div className={styles.question_view_root}>
             <div className={styles.question_view_title_container}>
@@ -40,11 +43,11 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
             <div className={styles.question_btn_container}>
                 <div>
                     <PublicImageBtnContainer
-                            btnText="한/영 전환"
+                            btnText={workbookData.lang && workbookData.lang === 'Korea' ? '영어 번역' : '한국어 번역'}
                             options={{border: true}}
                             logoIcon={{
-                                default: <ListviewIconDefault />,
-                                hover: <ListviewIconHover />,
+                                default: workbookData.lang && workbookData.lang === 'Korea' ? <EnglishLogo /> : <KoreaLogo />,
+                                hover: workbookData.lang && workbookData.lang === 'Korea' ? <EnglishLogo /> : <KoreaLogo />,
                             }}
                             btnClickEventHandler={(event: React.MouseEvent)=>{
                                 if(workbookData.lang && workbookData.lang === 'Korea'){

@@ -20,8 +20,8 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    width: calc(100% - 40px);
+    padding: 24px 16px;
+    width: calc(100% - 32px);
     border-radius: 10px;
     background-color: #fdfaf2;
 }
@@ -30,18 +30,18 @@
 }
 .answer_container > span{
     font-family: Pretendard;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 0.875rem;
+    font-weight: 700;
     line-height: 1.63;
     letter-spacing: -0.64px;
-    color: #ffa700;
+    color: #252525;
 }
 .explain_container{
     margin-top: 20px;
 }
 .explain_container > span{
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.71;
     letter-spacing: -0.56px;
     color: #5b5b5b;

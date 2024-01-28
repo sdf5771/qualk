@@ -41,15 +41,13 @@
 }
 .title_container > span{
     font-family: Pretendard;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 1rem;
     letter-spacing: -0.56px;
-    color: #5b5b5b;
+    color: #000000;
 }
 .title_container.correct > span{
     font-family: Pretendard;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 1rem;
     letter-spacing: -0.56px;
-    color: #ffa700;
+    color: #000000;
 }
