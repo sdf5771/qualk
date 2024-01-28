@@ -127,6 +127,7 @@
     }
 
     .search_area_box{
+        z-index: 20;
         position: absolute;
         top: 60px;
         left: 0px;
@@ -158,6 +159,7 @@
         display: flex;
         margin-left: 117px;
         width: calc(900px - 117px);
+        gap: 20px;
     }
     .menu_list > span{
         font-family: BCAlphapipe;

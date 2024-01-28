@@ -95,6 +95,34 @@ function SNB(){
                         </li>
                     </ul>
                 </div>
+                <div ref={dataAnalysisRef} className={activeTitle === 1 ? styles.activeMenu : ''}>
+                    <div className={styles.navbar_title} onClick={(event: React.MouseEvent<HTMLDivElement>) => {
+                        console.log(activeTitle)
+                        if(activeTitle === 1){
+                            setActiveTitle(null)
+                        } else {
+                            setActiveTitle(1)
+                        }
+                    }}>
+                        <DataAnalysisLogo className={styles.logo}/>
+                        <div>
+                            <span>Test</span>
+                            <span></span>
+                        </div>
+                        <ArrowSvgComponent className={`${styles.arrow_svg} ${activeTitle === 0 ? styles.activeMenu : ''}`}/>
+                    </div>
+                    <ul className={`${styles.reset_ul} ${publicAnimations.fade_in}`}>
+                        <li>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/test/gaiq'>GAIQ</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/test/sqid'>SQID</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/test/sqld'>SQLD</NavLink>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </ReponsiveTabletPC>
         <ReponsiveMobile>
@@ -124,6 +152,34 @@ function SNB(){
                         </li>
                         <li>
                             <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/sqld'>SQLD</NavLink>
+                        </li>
+                    </ul>
+                </div>
+                <div ref={dataAnalysisRef} className={activeTitle === 1 ? styles.activeMenu : ''}>
+                    <div className={styles.navbar_title} onClick={(event: React.MouseEvent<HTMLDivElement>) => {
+                        console.log(activeTitle)
+                        if(activeTitle === 1){
+                            setActiveTitle(null)
+                        } else {
+                            setActiveTitle(1)
+                        }
+                    }}>
+                        <DataAnalysisLogo className={styles.logo}/>
+                        <div>
+                            <span>Test</span>
+                            <span></span>
+                        </div>
+                        <ArrowSvgComponent className={`${styles.arrow_svg} ${activeTitle === 0 ? styles.activeMenu : ''}`}/>
+                    </div>
+                    <ul className={`${styles.reset_ul} ${publicAnimations.fade_in}`}>
+                        <li>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/test/gaiq'>GAIQ</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/test/sqid'>SQID</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className={styles.navlink} style={({isActive}) => isActive ? activeStyle : {}} to='/openbook/test/sqld'>SQLD</NavLink>
                         </li>
                     </ul>
                 </div>

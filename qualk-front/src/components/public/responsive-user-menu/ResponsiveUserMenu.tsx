@@ -67,6 +67,9 @@ function ResponsiveUserMenu({setActiveState}: Tprops){
                     <div className={styles.li_ele} onClick={() => navigate('/openbook/gaiq')}>
                         <span>Openbook</span>
                     </div>
+                    <div className={styles.li_ele} onClick={() => navigate('/openbook/test/gaiq')}>
+                        <span>Test</span>
+                    </div>
                     <div className={styles.li_ele}>
                         <span>Wiki</span>
                     </div>

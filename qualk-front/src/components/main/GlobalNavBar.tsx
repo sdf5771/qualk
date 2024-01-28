@@ -37,6 +37,7 @@ function GlobalNavBar(){
 
                     <div className={styles.menu_list}>
                         <span onClick={() => navigate('/openbook/gaiq')}>Openbook</span>
+                        <span onClick={() => navigate('/openbook/test/gaiq')}>Test</span>
                     </div>
 
                     <div className={styles.userinfo_box}>
