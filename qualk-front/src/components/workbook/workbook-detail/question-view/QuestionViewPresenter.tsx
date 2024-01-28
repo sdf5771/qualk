@@ -20,7 +20,6 @@ type QuestionViewPresenterPropsType = {
 }
 
 function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPresenterPropsType){
-    console.log(workbookData.lang);
     return(
         <div className={styles.question_view_root}>
             <div className={styles.question_view_title_container}>
@@ -43,14 +42,14 @@ function QuestionViewPresenter({navigate, workbookData, dispatch}:QuestionViewPr
             <div className={styles.question_btn_container}>
                 <div>
                     <PublicImageBtnContainer
-                            btnText={workbookData.lang && workbookData.lang === 'Korea' ? '영어 번역' : '한국어 번역'}
+                            btnText={workbookData && workbookData.lang === 'Korea' ? '영어 번역' : '한국어 번역'}
                             options={{border: true}}
                             logoIcon={{
-                                default: workbookData.lang && workbookData.lang === 'Korea' ? <EnglishLogo /> : <KoreaLogo />,
-                                hover: workbookData.lang && workbookData.lang === 'Korea' ? <EnglishLogo /> : <KoreaLogo />,
+                                default: workbookData && workbookData.lang === 'Korea' ? <EnglishLogo /> : <KoreaLogo />,
+                                hover: workbookData && workbookData.lang === 'Korea' ? <EnglishLogo /> : <KoreaLogo />,
                             }}
                             btnClickEventHandler={(event: React.MouseEvent)=>{
-                                if(workbookData.lang && workbookData.lang === 'Korea'){
+                                if(workbookData && workbookData.lang === 'Korea'){
                                     dispatch({type: 'English'})
                                 } else {
                                     dispatch({type: 'Korea'})
