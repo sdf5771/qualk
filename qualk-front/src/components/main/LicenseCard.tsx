@@ -7,19 +7,21 @@ type TLicenseCardProps = {
     ImageComponent: React.ReactNode;
     onClickHandler?: React.MouseEventHandler<HTMLDivElement>;
     isUsed: boolean;
+    title: string;
+    agency: string;
 }
 
-function LicenseCard({ImageComponent, onClickHandler, isUsed}: TLicenseCardProps){
-    const [isHover, setIsHover] = useState(false);
-
+function LicenseCard({ImageComponent, onClickHandler, isUsed, title, agency}: TLicenseCardProps){
     return(
-        <div 
-            onMouseOver={() => setIsHover(true)} 
-            onMouseOut={() => setIsHover(false)} 
+        <div
             onClick={onClickHandler ? onClickHandler : () => {}} 
             className={`${styles.card_root} ${isUsed ? '' : styles.need_update}`}>
-            <div className={styles.image_container}>
-                {isHover && !isUsed ? <NoContents className={publicAnimations.fade_in_out} /> : ImageComponent}
+            <div className={styles.img_container}>
+                {ImageComponent}
+            </div>
+            <div className={styles.text_wrapper}>
+                <span>{title}</span>
+                <span>{agency}</span>
             </div>
         </div>
     )

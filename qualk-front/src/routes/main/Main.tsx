@@ -101,14 +101,14 @@ function Main(){
             </section>
             <section className={styles.license_section}>
                 <div className={styles.title_container}>
-                    <span>Qualk에서는 아래와 같은 시험들을 준비할 수 있어요!</span>
+                    <span>아래와 같은 시험들을 준비할 수 있어요!</span>
                 </div>
                 <div className={styles.license_list}>
-                    <LicenseCard ImageComponent={<img src={SQLDImage} width="264px" height="179px" />} isUsed={false} />
-                    <LicenseCard ImageComponent={<img src={TableauImage} width="173px" height="134px" />} isUsed={false} />
-                    <LicenseCard ImageComponent={<img src={ADsPImage} width="216px" height="132px" />} isUsed={false} />
-                    <LicenseCard ImageComponent={<BigDataImage />} isUsed={false} />
-                    <LicenseCard onClickHandler={(event: React.MouseEvent<HTMLDivElement>) => {navigate('/openbook/gaiq')}} ImageComponent={<img src={GAIQImage} width="227px" height="124px" />} isUsed={true} />
+                    <LicenseCard title="Google Analytics" agency="Google" onClickHandler={(event: React.MouseEvent<HTMLDivElement>) => {navigate('/openbook/gaiq')}} ImageComponent={<img src={GAIQImage} width="227px" height="124px" />} isUsed={true} />
+                    <LicenseCard title="빅데이터 분석기사" agency="한국데이터산업진흥원" ImageComponent={<BigDataImage />} isUsed={false} />
+                    <LicenseCard title="SQLD" agency="한국데이터산업진흥원" ImageComponent={<img src={SQLDImage} width="264px" height="179px" />} isUsed={false} />
+                    <LicenseCard title="ADsP" agency="한국데이터산업진흥원" ImageComponent={<img src={ADsPImage} width="216px" height="132px" />} isUsed={false} />
+                    <LicenseCard title="Tableau Certification" agency="Tableau" ImageComponent={<img src={TableauImage} width="173px" height="134px" />} isUsed={false} />
                 </div>
             </section>
             <section className={styles.contents_section}>
