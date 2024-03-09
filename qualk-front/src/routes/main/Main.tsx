@@ -3,8 +3,7 @@ import styles from 'stylesheets/main/Main.module.css';
 import GlobalSearchBar from 'components/main/GlobalSearchBar';
 import InfiniteScroll from 'components/main/InfiniteScroll';
 import GlobalNavBar from 'components/main/GlobalNavBar';
-import {ReactComponent as DuckHelpLogo} from 'assets/images/public/duck_01.svg';
-import {ReactComponent as LinePath} from 'assets/images/main/linear_path.svg';
+import {ReactComponent as ArrowDown} from 'assets/images/main/arrow_down.svg';
 import LicenseCard from 'components/main/LicenseCard';
 import {ReactComponent as BigDataImage} from 'assets/images/main/license/big_data.svg';
 import GAIQImage from 'assets/images/main/license/google_analytics.png';
@@ -36,32 +35,67 @@ function Main(){
                 </div>
             </section>
             <section className={styles.explain_section}>
-                <div className={styles.deco_container}>
-                    <div className={styles.left_box}>
-                        <div className={styles.info_title_container}>
-                            <span><b>자격증 준비,</b> 어디서부터 <br /> 시작해야할지 막막하다구요?</span>
+                <div className={styles.deco_box}>
+                    <div className={styles.header}>
+                        <span>Q. 이런 고민 해보신적 있나요?</span>
+                    </div>
+                    <div className={styles.problem_container}>
+                        <div className={styles.problem_box}>
+                            <div className={styles.border_box}>
+                                <span className={styles.title}>Problem 1</span>
+                                <div className={styles.description_container}>
+                                    <span>자격증이 중요한 건 알겠는데,</span>
+                                    <span>어떻게 공부를 시작해야 할지 감이 안와요.</span>
+                                </div>
+                            </div>
+                            <div className={styles.arrow_box}>
+                                <ArrowDown />
+                            </div>
                         </div>
-                        <div className={styles.duck_graphic_container}>
-                            <span>Help!</span>
-                            <DuckHelpLogo />
+                        <div className={styles.problem_box}>
+                            <div className={styles.border_box}>
+                                <span className={styles.title}>Problem 2</span>
+                                <div className={styles.description_container}>
+                                    <span>자격증을 취득해야 하는데,</span>
+                                    <span>어떤것을 취득해야 할지 모르겠어요.</span>
+                                </div>
+                            </div>
+                            <div className={styles.arrow_box}>
+                                <ArrowDown />
+                            </div>
+                        </div>
+                        <div className={styles.problem_box}>
+                            <div className={styles.border_box}>
+                                <span className={styles.title}>Problem 3</span>
+                                <div className={styles.description_container}>
+                                    <span>자격증 준비,</span>
+                                    <span>어디서 부터 시작해야할까요?</span>
+                                </div>
+                            </div>
+                            <div className={styles.arrow_box}>
+                                <ArrowDown />
+                            </div>
                         </div>
                     </div>
-                    <div className={styles.info_box}>
-                        <div className={styles.border_box}>
-                            <span><b>자격증이 중요한 건 알겠는데, <br /> 어떻게 공부를 시작 해야 할지 감이 안잡히나요?</b></span>
-                            <br />
-                            <br />
-                            <span>그렇다면 Qualk과 함께 자격증 공부를 시작해보는 것은 어때요?</span>
-                        </div>
-                        <div className={styles.border_box}>
-                            <span>자격증은 우리에게 <b>목표의식</b>을 높여줄 뿐 아니라 <br/> 새로운 분석 도구를 익히기 전, 구조적인 지식을 쌓을 수 있는 <br/> <b>튜토리얼과 같은 역할</b>을 한답니다!</span>
-                        </div>
-                        <div className={styles.border_box}>
-                            <span>당신의 의지가 결과물로 도달할 수 있도록 <br /> Qualk이 옆에서 도와줄게요!</span>
+                    <div className={styles.solution_container}>
+                        <div className={styles.solution_box}>
+                            <span>Solution!</span>
+                            <span>자격증 준비 부터 취득까지.</span>
+                            <span>Qualk과 함께 시작해볼까요?</span>
                         </div>
                     </div>
-                    <div className={styles.line_container}>
-                        <LinePath />
+                    <div className={styles.license_banner_box}>
+                        <div className={styles.text_wrapper}>
+                            <div className={styles.title_container}>
+                                <span>자격증 준비 부터 취득까지.</span>
+                                <span>Qualk과 함께 시작해볼까요?</span>
+                            </div>
+                            <div className={styles.description_container}>
+                                <span>자격증은 우리에게 목표의식을 높여줄 뿐 아니라 새로운 분석 도구를 익히기 전,</span>
+                                <span>구조적인 지식을 쌓을 수 있는 튜토리얼과 같은 역할을 한답니다!</span>
+                                <span>당신의 의지가 결과물로 도달할 수 있도록 Qualk이 옆에서 도와줄게요!</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
